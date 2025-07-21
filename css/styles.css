@@ -130,18 +130,30 @@ body.dyslexia-font {
 .btn-white {
     background-color: white;
     color: var(--primary-color);
-    border-color: white;
+    border: 2px solid white;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.btn-white:hover {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.4);
 }
 
 .btn-outline-white {
     background-color: transparent;
     color: white;
-    border-color: white;
+    border: 2px solid white;
+    font-weight: 600;
 }
 
 .btn-outline-white:hover {
     background-color: white;
     color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
 }
 
 .btn-large {
@@ -213,9 +225,10 @@ body.dyslexia-font {
 .header {
     position: sticky;
     top: 0;
-    background: white;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #ffffff 0%, #fafbfd 100%);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
     z-index: 999;
+    border-bottom: 1px solid rgba(21, 101, 192, 0.1);
 }
 
 .navbar {
@@ -247,10 +260,11 @@ body.dyslexia-font {
 }
 
 .brand-text {
-    font-weight: 700;
-    font-size: 20px;
+    font-weight: 800;
+    font-size: 22px;
     line-height: 1.2;
     color: var(--primary-color);
+    text-shadow: 0 1px 2px rgba(21, 101, 192, 0.1);
 }
 
 .nav-menu {
@@ -269,25 +283,28 @@ body.dyslexia-font {
 .nav-link {
     display: block;
     text-decoration: none;
-    color: var(--text-primary);
-    font-weight: 500;
+    color: #2c3e50;
+    font-weight: 600;
     padding: var(--spacing-sm) var(--spacing-md);
     border-radius: var(--border-radius);
     transition: var(--transition);
     position: relative;
     white-space: nowrap;
+    font-size: 15px;
 }
 
 .nav-link:hover {
     color: var(--primary-color);
-    background-color: rgba(21, 101, 192, 0.05);
+    background-color: rgba(21, 101, 192, 0.08);
     transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(21, 101, 192, 0.15);
 }
 
 .nav-link.active {
-    color: var(--primary-color);
-    background-color: rgba(21, 101, 192, 0.1);
-    font-weight: 600;
+    color: white;
+    background-color: var(--primary-color);
+    font-weight: 700;
+    box-shadow: 0 2px 12px rgba(21, 101, 192, 0.3);
 }
 
 .nav-link.active::after {
@@ -307,6 +324,18 @@ body.dyslexia-font {
     align-items: center;
     gap: var(--spacing-md);
     flex-shrink: 0;
+}
+
+.nav-actions .btn {
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 20px;
+    box-shadow: 0 2px 8px rgba(21, 101, 192, 0.2);
+}
+
+.nav-actions .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(21, 101, 192, 0.3);
 }
 
 .nav-toggle {
@@ -434,8 +463,18 @@ body.dyslexia-font {
 
 .hero-actions {
     display: flex;
-    gap: var(--spacing-md);
+    gap: var(--spacing-lg);
     flex-wrap: wrap;
+    align-items: center;
+    margin-top: var(--spacing-xl);
+}
+
+.hero-actions .btn {
+    min-width: 160px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 14px 28px;
 }
 
 .hero-image {
