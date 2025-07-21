@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Fantea</title>
+    <meta name="description" content="Contáctanos para recibir información, apoyo y orientación. Estamos aquí para ayudarte en todo lo que necesites">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+    <!-- Botón de Accesibilidad -->
+    <div id="accessibility-panel" class="accessibility-panel">
+        <button id="accessibility-btn" class="accessibility-btn" aria-label="Opciones de accesibilidad">
+            <i class="fas fa-universal-access"></i>
+        </button>
+        <div id="accessibility-options" class="accessibility-options hidden">
+            <button onclick="increaseFontSize()">Aumentar texto</button>
+            <button onclick="decreaseFontSize()">Reducir texto</button>
+            <button onclick="toggleHighContrast()">Alto contraste</button>
+            <button onclick="toggleDyslexiaFont()">Fuente dislexia</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <img src="images/logo.png" alt="Logo Fantea" class="logo">
+                    <span class="brand-text">Fantea</span>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Abrir menú de navegación">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+                    <li class="nav-item"><a href="autismo.html" class="nav-link">Autismo</a></li>
+                    <li class="nav-item"><a href="servicios.html" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="actualidad.html" class="nav-link">Actualidad</a></li>
+                    <li class="nav-item"><a href="afiliate.html" class="nav-link">Afíliate</a></li>
+                    <li class="nav-item"><a href="contacto.html" class="nav-link active">Contacto</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="afiliate.html" class="btn btn-primary">Únete a Nosotros</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Banner Página -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>Contacto</h1>
+                <p>Estamos aquí para ayudarte. Contacta con nosotros para cualquier consulta, información o apoyo que necesites</p>
+                <nav class="breadcrumb">
+                    <a href="index.html">Inicio</a>
+                    <span>/</span>
+                    <span>Contacto</span>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Contacto -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-form-container">
+                    <div class="form-header">
+                        <h2>Envíanos un Mensaje</h2>
+                        <p>Completa el formulario y nos pondremos en contacto contigo lo antes posible</p>
+                    </div>
+
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="firstName">Nombre *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastName">Apellidos *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="email">Correo Electrónico *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Teléfono</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="organization">Organización/Asociación</label>
+                            <input type="text" id="organization" name="organization">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Motivo de Consulta *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Selecciona un motivo</option>
+                                <option value="info-general">Información general</option>
+                                <option value="apoyo-familiar">Apoyo a familias</option>
+                                <option value="formacion">Formación profesional</option>
+                                <option value="colaboracion">Propuesta de colaboración</option>
+                                <option value="afiliacion">Afiliación de asociación</option>
+                                <option value="prensa">Consulta de prensa</option>
+                                <option value="otro">Otro motivo</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Mensaje *</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Describe tu consulta o mensaje..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="privacy" name="privacy" required>
+                                <label for="privacy">He leído y acepto la <a href="#" target="_blank">Política de Privacidad</a> *</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="newsletter" name="newsletter">
+                                <label for="newsletter">Deseo recibir información sobre actividades y noticias de la federación</label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-paper-plane"></i>
+                                Enviar Mensaje
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Información de Contacto -->
+                <div class="contact-info-container">
+                    <div class="contact-info-card">
+                        <h3>Información de Contacto</h3>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Dirección</h4>
+                                    <p>Calle de la Inclusión, 123<br>28015 Madrid, España</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Teléfono</h4>
+                                    <p>+34 900 123 456</p>
+                                    <small>Lunes a Viernes: 9:00 - 18:00</small>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <p>info@fantea.org</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Atención Especializada</h4>
+                                    <p>atencion@fantea.org</p>
+                                    <small>Para consultas específicas sobre TEA</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="emergency-contact">
+                            <div class="emergency-header">
+                                <i class="fas fa-phone-volume"></i>
+                                <h4>Línea de Apoyo 24/7</h4>
+                            </div>
+                            <p class="emergency-number">900 800 700</p>
+                            <p class="emergency-description">Apoyo emocional y orientación para familias en situaciones de crisis</p>
+                        </div>
+                    </div>
+
+                    <!-- Horarios de Atención -->
+                    <div class="schedule-card">
+                        <h3>Horarios de Atención</h3>
+                        <div class="schedule-list">
+                            <div class="schedule-item">
+                                <span class="day">Lunes - Viernes</span>
+                                <span class="time">9:00 - 18:00</span>
+                            </div>
+                            <div class="schedule-item">
+                                <span class="day">Sábado</span>
+                                <span class="time">10:00 - 14:00</span>
+                            </div>
+                            <div class="schedule-item">
+                                <span class="day">Domingo</span>
+                                <span class="time">Cerrado</span>
+                            </div>
+                        </div>
+                        
+                        <div class="schedule-note">
+                            <i class="fas fa-info-circle"></i>
+                            <p>Para urgencias fuera del horario de oficina, utiliza nuestra línea de apoyo 24/7</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa y Ubicación -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-header text-center">
+                <h2>Nuestra Ubicación</h2>
+                <p>Visítanos en nuestras oficinas centrales en el corazón de Madrid</p>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <!-- Aquí iría el mapa real - usando placeholder por ahora -->
+            <div class="map-placeholder">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.4074!2d-3.7037902!3d40.4167754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDI1JzAwLjQiTiAzwrA0MicxMy42Ilc!5e0!3m2!1sen!2ses!4v1635789123456!5m2!1sen!2ses"
+                    width="100%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Ubicación Fantea">
+                </iframe>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="location-details">
+                <div class="location-info">
+                    <h3>Cómo Llegar</h3>
+                    <div class="transport-options">
+                        <div class="transport-item">
+                            <i class="fas fa-subway"></i>
+                            <div>
+                                <h4>Metro</h4>
+                                <p>Líneas 2, 5 y 10 - Estación Chueca (5 min andando)</p>
+                            </div>
+                        </div>
+                        <div class="transport-item">
+                            <i class="fas fa-bus"></i>
+                            <div>
+                                <h4>Autobús</h4>
+                                <p>Líneas 3, 40, 149 - Parada Gran Vía (3 min andando)</p>
+                            </div>
+                        </div>
+                        <div class="transport-item">
+                            <i class="fas fa-car"></i>
+                            <div>
+                                <h4>Parking</h4>
+                                <p>Parking público disponible en Calle Hortaleza</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accessibility-info">
+                    <h3>Accesibilidad</h3>
+                    <ul class="accessibility-features">
+                        <li><i class="fas fa-wheelchair"></i> Acceso para sillas de ruedas</li>
+                        <li><i class="fas fa-elevator"></i> Ascensor disponible</li>
+                        <li><i class="fas fa-deaf"></i> Intérprete de lengua de signos (cita previa)</li>
+                        <li><i class="fas fa-eye"></i> Material en braille disponible</li>
+                        <li><i class="fas fa-parking"></i> Plaza de parking reservada</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Preguntas Frecuentes -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Preguntas Frecuentes</h2>
+                <p>Resolvemos las dudas más comunes antes de que nos contactes</p>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cómo puedo obtener información sobre servicios de apoyo?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Puedes contactarnos directamente por teléfono, email o a través del formulario de esta página. También ofrecemos consultas presenciales con cita previa para brindar orientación personalizada.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Ofrecen servicios de diagnóstico?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No realizamos diagnósticos directamente, pero podemos orientarte hacia profesionales especializados en nuestra red. También ofrecemos información sobre el proceso diagnóstico y acompañamiento familiar.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cómo puede mi asociación afiliarse a la federación?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Las asociaciones interesadas pueden contactarnos para recibir información sobre los requisitos y proceso de afiliación. Ofrecemos apoyo durante todo el proceso y beneficios continuos para las asociaciones afiliadas.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Tienen programas de formación para profesionales?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, ofrecemos cursos especializados para profesionales de la educación, salud y servicios sociales. Consulta nuestro calendario de formación o contacta con nuestro equipo técnico para más información.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cuánto tiempo tardan en responder a las consultas?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nos comprometemos a responder todas las consultas en un máximo de 48 horas laborables. Para consultas urgentes, utiliza nuestra línea telefónica directa o el servicio de apoyo 24/7.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Realizan actividades en otras ciudades?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, organizamos eventos, formaciones y actividades en diferentes ciudades a través de nuestras asociaciones afiliadas. Consulta nuestro calendario de eventos o pregunta por actividades en tu zona.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo-white.png" alt="Logo Fantea">
+                        <h3>Fantea</h3>
+                    </div>
+                    <p>Trabajando por la inclusión y los derechos de las personas autistas desde 2009.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul class="footer-links">
+                        <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                        <li><a href="autismo.html">¿Qué es el Autismo?</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="actualidad.html">Noticias</a></li>
+                        <li><a href="afiliate.html">Afíliate</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Guías para Familias</a></li>
+                        <li><a href="#">Formación Profesional</a></li>
+                        <li><a href="#">Centro de Descargas</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Calle Principal 123, Ciudad</p>
+                        <p><i class="fas fa-phone"></i> +34 900 123 456</p>
+                        <p><i class="fas fa-envelope"></i> info@fantea.org</p>
+                    </div>
+                    <a href="contacto.html" class="btn btn-primary">Contactar</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Fantea. Todos los derechos reservados.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Política de Privacidad</a>
+                        <a href="#">Términos de Uso</a>
+                        <a href="#">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // FAQ Toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const icon = question.querySelector('i');
+                
+                question.addEventListener('click', function() {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all other FAQs
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            otherItem.querySelector('.faq-answer').style.maxHeight = '0';
+                            otherItem.querySelector('.faq-question i').style.transform = 'rotate(0deg)';
+                        }
+                    });
+                    
+                    // Toggle current FAQ
+                    if (isActive) {
+                        item.classList.remove('active');
+                        answer.style.maxHeight = '0';
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        item.classList.add('active');
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        icon.style.transform = 'rotate(45deg)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página no encontrada - Fantea</title>
+    <meta name="description" content="La página que buscas no existe. Regresa al sitio principal de Fantea">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+    <!-- Botón de Accesibilidad -->
+    <div id="accessibility-panel" class="accessibility-panel">
+        <button id="accessibility-btn" class="accessibility-btn" aria-label="Opciones de accesibilidad">
+            <i class="fas fa-universal-access"></i>
+        </button>
+        <div id="accessibility-options" class="accessibility-options hidden">
+            <button onclick="increaseFontSize()">Aumentar texto</button>
+            <button onclick="decreaseFontSize()">Reducir texto</button>
+            <button onclick="toggleHighContrast()">Alto contraste</button>
+            <button onclick="toggleDyslexiaFont()">Fuente dislexia</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <img src="images/logo.png" alt="Logo Fantea" class="logo">
+                    <span class="brand-text">Fantea</span>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Abrir menú de navegación">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+                    <li class="nav-item"><a href="autismo.html" class="nav-link">Autismo</a></li>
+                    <li class="nav-item"><a href="servicios.html" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="actualidad.html" class="nav-link">Actualidad</a></li>
+                    <li class="nav-item"><a href="afiliate.html" class="nav-link">Afíliate</a></li>
+                    <li class="nav-item"><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="afiliate.html" class="btn btn-primary">Únete a Nosotros</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido 404 -->
+    <section class="error-page">
+        <div class="container">
+            <div class="error-content">
+                <div class="error-illustration">
+                    <div class="error-number">404</div>
+                    <i class="fas fa-puzzle-piece error-icon"></i>
+                </div>
+                
+                <div class="error-text">
+                    <h1>¡Ups! Página no encontrada</h1>
+                    <p>La página que buscas no existe o ha sido movida. Te ayudamos a encontrar lo que necesitas.</p>
+                </div>
+
+                <div class="error-actions">
+                    <a href="index.html" class="btn btn-primary btn-large">
+                        <i class="fas fa-home"></i>
+                        Ir al Inicio
+                    </a>
+                    <a href="contacto.html" class="btn btn-outline btn-large">
+                        <i class="fas fa-envelope"></i>
+                        Contactar
+                    </a>
+                </div>
+
+                <div class="helpful-links">
+                    <h3>Enlaces útiles:</h3>
+                    <div class="links-grid">
+                        <a href="nosotros.html" class="helpful-link">
+                            <i class="fas fa-users"></i>
+                            <span>Sobre Nosotros</span>
+                        </a>
+                        <a href="autismo.html" class="helpful-link">
+                            <i class="fas fa-brain"></i>
+                            <span>¿Qué es el Autismo?</span>
+                        </a>
+                        <a href="servicios.html" class="helpful-link">
+                            <i class="fas fa-hands-helping"></i>
+                            <span>Servicios</span>
+                        </a>
+                        <a href="afiliate.html" class="helpful-link">
+                            <i class="fas fa-handshake"></i>
+                            <span>Afíliate</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo-white.png" alt="Logo Fantea">
+                        <h3>Fantea</h3>
+                    </div>
+                    <p>Trabajando por la inclusión y los derechos de las personas autistas desde 2009.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul class="footer-links">
+                        <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                        <li><a href="autismo.html">¿Qué es el Autismo?</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="actualidad.html">Noticias</a></li>
+                        <li><a href="afiliate.html">Afíliate</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Guías para Familias</a></li>
+                        <li><a href="#">Formación Profesional</a></li>
+                        <li><a href="#">Centro de Descargas</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Calle Principal 123, Ciudad</p>
+                        <p><i class="fas fa-phone"></i> +34 900 123 456</p>
+                        <p><i class="fas fa-envelope"></i> info@fantea.org</p>
+                    </div>
+                    <a href="contacto.html" class="btn btn-primary">Contactar</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Fantea. Todos los derechos reservados.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Política de Privacidad</a>
+                        <a href="#">Términos de Uso</a>
+                        <a href="#">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+
+    <style>
+        .error-page {
+            padding: var(--spacing-xl) 0;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .error-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .error-illustration {
+            position: relative;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .error-number {
+            font-size: 120px;
+            font-weight: 700;
+            color: var(--primary-color);
+            opacity: 0.1;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .error-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 80px;
+            color: var(--secondary-color);
+        }
+
+        .error-text h1 {
+            font-size: var(--font-size-2xl);
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .error-text p {
+            font-size: var(--font-size-lg);
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .error-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            margin-bottom: var(--spacing-xl);
+            flex-wrap: wrap;
+        }
+
+        .helpful-links {
+            background: var(--background-light);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            margin-top: var(--spacing-lg);
+        }
+
+        .helpful-links h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .helpful-link {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md);
+            background: white;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: var(--transition);
+            box-shadow: var(--shadow-light);
+        }
+
+        .helpful-link:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+            color: var(--primary-color);
+        }
+
+        .helpful-link i {
+            color: var(--primary-color);
+            font-size: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .error-number {
+                font-size: 80px;
+            }
+
+            .error-icon {
+                font-size: 50px;
+            }
+
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</body>
+</html> 
