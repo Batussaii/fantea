@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - FANTEA</title>
+    <link rel="stylesheet" href="css/admin-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body class="admin-panel">
+    <!-- Admin Navigation -->
+    <nav class="admin-nav">
+        <div class="nav-brand">
+            <img src="../images/logo.png" alt="FANTEA" class="nav-logo">
+            <span>FANTEA Admin</span>
+        </div>
+        
+        <div class="nav-user">
+            <div class="user-info">
+                <span class="user-name" id="userName">Administrador</span>
+                <span class="user-role" id="userRole">admin</span>
+            </div>
+            <div class="user-actions">
+                <button class="btn-icon" title="Notificaciones">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <button class="btn-icon" onclick="logout()" title="Cerrar sesión">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-menu">
+                <div class="menu-section">
+                    <h4>Principal</h4>
+                    <ul class="menu-list">
+                        <li><a href="#dashboard" class="menu-item active" data-section="dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a></li>
+                    </ul>
+                </div>
+
+                <div class="menu-section">
+                    <h4>Contenido</h4>
+                    <ul class="menu-list">
+                        <li><a href="#noticias" class="menu-item" data-section="noticias">
+                            <i class="fas fa-newspaper"></i>
+                            <span>Noticias y Blog</span>
+                        </a></li>
+                        <li><a href="#eventos" class="menu-item" data-section="eventos">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Eventos</span>
+                        </a></li>
+                        <li><a href="#contenido-estatico" class="menu-item" data-section="contenido">
+                            <i class="fas fa-edit"></i>
+                            <span>Contenido Estático</span>
+                        </a></li>
+                    </ul>
+                </div>
+
+                <div class="menu-section">
+                    <h4>Gestión</h4>
+                    <ul class="menu-list">
+                        <li><a href="#archivos" class="menu-item" data-section="archivos">
+                            <i class="fas fa-folder-open"></i>
+                            <span>Archivos</span>
+                        </a></li>
+                        <li><a href="#afiliaciones" class="menu-item" data-section="afiliaciones">
+                            <i class="fas fa-users"></i>
+                            <span>Afiliaciones</span>
+                        </a></li>
+                    </ul>
+                </div>
+
+                <div class="menu-section">
+                    <h4>Configuración</h4>
+                    <ul class="menu-list">
+                        <li><a href="#configuracion" class="menu-item" data-section="configuracion">
+                            <i class="fas fa-cog"></i>
+                            <span>Configuración</span>
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Dashboard Section -->
+            <section id="dashboard-content" class="content-section active">
+                <div class="section-header">
+                    <div class="header-info">
+                        <h1>Dashboard</h1>
+                        <p>Resumen de actividad y estadísticas de FANTEA</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn-secondary">
+                            <i class="fas fa-download"></i>
+                            Exportar Datos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>24</h3>
+                            <p>Noticias Publicadas</p>
+                            <small class="stat-change positive">+3 este mes</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>8</h3>
+                            <p>Eventos Programados</p>
+                            <small class="stat-change positive">+2 este mes</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>35</h3>
+                            <p>Asociaciones Afiliadas</p>
+                            <small class="stat-change positive">+1 este mes</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>156</h3>
+                            <p>Descargas de Documentos</p>
+                            <small class="stat-change positive">+23 esta semana</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts and Activity -->
+                <div class="dashboard-content">
+                    <div class="content-grid">
+                        <!-- Chart Section -->
+                        <div class="content-card chart-card">
+                            <div class="card-header">
+                                <h3>Actividad del Sitio Web</h3>
+                                <div class="chart-controls">
+                                    <button class="btn-small active">7 días</button>
+                                    <button class="btn-small">30 días</button>
+                                    <button class="btn-small">3 meses</button>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="activityChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity -->
+                        <div class="content-card">
+                            <div class="card-header">
+                                <h3>Actividad Reciente</h3>
+                                <a href="#" class="view-all">Ver todo</a>
+                            </div>
+                            <div class="activity-list">
+                                <div class="activity-item">
+                                    <div class="activity-icon news">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p><strong>Nueva noticia publicada:</strong> "Jornada de Inclusión Educativa"</p>
+                                        <small>Hace 2 horas</small>
+                                    </div>
+                                </div>
+
+                                <div class="activity-item">
+                                    <div class="activity-icon event">
+                                        <i class="fas fa-calendar-plus"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p><strong>Evento creado:</strong> "Taller para Familias - Sevilla"</p>
+                                        <small>Hace 5 horas</small>
+                                    </div>
+                                </div>
+
+                                <div class="activity-item">
+                                    <div class="activity-icon affiliation">
+                                        <i class="fas fa-user-plus"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p><strong>Nueva afiliación:</strong> Asociación ASPANPAL Huelva</p>
+                                        <small>Hace 1 día</small>
+                                    </div>
+                                </div>
+
+                                <div class="activity-item">
+                                    <div class="activity-icon document">
+                                        <i class="fas fa-file-upload"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p><strong>Documento actualizado:</strong> Guía de Buenas Prácticas</p>
+                                        <small>Hace 2 días</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="quick-actions">
+                        <h3>Acciones Rápidas</h3>
+                        <div class="actions-grid">
+                            <button class="action-card" onclick="switchSection('noticias')">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Nueva Noticia</span>
+                            </button>
+                            <button class="action-card" onclick="switchSection('eventos')">
+                                <i class="fas fa-calendar-plus"></i>
+                                <span>Nuevo Evento</span>
+                            </button>
+                            <button class="action-card" onclick="switchSection('archivos')">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>Subir Archivo</span>
+                            </button>
+                            <button class="action-card" onclick="switchSection('afiliaciones')">
+                                <i class="fas fa-user-check"></i>
+                                <span>Revisar Afiliaciones</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- News Section -->
+            <section id="noticias-content" class="content-section">
+                <div class="section-header">
+                    <div class="header-info">
+                        <h1>Gestión de Noticias y Blog</h1>
+                        <p>Crea, edita y gestiona las publicaciones del sitio web</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn-primary" onclick="openNewsEditor()">
+                            <i class="fas fa-plus"></i>
+                            Nueva Noticia
+                        </button>
+                    </div>
+                </div>
+
+                <!-- News Filters -->
+                <div class="content-filters">
+                    <div class="filter-group">
+                        <label>Estado:</label>
+                        <select id="statusFilter" class="filter-select">
+                            <option value="all">Todos</option>
+                            <option value="published">Publicados</option>
+                            <option value="draft">Borrador</option>
+                            <option value="scheduled">Programados</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Categoría:</label>
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="all">Todas</option>
+                            <option value="investigacion">Investigación</option>
+                            <option value="educacion">Educación</option>
+                            <option value="eventos">Eventos</option>
+                            <option value="legislacion">Legislación</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Buscar:</label>
+                        <input type="text" id="searchNews" class="filter-input" placeholder="Buscar noticias...">
+                    </div>
+                </div>
+
+                <!-- News List -->
+                <div class="news-list">
+                    <div class="news-item">
+                        <div class="news-thumbnail">
+                            <img src="../images/news-1.jpg" alt="Noticia">
+                        </div>
+                        <div class="news-info">
+                            <h4>Nuevos avances en diagnóstico temprano del autismo</h4>
+                            <p>Investigadores desarrollan herramientas más precisas para la detección temprana...</p>
+                            <div class="news-meta">
+                                <span class="category">Investigación</span>
+                                <span class="date">15 Mar 2024</span>
+                                <span class="status published">Publicado</span>
+                                <span class="views">1,234 vistas</span>
+                            </div>
+                        </div>
+                        <div class="news-actions">
+                            <button class="btn-icon" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-icon" title="Duplicar">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <button class="btn-icon danger" title="Eliminar">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-thumbnail">
+                            <img src="../images/news-2.jpg" alt="Noticia">
+                        </div>
+                        <div class="news-info">
+                            <h4>Nueva guía para la inclusión educativa</h4>
+                            <p>Publicamos recursos actualizados para centros educativos...</p>
+                            <div class="news-meta">
+                                <span class="category">Educación</span>
+                                <span class="date">12 Mar 2024</span>
+                                <span class="status published">Publicado</span>
+                                <span class="views">856 vistas</span>
+                            </div>
+                        </div>
+                        <div class="news-actions">
+                            <button class="btn-icon" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-icon" title="Duplicar">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <button class="btn-icon danger" title="Eliminar">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="news-item">
+                        <div class="news-thumbnail">
+                            <div class="placeholder-thumbnail">
+                                <i class="fas fa-image"></i>
+                            </div>
+                        </div>
+                        <div class="news-info">
+                            <h4>Jornada Nacional de Autismo 2024 - Borrador</h4>
+                            <p>Ven a participar en nuestro evento anual el próximo mes...</p>
+                            <div class="news-meta">
+                                <span class="category">Eventos</span>
+                                <span class="date">8 Mar 2024</span>
+                                <span class="status draft">Borrador</span>
+                                <span class="views">-</span>
+                            </div>
+                        </div>
+                        <div class="news-actions">
+                            <button class="btn-icon" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-icon" title="Publicar">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                            <button class="btn-icon danger" title="Eliminar">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="btn-icon" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <span class="page-info">Página 1 de 3</span>
+                    <button class="btn-icon">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Events Section -->
+            <section id="eventos-content" class="content-section">
+                <div class="section-header">
+                    <div class="header-info">
+                        <h1>Gestión de Eventos</h1>
+                        <p>Organiza y gestiona eventos, talleres y actividades</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn-primary" onclick="openEventEditor()">
+                            <i class="fas fa-plus"></i>
+                            Nuevo Evento
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Calendar View -->
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <h3>Calendario de Eventos</h3>
+                        <div class="calendar-nav">
+                            <button class="btn-icon">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <span class="calendar-month">Abril 2024</span>
+                            <button class="btn-icon">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="view-toggles">
+                            <button class="btn-small active">Mes</button>
+                            <button class="btn-small">Lista</button>
+                        </div>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <div class="calendar-day header">Lun</div>
+                        <div class="calendar-day header">Mar</div>
+                        <div class="calendar-day header">Mié</div>
+                        <div class="calendar-day header">Jue</div>
+                        <div class="calendar-day header">Vie</div>
+                        <div class="calendar-day header">Sáb</div>
+                        <div class="calendar-day header">Dom</div>
+                        
+                        <!-- Calendar days will be generated by JavaScript -->
+                        <div class="calendar-day other-month">31</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day">6</div>
+                        
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day">13</div>
+                        
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day has-event">15
+                            <div class="event-dot" title="Taller Inclusión"></div>
+                        </div>
+                        <div class="calendar-day">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day">19</div>
+                        <div class="calendar-day">20</div>
+                        
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day has-event">22
+                            <div class="event-dot" title="Webinar Online"></div>
+                        </div>
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day">26</div>
+                        <div class="calendar-day">27</div>
+                        
+                        <div class="calendar-day today">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day has-event">30
+                            <div class="event-dot multiple" title="2 eventos"></div>
+                        </div>
+                        <div class="calendar-day other-month">1</div>
+                        <div class="calendar-day other-month">2</div>
+                        <div class="calendar-day other-month">3</div>
+                        <div class="calendar-day other-month">4</div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Events -->
+                <div class="upcoming-events">
+                    <h3>Próximos Eventos</h3>
+                    <div class="event-list">
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="day">15</span>
+                                <span class="month">ABR</span>
+                            </div>
+                            <div class="event-info">
+                                <h4>Taller: Autismo en el Aula Inclusiva</h4>
+                                <p>Sevilla • 40 horas • Presencial</p>
+                                <div class="event-meta">
+                                    <span class="participants">25 inscritos</span>
+                                    <span class="status confirmed">Confirmado</span>
+                                </div>
+                            </div>
+                            <div class="event-actions">
+                                <button class="btn-icon" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-icon" title="Ver inscripciones">
+                                    <i class="fas fa-users"></i>
+                                </button>
+                                <button class="btn-icon" title="Cancelar">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="day">22</span>
+                                <span class="month">ABR</span>
+                            </div>
+                            <div class="event-info">
+                                <h4>Webinar: Empleo con Apoyo</h4>
+                                <p>Online • 2 horas • Zoom</p>
+                                <div class="event-meta">
+                                    <span class="participants">156 inscritos</span>
+                                    <span class="status confirmed">Confirmado</span>
+                                </div>
+                            </div>
+                            <div class="event-actions">
+                                <button class="btn-icon" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-icon" title="Ver inscripciones">
+                                    <i class="fas fa-users"></i>
+                                </button>
+                                <button class="btn-icon" title="Enlace Zoom">
+                                    <i class="fas fa-video"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Other sections will be loaded dynamically or hidden -->
+            <section id="contenido-content" class="content-section">
+                <div class="section-header">
+                    <h1>Contenido Estático</h1>
+                    <p>Edita textos y contenido de las páginas principales</p>
+                </div>
+                <div class="coming-soon">
+                    <i class="fas fa-tools"></i>
+                    <h3>Sección en desarrollo</h3>
+                    <p>Esta funcionalidad estará disponible próximamente</p>
+                </div>
+            </section>
+
+            <section id="archivos-content" class="content-section">
+                <div class="section-header">
+                    <h1>Gestión de Archivos</h1>
+                    <p>Sube y organiza documentos, imágenes y recursos</p>
+                </div>
+                <div class="coming-soon">
+                    <i class="fas fa-tools"></i>
+                    <h3>Sección en desarrollo</h3>
+                    <p>Esta funcionalidad estará disponible próximamente</p>
+                </div>
+            </section>
+
+            <section id="afiliaciones-content" class="content-section">
+                <div class="section-header">
+                    <h1>Gestión de Afiliaciones</h1>
+                    <p>Revisa y gestiona solicitudes de afiliación</p>
+                </div>
+                <div class="coming-soon">
+                    <i class="fas fa-tools"></i>
+                    <h3>Sección en desarrollo</h3>
+                    <p>Esta funcionalidad estará disponible próximamente</p>
+                </div>
+            </section>
+
+            <section id="configuracion-content" class="content-section">
+                <div class="section-header">
+                    <h1>Configuración</h1>
+                    <p>Ajustes generales del panel y del sitio web</p>
+                </div>
+                <div class="coming-soon">
+                    <i class="fas fa-tools"></i>
+                    <h3>Sección en desarrollo</h3>
+                    <p>Esta funcionalidad estará disponible próximamente</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para agregar/editar noticias -->
+    <div id="newsModal" class="modal-overlay" style="display: none;">
+        <div class="modal news-modal">
+            <div class="modal-header">
+                <h3 id="newsModalTitle">Nueva Publicación</h3>
+                <button class="modal-close" id="closeNewsModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="newsForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="newsTitle">Título *</label>
+                            <input type="text" id="newsTitle" name="title" required placeholder="Título de la publicación">
+                        </div>
+                        <div class="form-group">
+                            <label for="newsCategory">Categoría *</label>
+                            <select id="newsCategory" name="category" required>
+                                <option value="">Seleccionar categoría</option>
+                                <option value="noticias">Noticias</option>
+                                <option value="eventos">Eventos</option>
+                                <option value="conferencias">Conferencias</option>
+                                <option value="legislacion">Legislación</option>
+                                <option value="investigacion">Investigación</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="newsAuthor">Autor</label>
+                            <input type="text" id="newsAuthor" name="author" value="FANTEA">
+                        </div>
+                        <div class="form-group">
+                            <label for="newsDate">Fecha de publicación</label>
+                            <input type="date" id="newsDate" name="date">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newsExcerpt">Resumen/Extracto *</label>
+                        <textarea id="newsExcerpt" name="excerpt" rows="3" placeholder="Breve descripción que aparecerá en la lista de noticias..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newsContent">Contenido *</label>
+                        <textarea id="newsContent" name="content" rows="10" placeholder="Contenido completo de la publicación..." required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="newsImage">URL de la imagen</label>
+                            <input type="url" id="newsImage" name="image" placeholder="https://ejemplo.com/imagen.jpg">
+                            <small>Imagen que aparecerá en la noticia</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="newsTags">Etiquetas</label>
+                            <input type="text" id="newsTags" name="tags" placeholder="Separadas por comas">
+                            <small>Ej: Educación, Inclusión, Autismo</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="newsStatus">Estado</label>
+                            <select id="newsStatus" name="status">
+                                <option value="draft">Borrador</option>
+                                <option value="published">Publicado</option>
+                                <option value="scheduled">Programado</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="newsReadingTime">Tiempo de lectura (min)</label>
+                            <input type="number" id="newsReadingTime" name="readingTime" min="1" max="30" value="3">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelNewsBtn">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" id="saveNewsBtn">
+                            <i class="fas fa-save"></i> Guardar Publicación
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin-dashboard.js"></script>
+    <script>
+        // Funcionalidad específica para gestión de noticias
+        function openNewsEditor(newsId = null) {
+            const modal = document.getElementById('newsModal');
+            const title = document.getElementById('newsModalTitle');
+            const form = document.getElementById('newsForm');
+            
+            if (newsId) {
+                title.textContent = 'Editar Publicación';
+                // Aquí cargarías los datos de la noticia para editar
+            } else {
+                title.textContent = 'Nueva Publicación';
+                form.reset();
+                // Establecer fecha actual
+                document.getElementById('newsDate').value = new Date().toISOString().split('T')[0];
+            }
+            
+            modal.style.display = 'flex';
+        }
+
+        // Event listeners para el modal de noticias
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('newsModal');
+            const closeBtn = document.getElementById('closeNewsModal');
+            const cancelBtn = document.getElementById('cancelNewsBtn');
+            const form = document.getElementById('newsForm');
+
+            // Cerrar modal
+            [closeBtn, cancelBtn].forEach(btn => {
+                btn.addEventListener('click', () => {
+                    modal.style.display = 'none';
+                });
+            });
+
+            // Cerrar al hacer clic fuera del modal
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            // Envío del formulario
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const formData = new FormData(form);
+                const newsData = Object.fromEntries(formData);
+                
+                // Procesar etiquetas
+                if (newsData.tags) {
+                    newsData.tags = newsData.tags.split(',').map(tag => tag.trim());
+                }
+                
+                // Simular guardado
+                const saveBtn = document.getElementById('saveNewsBtn');
+                const originalText = saveBtn.innerHTML;
+                
+                saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Guardando...';
+                saveBtn.disabled = true;
+                
+                setTimeout(() => {
+                    // Aquí enviarías los datos al servidor
+                    console.log('Datos de la noticia:', newsData);
+                    
+                    // Notificación de éxito
+                    showNotification('Publicación guardada correctamente', 'success');
+                    
+                    // Restaurar botón y cerrar modal
+                    saveBtn.innerHTML = originalText;
+                    saveBtn.disabled = false;
+                    modal.style.display = 'none';
+                    
+                    // Si es una nueva noticia y está publicada, agregar a la página de actualidad
+                    if (newsData.status === 'published' && !newsData.id) {
+                        addNewsToActualidadPage(newsData);
+                    }
+                }, 1500);
+            });
+
+            // Funcionalidad para botón existente "Nueva Noticia"
+            const newNewsBtn = document.querySelector('.btn-primary[onclick="openNewsEditor()"]');
+            if (newNewsBtn) {
+                newNewsBtn.onclick = () => openNewsEditor();
+            }
+        });
+
+        // Función para agregar noticia a la página de actualidad (simulada)
+        function addNewsToActualidadPage(newsData) {
+            // Esta función sería llamada para actualizar la página de actualidad
+            if (window.opener && !window.opener.closed && window.opener.loadNewsFromAdmin) {
+                window.opener.loadNewsFromAdmin(newsData);
+            }
+        }
+
+        // Función para mostrar notificaciones
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto-remove después de 5 segundos
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+    </script>
+</body>
+</html> 

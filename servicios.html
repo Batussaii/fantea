@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programas y Servicios - FANTEA</title>
+    <meta name="description" content="Descubre nuestros programas de inclusión educativa y laboral, apoyo a familias, formación profesional y campañas de sensibilización en Andalucía">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+    <!-- Botón de Accesibilidad -->
+    <div id="accessibility-panel" class="accessibility-panel">
+        <button id="accessibility-btn" class="accessibility-btn" aria-label="Opciones de accesibilidad">
+            <i class="fas fa-universal-access"></i>
+        </button>
+        <div id="accessibility-options" class="accessibility-options hidden">
+            <button onclick="increaseFontSize()">Aumentar texto</button>
+            <button onclick="decreaseFontSize()">Reducir texto</button>
+            <button onclick="toggleHighContrast()">Alto contraste</button>
+            <button onclick="toggleDyslexiaFont()">Fuente dislexia</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <img src="images/logo.png" alt="Logo FANTEA" class="logo">
+                    <span class="brand-text">FANTEA</span>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Abrir menú de navegación">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+                    <li class="nav-item"><a href="autismo.html" class="nav-link">Sobre el Autismo</a></li>
+                    <li class="nav-item"><a href="servicios.html" class="nav-link active">Servicios</a></li>
+                    <li class="nav-item"><a href="actualidad.html" class="nav-link">Actualidad</a></li>
+                    <li class="nav-item"><a href="afiliate.html" class="nav-link">Afíliate</a></li>
+                    <li class="nav-item"><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="afiliate.html" class="btn btn-primary">Únete a Nosotros</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Banner Página -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>Programas y Servicios</h1>
+                <p>Descubre los programas de FANTEA para promover la inclusión, apoyar a familias y sensibilizar a la sociedad andaluza</p>
+                <nav class="breadcrumb">
+                    <a href="index.html">Inicio</a>
+                    <span>/</span>
+                    <span>Servicios</span>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Principales -->
+    <section class="main-services">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Nuestros Pilares de Acción</h2>
+                <p>Trabajamos en cuatro áreas fundamentales para construir una Andalucía más inclusiva</p>
+            </div>
+
+            <div class="services-overview">
+                <div class="service-pillar">
+                    <div class="pillar-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Inclusión Educativa y Laboral</h3>
+                    <p>Programas para facilitar el acceso y permanencia de personas autistas en centros educativos y entornos laborales.</p>
+                    <a href="#inclusion" class="pillar-link">Descubre más <i class="fas fa-arrow-down"></i></a>
+                </div>
+
+                <div class="service-pillar">
+                    <div class="pillar-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Apoyo a Familias</h3>
+                    <p>Orientación, apoyo psicológico y recursos para familias de personas autistas en toda Andalucía.</p>
+                    <a href="#familias" class="pillar-link">Descubre más <i class="fas fa-arrow-down"></i></a>
+                </div>
+
+                <div class="service-pillar">
+                    <div class="pillar-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Formación y Sensibilización</h3>
+                    <p>Programas formativos para profesionales, educadores y sociedad en general sobre autismo y neurodiversidad.</p>
+                    <a href="#formacion" class="pillar-link">Descubre más <i class="fas fa-arrow-down"></i></a>
+                </div>
+
+                <div class="service-pillar">
+                    <div class="pillar-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>Campañas Institucionales</h3>
+                    <p>Iniciativas de sensibilización y cambio social para mejorar la percepción y derechos de las personas autistas.</p>
+                    <a href="#campanas" class="pillar-link">Descubre más <i class="fas fa-arrow-down"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inclusión Educativa y Laboral -->
+    <section id="inclusion" class="service-detail educational-inclusion">
+        <div class="container">
+            <div class="service-content">
+                <div class="content-text">
+                    <div class="service-badge">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Inclusión Educativa y Laboral</span>
+                    </div>
+                    
+                    <h2>Construyendo Futuro: Educación y Empleo Inclusivos</h2>
+                    <p class="service-intro">Trabajamos para que las personas autistas tengan acceso pleno a la educación y al empleo en condiciones de igualdad y con los apoyos necesarios.</p>
+                    
+                    <div class="programs-grid">
+                        <div class="program-card">
+                            <div class="program-header">
+                                <i class="fas fa-school"></i>
+                                <h4>Programa Escuela Inclusiva</h4>
+                            </div>
+                            <ul class="program-features">
+                                <li>Formación a equipos docentes</li>
+                                <li>Adaptaciones curriculares personalizadas</li>
+                                <li>Apoyo a familias en el proceso educativo</li>
+                                <li>Recursos y materiales didácticos</li>
+                                <li>Seguimiento individualizado</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="program-card">
+                            <div class="program-header">
+                                <i class="fas fa-briefcase"></i>
+                                <h4>Programa Empleo con Apoyo</h4>
+                            </div>
+                            <ul class="program-features">
+                                <li>Orientación laboral personalizada</li>
+                                <li>Formación profesional adaptada</li>
+                                <li>Intermediación con empresas</li>
+                                <li>Acompañamiento en el puesto de trabajo</li>
+                                <li>Seguimiento y apoyo continuado</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="program-card">
+                            <div class="program-header">
+                                <i class="fas fa-users-cog"></i>
+                                <h4>Programa Transición a la Vida Adulta</h4>
+                            </div>
+                            <ul class="program-features">
+                                <li>Desarrollo de habilidades sociales</li>
+                                <li>Autonomía personal y social</li>
+                                <li>Preparación para el empleo</li>
+                                <li>Vida independiente</li>
+                                <li>Planificación centrada en la persona</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-stats">
+                    <div class="stat-highlight">
+                        <div class="stat-number">1,200+</div>
+                        <div class="stat-label">Estudiantes apoyados</div>
+                    </div>
+                    <div class="stat-highlight">
+                        <div class="stat-number">350+</div>
+                        <div class="stat-label">Personas empleadas</div>
+                    </div>
+                    <div class="stat-highlight">
+                        <div class="stat-number">180</div>
+                        <div class="stat-label">Empresas colaboradoras</div>
+                    </div>
+                    <div class="stat-highlight">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Tasa de satisfacción</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apoyo a Familias -->
+    <section id="familias" class="service-detail family-support">
+        <div class="container">
+            <div class="service-content reverse">
+                <div class="service-stats">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"El apoyo de FANTEA ha sido fundamental en nuestro camino. Nos han dado herramientas, esperanza y la certeza de que no estamos solos."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="images/testimonial-maria.jpg" alt="María" loading="lazy">
+                            <div>
+                                <h4>María González</h4>
+                                <span>Madre de Alejandro, 12 años</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-cta">
+                        <h4>¿Necesitas apoyo?</h4>
+                        <p>Nuestro equipo está aquí para ayudarte</p>
+                        <a href="contacto.html" class="btn btn-primary">Contactar</a>
+                    </div>
+                </div>
+                
+                <div class="content-text">
+                    <div class="service-badge">
+                        <i class="fas fa-heart"></i>
+                        <span>Apoyo a Familias</span>
+                    </div>
+                    
+                    <h2>Acompañamos a las Familias en su Camino</h2>
+                    <p class="service-intro">Ofrecemos apoyo integral a las familias andaluzas de personas autistas, desde el diagnóstico hasta la vida adulta, con programas especializados y atención personalizada.</p>
+                    
+                    <div class="support-services">
+                        <div class="support-item">
+                            <div class="support-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="support-content">
+                                <h4>Atención Psicológica y Orientación</h4>
+                                <p>Apoyo psicológico individualizado y familiar. Orientación en cada etapa del desarrollo y acompañamiento en la toma de decisiones importantes.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="support-item">
+                            <div class="support-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="support-content">
+                                <h4>Grupos de Apoyo y Autoayuda</h4>
+                                <p>Espacios de encuentro donde las familias comparten experiencias, estrategias y apoyo mutuo. Sesiones presenciales y virtuales.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="support-item">
+                            <div class="support-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <div class="support-content">
+                                <h4>Escuela de Familias</h4>
+                                <p>Talleres formativos sobre autismo, estrategias educativas, comunicación, gestión de conductas y promoción de la autonomía.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="support-item">
+                            <div class="support-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="support-content">
+                                <h4>Servicio de Información y Orientación</h4>
+                                <p>Línea telefónica y servicio online para resolver dudas, orientar sobre recursos y derivar a servicios especializados.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="support-item">
+                            <div class="support-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="support-content">
+                                <h4>Programa Respiro Familiar</h4>
+                                <p>Servicios de apoyo que permiten a las familias disponer de tiempo para descanso, ocio o atender otras necesidades personales.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="support-item">
+                            <div class="support-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <div class="support-content">
+                                <h4>Asesoramiento Jurídico</h4>
+                                <p>Información y orientación sobre derechos, prestaciones, servicios públicos y procedimientos administrativos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formación y Sensibilización -->
+    <section id="formacion" class="service-detail training-awareness">
+        <div class="container">
+            <div class="service-content">
+                <div class="content-text">
+                    <div class="service-badge">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span>Formación y Sensibilización</span>
+                    </div>
+                    
+                    <h2>Construyendo Conocimiento para la Inclusión</h2>
+                    <p class="service-intro">Desarrollamos programas formativos dirigidos a profesionales, estudiantes y sociedad en general para mejorar la comprensión del autismo y promover prácticas inclusivas.</p>
+                    
+                    <div class="training-tabs">
+                        <div class="tab-buttons">
+                            <button class="tab-btn active" onclick="switchTab('professionals')">Profesionales</button>
+                            <button class="tab-btn" onclick="switchTab('educational')">Educación</button>
+                            <button class="tab-btn" onclick="switchTab('awareness')">Sensibilización</button>
+                        </div>
+                        
+                        <div id="professionals" class="tab-content active">
+                            <h4>Formación para Profesionales</h4>
+                            <div class="training-courses">
+                                <div class="course-item">
+                                    <div class="course-header">
+                                        <i class="fas fa-stethoscope"></i>
+                                        <h5>Profesionales Sanitarios</h5>
+                                    </div>
+                                    <p>Cursos sobre diagnóstico, intervención temprana y atención médica especializada para personas autistas.</p>
+                                    <span class="course-duration">40 horas • Certificado oficial</span>
+                                </div>
+                                
+                                <div class="course-item">
+                                    <div class="course-header">
+                                        <i class="fas fa-gavel"></i>
+                                        <h5>Operadores Jurídicos</h5>
+                                    </div>
+                                    <p>Formación sobre derechos, capacidad jurídica y adaptaciones procesales para profesionales del derecho.</p>
+                                    <span class="course-duration">20 horas • Modalidad online</span>
+                                </div>
+                                
+                                <div class="course-item">
+                                    <div class="course-header">
+                                        <i class="fas fa-user-tie"></i>
+                                        <h5>Recursos Humanos</h5>
+                                    </div>
+                                    <p>Estrategias de reclutamiento, adaptaciones laborales y gestión de equipos diversos e inclusivos.</p>
+                                    <span class="course-duration">15 horas • Presencial/Online</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="educational" class="tab-content">
+                            <h4>Programas Educativos</h4>
+                            <div class="training-courses">
+                                <div class="course-item">
+                                    <div class="course-header">
+                                        <i class="fas fa-chalkboard"></i>
+                                        <h5>Docentes y Profesorado</h5>
+                                    </div>
+                                    <p>Metodologías inclusivas, adaptaciones curriculares y estrategias pedagógicas para aulas diversas.</p>
+                                    <span class="course-duration">60 horas • Homologado</span>
+                                </div>
+                                
+                                <div class="course-item">
+                                    <div class="course-header">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <h5>Estudiantes Universitarios</h5>
+                                    </div>
+                                    <p>Programas de sensibilización en carreras de educación, psicología, medicina y trabajo social.</p>
+                                    <span class="course-duration">Talleres gratuitos</span>
+                                </div>
+                                
+                                <div class="course-item">
+                                    <div class="course-header">
+                                        <i class="fas fa-users"></i>
+                                        <h5>Equipos Directivos</h5>
+                                    </div>
+                                    <p>Liderazgo inclusivo, políticas de centro y gestión de la diversidad en centros educativos.</p>
+                                    <span class="course-duration">30 horas • Semipresencial</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="awareness" class="tab-content">
+                            <h4>Campañas de Sensibilización</h4>
+                            <div class="training-courses">
+                                <div class="course-item">
+                                    <div class="course-header">
+                                        <i class="fas fa-heart"></i>
+                                        <h5>Sensibilización Social</h5>
+                                    </div>
+                                    <p>Charlas en centros cívicos, asociaciones y espacios comunitarios sobre autismo y neurodiversidad.</p>
+                                    <span class="course-duration">Actividad gratuita</span>
+                                </div>
+                                
+                                <div class="course-item">
+                                    <div class="course-header">
+                                        <i class="fas fa-building"></i>
+                                        <h5>Entidades Públicas</h5>
+                                    </div>
+                                    <p>Formación a funcionarios y personal de atención al público para mejorar la accesibilidad cognitiva.</p>
+                                    <span class="course-duration">Colaboración institucional</span>
+                                </div>
+                                
+                                <div class="course-item">
+                                    <div class="course-header">
+                                        <i class="fas fa-store"></i>
+                                        <h5>Sector Empresarial</h5>
+                                    </div>
+                                    <p>Talleres sobre inclusión laboral, diversidad cognitiva y beneficios del empleo inclusivo.</p>
+                                    <span class="course-duration">Formato adaptado</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-stats">
+                    <div class="training-stats">
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number">2,500+</div>
+                                <div class="stat-label">Profesionales formados</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number">45</div>
+                                <div class="stat-label">Cursos realizados</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number">4.8/5</div>
+                                <div class="stat-label">Valoración media</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="next-courses">
+                        <h4>Próximos Cursos</h4>
+                        <div class="course-list">
+                            <div class="upcoming-course">
+                                <div class="course-date">
+                                    <span class="day">15</span>
+                                    <span class="month">ABR</span>
+                                </div>
+                                <div class="course-info">
+                                    <h6>Autismo en el Aula Inclusiva</h6>
+                                    <p>Sevilla • 40 horas</p>
+                                </div>
+                            </div>
+                            
+                            <div class="upcoming-course">
+                                <div class="course-date">
+                                    <span class="day">22</span>
+                                    <span class="month">ABR</span>
+                                </div>
+                                <div class="course-info">
+                                    <h6>Empleo con Apoyo</h6>
+                                    <p>Online • 20 horas</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="actualidad.html" class="btn btn-outline">Ver todos los cursos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campañas Institucionales -->
+    <section id="campanas" class="service-detail institutional-campaigns">
+        <div class="container">
+            <div class="service-content reverse">
+                <div class="campaigns-showcase">
+                    <div class="campaign-highlight">
+                        <div class="campaign-image">
+                            <img src="images/campaign-inclusion.jpg" alt="Campaña Inclusión" loading="lazy">
+                        </div>
+                        <div class="campaign-info">
+                            <h4>#AndalucíaInclusiva</h4>
+                            <p>Nuestra campaña más exitosa ha llegado a más de 500,000 andaluces y ha logrado cambios legislativos importantes.</p>
+                            <div class="campaign-metrics">
+                                <span><i class="fas fa-eye"></i> 500K alcance</span>
+                                <span><i class="fas fa-share"></i> 15K shares</span>
+                                <span><i class="fas fa-heart"></i> 98% positivo</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="media-coverage">
+                        <h5>Cobertura Mediática</h5>
+                        <div class="media-logos">
+                            <img src="images/media/canal-sur.png" alt="Canal Sur" loading="lazy">
+                            <img src="images/media/diario-sevilla.png" alt="Diario de Sevilla" loading="lazy">
+                            <img src="images/media/ideal.png" alt="Ideal" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-text">
+                    <div class="service-badge">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Campañas Institucionales</span>
+                    </div>
+                    
+                    <h2>Impulsando el Cambio Social en Andalucía</h2>
+                    <p class="service-intro">Desarrollamos campañas de sensibilización y incidencia política para mejorar la percepción social del autismo y promover cambios legislativos que garanticen los derechos de las personas autistas.</p>
+                    
+                    <div class="campaign-areas">
+                        <div class="area-item">
+                            <div class="area-header">
+                                <i class="fas fa-tv"></i>
+                                <h4>Campañas Mediáticas</h4>
+                            </div>
+                            <p>Campañas de sensibilización en medios de comunicación, redes sociales y espacios públicos para cambiar estereotipos y promover una imagen positiva del autismo.</p>
+                        </div>
+                        
+                        <div class="area-item">
+                            <div class="area-header">
+                                <i class="fas fa-landmark"></i>
+                                <h4>Incidencia Política</h4>
+                            </div>
+                            <p>Trabajo con instituciones públicas andaluzas para mejorar las políticas de autismo, accesibilidad cognitiva y servicios especializados.</p>
+                        </div>
+                        
+                        <div class="area-item">
+                            <div class="area-header">
+                                <i class="fas fa-calendar-day"></i>
+                                <h4>Eventos de Sensibilización</h4>
+                            </div>
+                            <p>Organización del Día Mundial del Autismo en Andalucía y otros eventos para visibilizar las necesidades y capacidades de las personas autistas.</p>
+                        </div>
+                        
+                        <div class="area-item">
+                            <div class="area-header">
+                                <i class="fas fa-handshake"></i>
+                                <h4>Alianzas Estratégicas</h4>
+                            </div>
+                            <p>Colaboración con otras organizaciones, empresas e instituciones para amplificar el impacto de nuestras campañas de sensibilización.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="achievements">
+                        <h4>Logros Conseguidos</h4>
+                        <ul class="achievement-list">
+                            <li><i class="fas fa-check"></i> Plan Integral de Autismo de Andalucía 2020-2024</li>
+                            <li><i class="fas fa-check"></i> Mejoras en la Ley de Educación Andaluza</li>
+                            <li><i class="fas fa-check"></i> Protocolo de Accesibilidad Cognitiva en edificios públicos</li>
+                            <li><i class="fas fa-check"></i> Reconocimiento del autismo como discapacidad prioritaria</li>
+                            <li><i class="fas fa-check"></i> Incremento del 40% en recursos especializados</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cómo Acceder -->
+    <section class="how-to-access">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>¿Cómo Acceder a Nuestros Servicios?</h2>
+                <p>Te guiamos paso a paso para acceder a los programas que mejor se adapten a tus necesidades</p>
+            </div>
+            
+            <div class="access-steps">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Contacta con Nosotros</h4>
+                        <p>Llama, escribe o visita nuestra sede. Nuestro equipo evaluará tu situación y te informará sobre los servicios más adecuados.</p>
+                        <div class="step-actions">
+                            <a href="contacto.html" class="btn btn-primary">Contactar</a>
+                            <a href="tel:+34954123456" class="btn btn-outline">Llamar</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Evaluación Inicial</h4>
+                        <p>Realizamos una evaluación personalizada para identificar necesidades específicas y diseñar un plan de intervención individualizado.</p>
+                        <span class="step-note">Proceso gratuito y confidencial</span>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Plan Personalizado</h4>
+                        <p>Diseñamos juntos un plan de servicios adaptado a tus objetivos, tiempos y necesidades específicas.</p>
+                        <span class="step-note">Revisión periódica del plan</span>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Inicio y Seguimiento</h4>
+                        <p>Comenzamos la intervención con acompañamiento continuo y evaluación regular de los progresos conseguidos.</p>
+                        <span class="step-note">Apoyo integral a lo largo del proceso</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Llamada a la Acción -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-text">
+                    <h2>¿Necesitas Apoyo o Información?</h2>
+                    <p>Nuestro equipo de profesionales está preparado para orientarte y acompañarte. Contacta con nosotros y descubre cómo podemos ayudarte.</p>
+                </div>
+                <div class="cta-actions">
+                    <a href="contacto.html" class="btn btn-white btn-large">Solicitar Información</a>
+                    <a href="afiliate.html" class="btn btn-outline-white btn-large">Únete a FANTEA</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo-white.png" alt="Logo FANTEA">
+                        <h3>FANTEA</h3>
+                    </div>
+                    <p>Federación Andaluza de Autismo. Trabajando por la inclusión y los derechos de las personas autistas en Andalucía desde 2009.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul class="footer-links">
+                        <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                        <li><a href="autismo.html">¿Qué es el Autismo?</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="actualidad.html">Noticias</a></li>
+                        <li><a href="afiliate.html">Afíliate</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Guías para Familias</a></li>
+                        <li><a href="#">Formación Profesional</a></li>
+                        <li><a href="#">Centro de Descargas</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Calle Principal 123, Sevilla</p>
+                        <p><i class="fas fa-phone"></i> +34 954 123 456</p>
+                        <p><i class="fas fa-envelope"></i> info@fantea.org</p>
+                    </div>
+                    <a href="contacto.html" class="btn btn-primary">Contactar</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 FANTEA - Federación Andaluza de Autismo. Todos los derechos reservados.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Política de Privacidad</a>
+                        <a href="#">Términos de Uso</a>
+                        <a href="#">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Funcionalidad específica de tabs para la página de servicios
+        function switchTab(tabName) {
+            // Ocultar todos los tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Quitar active de todos los botones
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Mostrar el tab seleccionado
+            document.getElementById(tabName).classList.add('active');
+            
+            // Marcar el botón como activo
+            event.target.classList.add('active');
+        }
+        
+        // Smooth scroll para enlaces internos
+        document.querySelectorAll('.pillar-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

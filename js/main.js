@@ -518,4 +518,294 @@ document.addEventListener('DOMContentLoaded', function() {
 window.increaseFontSize = increaseFontSize;
 window.decreaseFontSize = decreaseFontSize;
 window.toggleHighContrast = toggleHighContrast;
-window.toggleDyslexiaFont = toggleDyslexiaFont; 
+window.toggleDyslexiaFont = toggleDyslexiaFont;
+
+/**
+ * MAPA INTERACTIVO DE ANDALUCÍA - FANTEA
+ * Funcionalidad para mostrar asociaciones miembros por provincias
+ */
+
+// Datos de asociaciones por provincia
+const provinceData = {
+    huelva: {
+        name: 'Huelva',
+        associations: [
+            { name: 'ASPERGER HUELVA', location: 'Huelva capital', type: 'Síndrome de Asperger' },
+            { name: 'AUTISMO AISLANA', location: 'Isla Cristina', type: 'Trastorno del Espectro Autista' },
+            { name: 'ASPANPAL', location: 'Palos de la Frontera', type: 'Parálisis Cerebral y Autismo' }
+        ],
+        email: 'huelva@fantea.org',
+        phone: '+34 959 123 456'
+    },
+    sevilla: {
+        name: 'Sevilla',
+        associations: [
+            { name: 'AUTISMO SEVILLA', location: 'Sevilla capital', type: 'Trastorno del Espectro Autista' },
+            { name: 'ASPERGER ANDALUCÍA', location: 'Sevilla capital', type: 'Síndrome de Asperger' },
+            { name: 'AMAYSE', location: 'Los Palacios y Villafranca', type: 'Autismo y Discapacidad' },
+            { name: 'ASPANRI', location: 'Dos Hermanas', type: 'Atención Integral Autismo' },
+            { name: 'APRONA', location: 'Alcalá de Guadaíra', type: 'Necesidades Especiales' },
+            { name: 'ASPALI', location: 'Lebrija', type: 'Autismo y Asperger' },
+            { name: 'ASPANDEM', location: 'Morón de la Frontera', type: 'Demarcación Autismo' },
+            { name: 'ASTEA', location: 'Tomares', type: 'Trastornos del Espectro Autista' }
+        ],
+        email: 'sevilla@fantea.org',
+        phone: '+34 954 123 456'
+    },
+    cadiz: {
+        name: 'Cádiz',
+        associations: [
+            { name: 'ASPAMAG', location: 'San Fernando', type: 'Autismo y Asperger' },
+            { name: 'AUTISMO CÁDIZ', location: 'Cádiz capital', type: 'Espectro Autista' },
+            { name: 'APROMPSI', location: 'Jerez de la Frontera', type: 'Promoción Psicológica' },
+            { name: 'ASPERGER BAHÍA', location: 'Puerto de Santa María', type: 'Síndrome de Asperger' },
+            { name: 'AUTISMO CAMPO', location: 'Los Barrios', type: 'Autismo Campo de Gibraltar' }
+        ],
+        email: 'cadiz@fantea.org',
+        phone: '+34 956 123 456'
+    },
+    cordoba: {
+        name: 'Córdoba',
+        associations: [
+            { name: 'AUTISMO CÓRDOBA', location: 'Córdoba capital', type: 'Federación Provincial' },
+            { name: 'ASPERGER CÓRDOBA', location: 'Córdoba capital', type: 'Síndrome de Asperger' },
+            { name: 'ASPANIP', location: 'Pozoblanco', type: 'Autismo Los Pedroches' },
+            { name: 'APROACU', location: 'Lucena', type: 'Atención Temprana Autismo' }
+        ],
+        email: 'cordoba@fantea.org',
+        phone: '+34 957 123 456'
+    },
+    malaga: {
+        name: 'Málaga',
+        associations: [
+            { name: 'AUTISM MÁLAGA', location: 'Málaga capital', type: 'Federación Provincial' },
+            { name: 'ASPANAES', location: 'Estepona', type: 'Autismo Costa del Sol' },
+            { name: 'ASPERGER MÁLAGA', location: 'Málaga capital', type: 'Síndrome de Asperger' },
+            { name: 'ASPANDEM ANTEQUERA', location: 'Antequera', type: 'Demarcación Antequera' },
+            { name: 'APROA RINCÓN', location: 'Rincón de la Victoria', type: 'Autismo Axarquía' },
+            { name: 'ASPANPAL MÁLAGA', location: 'Torremolinos', type: 'Parálisis Cerebral y Autismo' }
+        ],
+        email: 'malaga@fantea.org',
+        phone: '+34 952 123 456'
+    },
+    jaen: {
+        name: 'Jaén',
+        associations: [
+            { name: 'APROMPSI JAÉN', location: 'Jaén capital', type: 'Promoción Psicológica' },
+            { name: 'ASPANJAN', location: 'Linares', type: 'Autismo Santo Reino' }
+        ],
+        email: 'jaen@fantea.org',
+        phone: '+34 953 123 456'
+    },
+    granada: {
+        name: 'Granada',
+        associations: [
+            { name: 'ASPROGRADES', location: 'Granada capital', type: 'Síndrome de Asperger' },
+            { name: 'AUTISMO GRANADA', location: 'Granada capital', type: 'Espectro Autista' },
+            { name: 'ASPANPAL GRANADA', location: 'Motril', type: 'Costa Tropical' },
+            { name: 'APROMPSI GUADIX', location: 'Guadix', type: 'Promoción Psicológica' }
+        ],
+        email: 'granada@fantea.org',
+        phone: '+34 958 123 456'
+    },
+    almeria: {
+        name: 'Almería',
+        associations: [
+            { name: 'ASPERGER ALMERÍA', location: 'Almería capital', type: 'Síndrome de Asperger' },
+            { name: 'AUTISMO PONIENTE', location: 'El Ejido', type: 'Poniente Almeriense' },
+            { name: 'APROMPSI VERA', location: 'Vera', type: 'Levante Almeriense' }
+        ],
+        email: 'almeria@fantea.org',
+        phone: '+34 950 123 456'
+    }
+};
+
+/**
+ * Inicializar mapa interactivo cuando el DOM esté listo
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    initializeAndalusiaMap();
+});
+
+/**
+ * Inicializar funcionalidad del mapa de Andalucía
+ */
+function initializeAndalusiaMap() {
+    const provinces = document.querySelectorAll('.province');
+    const detailsPanel = document.getElementById('province-details');
+    const closeBtn = document.getElementById('close-details');
+    
+    if (!provinces.length || !detailsPanel) return;
+    
+    // Crear overlay para modal
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    document.body.appendChild(overlay);
+    
+    // Event listeners para provincias
+    provinces.forEach(province => {
+        province.addEventListener('click', function(e) {
+            e.preventDefault();
+            const provinceName = this.getAttribute('data-province');
+            showProvinceDetails(provinceName);
+        });
+        
+        // Efecto hover mejorado
+        province.addEventListener('mouseenter', function() {
+            this.style.filter = 'brightness(1.2) saturate(1.1)';
+            this.style.transform = 'scale(1.02)';
+        });
+        
+        province.addEventListener('mouseleave', function() {
+            if (!this.classList.contains('active')) {
+                this.style.filter = 'none';
+                this.style.transform = 'scale(1)';
+            }
+        });
+    });
+    
+    // Cerrar panel
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeProvinceDetails);
+    }
+    
+    // Cerrar al hacer clic en overlay
+    overlay.addEventListener('click', closeProvinceDetails);
+    
+    // Cerrar con tecla ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeProvinceDetails();
+        }
+    });
+}
+
+/**
+ * Mostrar detalles de una provincia
+ */
+function showProvinceDetails(provinceName) {
+    const data = provinceData[provinceName];
+    if (!data) return;
+    
+    const detailsPanel = document.getElementById('province-details');
+    const overlay = document.querySelector('.modal-overlay');
+    
+    // Actualizar contenido
+    document.getElementById('province-name').textContent = data.name;
+    document.getElementById('associations-count').textContent = data.associations.length;
+    document.getElementById('region-email').textContent = data.email;
+    document.getElementById('region-phone').textContent = data.phone;
+    
+    // Llenar lista de asociaciones
+    const associationsList = document.getElementById('associations-list');
+    associationsList.innerHTML = data.associations.map(association => `
+        <div class="association-item">
+            <i class="fas fa-users"></i>
+            <div class="association-info">
+                <h5>${association.name}</h5>
+                <p>${association.location} - ${association.type}</p>
+            </div>
+        </div>
+    `).join('');
+    
+    // Resaltar provincia activa
+    document.querySelectorAll('.province').forEach(p => p.classList.remove('active'));
+    document.querySelector(`[data-province="${provinceName}"]`).classList.add('active');
+    
+    // Mostrar panel y overlay
+    detailsPanel.classList.remove('hidden');
+    overlay.classList.add('visible');
+    
+    // Bloquear scroll del body
+    document.body.style.overflow = 'hidden';
+    
+    // Focus en el panel para accesibilidad
+    detailsPanel.focus();
+    
+    // Animación suave
+    setTimeout(() => {
+        detailsPanel.style.transform = 'translate(-50%, -50%) scale(1)';
+    }, 10);
+}
+
+/**
+ * Cerrar panel de detalles de provincia
+ */
+function closeProvinceDetails() {
+    const detailsPanel = document.getElementById('province-details');
+    const overlay = document.querySelector('.modal-overlay');
+    
+    if (!detailsPanel.classList.contains('hidden')) {
+        // Ocultar panel y overlay
+        detailsPanel.classList.add('hidden');
+        overlay.classList.remove('visible');
+        
+        // Restaurar scroll del body
+        document.body.style.overflow = '';
+        
+        // Quitar resaltado de provincia
+        document.querySelectorAll('.province').forEach(p => {
+            p.classList.remove('active');
+            p.style.filter = 'none';
+            p.style.transform = 'scale(1)';
+        });
+    }
+}
+
+/**
+ * Función para animar estadísticas cuando son visibles
+ */
+function animateMapStats() {
+    const statNumbers = document.querySelectorAll('.stat-card .stat-number');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                const finalValue = element.textContent;
+                
+                // Solo para números (no porcentajes)
+                if (finalValue.includes('%')) return;
+                
+                const numValue = parseInt(finalValue.replace(/[^0-9]/g, ''));
+                animateCounter(element, 0, numValue, 2000);
+                
+                observer.unobserve(element);
+            }
+        });
+    });
+    
+    statNumbers.forEach(stat => observer.observe(stat));
+}
+
+/**
+ * Animar contador numérico
+ */
+function animateCounter(element, start, end, duration) {
+    const startTime = performance.now();
+    const originalText = element.textContent;
+    const suffix = originalText.replace(/[0-9]/g, '');
+    
+    function updateCounter(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        const currentValue = Math.floor(start + (end - start) * easeOut);
+        
+        element.textContent = currentValue + suffix;
+        
+        if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+        }
+    }
+    
+    requestAnimationFrame(updateCounter);
+}
+
+// Inicializar animaciones de estadísticas cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    // Delay para asegurar que el mapa esté cargado
+    setTimeout(animateMapStats, 500);
+}); 
