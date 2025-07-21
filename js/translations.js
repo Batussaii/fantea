@@ -524,7 +524,7 @@ class TranslationSystem {
                     <span class="lang-code">${this.currentLanguage.toUpperCase()}</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
-                <div class="lang-dropdown" id="langDropdown">
+                <div class="lang-dropdown" id="langDropdown" style="display: none;">
                     ${Object.entries(AVAILABLE_LANGUAGES).map(([code, lang]) => `
                         <button class="lang-option ${code === this.currentLanguage ? 'active' : ''}" 
                                 data-lang="${code}">
@@ -548,13 +548,25 @@ class TranslationSystem {
         if (langToggle && langDropdown) {
             langToggle.addEventListener('click', (e) => {
                 e.preventDefault();
-                langDropdown.classList.toggle('show');
+                e.stopPropagation();
+                const isVisible = langDropdown.style.display !== 'none';
+                langDropdown.style.display = isVisible ? 'none' : 'block';
+                
+                // Actualizar icono
+                const icon = langToggle.querySelector('i');
+                if (icon) {
+                    icon.style.transform = isVisible ? 'rotate(0deg)' : 'rotate(180deg)';
+                }
             });
             
             // Cerrar dropdown al hacer clic fuera
             document.addEventListener('click', (e) => {
-                if (!e.target.closest('#language-selector')) {
-                    langDropdown.classList.remove('show');
+                if (!e.target.closest('.language-selector')) {
+                    langDropdown.style.display = 'none';
+                    const icon = langToggle.querySelector('i');
+                    if (icon) {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
                 }
             });
             
@@ -562,9 +574,14 @@ class TranslationSystem {
             langDropdown.querySelectorAll('.lang-option').forEach(option => {
                 option.addEventListener('click', (e) => {
                     e.preventDefault();
+                    e.stopPropagation();
                     const selectedLang = option.getAttribute('data-lang');
                     this.setLanguage(selectedLang);
-                    langDropdown.classList.remove('show');
+                    langDropdown.style.display = 'none';
+                    const icon = langToggle.querySelector('i');
+                    if (icon) {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
                 });
             });
         }
