@@ -214,36 +214,41 @@ body.dyslexia-font {
     position: sticky;
     top: 0;
     background: white;
-    box-shadow: var(--shadow-light);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
     z-index: 999;
 }
 
 .navbar {
-    padding: var(--spacing-sm) 0;
+    padding: var(--spacing-md) 0;
 }
 
 .navbar .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
 }
 
 .nav-brand {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
+    flex-shrink: 0;
 }
 
 .logo {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     object-fit: cover;
+    box-shadow: 0 2px 8px rgba(21, 101, 192, 0.2);
 }
 
 .brand-text {
     font-weight: 700;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.2;
     color: var(--primary-color);
 }
@@ -251,25 +256,57 @@ body.dyslexia-font {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
     margin: 0;
     padding: 0;
+    align-items: center;
 }
 
-.nav-link {
-    text-decoration: none;
-    color: var(--text-primary);
-    font-weight: 500;
-    padding: 12px 16px;
-    border-radius: var(--border-radius);
-    transition: var(--transition);
+.nav-item {
     position: relative;
 }
 
-.nav-link:hover,
+.nav-link {
+    display: block;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    position: relative;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+    background-color: rgba(21, 101, 192, 0.05);
+    transform: translateY(-1px);
+}
+
 .nav-link.active {
     color: var(--primary-color);
-    background-color: var(--background-light);
+    background-color: rgba(21, 101, 192, 0.1);
+    font-weight: 600;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    flex-shrink: 0;
 }
 
 .nav-toggle {
@@ -1989,29 +2026,107 @@ body.dyslexia-font {
     }
     
     /* Mobile Navigation */
+    .navbar .container {
+        flex-wrap: wrap;
+        position: relative;
+    }
+    
     .nav-menu {
-        position: fixed;
+        position: absolute;
         top: 100%;
         left: 0;
+        right: 0;
         width: 100%;
         background: white;
-        box-shadow: var(--shadow-heavy);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        border-top: 1px solid var(--border-color);
         flex-direction: column;
-        padding: var(--spacing-md);
-        transform: translateX(-100%);
-        transition: var(--transition);
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
     }
     
     .nav-menu.active {
-        transform: translateX(0);
+        max-height: 500px;
+        padding: var(--spacing-md) 0;
+    }
+    
+    .nav-item {
+        margin: 0;
+        padding: 0 var(--spacing-md);
+    }
+    
+    .nav-link {
+        display: block;
+        text-align: center;
+        padding: var(--spacing-md);
+        margin: var(--spacing-xs) 0;
+        border-radius: var(--border-radius);
+        transition: var(--transition);
+    }
+    
+    .nav-link.active::after {
+        bottom: 8px;
+        width: 40px;
     }
     
     .nav-toggle {
         display: flex;
+        order: 3;
+        z-index: 1001;
     }
     
     .nav-actions {
-        display: none;
+        width: 100%;
+        order: 4;
+        justify-content: center;
+        padding: var(--spacing-md);
+        gap: var(--spacing-sm);
+        flex-wrap: wrap;
+        position: absolute;
+        top: calc(100% + 0px);
+        left: 0;
+        right: 0;
+        background: white;
+        border-top: 1px solid var(--border-color);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999;
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+    }
+    
+    .nav-toggle.active ~ .nav-actions {
+        max-height: 150px;
+    }
+    
+    /* Language selector en móvil */
+    .language-selector {
+        margin-left: 0;
+        flex: 1;
+        min-width: 120px;
+    }
+    
+    .lang-btn {
+        width: 100%;
+        justify-content: center;
+        background: rgba(21, 101, 192, 0.05);
+        border-color: rgba(21, 101, 192, 0.2);
+        color: var(--primary-color);
+    }
+    
+    .lang-dropdown {
+        position: fixed;
+        top: auto;
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+        max-height: 200px;
     }
     
     /* Hero responsive */
@@ -3208,25 +3323,33 @@ body.dyslexia-font {
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(21, 101, 192, 0.05);
+    border: 1px solid rgba(21, 101, 192, 0.2);
     border-radius: var(--border-radius);
-    color: var(--text-primary);
+    color: var(--primary-color);
     font-size: var(--font-size-sm);
     cursor: pointer;
     transition: var(--transition);
-    min-width: 70px;
+    min-width: 80px;
+    font-weight: 500;
 }
 
 .header .lang-btn {
-    color: white;
+    background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.3);
+    color: white;
 }
 
 .lang-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(21, 101, 192, 0.1);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.header .lang-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .lang-flag {
@@ -3253,22 +3376,37 @@ body.dyslexia-font {
     position: absolute;
     top: calc(100% + 8px);
     right: 0;
-    background: var(--background);
+    background: white;
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow-medium);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     z-index: 1000;
-    min-width: 120px;
+    min-width: 140px;
+    overflow: hidden;
 }
 
 .lang-dropdown.show {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+}
+
+.lang-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 20px;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-bottom: none;
+    border-right: none;
+    transform: rotate(45deg);
 }
 
 .lang-option {
