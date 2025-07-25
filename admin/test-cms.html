@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CMS - FANTEA</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { border: 1px solid #ccc; margin: 20px 0; padding: 20px; }
+        .success { color: green; }
+        .error { color: red; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Test CMS - FANTEA</h1>
+    
+    <div class="test-section">
+        <h2>Test de Conexión al Dashboard</h2>
+        <p>Esta página verifica que el CMS del dashboard funcione correctamente.</p>
+        <button onclick="testCMSConnection()">Probar Conexión CMS</button>
+        <div id="test-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test de LocalStorage</h2>
+        <button onclick="testLocalStorage()">Probar Guardado Local</button>
+        <button onclick="clearLocalStorage()">Limpiar Datos</button>
+        <div id="storage-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Datos Guardados</h2>
+        <button onclick="showSavedData()">Mostrar Datos Guardados</button>
+        <pre id="saved-data"></pre>
+    </div>
+
+    <script>
+        function testCMSConnection() {
+            const result = document.getElementById('test-result');
+            
+            // Verificar si hay datos del CMS
+            const cmsData = localStorage.getItem('fantea_cms_data');
+            
+            if (cmsData) {
+                result.innerHTML = '<span class="success">✓ Conexión CMS exitosa - Datos encontrados</span>';
+                try {
+                    const parsed = JSON.parse(cmsData);
+                    result.innerHTML += `<br>Secciones guardadas: ${Object.keys(parsed).length}`;
+                } catch (e) {
+                    result.innerHTML += '<br><span class="error">Error al parsear datos</span>';
+                }
+            } else {
+                result.innerHTML = '<span class="error">✗ No se encontraron datos del CMS</span>';
+            }
+        }
+
+        function testLocalStorage() {
+            const result = document.getElementById('storage-result');
+            
+            try {
+                // Test de escritura
+                const testData = {
+                    test: 'Test data from ' + new Date().toISOString(),
+                    timestamp: Date.now()
+                };
+                
+                localStorage.setItem('fantea_test', JSON.stringify(testData));
+                
+                // Test de lectura
+                const retrieved = localStorage.getItem('fantea_test');
+                const parsed = JSON.parse(retrieved);
+                
+                if (parsed.test === testData.test) {
+                    result.innerHTML = '<span class="success">✓ LocalStorage funciona correctamente</span>';
+                } else {
+                    result.innerHTML = '<span class="error">✗ Error en LocalStorage</span>';
+                }
+                
+                // Limpiar test
+                localStorage.removeItem('fantea_test');
+                
+            } catch (e) {
+                result.innerHTML = '<span class="error">✗ Error: ' + e.message + '</span>';
+            }
+        }
+
+        function clearLocalStorage() {
+            localStorage.removeItem('fantea_cms_data');
+            document.getElementById('storage-result').innerHTML = '<span class="success">✓ Datos CMS eliminados</span>';
+            document.getElementById('saved-data').textContent = '';
+        }
+
+        function showSavedData() {
+            const cmsData = localStorage.getItem('fantea_cms_data');
+            const dataDiv = document.getElementById('saved-data');
+            
+            if (cmsData) {
+                try {
+                    const parsed = JSON.parse(cmsData);
+                    dataDiv.textContent = JSON.stringify(parsed, null, 2);
+                } catch (e) {
+                    dataDiv.textContent = 'Error al mostrar datos: ' + e.message;
+                }
+            } else {
+                dataDiv.textContent = 'No hay datos guardados';
+            }
+        }
+
+        // Test automático al cargar
+        window.addEventListener('load', function() {
+            testCMSConnection();
+            testLocalStorage();
+        });
+
+        // Escuchar mensajes del CMS
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.type === 'cms_update') {
+                console.log('Recibido update del CMS:', event.data);
+                const result = document.getElementById('test-result');
+                result.innerHTML += '<br><span class="success">✓ Mensaje recibido del CMS: ' + event.data.section + '</span>';
+            }
+        });
+    </script>
+</body>
+</html> 
