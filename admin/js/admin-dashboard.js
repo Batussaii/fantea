@@ -1358,22 +1358,56 @@ function previewChanges() {
  * Update website content (simulation)
  */
 function updateWebsiteContent(sectionName, data) {
-    // In a real application, this would send data to the server
-    // to update the actual website files
     console.log(`Updating ${sectionName} with data:`, data);
     
-    // Simulate real-time preview update
+    // Notify all open tabs/windows through localStorage change event
+    try {
+        // Trigger storage event by updating localStorage
+        const currentData = JSON.parse(localStorage.getItem('fantea_cms_data') || '{}');
+        currentData[sectionName] = data;
+        localStorage.setItem('fantea_cms_data', JSON.stringify(currentData));
+        
+        // Also trigger a custom storage event for immediate updates
+        window.dispatchEvent(new CustomEvent('cms-data-updated', {
+            detail: { section: sectionName, data: data }
+        }));
+        
+        console.log('CMS data updated and event dispatched');
+    } catch (error) {
+        console.warn('Error updating CMS data:', error);
+    }
+    
+    // Try to notify parent window if opened from main site
     if (window.opener && !window.opener.closed) {
-        // If opened from main site, send updates
         try {
             window.opener.postMessage({
-                type: 'cms_update',
+                type: 'CMS_UPDATE',
                 section: sectionName,
-                data: data
+                data: data,
+                timestamp: Date.now()
             }, '*');
+            console.log('Message sent to parent window');
         } catch (e) {
-            console.log('Could not send update to parent window');
+            console.log('Could not send update to parent window:', e);
         }
+    }
+    
+    // Try to notify all windows in the same origin
+    try {
+        // Use BroadcastChannel for cross-tab communication (modern browsers)
+        if (typeof BroadcastChannel !== 'undefined') {
+            const channel = new BroadcastChannel('fantea-cms');
+            channel.postMessage({
+                type: 'CMS_UPDATE',
+                section: sectionName,
+                data: data,
+                timestamp: Date.now()
+            });
+            channel.close();
+            console.log('Broadcast message sent');
+        }
+    } catch (e) {
+        console.log('BroadcastChannel not available or failed:', e);
     }
 }
 
