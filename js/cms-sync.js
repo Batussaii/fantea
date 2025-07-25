@@ -104,7 +104,42 @@ class CMSSync {
             });
         }
 
-        // News Section (últimas noticias)
+        // Stats Section - actualizar las estadísticas en hero-stats
+        if (this.cmsData.stats && this.cmsData.stats.stats) {
+            this.cmsData.stats.stats.forEach((stat, index) => {
+                this.updateTextContent(`.hero-stats .stat-item:nth-child(${index + 1}) .stat-number`, stat.number);
+                this.updateTextContent(`.hero-stats .stat-item:nth-child(${index + 1}) .stat-text`, stat.description);
+            });
+        }
+
+        // Features Section - sección de características principales
+        if (this.cmsData.features) {
+            if (this.cmsData.features.title) {
+                this.updateTextContent('.featured-sections .section-header h2', this.cmsData.features.title);
+            }
+            if (this.cmsData.features.subtitle) {
+                this.updateTextContent('.featured-sections .section-header p', this.cmsData.features.subtitle);
+            }
+            if (this.cmsData.features.features) {
+                this.cmsData.features.features.forEach((feature, index) => {
+                    this.updateTextContent(`.features-grid .feature-card:nth-child(${index + 1}) h3`, feature.title);
+                    this.updateTextContent(`.features-grid .feature-card:nth-child(${index + 1}) p`, feature.description);
+                    // El icono se podría actualizar también si es necesario
+                    const iconElement = document.querySelector(`.features-grid .feature-card:nth-child(${index + 1}) .feature-icon i`);
+                    if (iconElement && feature.icon) {
+                        iconElement.className = feature.icon;
+                    }
+                });
+            }
+        }
+
+        // CTA Section - llamada a la acción (si existe en la página)
+        if (this.cmsData.cta) {
+            this.updateTextContent('.cta-section h2', this.cmsData.cta.title);
+            this.updateTextContent('.cta-section p', this.cmsData.cta.description);
+        }
+
+        // News Section (últimas noticias) - mantener como estaba pero mejorar
         if (this.cmsData.news && this.cmsData.news.items) {
             this.cmsData.news.items.forEach((item, index) => {
                 this.updateTextContent(`.news-grid .news-card:nth-child(${index + 1}) h3`, item.title);
@@ -136,7 +171,37 @@ class CMSSync {
             this.updateTextContent('.mvv-card.vision p', this.cmsData['nosotros-mission'].visionText);
         }
 
-        // Timeline Section
+        // History Section
+        if (this.cmsData.history) {
+            if (this.cmsData.history.title) {
+                this.updateTextContent('.our-history .section-header h2', this.cmsData.history.title);
+            }
+            if (this.cmsData.history.subtitle) {
+                this.updateTextContent('.our-history .section-header p', this.cmsData.history.subtitle);
+            }
+            
+            // Timeline Section
+            if (this.cmsData.history.timeline) {
+                const timelineContainer = document.querySelector('.history-timeline');
+                if (timelineContainer) {
+                    timelineContainer.innerHTML = '';
+                    this.cmsData.history.timeline.forEach(item => {
+                        const timelineItem = document.createElement('div');
+                        timelineItem.className = 'timeline-item';
+                        timelineItem.innerHTML = `
+                            <div class="timeline-year">${item.year}</div>
+                            <div class="timeline-content">
+                                <h3>${item.title}</h3>
+                                <p>${item.description}</p>
+                            </div>
+                        `;
+                        timelineContainer.appendChild(timelineItem);
+                    });
+                }
+            }
+        }
+
+        // Legacy Timeline Section (mantener compatibilidad)
         if (this.cmsData['nosotros-timeline'] && this.cmsData['nosotros-timeline'].items) {
             const timelineContainer = document.querySelector('.history-timeline');
             if (timelineContainer) {
@@ -163,21 +228,46 @@ class CMSSync {
     applyAutismoChanges() {
         console.log('Aplicando cambios CMS a página de Autismo...');
 
+        // Header Section
         if (this.cmsData['autismo-header']) {
-            this.updateTextContent('#autismo-header h1', this.cmsData['autismo-header'].title);
-            this.updateTextContent('#autismo-header p', this.cmsData['autismo-header'].description);
+            this.updateTextContent('.page-header h1', this.cmsData['autismo-header'].title);
+            this.updateTextContent('.page-header p', this.cmsData['autismo-header'].description);
         }
 
-        if (this.cmsData['autismo-intro'] && this.cmsData['autismo-intro'].keyPoints) {
-            const keyPointsContainer = document.querySelector('#key-points');
-            if (keyPointsContainer) {
-                keyPointsContainer.innerHTML = '';
-                this.cmsData['autismo-intro'].keyPoints.forEach(point => {
-                    const pointElement = document.createElement('div');
-                    pointElement.className = 'key-point';
-                    pointElement.innerHTML = `<h3>${point.title}</h3><p>${point.description}</p>`;
-                    keyPointsContainer.appendChild(pointElement);
-                });
+        // Intro Section
+        if (this.cmsData['autismo-intro']) {
+            if (this.cmsData['autismo-intro'].sectionTitle) {
+                this.updateTextContent('.autism-explanation .section-header h2', this.cmsData['autismo-intro'].sectionTitle);
+            }
+            if (this.cmsData['autismo-intro'].subtitle) {
+                this.updateTextContent('.autism-explanation .section-header p', this.cmsData['autismo-intro'].subtitle);
+            }
+            if (this.cmsData['autismo-intro'].definitionTitle) {
+                this.updateTextContent('.autism-definition h3', this.cmsData['autismo-intro'].definitionTitle);
+            }
+            if (this.cmsData['autismo-intro'].definitionText) {
+                this.updateTextContent('.autism-definition p', this.cmsData['autismo-intro'].definitionText);
+            }
+            
+            // Key Points - crear elementos dinámicos
+            if (this.cmsData['autismo-intro'].keyPoints) {
+                const keyPointsContainer = document.querySelector('.key-points-grid') || document.querySelector('.autism-characteristics');
+                if (keyPointsContainer) {
+                    keyPointsContainer.innerHTML = '';
+                    this.cmsData['autismo-intro'].keyPoints.forEach(point => {
+                        const pointElement = document.createElement('div');
+                        pointElement.className = 'key-point-item';
+                        pointElement.innerHTML = `
+                            <div class="point-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="point-content">
+                                <h4>${point}</h4>
+                            </div>
+                        `;
+                        keyPointsContainer.appendChild(pointElement);
+                    });
+                }
             }
         }
 
@@ -188,16 +278,33 @@ class CMSSync {
     applyServiciosChanges() {
         console.log('Aplicando cambios CMS a página de Servicios...');
 
+        // Header Section
         if (this.cmsData['servicios-header']) {
-            this.updateTextContent('#servicios-header h1', this.cmsData['servicios-header'].title);
-            this.updateTextContent('#servicios-header p', this.cmsData['servicios-header'].description);
+            this.updateTextContent('.page-header h1', this.cmsData['servicios-header'].title);
+            this.updateTextContent('.page-header p', this.cmsData['servicios-header'].description);
         }
 
-        if (this.cmsData['servicios-pilares'] && this.cmsData['servicios-pilares'].services) {
-            this.cmsData['servicios-pilares'].services.forEach((service, index) => {
-                this.updateTextContent(`.service-item:nth-child(${index + 1}) h3`, service.title);
-                this.updateTextContent(`.service-item:nth-child(${index + 1}) p`, service.description);
-            });
+        // Pilares Section
+        if (this.cmsData['servicios-pilares']) {
+            if (this.cmsData['servicios-pilares'].title) {
+                this.updateTextContent('.service-pillars .section-header h2', this.cmsData['servicios-pilares'].title);
+            }
+            if (this.cmsData['servicios-pilares'].subtitle) {
+                this.updateTextContent('.service-pillars .section-header p', this.cmsData['servicios-pilares'].subtitle);
+            }
+            
+            if (this.cmsData['servicios-pilares'].services) {
+                this.cmsData['servicios-pilares'].services.forEach((service, index) => {
+                    this.updateTextContent(`.services-grid .service-card:nth-child(${index + 1}) h3`, service.title);
+                    this.updateTextContent(`.services-grid .service-card:nth-child(${index + 1}) p`, service.description);
+                    
+                    // Actualizar icono si está presente
+                    const iconElement = document.querySelector(`.services-grid .service-card:nth-child(${index + 1}) .service-icon i`);
+                    if (iconElement && service.icon) {
+                        iconElement.className = service.icon;
+                    }
+                });
+            }
         }
 
         console.log('Cambios de Servicios aplicados');
@@ -207,9 +314,33 @@ class CMSSync {
     applyActualidadChanges() {
         console.log('Aplicando cambios CMS a página de Actualidad...');
 
+        // Header Section
         if (this.cmsData['actualidad-header']) {
-            this.updateTextContent('#actualidad-header h1', this.cmsData['actualidad-header'].title);
-            this.updateTextContent('#actualidad-header p', this.cmsData['actualidad-header'].description);
+            this.updateTextContent('.page-header h1', this.cmsData['actualidad-header'].title);
+            this.updateTextContent('.page-header p', this.cmsData['actualidad-header'].description);
+        }
+
+        // Config Section
+        if (this.cmsData['actualidad-config']) {
+            if (this.cmsData['actualidad-config'].introText) {
+                this.updateTextContent('.blog-intro p', this.cmsData['actualidad-config'].introText);
+            }
+            
+            // Categorías dinámicas
+            if (this.cmsData['actualidad-config'].categories) {
+                const categoriesContainer = document.querySelector('.blog-categories') || document.querySelector('.news-filters');
+                if (categoriesContainer) {
+                    categoriesContainer.innerHTML = '';
+                    this.cmsData['actualidad-config'].categories.forEach(category => {
+                        const categoryElement = document.createElement('button');
+                        categoryElement.className = 'category-filter';
+                        categoryElement.style.borderColor = category.color;
+                        categoryElement.style.color = category.color;
+                        categoryElement.textContent = category.name;
+                        categoriesContainer.appendChild(categoryElement);
+                    });
+                }
+            }
         }
 
         console.log('Cambios de Actualidad aplicados');
@@ -219,16 +350,31 @@ class CMSSync {
     applyAfiliateChanges() {
         console.log('Aplicando cambios CMS a página de Afíliate...');
 
+        // Header Section
         if (this.cmsData['afiliate-header']) {
-            this.updateTextContent('#afiliate-header h1', this.cmsData['afiliate-header'].title);
-            this.updateTextContent('#afiliate-header p', this.cmsData['afiliate-header'].description);
+            this.updateTextContent('.page-header h1', this.cmsData['afiliate-header'].title);
+            this.updateTextContent('.page-header p', this.cmsData['afiliate-header'].description);
         }
 
-        if (this.cmsData['afiliate-membership'] && this.cmsData['afiliate-membership'].types) {
-            this.cmsData['afiliate-membership'].types.forEach((type, index) => {
-                this.updateTextContent(`.membership-type:nth-child(${index + 1}) h3`, type.title);
-                this.updateTextContent(`.membership-type:nth-child(${index + 1}) p`, type.description);
-            });
+        // Membership Section
+        if (this.cmsData['afiliate-membership']) {
+            if (this.cmsData['afiliate-membership'].title) {
+                this.updateTextContent('.ways-to-participate .section-header h2', this.cmsData['afiliate-membership'].title);
+            }
+            if (this.cmsData['afiliate-membership'].subtitle) {
+                this.updateTextContent('.ways-to-participate .section-header p', this.cmsData['afiliate-membership'].subtitle);
+            }
+            
+            if (this.cmsData['afiliate-membership'].membershipTypes) {
+                this.cmsData['afiliate-membership'].membershipTypes.forEach((type, index) => {
+                    // Actualizar pestañas
+                    this.updateTextContent(`.tab-nav .tab-btn:nth-child(${index + 1})`, type.tabName);
+                    
+                    // Actualizar contenido de pestañas
+                    this.updateTextContent(`.tab-content:nth-child(${index + 1}) h3`, type.title);
+                    this.updateTextContent(`.tab-content:nth-child(${index + 1}) p`, type.description);
+                });
+            }
         }
 
         console.log('Cambios de Afíliate aplicados');
@@ -238,16 +384,57 @@ class CMSSync {
     applyContactoChanges() {
         console.log('Aplicando cambios CMS a página de Contacto...');
 
+        // Header Section
         if (this.cmsData['contacto-header']) {
-            this.updateTextContent('#contacto-header h1', this.cmsData['contacto-header'].title);
-            this.updateTextContent('#contacto-header p', this.cmsData['contacto-header'].description);
+            this.updateTextContent('.page-header h1', this.cmsData['contacto-header'].title);
+            this.updateTextContent('.page-header p', this.cmsData['contacto-header'].description);
         }
 
+        // Contact Info Section
         if (this.cmsData['contacto-info']) {
-            this.updateTextContent('#contact-phone', this.cmsData['contacto-info'].phone);
-            this.updateTextContent('#contact-email', this.cmsData['contacto-info'].email);
-            this.updateTextContent('#contact-address', this.cmsData['contacto-info'].address);
-            this.updateTextContent('#contact-hours', this.cmsData['contacto-info'].hours);
+            // Título del formulario
+            if (this.cmsData['contacto-info'].formTitle) {
+                this.updateTextContent('.contact-form h2', this.cmsData['contacto-info'].formTitle);
+            }
+            if (this.cmsData['contacto-info'].formSubtitle) {
+                this.updateTextContent('.contact-form .form-subtitle', this.cmsData['contacto-info'].formSubtitle);
+            }
+            
+            // Información de contacto
+            if (this.cmsData['contacto-info'].contactInfo) {
+                const contactInfo = this.cmsData['contacto-info'].contactInfo;
+                
+                if (contactInfo.teléfono) {
+                    this.updateTextContent('.contact-item.phone .contact-text', contactInfo.teléfono);
+                }
+                if (contactInfo.email) {
+                    this.updateTextContent('.contact-item.email .contact-text', contactInfo.email);
+                }
+                if (contactInfo.dirección) {
+                    this.updateTextContent('.contact-item.address .contact-text', contactInfo.dirección);
+                }
+                if (contactInfo.horario) {
+                    this.updateTextContent('.contact-item.hours .contact-text', contactInfo.horario);
+                }
+            }
+            
+            // Redes sociales
+            if (this.cmsData['contacto-info'].socialLinks) {
+                const socialLinks = this.cmsData['contacto-info'].socialLinks;
+                
+                if (socialLinks.facebook) {
+                    this.updateAttribute('.social-links a[data-social="facebook"]', 'href', socialLinks.facebook);
+                }
+                if (socialLinks.twitter) {
+                    this.updateAttribute('.social-links a[data-social="twitter"]', 'href', socialLinks.twitter);
+                }
+                if (socialLinks.instagram) {
+                    this.updateAttribute('.social-links a[data-social="instagram"]', 'href', socialLinks.instagram);
+                }
+                if (socialLinks.linkedin) {
+                    this.updateAttribute('.social-links a[data-social="linkedin"]', 'href', socialLinks.linkedin);
+                }
+            }
         }
 
         console.log('Cambios de Contacto aplicados');
@@ -287,6 +474,19 @@ class CMSSync {
         if (element) {
             element.innerHTML = html;
             console.log(`Actualizado HTML ${selector}`);
+        } else {
+            console.warn(`Elemento no encontrado: ${selector}`);
+        }
+    }
+
+    // Método para actualizar atributos
+    updateAttribute(selector, attribute, value) {
+        if (!value) return;
+        
+        const element = document.querySelector(selector);
+        if (element) {
+            element.setAttribute(attribute, value);
+            console.log(`Actualizado atributo ${attribute} de ${selector}:`, value);
         } else {
             console.warn(`Elemento no encontrado: ${selector}`);
         }
