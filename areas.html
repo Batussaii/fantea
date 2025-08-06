@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Áreas de Trabajo - FANTEA</title>
+    <meta name="description" content="Conoce las áreas de trabajo de FANTEA: educación, salud, vida adulta, inclusión social y vivienda. Trabajamos en todos los ámbitos de la vida">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+    <!-- Skip link para accesibilidad -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+    <!-- Botón de Accesibilidad -->
+    <div id="accessibility-panel" class="accessibility-panel">
+        <button id="accessibility-btn" class="accessibility-btn" aria-label="Opciones de accesibilidad">
+            <i class="fas fa-universal-access"></i>
+        </button>
+        <div id="accessibility-options" class="accessibility-options hidden">
+            <button onclick="increaseFontSize()">Aumentar texto</button>
+            <button onclick="decreaseFontSize()">Reducir texto</button>
+            <button onclick="toggleHighContrast()">Alto contraste</button>
+            <button onclick="toggleDyslexiaFont()">Fuente dislexia</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                                        <button class="hamburger" aria-label="Abrir menú de navegación">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                
+                <div class="nav-brand">
+                    <img src="images/logo.png" alt="Logo FANTEA" class="logo">
+                    <span class="brand-text">FANTEA</span>
+                </div>
+
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="quienes-somos.html" class="nav-link">Quiénes somos</a></li>
+                    <li class="nav-item"><a href="asociaciones.html" class="nav-link">Asociaciones federadas</a></li>
+                    <li class="nav-item"><a href="areas.html" class="nav-link active">Áreas</a></li>
+                    <li class="nav-item"><a href="manifiesto.html" class="nav-link">Nuestro manifiesto</a></li>
+                    <li class="nav-item"><a href="prensa.html" class="nav-link">Prensa</a></li>
+                    <li class="nav-item"><a href="afiliate.html" class="nav-link">Afíliate</a></li>
+                    <li class="nav-item"><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="afiliate.html" class="btn btn-primary">Únete a Nosotros</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Áreas de Trabajo</h1>
+                    <p class="hero-subtitle">Trabajamos en distintos ámbitos para mejorar la calidad de vida de las personas autistas y sus familias</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Areas Content -->
+        <section class="areas-section">
+            <div class="container">
+                <div class="intro-section">
+                    <h2>Nuestras Áreas de Intervención</h2>
+                    <p>En FANTEA trabajamos en distintos ámbitos para mejorar la calidad de vida de las personas autistas y sus familias:</p>
+                </div>
+
+                <div class="areas-grid">
+                    <div class="area-card">
+                        <div class="area-header">
+                            <div class="area-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3>Educación 🎓</h3>
+                        </div>
+                        <div class="area-content">
+                            <ul class="area-list">
+                                <li>Apoyos en el aula para garantizar la inclusión</li>
+                                <li>Modelos sostenibles como el asistente personal (ejemplo Comunidad Valenciana)</li>
+                                <li>Formación a docentes y equipos educativos</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="area-card">
+                        <div class="area-header">
+                            <div class="area-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <h3>Salud 🏥</h3>
+                        </div>
+                        <div class="area-content">
+                            <ul class="area-list">
+                                <li>Atención temprana específica y accesible</li>
+                                <li>Salud mental adaptada y diagnósticos ágiles</li>
+                                <li>Formación y sensibilización de profesionales sanitarios</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="area-card">
+                        <div class="area-header">
+                            <div class="area-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h3>Vida Adulta y Empleo 💼</h3>
+                        </div>
+                        <div class="area-content">
+                            <ul class="area-list">
+                                <li>Programas de autonomía personal</li>
+                                <li>Inserción laboral y adaptación de entornos de trabajo</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="area-card">
+                        <div class="area-header">
+                            <div class="area-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3>Inclusión Social 🌍</h3>
+                        </div>
+                        <div class="area-content">
+                            <ul class="area-list">
+                                <li>Acceso igualitario a la vida comunitaria</li>
+                                <li>Recursos de respiro familiar y conciliación</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="area-card">
+                        <div class="area-header">
+                            <div class="area-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h3>Vivienda y Recursos Residenciales 🏠</h3>
+                        </div>
+                        <div class="area-content">
+                            <ul class="area-list">
+                                <li>Plazas adaptadas y apoyos para una vida independiente</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="cta-section">
+                    <div class="cta-content">
+                        <h2>¿Quieres Conocer Más Sobre Nuestro Trabajo?</h2>
+                        <p>Descubre cómo trabajamos en cada área y cómo puedes participar en nuestras iniciativas.</p>
+                        <div class="cta-actions">
+                            <a href="manifiesto.html" class="btn btn-primary">Leer Nuestro Manifiesto</a>
+                            <a href="contacto.html" class="btn btn-outline">Contactar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo-white.png" alt="Logo FANTEA">
+                        <h3>FANTEA</h3>
+                    </div>
+                    <p>Federación Andaluza de Autismo. Trabajando por la inclusión y los derechos de las personas autistas en Andalucía desde 2009.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul class="footer-links">
+                        <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+                        <li><a href="asociaciones.html">Asociaciones Federadas</a></li>
+                        <li><a href="areas.html">Áreas</a></li>
+                        <li><a href="manifiesto.html">Nuestro Manifiesto</a></li>
+                        <li><a href="prensa.html">Prensa</a></li>
+                        <li><a href="afiliate.html">Afíliate</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Guías para Familias</a></li>
+                        <li><a href="#">Formación Profesional</a></li>
+                        <li><a href="#">Centro de Descargas</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Antequera, Málaga</p>
+                        <p><i class="fas fa-envelope"></i> info@fantea.org</p>
+                    </div>
+                    <div class="footer-actions">
+                        <a href="contacto.html" class="btn btn-primary">Contactar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 FANTEA - Federación Andaluza de Autismo. Todos los derechos reservados.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Política de Privacidad</a>
+                        <a href="#">Términos de Uso</a>
+                        <a href="#">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

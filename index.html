@@ -32,29 +32,49 @@
     <header class="header">
         <nav class="navbar">
             <div class="container">
+                                            <button class="hamburger" aria-label="Abrir menú de navegación">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </button>
+                
                 <div class="nav-brand">
                     <img src="images/logo.png" alt="Logo FANTEA" class="logo">
                     <span class="brand-text">FANTEA</span>
                 </div>
                 
-                <button class="nav-toggle" aria-label="Abrir menú de navegación">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-
                 <ul class="nav-menu">
                     <li class="nav-item"><a href="#inicio" class="nav-link active" data-i18n="nav.home">Inicio</a></li>
-                    <li class="nav-item"><a href="nosotros.html" class="nav-link" data-i18n="nav.about">Nosotros</a></li>
-                    <li class="nav-item"><a href="autismo.html" class="nav-link" data-i18n="nav.autism">Sobre el Autismo</a></li>
-                    <li class="nav-item"><a href="servicios.html" class="nav-link" data-i18n="nav.services">Servicios</a></li>
-                    <li class="nav-item"><a href="actualidad.html" class="nav-link" data-i18n="nav.news">Actualidad</a></li>
+                    <li class="nav-item"><a href="quienes-somos.html" class="nav-link" data-i18n="nav.about">Quiénes somos</a></li>
+                    <li class="nav-item"><a href="asociaciones.html" class="nav-link" data-i18n="nav.associations">Asociaciones federadas</a></li>
+                    <li class="nav-item"><a href="areas.html" class="nav-link" data-i18n="nav.areas">Áreas</a></li>
+                    <li class="nav-item"><a href="manifiesto.html" class="nav-link" data-i18n="nav.manifesto">Nuestro manifiesto</a></li>
+                    <li class="nav-item"><a href="prensa.html" class="nav-link" data-i18n="nav.press">Prensa</a></li>
                     <li class="nav-item"><a href="afiliate.html" class="nav-link" data-i18n="nav.affiliate">Afíliate</a></li>
                     <li class="nav-item"><a href="contacto.html" class="nav-link" data-i18n="nav.contact">Contacto</a></li>
                 </ul>
 
                 <div class="nav-actions">
                     <a href="afiliate.html" class="btn btn-primary" data-i18n="nav.join">Únete a Nosotros</a>
+                    
+                    <!-- Language Selector -->
+                    <div class="language-selector">
+                        <button class="lang-btn" aria-label="Seleccionar idioma">
+                            <span class="lang-flag">🇪🇸</span>
+                            <span class="lang-code">ES</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="lang-dropdown" style="display: none;">
+                            <div class="lang-option" data-lang="es">
+                                <span class="lang-flag">🇪🇸</span>
+                                <span class="lang-name">Español</span>
+                            </div>
+                            <div class="lang-option" data-lang="en">
+                                <span class="lang-flag">🇺🇸</span>
+                                <span class="lang-name">English</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -113,38 +133,38 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
+                        <i class="fas fa-users"></i>
                     </div>
-                    <h3>¿Qué es el Autismo?</h3>
-                    <p>Información actualizada sobre el espectro autista desde una perspectiva de neurodiversidad, desmitificando creencias erróneas.</p>
-                    <a href="autismo.html" class="feature-link">Conoce más <i class="fas fa-arrow-right"></i></a>
+                    <h3>Quiénes Somos</h3>
+                    <p>Conoce FANTEA, la Federación Andaluza TEA que defiende los derechos de las personas autistas y sus familias en Andalucía.</p>
+                    <a href="quienes-somos.html" class="feature-link">Conoce más <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-hands-helping"></i>
+                        <i class="fas fa-handshake"></i>
                     </div>
-                    <h3>Programas y Servicios</h3>
-                    <p>Intervención familiar, inclusión educativa y laboral, formación profesional y campañas de sensibilización.</p>
-                    <a href="servicios.html" class="feature-link">Ver servicios <i class="fas fa-arrow-right"></i></a>
+                    <h3>Asociaciones Federadas</h3>
+                    <p>Descubre las asociaciones que forman parte de FANTEA y cómo trabajamos de forma coordinada.</p>
+                    <a href="asociaciones.html" class="feature-link">Ver asociaciones <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-calendar-alt"></i>
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3>Eventos y Actividades</h3>
-                    <p>Conferencias, webinars, talleres formativos y eventos de sensibilización para la comunidad.</p>
-                    <a href="actualidad.html" class="feature-link">Ver eventos <i class="fas fa-arrow-right"></i></a>
+                    <h3>Áreas de Trabajo</h3>
+                    <p>Educación, salud, vida adulta, inclusión social y vivienda. Trabajamos en todos los ámbitos de la vida.</p>
+                    <a href="areas.html" class="feature-link">Ver áreas <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-newspaper"></i>
+                        <i class="fas fa-bullhorn"></i>
                     </div>
-                    <h3>Noticias y Actualidad</h3>
-                    <p>Mantente informado sobre las últimas noticias, investigaciones y avances en el ámbito del autismo.</p>
-                    <a href="actualidad.html" class="feature-link">Leer más <i class="fas fa-arrow-right"></i></a>
+                    <h3>Nuestro Manifiesto</h3>
+                    <p>Conoce nuestros compromisos y valores para defender los derechos del colectivo TEA en Andalucía.</p>
+                    <a href="manifiesto.html" class="feature-link">Leer manifiesto <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -155,7 +175,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Últimas Noticias</h2>
-                <a href="actualidad.html" class="btn btn-outline">Ver todas las noticias</a>
+                <a href="prensa.html" class="btn btn-outline">Ver todas las noticias</a>
             </div>
 
             <div class="news-grid">
@@ -239,10 +259,11 @@
                 <div class="footer-section">
                     <h4 data-i18n="footer.navigation">Navegación</h4>
                     <ul class="footer-links">
-                        <li><a href="nosotros.html" data-i18n="footer.about">Sobre Nosotros</a></li>
-                        <li><a href="autismo.html" data-i18n="footer.autism">¿Qué es el Autismo?</a></li>
-                        <li><a href="servicios.html" data-i18n="footer.services">Servicios</a></li>
-                        <li><a href="actualidad.html" data-i18n="footer.news">Noticias</a></li>
+                        <li><a href="quienes-somos.html" data-i18n="footer.about">Quiénes Somos</a></li>
+                        <li><a href="asociaciones.html" data-i18n="footer.associations">Asociaciones Federadas</a></li>
+                        <li><a href="areas.html" data-i18n="footer.areas">Áreas</a></li>
+                        <li><a href="manifiesto.html" data-i18n="footer.manifesto">Nuestro Manifiesto</a></li>
+                        <li><a href="prensa.html" data-i18n="footer.press">Prensa</a></li>
                         <li><a href="afiliate.html" data-i18n="footer.affiliate">Afíliate</a></li>
                     </ul>
                 </div>
@@ -250,6 +271,7 @@
                 <div class="footer-section">
                     <h4 data-i18n="footer.resources">Recursos</h4>
                     <ul class="footer-links">
+                        <li><a href="estatutos.html">Estatutos</a></li>
                         <li><a href="#" data-i18n="footer.familyGuides">Guías para Familias</a></li>
                         <li><a href="#" data-i18n="footer.professionalTraining">Formación Profesional</a></li>
                         <li><a href="#" data-i18n="footer.downloadCenter">Centro de Descargas</a></li>
@@ -261,7 +283,7 @@
                 <div class="footer-section">
                     <h4 data-i18n="footer.contact">Contacto</h4>
                     <div class="contact-info">
-                        <p><i class="fas fa-map-marker-alt"></i> <span data-i18n="footer.address">Calle Principal 123, Sevilla</span></p>
+                        <p><i class="fas fa-map-marker-alt"></i> <span data-i18n="footer.address">Antequera, Málaga</span></p>
                         <p><i class="fas fa-phone"></i> <span data-i18n="footer.phone">+34 954 123 456</span></p>
                         <p><i class="fas fa-envelope"></i> <span data-i18n="footer.email">info@fantea.org</span></p>
                     </div>

@@ -19,27 +19,43 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
- * Navegación responsive
+ * MENÚ SIMPLE - NUEVO ENFOQUE
  */
 function initializeNavigation() {
-    const navToggle = document.querySelector('.nav-toggle');
+    const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
+    if (hamburger && navMenu) {
+        console.log('✅ Menú simple: Elementos encontrados');
+        
+        // Función para abrir menú
+        function openMenu() {
+            navMenu.classList.add('active');
+            hamburger.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            console.log('📱 Menú simple abierto');
+        }
+        
+        // Función para cerrar menú
+        function closeMenu() {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            document.body.style.overflow = '';
+            console.log('📱 Menú simple cerrado');
+        }
+        
+        // Event listener para el botón hamburguesa
+        hamburger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             
-            // Animación del botón hamburguesa
-            const spans = navToggle.querySelectorAll('span');
-            if (navToggle.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+            const isActive = navMenu.classList.contains('active');
+            console.log('🔘 Hamburger clickeado, menú estaba:', isActive ? 'abierto' : 'cerrado');
+            
+            if (isActive) {
+                closeMenu();
             } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
+                openMenu();
             }
         });
         
@@ -47,26 +63,35 @@ function initializeNavigation() {
         const navLinks = navMenu.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-                const spans = navToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
+                closeMenu();
             });
         });
         
         // Cerrar menú al hacer clic fuera
         document.addEventListener('click', function(event) {
-            if (!navToggle.contains(event.target) && !navMenu.contains(event.target)) {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-                const spans = navToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
+            if (navMenu.classList.contains('active') && 
+                !hamburger.contains(event.target) && 
+                !navMenu.contains(event.target)) {
+                closeMenu();
             }
         });
+        
+        // Cerrar menú con tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+        
+        // Cerrar menú al redimensionar la ventana
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+        
+    } else {
+        console.error('❌ Menú simple: Elementos no encontrados', { hamburger, navMenu });
     }
 }
 

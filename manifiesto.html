@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Manifiesto - FANTEA</title>
+    <meta name="description" content="Conoce el manifiesto de FANTEA, nuestros compromisos y valores para defender los derechos del colectivo TEA en Andalucía">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+    <!-- Skip link para accesibilidad -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+    <!-- Botón de Accesibilidad -->
+    <div id="accessibility-panel" class="accessibility-panel">
+        <button id="accessibility-btn" class="accessibility-btn" aria-label="Opciones de accesibilidad">
+            <i class="fas fa-universal-access"></i>
+        </button>
+        <div id="accessibility-options" class="accessibility-options hidden">
+            <button onclick="increaseFontSize()">Aumentar texto</button>
+            <button onclick="decreaseFontSize()">Reducir texto</button>
+            <button onclick="toggleHighContrast()">Alto contraste</button>
+            <button onclick="toggleDyslexiaFont()">Fuente dislexia</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                                        <button class="hamburger" aria-label="Abrir menú de navegación">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                
+                <div class="nav-brand">
+                    <img src="images/logo.png" alt="Logo FANTEA" class="logo">
+                    <span class="brand-text">FANTEA</span>
+                </div>
+
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="quienes-somos.html" class="nav-link">Quiénes somos</a></li>
+                    <li class="nav-item"><a href="asociaciones.html" class="nav-link">Asociaciones federadas</a></li>
+                    <li class="nav-item"><a href="areas.html" class="nav-link">Áreas</a></li>
+                    <li class="nav-item"><a href="manifiesto.html" class="nav-link active">Nuestro manifiesto</a></li>
+                    <li class="nav-item"><a href="prensa.html" class="nav-link">Prensa</a></li>
+                    <li class="nav-item"><a href="afiliate.html" class="nav-link">Afíliate</a></li>
+                    <li class="nav-item"><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="afiliate.html" class="btn btn-primary">Únete a Nosotros</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Nuestro Manifiesto</h1>
+                    <p class="hero-subtitle">Los compromisos y valores que guían nuestra lucha por los derechos del colectivo TEA</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Manifesto Content -->
+        <section class="manifesto-content">
+            <div class="container">
+                <div class="intro-section">
+                    <h2>Nuestros Compromisos</h2>
+                    <p>FANTEA nace por y para las personas autistas y sus familias, con el compromiso de:</p>
+                </div>
+
+                <div class="commitment-cards">
+                    <div class="commitment-card">
+                        <h3>No dejar a nadie atrás</h3>
+                        <p>Trabajamos para que todas las personas autistas y sus familias tengan acceso a los recursos y apoyos que necesitan, sin excepción.</p>
+                    </div>
+
+                    <div class="commitment-card">
+                        <h3>Defender apoyos reales, justos y gratuitos</h3>
+                        <p>Luchamos por servicios de calidad que sean accesibles para todas las familias, independientemente de su situación económica.</p>
+                    </div>
+
+                    <div class="commitment-card">
+                        <h3>Reivindicar más recursos públicos</h3>
+                        <p>Exigimos más recursos públicos docentes, técnicos y sanitarios para garantizar una atención integral y de calidad.</p>
+                    </div>
+
+                    <div class="commitment-card">
+                        <h3>Trabajar con transparencia y participación</h3>
+                        <p>Actuamos con total transparencia y fomentamos la participación activa de las familias en todas nuestras decisiones.</p>
+                    </div>
+
+                    <div class="commitment-card">
+                        <h3>Promover la unión y colaboración</h3>
+                        <p>Fomentamos la unión y la colaboración entre asociaciones para fortalecer la voz del colectivo TEA en Andalucía.</p>
+                    </div>
+                </div>
+
+                <!-- Full Manifesto Section -->
+                <div class="full-manifesto-section">
+                    <h2>Manifiesto Completo</h2>
+                    <p>Si quieres leer el manifiesto completo en formato PDF, puedes descargarlo aquí:</p>
+                    <div class="download-section">
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-download"></i>
+                            Descargar Manifiesto Completo (PDF)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Values Section -->
+                <div class="values-section">
+                    <h2>Nuestros Valores Fundamentales</h2>
+                    <div class="values-grid">
+                        <div class="value-item">
+                            <h3>Dignidad</h3>
+                            <p>Reconocemos la dignidad inherente de todas las personas autistas y sus familias.</p>
+                        </div>
+                        <div class="value-item">
+                            <h3>Justicia Social</h3>
+                            <p>Luchamos por la igualdad de oportunidades y el acceso a derechos fundamentales.</p>
+                        </div>
+                        <div class="value-item">
+                            <h3>Inclusión</h3>
+                            <p>Promovemos una sociedad inclusiva que valore la neurodiversidad.</p>
+                        </div>
+                        <div class="value-item">
+                            <h3>Empoderamiento</h3>
+                            <p>Fomentamos la autonomía y la participación activa de las familias.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="cta-section">
+                    <div class="cta-content">
+                        <h2>¿Compartes Nuestros Valores?</h2>
+                        <p>Si tu asociación comparte estos compromisos y valores, únete a FANTEA y sumemos fuerzas para defender los derechos del colectivo TEA en Andalucía.</p>
+                        <div class="cta-actions">
+                            <a href="afiliate.html" class="btn btn-primary">Unirse a FANTEA</a>
+                            <a href="contacto.html" class="btn btn-outline">Contactar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo-white.png" alt="Logo FANTEA">
+                        <h3>FANTEA</h3>
+                    </div>
+                    <p>Federación Andaluza de Autismo. Trabajando por la inclusión y los derechos de las personas autistas en Andalucía desde 2009.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul class="footer-links">
+                        <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+                        <li><a href="asociaciones.html">Asociaciones Federadas</a></li>
+                        <li><a href="areas.html">Áreas</a></li>
+                        <li><a href="manifiesto.html">Nuestro Manifiesto</a></li>
+                        <li><a href="prensa.html">Prensa</a></li>
+                        <li><a href="afiliate.html">Afíliate</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Guías para Familias</a></li>
+                        <li><a href="#">Formación Profesional</a></li>
+                        <li><a href="#">Centro de Descargas</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Antequera, Málaga</p>
+                        <p><i class="fas fa-envelope"></i> info@fantea.org</p>
+                    </div>
+                    <div class="footer-actions">
+                        <a href="contacto.html" class="btn btn-primary">Contactar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 FANTEA - Federación Andaluza de Autismo. Todos los derechos reservados.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Política de Privacidad</a>
+                        <a href="#">Términos de Uso</a>
+                        <a href="#">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

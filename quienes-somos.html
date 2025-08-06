@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiénes Somos - FANTEA</title>
+    <meta name="description" content="Conoce FANTEA, la Federación Andaluza TEA que defiende los derechos de las personas autistas y sus familias en Andalucía">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+    <!-- Skip link para accesibilidad -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+    <!-- Botón de Accesibilidad -->
+    <div id="accessibility-panel" class="accessibility-panel">
+        <button id="accessibility-btn" class="accessibility-btn" aria-label="Opciones de accesibilidad">
+            <i class="fas fa-universal-access"></i>
+        </button>
+        <div id="accessibility-options" class="accessibility-options hidden">
+            <button onclick="increaseFontSize()">Aumentar texto</button>
+            <button onclick="decreaseFontSize()">Reducir texto</button>
+            <button onclick="toggleHighContrast()">Alto contraste</button>
+            <button onclick="toggleDyslexiaFont()">Fuente dislexia</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <button class="nav-toggle" aria-label="Abrir menú de navegación">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <div class="nav-brand">
+                    <img src="images/logo.png" alt="Logo FANTEA" class="logo">
+                    <span class="brand-text">FANTEA</span>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="quienes-somos.html" class="nav-link active">Quiénes somos</a></li>
+                    <li class="nav-item"><a href="asociaciones.html" class="nav-link">Asociaciones federadas</a></li>
+                    <li class="nav-item"><a href="areas.html" class="nav-link">Áreas</a></li>
+                    <li class="nav-item"><a href="manifiesto.html" class="nav-link">Nuestro manifiesto</a></li>
+                    <li class="nav-item"><a href="prensa.html" class="nav-link">Prensa</a></li>
+                    <li class="nav-item"><a href="afiliate.html" class="nav-link">Afíliate</a></li>
+                    <li class="nav-item"><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="afiliate.html" class="btn btn-primary">Únete a Nosotros</a>
+                    
+                    <!-- Language Selector -->
+                    <div class="language-selector">
+                        <button class="lang-btn" aria-label="Seleccionar idioma">
+                            <span class="lang-flag">🇪🇸</span>
+                            <span class="lang-code">ES</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="lang-dropdown" style="display: none;">
+                            <div class="lang-option" data-lang="es">
+                                <span class="lang-flag">🇪🇸</span>
+                                <span class="lang-name">Español</span>
+                            </div>
+                            <div class="lang-option" data-lang="en">
+                                <span class="lang-flag">🇺🇸</span>
+                                <span class="lang-name">English</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Abrir menú de navegación">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Quiénes Somos</h1>
+                    <p class="hero-subtitle">Federación Andaluza TEA - Defendiendo derechos, construyendo futuro</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Content -->
+        <section class="about-content">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="content-text">
+                        <h2>Nuestra Misión</h2>
+                        <p>La Federación Andaluza TEA (FANTEA) es una entidad sin ánimo de lucro formada por asociaciones de familias de personas autistas de diferentes provincias andaluzas.</p>
+                        
+                        <p>Nacemos con un objetivo claro: <strong>defender los derechos de las personas con autismo y sus familias en todos los ámbitos de la vida</strong>.</p>
+
+                        <h3>Nuestros Valores</h3>
+                        <p>Somos una federación <strong>independiente, plural y abierta</strong>, que trabaja desde la transparencia, la justicia social y la participación activa de las familias.</p>
+
+                        <h3>Nuestra Sede</h3>
+                        <p>Nuestra sede se encuentra en <strong>Antequera</strong>, centro geográfico de Andalucía, símbolo de unión y punto de encuentro para todo el movimiento asociativo TEA.</p>
+                    </div>
+
+                    <div class="content-image">
+                        <img src="images/hero-inclusive.jpg" alt="Familias unidas por el autismo" class="about-image">
+                    </div>
+                </div>
+
+                <!-- Values Section -->
+                <div class="values-section">
+                    <h2>Nuestros Principios</h2>
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h3>Compromiso</h3>
+                            <p>Defendemos los derechos de las personas autistas y sus familias con dedicación y pasión.</p>
+                        </div>
+
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h3>Unión</h3>
+                            <p>Trabajamos unidos para fortalecer la voz del colectivo TEA en Andalucía.</p>
+                        </div>
+
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h3>Transparencia</h3>
+                            <p>Actuamos con total transparencia y rendición de cuentas ante las familias.</p>
+                        </div>
+
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Participación</h3>
+                            <p>Fomentamos la participación activa de todas las familias en nuestras decisiones.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="cta-section">
+                    <div class="cta-content">
+                        <h2>¿Quieres Conocernos Mejor?</h2>
+                        <p>Descubre nuestras áreas de trabajo, conoce las asociaciones federadas y únete a nuestra lucha por los derechos del colectivo TEA.</p>
+                        <div class="cta-actions">
+                            <a href="areas.html" class="btn btn-primary">Ver Áreas de Trabajo</a>
+                            <a href="asociaciones.html" class="btn btn-outline">Conocer Asociaciones</a>
+                            <a href="manifiesto.html" class="btn btn-outline">Leer Nuestro Manifiesto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo-white.png" alt="Logo FANTEA">
+                        <h3>FANTEA</h3>
+                    </div>
+                    <p>Federación Andaluza de Autismo. Trabajando por la inclusión y los derechos de las personas autistas en Andalucía desde 2009.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul class="footer-links">
+                        <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+                        <li><a href="asociaciones.html">Asociaciones Federadas</a></li>
+                        <li><a href="areas.html">Áreas</a></li>
+                        <li><a href="manifiesto.html">Nuestro Manifiesto</a></li>
+                        <li><a href="prensa.html">Prensa</a></li>
+                        <li><a href="afiliate.html">Afíliate</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Guías para Familias</a></li>
+                        <li><a href="#">Formación Profesional</a></li>
+                        <li><a href="#">Centro de Descargas</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Antequera, Málaga</p>
+                        <p><i class="fas fa-envelope"></i> info@fantea.org</p>
+                    </div>
+                    <div class="footer-actions">
+                        <a href="contacto.html" class="btn btn-primary">Contactar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 FANTEA - Federación Andaluza de Autismo. Todos los derechos reservados.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Política de Privacidad</a>
+                        <a href="#">Términos de Uso</a>
+                        <a href="#">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 
