@@ -895,42 +895,52 @@ function collectSectionData(sectionName) {
             });
             break;
             
-        // New sections for other pages
-        case 'autismo-header':
-            data.title = document.getElementById('autismo-title')?.value || '';
-            data.description = document.getElementById('autismo-description')?.value || '';
+        // New sections for updated pages
+        case 'quienes-somos-header':
+            data.title = document.getElementById('quienes-somos-title')?.value || '';
+            data.description = document.getElementById('quienes-somos-description')?.value || '';
             break;
             
-        case 'autismo-intro':
-            data.sectionTitle = document.getElementById('autismo-intro-title')?.value || '';
-            data.subtitle = document.getElementById('autismo-intro-subtitle')?.value || '';
-            data.definitionTitle = document.getElementById('autismo-definition-title')?.value || '';
-            data.definitionText = document.getElementById('autismo-definition-text')?.value || '';
-            data.keyPoints = [];
+        case 'asociaciones-header':
+            data.title = document.getElementById('asociaciones-title')?.value || '';
+            data.description = document.getElementById('asociaciones-description')?.value || '';
+            break;
             
-            const keyPointItems = document.querySelectorAll('.key-point-item .cms-input');
-            keyPointItems.forEach(input => {
-                if (input.value.trim()) {
-                    data.keyPoints.push(input.value.trim());
+        case 'asociaciones-list':
+            data.sectionTitle = document.getElementById('asociaciones-intro-title')?.value || '';
+            data.subtitle = document.getElementById('asociaciones-intro-subtitle')?.value || '';
+            data.introText = document.getElementById('asociaciones-intro-text')?.value || '';
+            data.associations = [];
+            
+            const associationItems = document.querySelectorAll('.association-item-cms');
+            associationItems.forEach(item => {
+                const inputs = item.querySelectorAll('.cms-input, .cms-textarea');
+                if (inputs.length >= 4) {
+                    data.associations.push({
+                        name: inputs[0].value,
+                        province: inputs[1].value,
+                        description: inputs[2].value,
+                        website: inputs[3].value
+                    });
                 }
             });
             break;
             
-        case 'servicios-header':
-            data.title = document.getElementById('servicios-title')?.value || '';
-            data.description = document.getElementById('servicios-description')?.value || '';
+        case 'areas-header':
+            data.title = document.getElementById('areas-title')?.value || '';
+            data.description = document.getElementById('areas-description')?.value || '';
             break;
             
-        case 'servicios-pilares':
-            data.title = document.getElementById('servicios-pilares-title')?.value || '';
-            data.subtitle = document.getElementById('servicios-pilares-subtitle')?.value || '';
-            data.services = [];
+        case 'areas-list':
+            data.sectionTitle = document.getElementById('areas-intro-title')?.value || '';
+            data.subtitle = document.getElementById('areas-intro-subtitle')?.value || '';
+            data.areas = [];
             
-            const serviceItems = document.querySelectorAll('.service-item-cms');
-            serviceItems.forEach(item => {
+            const areaItems = document.querySelectorAll('.area-item-cms');
+            areaItems.forEach(item => {
                 const inputs = item.querySelectorAll('.cms-input, .cms-textarea');
                 if (inputs.length >= 3) {
-                    data.services.push({
+                    data.areas.push({
                         icon: inputs[0].value,
                         title: inputs[1].value,
                         description: inputs[2].value
@@ -939,24 +949,58 @@ function collectSectionData(sectionName) {
             });
             break;
             
-        case 'actualidad-header':
-            data.title = document.getElementById('actualidad-title')?.value || '';
-            data.description = document.getElementById('actualidad-description')?.value || '';
+        case 'manifiesto-header':
+            data.title = document.getElementById('manifiesto-title')?.value || '';
+            data.description = document.getElementById('manifiesto-description')?.value || '';
             break;
             
-        case 'actualidad-config':
-            data.postsPerPage = document.getElementById('blog-posts-per-page')?.value || 6;
-            data.featuredCount = document.getElementById('blog-featured-count')?.value || 3;
-            data.introText = document.getElementById('blog-intro-text')?.value || '';
-            data.categories = [];
+        case 'manifiesto-content':
+            data.sectionTitle = document.getElementById('manifiesto-intro-title')?.value || '';
+            data.introText = document.getElementById('manifiesto-intro-text')?.value || '';
+            data.principles = [];
             
-            const categoryItems = document.querySelectorAll('.category-item');
-            categoryItems.forEach(item => {
-                const inputs = item.querySelectorAll('.cms-input');
-                if (inputs.length >= 2 && inputs[0].value.trim()) {
-                    data.categories.push({
-                        name: inputs[0].value.trim(),
-                        color: inputs[1].value.trim() || '#1565C0'
+            const principleItems = document.querySelectorAll('.principle-item-cms');
+            principleItems.forEach(item => {
+                const inputs = item.querySelectorAll('.cms-input, .cms-textarea');
+                if (inputs.length >= 2) {
+                    data.principles.push({
+                        title: inputs[0].value,
+                        description: inputs[1].value
+                    });
+                }
+            });
+            break;
+            
+        case 'prensa-header':
+            data.title = document.getElementById('prensa-title')?.value || '';
+            data.description = document.getElementById('prensa-description')?.value || '';
+            break;
+            
+        case 'prensa-content':
+            data.sectionTitle = document.getElementById('prensa-intro-title')?.value || '';
+            data.introText = document.getElementById('prensa-intro-text')?.value || '';
+            data.contactInfo = {};
+            data.pressReleases = [];
+            
+            // Contact info
+            const pressContactItems = document.querySelectorAll('.press-contact-cms .cms-input');
+            pressContactItems.forEach((input, index) => {
+                const labels = ['email', 'phone', 'hours'];
+                if (input.value.trim()) {
+                    data.contactInfo[labels[index]] = input.value.trim();
+                }
+            });
+            
+            // Press releases
+            const pressReleaseItems = document.querySelectorAll('.press-release-item-cms');
+            pressReleaseItems.forEach(item => {
+                const inputs = item.querySelectorAll('.cms-input, .cms-textarea');
+                if (inputs.length >= 4) {
+                    data.pressReleases.push({
+                        date: inputs[0].value,
+                        title: inputs[1].value,
+                        summary: inputs[2].value,
+                        pdfUrl: inputs[3].value
                     });
                 }
             });
@@ -1113,67 +1157,109 @@ function loadSectionData(sectionName, data) {
             }
             break;
             
-        // New sections loading
-        case 'autismo-header':
-            if (data.title) document.getElementById('autismo-title').value = data.title;
-            if (data.description) document.getElementById('autismo-description').value = data.description;
+        // New sections loading for updated pages
+        case 'quienes-somos-header':
+            if (data.title) document.getElementById('quienes-somos-title').value = data.title;
+            if (data.description) document.getElementById('quienes-somos-description').value = data.description;
             break;
             
-        case 'autismo-intro':
-            if (data.sectionTitle) document.getElementById('autismo-intro-title').value = data.sectionTitle;
-            if (data.subtitle) document.getElementById('autismo-intro-subtitle').value = data.subtitle;
-            if (data.definitionTitle) document.getElementById('autismo-definition-title').value = data.definitionTitle;
-            if (data.definitionText) document.getElementById('autismo-definition-text').value = data.definitionText;
+        case 'asociaciones-header':
+            if (data.title) document.getElementById('asociaciones-title').value = data.title;
+            if (data.description) document.getElementById('asociaciones-description').value = data.description;
+            break;
             
-            if (data.keyPoints) {
-                const keyPointItems = document.querySelectorAll('.key-point-item .cms-input');
-                data.keyPoints.forEach((point, index) => {
-                    if (keyPointItems[index]) {
-                        keyPointItems[index].value = point;
+        case 'asociaciones-list':
+            if (data.sectionTitle) document.getElementById('asociaciones-intro-title').value = data.sectionTitle;
+            if (data.subtitle) document.getElementById('asociaciones-intro-subtitle').value = data.subtitle;
+            if (data.introText) document.getElementById('asociaciones-intro-text').value = data.introText;
+            
+            if (data.associations) {
+                const associationItems = document.querySelectorAll('.association-item-cms');
+                data.associations.forEach((association, index) => {
+                    if (associationItems[index]) {
+                        const inputs = associationItems[index].querySelectorAll('.cms-input, .cms-textarea');
+                        if (inputs[0]) inputs[0].value = association.name;
+                        if (inputs[1]) inputs[1].value = association.province;
+                        if (inputs[2]) inputs[2].value = association.description;
+                        if (inputs[3]) inputs[3].value = association.website;
                     }
                 });
             }
             break;
             
-        case 'servicios-header':
-            if (data.title) document.getElementById('servicios-title').value = data.title;
-            if (data.description) document.getElementById('servicios-description').value = data.description;
+        case 'areas-header':
+            if (data.title) document.getElementById('areas-title').value = data.title;
+            if (data.description) document.getElementById('areas-description').value = data.description;
             break;
             
-        case 'servicios-pilares':
-            if (data.title) document.getElementById('servicios-pilares-title').value = data.title;
-            if (data.subtitle) document.getElementById('servicios-pilares-subtitle').value = data.subtitle;
+        case 'areas-list':
+            if (data.sectionTitle) document.getElementById('areas-intro-title').value = data.sectionTitle;
+            if (data.subtitle) document.getElementById('areas-intro-subtitle').value = data.subtitle;
             
-            if (data.services) {
-                const serviceItems = document.querySelectorAll('.service-item-cms');
-                data.services.forEach((service, index) => {
-                    if (serviceItems[index]) {
-                        const inputs = serviceItems[index].querySelectorAll('.cms-input, .cms-textarea');
-                        if (inputs[0]) inputs[0].value = service.icon;
-                        if (inputs[1]) inputs[1].value = service.title;
-                        if (inputs[2]) inputs[2].value = service.description;
+            if (data.areas) {
+                const areaItems = document.querySelectorAll('.area-item-cms');
+                data.areas.forEach((area, index) => {
+                    if (areaItems[index]) {
+                        const inputs = areaItems[index].querySelectorAll('.cms-input, .cms-textarea');
+                        if (inputs[0]) inputs[0].value = area.icon;
+                        if (inputs[1]) inputs[1].value = area.title;
+                        if (inputs[2]) inputs[2].value = area.description;
                     }
                 });
             }
             break;
             
-        case 'actualidad-header':
-            if (data.title) document.getElementById('actualidad-title').value = data.title;
-            if (data.description) document.getElementById('actualidad-description').value = data.description;
+        case 'manifiesto-header':
+            if (data.title) document.getElementById('manifiesto-title').value = data.title;
+            if (data.description) document.getElementById('manifiesto-description').value = data.description;
             break;
             
-        case 'actualidad-config':
-            if (data.postsPerPage) document.getElementById('blog-posts-per-page').value = data.postsPerPage;
-            if (data.featuredCount) document.getElementById('blog-featured-count').value = data.featuredCount;
-            if (data.introText) document.getElementById('blog-intro-text').value = data.introText;
+        case 'manifiesto-content':
+            if (data.sectionTitle) document.getElementById('manifiesto-intro-title').value = data.sectionTitle;
+            if (data.introText) document.getElementById('manifiesto-intro-text').value = data.introText;
             
-            if (data.categories) {
-                const categoryItems = document.querySelectorAll('.category-item');
-                data.categories.forEach((category, index) => {
-                    if (categoryItems[index]) {
-                        const inputs = categoryItems[index].querySelectorAll('.cms-input');
-                        if (inputs[0]) inputs[0].value = category.name;
-                        if (inputs[1]) inputs[1].value = category.color;
+            if (data.principles) {
+                const principleItems = document.querySelectorAll('.principle-item-cms');
+                data.principles.forEach((principle, index) => {
+                    if (principleItems[index]) {
+                        const inputs = principleItems[index].querySelectorAll('.cms-input, .cms-textarea');
+                        if (inputs[0]) inputs[0].value = principle.title;
+                        if (inputs[1]) inputs[1].value = principle.description;
+                    }
+                });
+            }
+            break;
+            
+        case 'prensa-header':
+            if (data.title) document.getElementById('prensa-title').value = data.title;
+            if (data.description) document.getElementById('prensa-description').value = data.description;
+            break;
+            
+        case 'prensa-content':
+            if (data.sectionTitle) document.getElementById('prensa-intro-title').value = data.sectionTitle;
+            if (data.introText) document.getElementById('prensa-intro-text').value = data.introText;
+            
+            // Load contact info
+            if (data.contactInfo) {
+                const pressContactItems = document.querySelectorAll('.press-contact-cms .cms-input');
+                const labels = ['email', 'phone', 'hours'];
+                labels.forEach((label, index) => {
+                    if (pressContactItems[index] && data.contactInfo[label]) {
+                        pressContactItems[index].value = data.contactInfo[label];
+                    }
+                });
+            }
+            
+            // Load press releases
+            if (data.pressReleases) {
+                const pressReleaseItems = document.querySelectorAll('.press-release-item-cms');
+                data.pressReleases.forEach((release, index) => {
+                    if (pressReleaseItems[index]) {
+                        const inputs = pressReleaseItems[index].querySelectorAll('.cms-input, .cms-textarea');
+                        if (inputs[0]) inputs[0].value = release.date;
+                        if (inputs[1]) inputs[1].value = release.title;
+                        if (inputs[2]) inputs[2].value = release.summary;
+                        if (inputs[3]) inputs[3].value = release.pdfUrl;
                     }
                 });
             }
@@ -1276,21 +1362,25 @@ function saveAllChanges(buttonElement = null) {
         features: collectSectionData('features'),
         cta: collectSectionData('cta'),
         
-        // Nosotros page
-        'nosotros-header': collectSectionData('nosotros-header'),
+        // Quienes Somos page
+        'quienes-somos-header': collectSectionData('quienes-somos-header'),
         history: collectSectionData('history'),
         
-        // Autismo page
-        'autismo-header': collectSectionData('autismo-header'),
-        'autismo-intro': collectSectionData('autismo-intro'),
+        // Asociaciones page
+        'asociaciones-header': collectSectionData('asociaciones-header'),
+        'asociaciones-list': collectSectionData('asociaciones-list'),
         
-        // Servicios page
-        'servicios-header': collectSectionData('servicios-header'),
-        'servicios-pilares': collectSectionData('servicios-pilares'),
+        // Areas page
+        'areas-header': collectSectionData('areas-header'),
+        'areas-list': collectSectionData('areas-list'),
         
-        // Actualidad page
-        'actualidad-header': collectSectionData('actualidad-header'),
-        'actualidad-config': collectSectionData('actualidad-config'),
+        // Manifiesto page
+        'manifiesto-header': collectSectionData('manifiesto-header'),
+        'manifiesto-content': collectSectionData('manifiesto-content'),
+        
+        // Prensa page
+        'prensa-header': collectSectionData('prensa-header'),
+        'prensa-content': collectSectionData('prensa-content'),
         
         // Afiliate page
         'afiliate-header': collectSectionData('afiliate-header'),
@@ -1489,6 +1579,152 @@ function removeKeyPoint(button) {
 }
 
 /**
+ * Add association to asociaciones section
+ */
+function addAssociation() {
+    const associationsContainer = document.querySelector('.associations-list-cms');
+    if (!associationsContainer) return;
+    
+    const newAssociation = document.createElement('div');
+    newAssociation.className = 'association-item-cms';
+    
+    const itemCount = document.querySelectorAll('.association-item-cms').length + 1;
+    
+    newAssociation.innerHTML = `
+        <h4>Asociación ${itemCount}</h4>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" class="cms-input" placeholder="Nombre de la asociación">
+            </div>
+            <div class="form-group">
+                <label>Provincia</label>
+                <input type="text" class="cms-input" placeholder="Provincia">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Descripción</label>
+            <textarea class="cms-textarea" rows="3" placeholder="Descripción de la asociación..."></textarea>
+        </div>
+        <div class="form-group">
+            <label>Enlace Web</label>
+            <input type="url" class="cms-input" placeholder="https://ejemplo.org">
+        </div>
+        <button class="btn-small btn-outline" onclick="removeAssociation(this)" style="margin-top: 10px;">
+            <i class="fas fa-trash"></i>
+            Eliminar
+        </button>
+    `;
+    
+    // Insert before the "Add" button
+    const addButton = associationsContainer.querySelector('.btn-outline');
+    associationsContainer.insertBefore(newAssociation, addButton);
+}
+
+/**
+ * Remove association
+ */
+function removeAssociation(button) {
+    if (confirm('¿Estás seguro de que quieres eliminar esta asociación?')) {
+        button.closest('.association-item-cms').remove();
+    }
+}
+
+/**
+ * Add principle to manifiesto section
+ */
+function addPrinciple() {
+    const principlesContainer = document.querySelector('.principles-list-cms');
+    if (!principlesContainer) return;
+    
+    const newPrinciple = document.createElement('div');
+    newPrinciple.className = 'principle-item-cms';
+    
+    const itemCount = document.querySelectorAll('.principle-item-cms').length + 1;
+    
+    newPrinciple.innerHTML = `
+        <h4>Principio ${itemCount}</h4>
+        <div class="form-group">
+            <label>Título</label>
+            <input type="text" class="cms-input" placeholder="Título del principio">
+        </div>
+        <div class="form-group">
+            <label>Descripción</label>
+            <textarea class="cms-textarea" rows="3" placeholder="Descripción del principio..."></textarea>
+        </div>
+        <button class="btn-small btn-outline" onclick="removePrinciple(this)" style="margin-top: 10px;">
+            <i class="fas fa-trash"></i>
+            Eliminar
+        </button>
+    `;
+    
+    // Insert before the "Add" button
+    const addButton = principlesContainer.querySelector('.btn-outline');
+    principlesContainer.insertBefore(newPrinciple, addButton);
+}
+
+/**
+ * Remove principle
+ */
+function removePrinciple(button) {
+    if (confirm('¿Estás seguro de que quieres eliminar este principio?')) {
+        button.closest('.principle-item-cms').remove();
+    }
+}
+
+/**
+ * Add press release to prensa section
+ */
+function addPressRelease() {
+    const pressReleasesContainer = document.querySelector('.press-releases-cms');
+    if (!pressReleasesContainer) return;
+    
+    const newPressRelease = document.createElement('div');
+    newPressRelease.className = 'press-release-item-cms';
+    
+    const itemCount = document.querySelectorAll('.press-release-item-cms').length + 1;
+    
+    newPressRelease.innerHTML = `
+        <h4>Comunicado ${itemCount}</h4>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Fecha</label>
+                <input type="date" class="cms-input" value="${new Date().toISOString().split('T')[0]}">
+            </div>
+            <div class="form-group">
+                <label>Título</label>
+                <input type="text" class="cms-input" placeholder="Título del comunicado">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Resumen</label>
+            <textarea class="cms-textarea" rows="3" placeholder="Resumen del comunicado..."></textarea>
+        </div>
+        <div class="form-group">
+            <label>Enlace al PDF</label>
+            <input type="url" class="cms-input" placeholder="/comunicados/comunicado.pdf">
+        </div>
+        <button class="btn-small btn-outline" onclick="removePressRelease(this)" style="margin-top: 10px;">
+            <i class="fas fa-trash"></i>
+            Eliminar
+        </button>
+    `;
+    
+    // Insert before the "Add" button
+    const addButton = pressReleasesContainer.querySelector('.btn-outline');
+    pressReleasesContainer.insertBefore(newPressRelease, addButton);
+}
+
+/**
+ * Remove press release
+ */
+function removePressRelease(button) {
+    if (confirm('¿Estás seguro de que quieres eliminar este comunicado?')) {
+        button.closest('.press-release-item-cms').remove();
+    }
+}
+
+/**
  * Add category to actualidad section
  */
 function addCategory() {
@@ -1628,7 +1864,11 @@ window.saveAllChanges = saveAllChanges;
 window.previewChanges = previewChanges;
 window.addTimelineItem = addTimelineItem;
 window.removeTimelineItem = removeTimelineItem;
-window.addKeyPoint = addKeyPoint;
-window.removeKeyPoint = removeKeyPoint;
+window.addAssociation = addAssociation;
+window.removeAssociation = removeAssociation;
+window.addPrinciple = addPrinciple;
+window.removePrinciple = removePrinciple;
+window.addPressRelease = addPressRelease;
+window.removePressRelease = removePressRelease;
 window.addCategory = addCategory;
 window.removeCategory = removeCategory; 

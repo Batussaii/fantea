@@ -567,21 +567,25 @@
                         <i class="fas fa-home"></i>
                         Inicio
                     </button>
-                    <button class="cms-tab" data-page="nosotros">
+                    <button class="cms-tab" data-page="quienes-somos">
                         <i class="fas fa-users"></i>
-                        Nosotros
+                        Quienes Somos
                     </button>
-                    <button class="cms-tab" data-page="autismo">
-                        <i class="fas fa-brain"></i>
-                        Sobre el Autismo
+                    <button class="cms-tab" data-page="asociaciones">
+                        <i class="fas fa-network-wired"></i>
+                        Asociaciones Federadas
                     </button>
-                    <button class="cms-tab" data-page="servicios">
-                        <i class="fas fa-briefcase"></i>
-                        Servicios
+                    <button class="cms-tab" data-page="areas">
+                        <i class="fas fa-map-marked-alt"></i>
+                        Áreas
                     </button>
-                    <button class="cms-tab" data-page="actualidad">
+                    <button class="cms-tab" data-page="manifiesto">
+                        <i class="fas fa-scroll"></i>
+                        Nuestro Manifiesto
+                    </button>
+                    <button class="cms-tab" data-page="prensa">
                         <i class="fas fa-newspaper"></i>
-                        Actualidad
+                        Prensa
                     </button>
                     <button class="cms-tab" data-page="afiliate">
                         <i class="fas fa-handshake"></i>
@@ -820,8 +824,8 @@
                         </div>
                     </div>
 
-                    <!-- Nosotros Page Content -->
-                    <div id="nosotros-cms" class="cms-page-content">
+                    <!-- Quienes Somos Page Content -->
+                    <div id="quienes-somos-cms" class="cms-page-content">
                         <div class="cms-section">
                             <div class="section-header-cms">
                                 <h3><i class="fas fa-header"></i> Banner de Página</h3>
@@ -833,20 +837,20 @@
                             <div class="section-content-cms">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="nosotros-title">Título Principal</label>
-                                        <input type="text" id="nosotros-title" class="cms-input" value="Sobre Nosotros">
+                                        <label for="quienes-somos-title">Título Principal</label>
+                                        <input type="text" id="quienes-somos-title" class="cms-input" value="Quienes Somos">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nosotros-description">Descripción</label>
-                                    <textarea id="nosotros-description" class="cms-textarea" rows="4">Conoce nuestra historia, misión y el equipo de FANTEA comprometido con la inclusión y defensa de los derechos de las personas autistas en Andalucía</textarea>
+                                    <label for="quienes-somos-description">Descripción</label>
+                                    <textarea id="quienes-somos-description" class="cms-textarea" rows="4">Federación Andaluza TEA - Defendiendo derechos, construyendo futuro</textarea>
                                 </div>
                                 <div class="cms-actions">
-                                    <button class="btn-small btn-secondary" onclick="resetSection('nosotros-header')">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('quienes-somos-header')">
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary" onclick="saveSection('nosotros-header')">
+                                    <button class="btn-small btn-primary" onclick="saveSection('quienes-somos-header')">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -871,7 +875,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="history-subtitle">Subtítulo</label>
-                                    <input type="text" id="history-subtitle" class="cms-input" value="15 años trabajando por la inclusión y los derechos de las personas autistas en Andalucía">
+                                    <input type="text" id="history-subtitle" class="cms-input" value="15 años de lucha por los derechos del colectivo TEA">
                                 </div>
                                 
                                 <div class="timeline-cms">
@@ -889,7 +893,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Descripción</label>
-                                            <textarea class="cms-textarea" rows="4">Un grupo de familias y profesionales de Andalucía se une para crear la Federación Andaluza de Autismo (FANTEA), con el objetivo de unificar esfuerzos en la comunidad andaluza y amplificar la voz de las personas autistas en la región.</textarea>
+                                            <textarea class="cms-textarea" rows="4">Nace la Federación Andaluza TEA con el objetivo de unificar esfuerzos y defender los derechos del colectivo autista en Andalucía.</textarea>
                                         </div>
                                     </div>
                                     
@@ -907,7 +911,43 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Descripción</label>
-                                            <textarea class="cms-textarea" rows="4">Establecemos colaboraciones con universidades y centros de investigación, iniciando programas de formación para profesionales de la educación y la salud.</textarea>
+                                            <textarea class="cms-textarea" rows="4">FANTEA logra representar a asociaciones de las 8 provincias andaluzas, consolidándose como la voz unificada del colectivo TEA.</textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-item-cms">
+                                        <h4>Evento Histórico 3</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Año</label>
+                                                <input type="text" class="cms-input" value="2020">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Título del Evento</label>
+                                                <input type="text" class="cms-input" value="Reconocimiento Institucional">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="4">La federación obtiene reconocimiento oficial y comienza a participar en mesas de trabajo con instituciones públicas.</textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-item-cms">
+                                        <h4>Evento Histórico 4</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Año</label>
+                                                <input type="text" class="cms-input" value="2024">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Título del Evento</label>
+                                                <input type="text" class="cms-input" value="Liderazgo Nacional">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="4">FANTEA se consolida como referente nacional en la defensa de los derechos del colectivo TEA, con más de 35 asociaciones federadas.</textarea>
                                         </div>
                                     </div>
                                     
@@ -929,10 +969,104 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-bullseye"></i> Misión y Visión</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="mision-title">Título de la Sección</label>
+                                        <input type="text" id="mision-title" class="cms-input" value="Nuestra Misión y Visión">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mision-subtitle">Subtítulo</label>
+                                    <input type="text" id="mision-subtitle" class="cms-input" value="Unidos por la inclusión y los derechos del colectivo TEA en Andalucía">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="mision-text">Texto de Misión</label>
+                                    <textarea id="mision-text" class="cms-textarea" rows="4">La Federación Andaluza TEA (FANTEA) es una entidad sin ánimo de lucro formada por asociaciones de familias de personas autistas de diferentes provincias andaluzas.
+
+Nacemos con un objetivo claro: defender los derechos de las personas con autismo y sus familias en todos los ámbitos de la vida.</textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="vision-text">Texto de Visión</label>
+                                    <textarea id="vision-text" class="cms-textarea" rows="4">Construir una sociedad inclusiva donde las personas autistas tengan las mismas oportunidades y derechos que el resto de la ciudadanía.
+
+Queremos ser la voz unificada del colectivo TEA en Andalucía, promoviendo la inclusión real y efectiva.</textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="sede-text">Texto de Sede</label>
+                                    <textarea id="sede-text" class="cms-textarea" rows="3">Nuestra sede se encuentra en Antequera, centro geográfico de Andalucía, símbolo de unión y punto de encuentro para todo el movimiento asociativo TEA.
+
+Desde aquí coordinamos acciones en las 8 provincias andaluzas.</textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="familias-text">Texto de Familias</label>
+                                    <textarea id="familias-text" class="cms-textarea" rows="3">Somos una federación independiente, plural y abierta, que trabaja desde la transparencia, la justicia social y la participación activa de las familias.
+
+Creemos en el poder de la unión para lograr cambios reales.</textarea>
+                                </div>
+                                
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('mision-vision')">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary" onclick="saveSection('mision-vision')">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-heart"></i> Nuestros Valores</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="valores-title">Título de la Sección</label>
+                                        <input type="text" id="valores-title" class="cms-input" value="Nuestros Principios">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="valores-subtitle">Subtítulo</label>
+                                    <input type="text" id="valores-subtitle" class="cms-input" value="Los valores que guían nuestro trabajo diario">
+                                </div>
+                                
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('valores')">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary" onclick="saveSection('valores')">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Sobre el Autismo Page Content -->
-                    <div id="autismo-cms" class="cms-page-content">
+                    <!-- Asociaciones Federadas Page Content -->
+                    <div id="asociaciones-cms" class="cms-page-content">
                         <div class="cms-section">
                             <div class="section-header-cms">
                                 <h3><i class="fas fa-header"></i> Banner de Página</h3>
@@ -944,20 +1078,20 @@
                             <div class="section-content-cms">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="autismo-title">Título Principal</label>
-                                        <input type="text" id="autismo-title" class="cms-input" value="Sobre el Autismo">
+                                        <label for="asociaciones-title">Título Principal</label>
+                                        <input type="text" id="asociaciones-title" class="cms-input" value="Asociaciones Federadas">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="autismo-description">Descripción</label>
-                                    <textarea id="autismo-description" class="cms-textarea" rows="4">Información completa sobre el autismo desde una perspectiva respetuosa e inclusiva, basada en la neurodiversidad</textarea>
+                                    <label for="asociaciones-description">Descripción</label>
+                                    <textarea id="asociaciones-description" class="cms-textarea" rows="4">Unidos por los derechos del colectivo TEA en Andalucía. Descubre las asociaciones que forman parte de FANTEA y trabajan de forma coordinada por una sociedad más inclusiva.</textarea>
                                 </div>
                                 <div class="cms-actions">
-                                    <button class="btn-small btn-secondary reset-section-btn" data-section="autismo-header">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('asociaciones-header')">
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary save-section-btn" data-section="autismo-header">
+                                    <button class="btn-small btn-primary" onclick="saveSection('asociaciones-header')">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -967,7 +1101,7 @@
 
                         <div class="cms-section">
                             <div class="section-header-cms">
-                                <h3><i class="fas fa-brain"></i> ¿Qué es el Autismo?</h3>
+                                <h3><i class="fas fa-network-wired"></i> Red de Asociaciones</h3>
                                 <button class="btn-small toggle-section">
                                     <i class="fas fa-chevron-down"></i>
                                     Expandir
@@ -975,47 +1109,122 @@
                             </div>
                             <div class="section-content-cms collapsed">
                                 <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="autismo-intro-title">Título de la Sección</label>
-                                        <input type="text" id="autismo-intro-title" class="cms-input" value="¿Qué es el Autismo?">
-                                    </div>
+                                                                    <div class="form-group">
+                                    <label for="asociaciones-intro-title">Título de la Sección</label>
+                                    <input type="text" id="asociaciones-intro-title" class="cms-input" value="Nuestras Asociaciones">
+                                </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="autismo-intro-subtitle">Subtítulo</label>
-                                    <input type="text" id="autismo-intro-subtitle" class="cms-input" value="Una comprensión moderna y respetuosa del espectro autista">
+                                    <label for="asociaciones-intro-subtitle">Subtítulo</label>
+                                    <input type="text" id="asociaciones-intro-subtitle" class="cms-input" value="Actualmente, forman parte de FANTEA las siguientes asociaciones que comparten nuestros valores y objetivos:">
                                 </div>
                                 <div class="form-group">
-                                    <label for="autismo-definition-title">Título de Definición</label>
-                                    <input type="text" id="autismo-definition-title" class="cms-input" value="Definición Actual">
-                                </div>
-                                <div class="form-group">
-                                    <label for="autismo-definition-text">Texto de Definición</label>
-                                    <textarea id="autismo-definition-text" class="cms-textarea" rows="6">El autismo es una condición neurológica y de desarrollo que dura toda la vida. Afecta cómo una persona se comunica con los demás y cómo percibe el mundo que les rodea. Las personas autistas pueden experimentar diferencias en la comunicación social, patrones repetitivos de comportamiento e intereses específicos.</textarea>
+                                    <label for="asociaciones-intro-text">Texto de Introducción</label>
+                                    <textarea id="asociaciones-intro-text" class="cms-textarea" rows="4">FANTEA está abierta a que se sumen otras asociaciones andaluzas que compartan nuestros valores y objetivos, con el fin de fortalecer la voz del colectivo y trabajar de forma coordinada.</textarea>
                                 </div>
                                 
-                                <h4>Puntos Clave</h4>
-                                <div class="key-points-cms">
-                                    <div class="key-point-item">
-                                        <input type="text" class="cms-input" value="Es una condición neurológica, no una enfermedad" placeholder="Punto clave 1">
+                                <h4>Lista de Asociaciones</h4>
+                                <div class="associations-list-cms">
+                                    <div class="association-item-cms">
+                                        <h4>Asociación 1</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Nombre</label>
+                                                <input type="text" class="cms-input" value="Asociación Autismo El Puerto">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Provincia</label>
+                                                <input type="text" class="cms-input" value="Cádiz">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">Asociación dedicada al apoyo y defensa de los derechos de las personas autistas y sus familias en la provincia de Cádiz.</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Enlace Web</label>
+                                            <input type="url" class="cms-input" value="info@autismoelpuerto.org" placeholder="https://ejemplo.org">
+                                        </div>
                                     </div>
-                                    <div class="key-point-item">
-                                        <input type="text" class="cms-input" value="Se manifiesta de manera muy diferente en cada persona" placeholder="Punto clave 2">
+                                    
+                                    <div class="association-item-cms">
+                                        <h4>Asociación 2</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Nombre</label>
+                                                <input type="text" class="cms-input" value="Asociación Autismo Mijas-Fuengirola">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Provincia</label>
+                                                <input type="text" class="cms-input" value="Málaga">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">Asociación comprometida con la inclusión y el apoyo a las personas autistas y sus familias en la Costa del Sol.</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Enlace Web</label>
+                                            <input type="url" class="cms-input" value="info@autismomijasfuengirola.org" placeholder="https://ejemplo.org">
+                                        </div>
                                     </div>
-                                    <div class="key-point-item">
-                                        <input type="text" class="cms-input" value="Está presente desde el nacimiento, aunque puede diagnosticarse más tarde" placeholder="Punto clave 3">
+                                    
+                                    <div class="association-item-cms">
+                                        <h4>Asociación 3</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Nombre</label>
+                                                <input type="text" class="cms-input" value="Asociación Autismo Granada">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Provincia</label>
+                                                <input type="text" class="cms-input" value="Granada">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">Asociación que trabaja por la inclusión y el apoyo integral a las personas autistas y sus familias en la provincia de Granada.</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Enlace Web</label>
+                                            <input type="url" class="cms-input" value="info@autismogranada.org" placeholder="https://ejemplo.org">
+                                        </div>
                                     </div>
-                                    <button class="btn-small btn-outline" onclick="addKeyPoint()">
+                                    
+                                    <div class="association-item-cms">
+                                        <h4>Asociación 4</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Nombre</label>
+                                                <input type="text" class="cms-input" value="Asociación Autismo Sevilla">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Provincia</label>
+                                                <input type="text" class="cms-input" value="Sevilla">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">Asociación comprometida con la defensa de los derechos y la mejora de la calidad de vida de las personas autistas en Sevilla.</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Enlace Web</label>
+                                            <input type="url" class="cms-input" value="info@autismosevilla.org" placeholder="https://ejemplo.org">
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn-small btn-outline" onclick="addAssociation()">
                                         <i class="fas fa-plus"></i>
-                                        Agregar Punto
+                                        Agregar Asociación
                                     </button>
                                 </div>
                                 
                                 <div class="cms-actions">
-                                    <button class="btn-small btn-secondary reset-section-btn" data-section="autismo-intro">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('asociaciones-list')">
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary save-section-btn" data-section="autismo-intro">
+                                    <button class="btn-small btn-primary" onclick="saveSection('asociaciones-list')">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1024,8 +1233,8 @@
                         </div>
                     </div>
 
-                    <!-- Servicios Page Content -->
-                    <div id="servicios-cms" class="cms-page-content">
+                    <!-- Áreas Page Content -->
+                    <div id="areas-cms" class="cms-page-content">
                         <div class="cms-section">
                             <div class="section-header-cms">
                                 <h3><i class="fas fa-header"></i> Banner de Página</h3>
@@ -1037,20 +1246,20 @@
                             <div class="section-content-cms">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="servicios-title">Título Principal</label>
-                                        <input type="text" id="servicios-title" class="cms-input" value="Programas y Servicios">
+                                        <label for="areas-title">Título Principal</label>
+                                        <input type="text" id="areas-title" class="cms-input" value="Áreas de Trabajo">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="servicios-description">Descripción</label>
-                                    <textarea id="servicios-description" class="cms-textarea" rows="4">Descubre los programas de FANTEA para promover la inclusión, apoyar a familias y sensibilizar a la sociedad andaluza</textarea>
+                                    <label for="areas-description">Descripción</label>
+                                    <textarea id="areas-description" class="cms-textarea" rows="4">Trabajamos en distintos ámbitos para mejorar la calidad de vida de las personas autistas y sus familias. Descubre cómo abordamos cada área con enfoques especializados y compromiso.</textarea>
                                 </div>
                                 <div class="cms-actions">
-                                    <button class="btn-small btn-secondary reset-section-btn" data-section="servicios-header">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('areas-header')">
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary save-section-btn" data-section="servicios-header">
+                                    <button class="btn-small btn-primary" onclick="saveSection('areas-header')">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1060,7 +1269,7 @@
 
                         <div class="cms-section">
                             <div class="section-header-cms">
-                                <h3><i class="fas fa-briefcase"></i> Pilares de Acción</h3>
+                                <h3><i class="fas fa-map-marked-alt"></i> Áreas de Intervención</h3>
                                 <button class="btn-small toggle-section">
                                     <i class="fas fa-chevron-down"></i>
                                     Expandir
@@ -1068,88 +1277,104 @@
                             </div>
                             <div class="section-content-cms collapsed">
                                 <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="servicios-pilares-title">Título de la Sección</label>
-                                        <input type="text" id="servicios-pilares-title" class="cms-input" value="Nuestros Pilares de Acción">
-                                    </div>
+                                                                    <div class="form-group">
+                                    <label for="areas-intro-title">Título de la Sección</label>
+                                    <input type="text" id="areas-intro-title" class="cms-input" value="Nuestras Áreas de Intervención">
+                                </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="servicios-pilares-subtitle">Subtítulo</label>
-                                    <input type="text" id="servicios-pilares-subtitle" class="cms-input" value="Trabajamos en cuatro áreas fundamentales para construir una Andalucía más inclusiva">
+                                    <label for="areas-intro-subtitle">Subtítulo</label>
+                                    <input type="text" id="areas-intro-subtitle" class="cms-input" value="En FANTEA trabajamos en distintos ámbitos para mejorar la calidad de vida de las personas autistas y sus familias:">
                                 </div>
                                 
-                                <div class="services-grid-cms">
-                                    <div class="service-item-cms">
-                                        <h4>Servicio 1</h4>
+                                <div class="areas-grid-cms">
+                                    <div class="area-item-cms">
+                                        <h4>Área 1</h4>
                                         <div class="form-group">
                                             <label>Icono (Font Awesome)</label>
                                             <input type="text" class="cms-input" value="fas fa-graduation-cap" placeholder="fas fa-icon">
                                         </div>
                                         <div class="form-group">
                                             <label>Título</label>
-                                            <input type="text" class="cms-input" value="Inclusión Educativa y Laboral">
+                                            <input type="text" class="cms-input" value="Educación">
                                         </div>
                                         <div class="form-group">
                                             <label>Descripción</label>
-                                            <textarea class="cms-textarea" rows="3">Programas para facilitar el acceso y permanencia de personas autistas en centros educativos y entornos laborales.</textarea>
+                                            <textarea class="cms-textarea" rows="3">Garantizamos una educación inclusiva y de calidad para todas las personas autistas.</textarea>
                                         </div>
                                     </div>
                                     
-                                    <div class="service-item-cms">
-                                        <h4>Servicio 2</h4>
+                                    <div class="area-item-cms">
+                                        <h4>Área 2</h4>
                                         <div class="form-group">
                                             <label>Icono (Font Awesome)</label>
-                                            <input type="text" class="cms-input" value="fas fa-heart" placeholder="fas fa-icon">
+                                            <input type="text" class="cms-input" value="fas fa-heartbeat" placeholder="fas fa-icon">
                                         </div>
                                         <div class="form-group">
                                             <label>Título</label>
-                                            <input type="text" class="cms-input" value="Apoyo a Familias">
+                                            <input type="text" class="cms-input" value="Salud">
                                         </div>
                                         <div class="form-group">
                                             <label>Descripción</label>
-                                            <textarea class="cms-textarea" rows="3">Orientación, apoyo psicológico y recursos para familias de personas autistas en toda Andalucía.</textarea>
+                                            <textarea class="cms-textarea" rows="3">Promovemos una atención sanitaria accesible y especializada para el colectivo TEA.</textarea>
                                         </div>
                                     </div>
                                     
-                                    <div class="service-item-cms">
-                                        <h4>Servicio 3</h4>
+                                    <div class="area-item-cms">
+                                        <h4>Área 3</h4>
                                         <div class="form-group">
                                             <label>Icono (Font Awesome)</label>
-                                            <input type="text" class="cms-input" value="fas fa-chalkboard-teacher" placeholder="fas fa-icon">
+                                            <input type="text" class="cms-input" value="fas fa-briefcase" placeholder="fas fa-icon">
                                         </div>
                                         <div class="form-group">
                                             <label>Título</label>
-                                            <input type="text" class="cms-input" value="Formación y Sensibilización">
+                                            <input type="text" class="cms-input" value="Vida Adulta y Empleo">
                                         </div>
                                         <div class="form-group">
                                             <label>Descripción</label>
-                                            <textarea class="cms-textarea" rows="3">Programas formativos para profesionales, educadores y sociedad en general sobre autismo y neurodiversidad.</textarea>
+                                            <textarea class="cms-textarea" rows="3">Facilitamos la transición a la vida adulta y la inserción laboral de las personas autistas.</textarea>
                                         </div>
                                     </div>
                                     
-                                    <div class="service-item-cms">
-                                        <h4>Servicio 4</h4>
+                                    <div class="area-item-cms">
+                                        <h4>Área 4</h4>
                                         <div class="form-group">
                                             <label>Icono (Font Awesome)</label>
-                                            <input type="text" class="cms-input" value="fas fa-bullhorn" placeholder="fas fa-icon">
+                                            <input type="text" class="cms-input" value="fas fa-globe" placeholder="fas fa-icon">
                                         </div>
                                         <div class="form-group">
                                             <label>Título</label>
-                                            <input type="text" class="cms-input" value="Campañas Institucionales">
+                                            <input type="text" class="cms-input" value="Inclusión Social">
                                         </div>
                                         <div class="form-group">
                                             <label>Descripción</label>
-                                            <textarea class="cms-textarea" rows="3">Iniciativas de sensibilización y cambio social para mejorar la percepción y derechos de las personas autistas.</textarea>
+                                            <textarea class="cms-textarea" rows="3">Trabajamos por una sociedad más inclusiva donde todas las personas tengan las mismas oportunidades.</textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="area-item-cms">
+                                        <h4>Área 5</h4>
+                                        <div class="form-group">
+                                            <label>Icono (Font Awesome)</label>
+                                            <input type="text" class="cms-input" value="fas fa-home" placeholder="fas fa-icon">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" class="cms-input" value="Vivienda y Recursos Residenciales">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">Promovemos opciones de vivienda adaptadas que permitan una vida independiente y digna.</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="cms-actions">
-                                    <button class="btn-small btn-secondary reset-section-btn" data-section="servicios-pilares">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('areas-list')">
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary save-section-btn" data-section="servicios-pilares">
+                                    <button class="btn-small btn-primary" onclick="saveSection('areas-list')">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1158,8 +1383,8 @@
                         </div>
                     </div>
 
-                    <!-- Actualidad Page Content -->
-                    <div id="actualidad-cms" class="cms-page-content">
+                    <!-- Manifiesto Page Content -->
+                    <div id="manifiesto-cms" class="cms-page-content">
                         <div class="cms-section">
                             <div class="section-header-cms">
                                 <h3><i class="fas fa-header"></i> Banner de Página</h3>
@@ -1171,20 +1396,20 @@
                             <div class="section-content-cms">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="actualidad-title">Título Principal</label>
-                                        <input type="text" id="actualidad-title" class="cms-input" value="Actualidad y Noticias">
+                                        <label for="manifiesto-title">Título Principal</label>
+                                        <input type="text" id="manifiesto-title" class="cms-input" value="Nuestro Manifiesto">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="actualidad-description">Descripción</label>
-                                    <textarea id="actualidad-description" class="cms-textarea" rows="4">Mantente informado sobre las últimas noticias, eventos y avances en el ámbito del autismo en Andalucía y España</textarea>
+                                    <label for="manifiesto-description">Descripción</label>
+                                    <textarea id="manifiesto-description" class="cms-textarea" rows="4">Los compromisos y valores que guían nuestra lucha por los derechos del colectivo TEA. Descubre los principios que nos mueven a trabajar por una sociedad más inclusiva y justa.</textarea>
                                 </div>
                                 <div class="cms-actions">
-                                    <button class="btn-small btn-secondary reset-section-btn" data-section="actualidad-header">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('manifiesto-header')">
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary save-section-btn" data-section="actualidad-header">
+                                    <button class="btn-small btn-primary" onclick="saveSection('manifiesto-header')">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1194,7 +1419,143 @@
 
                         <div class="cms-section">
                             <div class="section-header-cms">
-                                <h3><i class="fas fa-newspaper"></i> Configuración de Blog</h3>
+                                <h3><i class="fas fa-scroll"></i> Contenido del Manifiesto</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="form-row">
+                                                                    <div class="form-group">
+                                    <label for="manifiesto-intro-title">Título de la Sección</label>
+                                    <input type="text" id="manifiesto-intro-title" class="cms-input" value="Nuestros Compromisos">
+                                </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="manifiesto-intro-text">Texto de Introducción</label>
+                                    <textarea id="manifiesto-intro-text" class="cms-textarea" rows="4">FANTEA nace por y para las personas autistas y sus familias, con el compromiso de:</textarea>
+                                </div>
+                                
+                                <h4>Principios Fundamentales</h4>
+                                <div class="principles-list-cms">
+                                    <div class="principle-item-cms">
+                                        <h4>Principio 1</h4>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" class="cms-input" value="No dejar a nadie atrás">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">Trabajamos para que todas las personas autistas y sus familias tengan acceso a los recursos y apoyos que necesitan, sin excepción.</textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="principle-item-cms">
+                                        <h4>Principio 2</h4>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" class="cms-input" value="Defender apoyos reales, justos y gratuitos">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">Luchamos por servicios de calidad que sean accesibles para todas las familias, independientemente de su situación económica.</textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="principle-item-cms">
+                                        <h4>Principio 3</h4>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" class="cms-input" value="Reivindicar más recursos públicos">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">Exigimos más recursos públicos docentes, técnicos y sanitarios para garantizar una atención integral y de calidad.</textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="principle-item-cms">
+                                        <h4>Principio 4</h4>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" class="cms-input" value="Trabajar con transparencia y participación">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">Actuamos con total transparencia y fomentamos la participación activa de las familias en todas nuestras decisiones.</textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="principle-item-cms">
+                                        <h4>Principio 5</h4>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" class="cms-input" value="Promover la unión y colaboración">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">Fomentamos la unión y la colaboración entre asociaciones para fortalecer la voz del colectivo TEA en Andalucía.</textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn-small btn-outline" onclick="addPrinciple()">
+                                        <i class="fas fa-plus"></i>
+                                        Agregar Principio
+                                    </button>
+                                </div>
+                                
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('manifiesto-content')">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary" onclick="saveSection('manifiesto-content')">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prensa Page Content -->
+                    <div id="prensa-cms" class="cms-page-content">
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-header"></i> Banner de Página</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-up"></i>
+                                    Contraer
+                                </button>
+                            </div>
+                            <div class="section-content-cms">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="prensa-title">Título Principal</label>
+                                        <input type="text" id="prensa-title" class="cms-input" value="Sala de Prensa">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="prensa-description">Descripción</label>
+                                    <textarea id="prensa-description" class="cms-textarea" rows="4">Notas de prensa, comunicados oficiales y apariciones en medios de comunicación. Mantente informado sobre las últimas noticias y actividades de FANTEA.</textarea>
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('prensa-header')">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary" onclick="saveSection('prensa-header')">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-newspaper"></i> Recursos de Prensa</h3>
                                 <button class="btn-small toggle-section">
                                     <i class="fas fa-chevron-down"></i>
                                     Expandir
@@ -1203,49 +1564,111 @@
                             <div class="section-content-cms collapsed">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="blog-posts-per-page">Artículos por página</label>
-                                        <input type="number" id="blog-posts-per-page" class="cms-input" value="6" min="3" max="20">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="blog-featured-count">Artículos destacados</label>
-                                        <input type="number" id="blog-featured-count" class="cms-input" value="3" min="1" max="5">
+                                        <label for="prensa-intro-title">Título de la Sección</label>
+                                        <input type="text" id="prensa-intro-title" class="cms-input" value="Recursos para Medios">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="blog-intro-text">Texto de introducción</label>
-                                    <textarea id="blog-intro-text" class="cms-textarea" rows="3">Descubre las últimas noticias sobre autismo, inclusión y los logros de nuestra comunidad andaluza.</textarea>
+                                    <label for="prensa-intro-text">Texto de Introducción</label>
+                                    <textarea id="prensa-intro-text" class="cms-textarea" rows="3">Accede a nuestro material de prensa y recursos para periodistas</textarea>
                                 </div>
                                 
-                                <h4>Categorías Disponibles</h4>
-                                <div class="categories-cms">
-                                    <div class="category-item">
-                                        <input type="text" class="cms-input" value="Investigación" placeholder="Nombre categoría">
-                                        <input type="text" class="cms-input" value="#1565C0" placeholder="Color (hex)">
+                                <h4>Información de Contacto para Prensa</h4>
+                                <div class="press-contact-cms">
+                                    <div class="form-group">
+                                        <label>Email de Prensa</label>
+                                        <input type="email" class="cms-input" value="prensa@fantea.org">
                                     </div>
-                                    <div class="category-item">
-                                        <input type="text" class="cms-input" value="Educación" placeholder="Nombre categoría">
-                                        <input type="text" class="cms-input" value="#FF9800" placeholder="Color (hex)">
+                                    <div class="form-group">
+                                        <label>Teléfono de Prensa</label>
+                                        <input type="text" class="cms-input" value="+34 952 123 456">
                                     </div>
-                                    <div class="category-item">
-                                        <input type="text" class="cms-input" value="Eventos" placeholder="Nombre categoría">
-                                        <input type="text" class="cms-input" value="#4CAF50" placeholder="Color (hex)">
+                                    <div class="form-group">
+                                        <label>Horario de Atención a Medios</label>
+                                        <input type="text" class="cms-input" value="Lun-Vie: 9:00-18:00">
                                     </div>
-                                    <div class="category-item">
-                                        <input type="text" class="cms-input" value="Legislación" placeholder="Nombre categoría">
-                                        <input type="text" class="cms-input" value="#9C27B0" placeholder="Color (hex)">
+                                </div>
+                                
+                                <h4>Comunicados de Prensa</h4>
+                                <div class="press-releases-cms">
+                                    <div class="press-release-item-cms">
+                                        <h4>Comunicado 1</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Fecha</label>
+                                                <input type="date" class="cms-input" value="2024-03-15">
+                                            </div>
+                                                                                    <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" class="cms-input" value="FANTEA presenta su manifiesto por los derechos del colectivo TEA">
+                                        </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Resumen</label>
+                                            <textarea class="cms-textarea" rows="3">La Federación Andaluza TEA presenta su manifiesto con los compromisos fundamentales para defender los derechos de las personas autistas y sus familias en Andalucía.</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Enlace al PDF</label>
+                                            <input type="url" class="cms-input" value="/comunicados/comunicado-2024-03-15.pdf" placeholder="URL del documento">
+                                        </div>
                                     </div>
-                                    <button class="btn-small btn-outline" onclick="addCategory()">
+                                    
+                                    <div class="press-release-item-cms">
+                                        <h4>Comunicado 2</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Fecha</label>
+                                                <input type="date" class="cms-input" value="2024-03-12">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Título</label>
+                                                <input type="text" class="cms-input" value="FANTEA en Canal Sur: La importancia de la inclusión educativa">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Resumen</label>
+                                            <textarea class="cms-textarea" rows="3">Nuestro presidente participó en el programa "Andalucía Directo" para hablar sobre la importancia de la inclusión educativa para las personas autistas.</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Enlace al PDF</label>
+                                            <input type="url" class="cms-input" value="/comunicados/comunicado-2024-03-12.pdf" placeholder="URL del documento">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="press-release-item-cms">
+                                        <h4>Comunicado 3</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Fecha</label>
+                                                <input type="date" class="cms-input" value="2024-03-08">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Título</label>
+                                                <input type="text" class="cms-input" value="Comunicado sobre la situación de la atención temprana en Andalucía">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Resumen</label>
+                                            <textarea class="cms-textarea" rows="3">FANTEA emite un comunicado oficial sobre la situación actual de la atención temprana en Andalucía y las necesidades urgentes del colectivo TEA.</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Enlace al PDF</label>
+                                            <input type="url" class="cms-input" value="/comunicados/comunicado-2024-03-08.pdf" placeholder="URL del documento">
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn-small btn-outline" onclick="addPressRelease()">
                                         <i class="fas fa-plus"></i>
-                                        Agregar Categoría
+                                        Agregar Comunicado
                                     </button>
                                 </div>
                                 
                                 <div class="cms-actions">
-                                    <button class="btn-small btn-secondary reset-section-btn" data-section="actualidad-config">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('prensa-content')">
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary save-section-btn" data-section="actualidad-config">
+                                    <button class="btn-small btn-primary" onclick="saveSection('prensa-content')">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1754,5 +2177,7 @@
             }, 5000);
         }
     </script>
+</body>
+</html> 
 </body>
 </html> 
