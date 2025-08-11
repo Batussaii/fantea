@@ -209,6 +209,25 @@ body.dyslexia-font {
     color: white;
 }
 
+.accessibility-options button:last-child {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    font-weight: 600;
+    margin-top: 8px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 12px;
+}
+
+.accessibility-options button:last-child:hover {
+    background: #7c3aed;
+    transform: scale(1.02);
+}
+
+.accessibility-options button:last-child i {
+    margin-right: 6px;
+}
+
 /* Header y Navegación */
 .header {
     position: sticky;

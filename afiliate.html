@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="js/cache-buster.js"></script>
 </head>
 <body>
     <!-- Botón de Accesibilidad -->
@@ -22,6 +23,9 @@
             <button onclick="decreaseFontSize()">Reducir texto</button>
             <button onclick="toggleHighContrast()">Alto contraste</button>
             <button onclick="toggleDyslexiaFont()">Fuente dislexia</button>
+            <button onclick="forceUpdate()" title="Forzar actualización de la página">
+                <i class="fas fa-sync-alt"></i> Actualizar
+            </button>
         </div>
     </div>
 
