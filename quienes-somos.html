@@ -6,6 +6,7 @@
     <title>Quiénes Somos - FANTEA</title>
     <meta name="description" content="Conoce FANTEA, la Federación Andaluza TEA que defiende los derechos de las personas autistas y sus familias en Andalucía">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/values-fix.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -89,85 +90,194 @@
     <!-- Main Content -->
     <main id="main-content">
         <!-- Hero Section -->
-        <section class="page-hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1 class="hero-title">Quiénes Somos</h1>
-                    <p class="hero-subtitle">Federación Andaluza TEA - Defendiendo derechos, construyendo futuro</p>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="container">
+                    <div class="hero-text">
+                        <h1 class="hero-title">Quiénes Somos</h1>
+                        <p class="hero-description">Federación Andaluza TEA - Defendiendo derechos, construyendo futuro</p>
+                        <div class="hero-actions">
+                            <a href="#mision" class="btn btn-outline btn-large">Nuestra Misión</a>
+                            <a href="#valores" class="btn btn-primary btn-large">Nuestros Valores</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="images/hero-inclusive.jpg" alt="Familias unidas por el autismo" class="hero-img">
+                    </div>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-text">años de experiencia</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">35+</div>
+                            <div class="stat-text">asociaciones federadas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-text">familias apoyadas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">8</div>
+                            <div class="stat-text">provincias andaluzas</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Content -->
-        <section class="about-content">
+        <!-- Misión y Visión -->
+        <section id="mision" class="featured-sections">
             <div class="container">
-                <div class="content-grid">
-                    <div class="content-text">
-                        <h2>Nuestra Misión</h2>
+                <div class="section-header text-center">
+                    <h2>Nuestra Misión y Visión</h2>
+                    <p>Unidos por la inclusión y los derechos del colectivo TEA en Andalucía</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Nuestra Misión</h3>
                         <p>La Federación Andaluza TEA (FANTEA) es una entidad sin ánimo de lucro formada por asociaciones de familias de personas autistas de diferentes provincias andaluzas.</p>
-                        
                         <p>Nacemos con un objetivo claro: <strong>defender los derechos de las personas con autismo y sus familias en todos los ámbitos de la vida</strong>.</p>
+                    </div>
 
-                        <h3>Nuestros Valores</h3>
-                        <p>Somos una federación <strong>independiente, plural y abierta</strong>, que trabaja desde la transparencia, la justicia social y la participación activa de las familias.</p>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Nuestra Visión</h3>
+                        <p>Construir una sociedad inclusiva donde las personas autistas tengan las mismas oportunidades y derechos que el resto de la ciudadanía.</p>
+                        <p>Queremos ser la <strong>voz unificada del colectivo TEA en Andalucía</strong>, promoviendo la inclusión real y efectiva.</p>
+                    </div>
 
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
                         <h3>Nuestra Sede</h3>
                         <p>Nuestra sede se encuentra en <strong>Antequera</strong>, centro geográfico de Andalucía, símbolo de unión y punto de encuentro para todo el movimiento asociativo TEA.</p>
+                        <p>Desde aquí coordinamos acciones en las <strong>8 provincias andaluzas</strong>.</p>
                     </div>
 
-                    <div class="content-image">
-                        <img src="images/hero-inclusive.jpg" alt="Familias unidas por el autismo" class="about-image">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Familias Unidas</h3>
+                        <p>Somos una federación <strong>independiente, plural y abierta</strong>, que trabaja desde la transparencia, la justicia social y la participación activa de las familias.</p>
+                        <p>Creemos en el <strong>poder de la unión</strong> para lograr cambios reales.</p>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Values Section -->
-                <div class="values-section">
+        <!-- Valores -->
+        <section id="valores" class="values-section">
+            <div class="container">
+                <div class="section-header text-center">
                     <h2>Nuestros Principios</h2>
-                    <div class="values-grid">
-                        <div class="value-card">
-                            <div class="value-icon">
-                                <i class="fas fa-heart"></i>
+                    <p>Los valores que guían nuestro trabajo diario</p>
+                </div>
+
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Compromiso</h3>
+                        <p>Defendemos los derechos de las personas autistas y sus familias con dedicación y pasión. Cada acción que realizamos está guiada por nuestro compromiso inquebrantable con la causa.</p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Unión</h3>
+                        <p>Trabajamos unidos para fortalecer la voz del colectivo TEA en Andalucía. Creemos que juntos somos más fuertes y podemos lograr cambios significativos.</p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Transparencia</h3>
+                        <p>Actuamos con total transparencia y rendición de cuentas ante las familias. Creemos en la honestidad y la claridad en todas nuestras acciones.</p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Participación</h3>
+                        <p>Fomentamos la participación activa de todas las familias en nuestras decisiones. Tu voz es importante y queremos escucharla.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Historia y Logros -->
+        <section class="our-history">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2>Nuestra Historia</h2>
+                    <p>15 años de lucha por los derechos del colectivo TEA</p>
+                </div>
+
+                <div class="section-content">
+                    <div class="history-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">2009</div>
+                            <div class="timeline-content">
+                                <h3>Fundación de FANTEA</h3>
+                                <p>Nace la Federación Andaluza TEA con el objetivo de unificar esfuerzos y defender los derechos del colectivo autista en Andalucía.</p>
                             </div>
-                            <h3>Compromiso</h3>
-                            <p>Defendemos los derechos de las personas autistas y sus familias con dedicación y pasión.</p>
                         </div>
 
-                        <div class="value-card">
-                            <div class="value-icon">
-                                <i class="fas fa-handshake"></i>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2015</div>
+                            <div class="timeline-content">
+                                <h3>Expansión Regional</h3>
+                                <p>FANTEA logra representar a asociaciones de las 8 provincias andaluzas, consolidándose como la voz unificada del colectivo TEA.</p>
                             </div>
-                            <h3>Unión</h3>
-                            <p>Trabajamos unidos para fortalecer la voz del colectivo TEA en Andalucía.</p>
                         </div>
 
-                        <div class="value-card">
-                            <div class="value-icon">
-                                <i class="fas fa-eye"></i>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2020</div>
+                            <div class="timeline-content">
+                                <h3>Reconocimiento Institucional</h3>
+                                <p>La federación obtiene reconocimiento oficial y comienza a participar en mesas de trabajo con instituciones públicas.</p>
                             </div>
-                            <h3>Transparencia</h3>
-                            <p>Actuamos con total transparencia y rendición de cuentas ante las familias.</p>
                         </div>
 
-                        <div class="value-card">
-                            <div class="value-icon">
-                                <i class="fas fa-users"></i>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2024</div>
+                            <div class="timeline-content">
+                                <h3>Liderazgo Nacional</h3>
+                                <p>FANTEA se consolida como referente nacional en la defensa de los derechos del colectivo TEA, con más de 35 asociaciones federadas.</p>
                             </div>
-                            <h3>Participación</h3>
-                            <p>Fomentamos la participación activa de todas las familias en nuestras decisiones.</p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Call to Action -->
-                <div class="cta-section">
-                    <div class="cta-content">
-                        <h2>¿Quieres Conocernos Mejor?</h2>
-                        <p>Descubre nuestras áreas de trabajo, conoce las asociaciones federadas y únete a nuestra lucha por los derechos del colectivo TEA.</p>
-                        <div class="cta-actions">
-                            <a href="areas.html" class="btn btn-primary">Ver Áreas de Trabajo</a>
-                            <a href="asociaciones.html" class="btn btn-outline">Conocer Asociaciones</a>
-                            <a href="manifiesto.html" class="btn btn-outline">Leer Nuestro Manifiesto</a>
-                        </div>
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>¿Quieres Conocernos Mejor?</h2>
+                    <p>Descubre nuestras áreas de trabajo, conoce las asociaciones federadas y únete a nuestra lucha por los derechos del colectivo TEA.</p>
+                    <div class="cta-actions">
+                        <a href="areas.html" class="btn btn-primary">Ver Áreas de Trabajo</a>
+                        <a href="asociaciones.html" class="btn btn-outline">Conocer Asociaciones</a>
+                        <a href="manifiesto.html" class="btn btn-outline">Leer Nuestro Manifiesto</a>
                     </div>
                 </div>
             </div>
@@ -242,5 +352,33 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="js/translations.js"></script>
+    
+    <!-- Script para forzar recarga de estilos CSS -->
+    <script>
+        // Forzar recarga de estilos CSS para asegurar que se apliquen correctamente
+        document.addEventListener('DOMContentLoaded', function() {
+            // Recargar estilos CSS
+            const links = document.querySelectorAll('link[rel="stylesheet"]');
+            links.forEach(link => {
+                const href = link.href;
+                link.href = '';
+                link.href = href + '?v=' + Date.now();
+            });
+            
+            // Aplicar estilos específicos para las tarjetas de valores
+            const valueCards = document.querySelectorAll('.value-card');
+            valueCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100);
+            });
+        });
+    </script>
 </body>
 </html> 

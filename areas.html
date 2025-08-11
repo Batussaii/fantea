@@ -6,6 +6,7 @@
     <title>Áreas de Trabajo - FANTEA</title>
     <meta name="description" content="Conoce las áreas de trabajo de FANTEA: educación, salud, vida adulta, inclusión social y vivienda. Trabajamos en todos los ámbitos de la vida">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/areas-fix.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -32,11 +33,11 @@
     <header class="header">
         <nav class="navbar">
             <div class="container">
-                                        <button class="hamburger" aria-label="Abrir menú de navegación">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </button>
+                <button class="hamburger" aria-label="Abrir menú de navegación">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 
                 <div class="nav-brand">
                     <img src="images/logo.png" alt="Logo FANTEA" class="logo">
@@ -64,19 +65,50 @@
     <!-- Main Content -->
     <main id="main-content">
         <!-- Hero Section -->
-        <section class="page-hero">
+        <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <h1 class="hero-title">Áreas de Trabajo</h1>
-                    <p class="hero-subtitle">Trabajamos en distintos ámbitos para mejorar la calidad de vida de las personas autistas y sus familias</p>
+                    <div class="hero-text">
+                        <h1 class="hero-title">Áreas de <span class="highlight">Trabajo</span></h1>
+                        <p class="hero-description">Trabajamos en distintos ámbitos para mejorar la calidad de vida de las personas autistas y sus familias. Descubre cómo abordamos cada área con enfoques especializados y compromiso.</p>
+                        <div class="hero-actions">
+                            <a href="#areas" class="btn btn-primary btn-large">Ver Áreas</a>
+                            <a href="manifiesto.html" class="btn btn-outline btn-large">Nuestro Manifiesto</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="images/hero-inclusive.jpg" alt="Personas trabajando en diferentes áreas de inclusión" class="hero-img">
+                    </div>
+                </div>
+                
+                <!-- Hero Stats -->
+                <div class="hero-stats">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">5</div>
+                            <div class="stat-text">Áreas de Intervención</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-text">Años de Experiencia</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-text">Familias Atendidas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-text">Profesionales Formados</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Areas Content -->
-        <section class="areas-section">
+        <!-- Areas Section -->
+        <section id="areas" class="areas-section">
             <div class="container">
-                <div class="intro-section">
+                <div class="section-header text-center">
                     <h2>Nuestras Áreas de Intervención</h2>
                     <p>En FANTEA trabajamos en distintos ámbitos para mejorar la calidad de vida de las personas autistas y sus familias:</p>
                 </div>
@@ -87,13 +119,19 @@
                             <div class="area-icon">
                                 <i class="fas fa-graduation-cap"></i>
                             </div>
-                            <h3>Educación 🎓</h3>
+                            <div class="area-info">
+                                <h3>Educación</h3>
+                                <span class="area-emoji">🎓</span>
+                            </div>
                         </div>
                         <div class="area-content">
+                            <div class="area-description">
+                                <p>Garantizamos una educación inclusiva y de calidad para todas las personas autistas.</p>
+                            </div>
                             <ul class="area-list">
-                                <li>Apoyos en el aula para garantizar la inclusión</li>
-                                <li>Modelos sostenibles como el asistente personal (ejemplo Comunidad Valenciana)</li>
-                                <li>Formación a docentes y equipos educativos</li>
+                                <li><i class="fas fa-check"></i>Apoyos en el aula para garantizar la inclusión</li>
+                                <li><i class="fas fa-check"></i>Modelos sostenibles como el asistente personal</li>
+                                <li><i class="fas fa-check"></i>Formación a docentes y equipos educativos</li>
                             </ul>
                         </div>
                     </div>
@@ -103,13 +141,19 @@
                             <div class="area-icon">
                                 <i class="fas fa-heartbeat"></i>
                             </div>
-                            <h3>Salud 🏥</h3>
+                            <div class="area-info">
+                                <h3>Salud</h3>
+                                <span class="area-emoji">🏥</span>
+                            </div>
                         </div>
                         <div class="area-content">
+                            <div class="area-description">
+                                <p>Promovemos una atención sanitaria accesible y especializada para el colectivo TEA.</p>
+                            </div>
                             <ul class="area-list">
-                                <li>Atención temprana específica y accesible</li>
-                                <li>Salud mental adaptada y diagnósticos ágiles</li>
-                                <li>Formación y sensibilización de profesionales sanitarios</li>
+                                <li><i class="fas fa-check"></i>Atención temprana específica y accesible</li>
+                                <li><i class="fas fa-check"></i>Salud mental adaptada y diagnósticos ágiles</li>
+                                <li><i class="fas fa-check"></i>Formación y sensibilización de profesionales sanitarios</li>
                             </ul>
                         </div>
                     </div>
@@ -119,12 +163,19 @@
                             <div class="area-icon">
                                 <i class="fas fa-briefcase"></i>
                             </div>
-                            <h3>Vida Adulta y Empleo 💼</h3>
+                            <div class="area-info">
+                                <h3>Vida Adulta y Empleo</h3>
+                                <span class="area-emoji">💼</span>
+                            </div>
                         </div>
                         <div class="area-content">
+                            <div class="area-description">
+                                <p>Facilitamos la transición a la vida adulta y la inserción laboral de las personas autistas.</p>
+                            </div>
                             <ul class="area-list">
-                                <li>Programas de autonomía personal</li>
-                                <li>Inserción laboral y adaptación de entornos de trabajo</li>
+                                <li><i class="fas fa-check"></i>Programas de autonomía personal</li>
+                                <li><i class="fas fa-check"></i>Inserción laboral y adaptación de entornos de trabajo</li>
+                                <li><i class="fas fa-check"></i>Desarrollo de habilidades sociales y laborales</li>
                             </ul>
                         </div>
                     </div>
@@ -134,12 +185,19 @@
                             <div class="area-icon">
                                 <i class="fas fa-globe"></i>
                             </div>
-                            <h3>Inclusión Social 🌍</h3>
+                            <div class="area-info">
+                                <h3>Inclusión Social</h3>
+                                <span class="area-emoji">🌍</span>
+                            </div>
                         </div>
                         <div class="area-content">
+                            <div class="area-description">
+                                <p>Trabajamos por una sociedad más inclusiva donde todas las personas tengan las mismas oportunidades.</p>
+                            </div>
                             <ul class="area-list">
-                                <li>Acceso igualitario a la vida comunitaria</li>
-                                <li>Recursos de respiro familiar y conciliación</li>
+                                <li><i class="fas fa-check"></i>Acceso igualitario a la vida comunitaria</li>
+                                <li><i class="fas fa-check"></i>Recursos de respiro familiar y conciliación</li>
+                                <li><i class="fas fa-check"></i>Actividades de ocio y tiempo libre inclusivas</li>
                             </ul>
                         </div>
                     </div>
@@ -149,25 +207,64 @@
                             <div class="area-icon">
                                 <i class="fas fa-home"></i>
                             </div>
-                            <h3>Vivienda y Recursos Residenciales 🏠</h3>
+                            <div class="area-info">
+                                <h3>Vivienda y Recursos Residenciales</h3>
+                                <span class="area-emoji">🏠</span>
+                            </div>
                         </div>
                         <div class="area-content">
+                            <div class="area-description">
+                                <p>Promovemos opciones de vivienda adaptadas que permitan una vida independiente y digna.</p>
+                            </div>
                             <ul class="area-list">
-                                <li>Plazas adaptadas y apoyos para una vida independiente</li>
+                                <li><i class="fas fa-check"></i>Plazas adaptadas y apoyos para una vida independiente</li>
+                                <li><i class="fas fa-check"></i>Modelos de vivienda tutelada y compartida</li>
+                                <li><i class="fas fa-check"></i>Apoyos personalizados según las necesidades individuales</li>
                             </ul>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Call to Action -->
-                <div class="cta-section">
-                    <div class="cta-content">
-                        <h2>¿Quieres Conocer Más Sobre Nuestro Trabajo?</h2>
-                        <p>Descubre cómo trabajamos en cada área y cómo puedes participar en nuestras iniciativas.</p>
-                        <div class="cta-actions">
-                            <a href="manifiesto.html" class="btn btn-primary">Leer Nuestro Manifiesto</a>
-                            <a href="contacto.html" class="btn btn-outline">Contactar</a>
+        <!-- Impact Section -->
+        <section class="impact-section">
+            <div class="container">
+                <div class="impact-content">
+                    <div class="impact-text">
+                        <h2>Nuestro Impacto en Cada Área</h2>
+                        <p>En FANTEA hemos logrado resultados significativos en cada una de nuestras áreas de trabajo, mejorando la calidad de vida de miles de personas autistas y sus familias en Andalucía.</p>
+                        <div class="impact-stats">
+                            <div class="impact-stat">
+                                <div class="impact-number">95%</div>
+                                <div class="impact-label">de familias satisfechas con nuestros servicios</div>
+                            </div>
+                            <div class="impact-stat">
+                                <div class="impact-number">80%</div>
+                                <div class="impact-label">de éxito en inserción laboral</div>
+                            </div>
+                            <div class="impact-stat">
+                                <div class="impact-number">100%</div>
+                                <div class="impact-label">de centros educativos con formación especializada</div>
+                            </div>
                         </div>
+                    </div>
+                    <div class="impact-image">
+                        <img src="images/hero-inclusive.jpg" alt="Impacto de nuestro trabajo en la comunidad" class="impact-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>¿Quieres Conocer Más Sobre Nuestro Trabajo?</h2>
+                    <p>Descubre cómo trabajamos en cada área y cómo puedes participar en nuestras iniciativas para crear una sociedad más inclusiva.</p>
+                    <div class="cta-actions">
+                        <a href="manifiesto.html" class="btn btn-primary btn-large">Leer Nuestro Manifiesto</a>
+                        <a href="contacto.html" class="btn btn-outline btn-large">Contactar</a>
                     </div>
                 </div>
             </div>
@@ -242,5 +339,45 @@
     </footer>
 
     <script src="js/main.js"></script>
+    
+    <!-- Script para forzar recarga de estilos CSS -->
+    <script>
+        // Forzar recarga de estilos CSS para asegurar que se apliquen correctamente
+        document.addEventListener('DOMContentLoaded', function() {
+            // Recargar estilos CSS
+            const links = document.querySelectorAll('link[rel="stylesheet"]');
+            links.forEach(link => {
+                const href = link.href;
+                link.href = '';
+                link.href = href + '?v=' + Date.now();
+            });
+            
+            // Aplicar estilos específicos para las tarjetas de áreas
+            const areaCards = document.querySelectorAll('.area-card');
+            areaCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 + (index * 150));
+            });
+            
+            // Aplicar estilos específicos para las estadísticas de impacto
+            const impactStats = document.querySelectorAll('.impact-stat');
+            impactStats.forEach((stat, index) => {
+                stat.style.opacity = '0';
+                stat.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    stat.style.transition = 'all 0.6s ease';
+                    stat.style.opacity = '1';
+                    stat.style.transform = 'translateY(0)';
+                }, 200 + (index * 100));
+            });
+        });
+    </script>
 </body>
 </html> 

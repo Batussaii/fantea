@@ -6,6 +6,7 @@
     <title>Prensa - FANTEA</title>
     <meta name="description" content="Notas de prensa, comunicados oficiales y apariciones en medios de comunicación de FANTEA">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/press-fix.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -32,11 +33,11 @@
     <header class="header">
         <nav class="navbar">
             <div class="container">
-                                        <button class="hamburger" aria-label="Abrir menú de navegación">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </button>
+                <button class="hamburger" aria-label="Abrir menú de navegación">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 
                 <div class="nav-brand">
                     <img src="images/logo.png" alt="Logo FANTEA" class="logo">
@@ -64,158 +65,282 @@
     <!-- Main Content -->
     <main id="main-content">
         <!-- Hero Section -->
-        <section class="page-hero">
+        <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <h1 class="hero-title">Prensa</h1>
-                    <p class="hero-subtitle">Notas de prensa, comunicados oficiales y apariciones en medios de comunicación</p>
+                    <div class="hero-text">
+                        <h1 class="hero-title">Sala de <span class="highlight">Prensa</span></h1>
+                        <p class="hero-description">Notas de prensa, comunicados oficiales y apariciones en medios de comunicación. Mantente informado sobre las últimas noticias y actividades de FANTEA.</p>
+                        <div class="hero-actions">
+                            <a href="#press-items" class="btn btn-primary btn-large">Ver Noticias</a>
+                            <a href="#resources" class="btn btn-outline btn-large">Recursos</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="images/hero-inclusive.jpg" alt="Sala de prensa y medios de comunicación" class="hero-img">
+                    </div>
+                </div>
+                
+                <!-- Hero Stats -->
+                <div class="hero-stats">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-text">Notas de Prensa</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">25+</div>
+                            <div class="stat-text">Apariciones en Medios</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-text">Comunicados Oficiales</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-text">Periodistas Contactados</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Press Content -->
-        <section class="press-content">
+        <!-- Press Categories -->
+        <section class="categories-section">
             <div class="container">
-                <!-- Press Categories -->
-                <div class="press-categories">
-                    <div class="category-tabs">
-                        <button class="category-tab active" data-category="all">Todas</button>
-                        <button class="category-tab" data-category="notes">Notas de Prensa</button>
-                        <button class="category-tab" data-category="media">Apariciones en Medios</button>
-                        <button class="category-tab" data-category="statements">Comunicados Oficiales</button>
-                    </div>
+                <div class="categories-tabs">
+                    <button class="category-tab active" data-category="all">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Todas</span>
+                    </button>
+                    <button class="category-tab" data-category="notes">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Notas de Prensa</span>
+                    </button>
+                    <button class="category-tab" data-category="media">
+                        <i class="fas fa-tv"></i>
+                        <span>Apariciones en Medios</span>
+                    </button>
+                    <button class="category-tab" data-category="statements">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Comunicados Oficiales</span>
+                    </button>
                 </div>
+            </div>
+        </section>
 
-                <!-- Press Items -->
-                <div class="press-items">
-                    <article class="press-item" data-category="notes">
+        <!-- Press Items -->
+        <section id="press-items" class="press-section">
+            <div class="container">
+                <div class="press-grid">
+                    <article class="press-card" data-category="notes">
                         <div class="press-image">
                             <img src="images/news-1.jpg" alt="Nota de prensa FANTEA">
+                            <div class="press-overlay">
+                                <span class="press-category">Nota de Prensa</span>
+                            </div>
                         </div>
                         <div class="press-content">
-                            <span class="press-category">Nota de Prensa</span>
+                            <div class="press-meta">
+                                <span class="press-date"><i class="fas fa-calendar"></i> 15 de Marzo, 2024</span>
+                                <span class="press-type"><i class="fas fa-file-alt"></i> Nota de Prensa</span>
+                            </div>
                             <h3>FANTEA presenta su manifiesto por los derechos del colectivo TEA</h3>
                             <p>La Federación Andaluza TEA presenta su manifiesto con los compromisos fundamentales para defender los derechos de las personas autistas y sus familias en Andalucía.</p>
-                            <div class="press-meta">
-                                <span class="press-date">15 de Marzo, 2024</span>
-                                <a href="#" class="press-link">Leer más</a>
-                            </div>
+                            <a href="#" class="press-link">
+                                <span>Leer más</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </article>
 
-                    <article class="press-item" data-category="media">
+                    <article class="press-card" data-category="media">
                         <div class="press-image">
                             <img src="images/news-2.jpg" alt="Aparición en medios">
+                            <div class="press-overlay">
+                                <span class="press-category">Aparición en Medios</span>
+                            </div>
                         </div>
                         <div class="press-content">
-                            <span class="press-category">Aparición en Medios</span>
+                            <div class="press-meta">
+                                <span class="press-date"><i class="fas fa-calendar"></i> 12 de Marzo, 2024</span>
+                                <span class="press-type"><i class="fas fa-tv"></i> Aparición en Medios</span>
+                            </div>
                             <h3>FANTEA en Canal Sur: La importancia de la inclusión educativa</h3>
                             <p>Nuestro presidente participó en el programa "Andalucía Directo" para hablar sobre la importancia de la inclusión educativa para las personas autistas.</p>
-                            <div class="press-meta">
-                                <span class="press-date">12 de Marzo, 2024</span>
-                                <a href="#" class="press-link">Ver entrevista</a>
-                            </div>
+                            <a href="#" class="press-link">
+                                <span>Ver entrevista</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </article>
 
-                    <article class="press-item" data-category="statements">
+                    <article class="press-card" data-category="statements">
                         <div class="press-image">
                             <img src="images/news-3.jpg" alt="Comunicado oficial">
+                            <div class="press-overlay">
+                                <span class="press-category">Comunicado Oficial</span>
+                            </div>
                         </div>
                         <div class="press-content">
-                            <span class="press-category">Comunicado Oficial</span>
+                            <div class="press-meta">
+                                <span class="press-date"><i class="fas fa-calendar"></i> 8 de Marzo, 2024</span>
+                                <span class="press-type"><i class="fas fa-bullhorn"></i> Comunicado Oficial</span>
+                            </div>
                             <h3>Comunicado sobre la situación de la atención temprana en Andalucía</h3>
                             <p>FANTEA emite un comunicado oficial sobre la situación actual de la atención temprana en Andalucía y las necesidades urgentes del colectivo TEA.</p>
-                            <div class="press-meta">
-                                <span class="press-date">8 de Marzo, 2024</span>
-                                <a href="#" class="press-link">Leer comunicado</a>
-                            </div>
+                            <a href="#" class="press-link">
+                                <span>Leer comunicado</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </article>
 
-                    <article class="press-item" data-category="notes">
+                    <article class="press-card" data-category="notes">
                         <div class="press-image">
                             <img src="images/news-1.jpg" alt="Nota de prensa">
+                            <div class="press-overlay">
+                                <span class="press-category">Nota de Prensa</span>
+                            </div>
                         </div>
                         <div class="press-content">
-                            <span class="press-category">Nota de Prensa</span>
+                            <div class="press-meta">
+                                <span class="press-date"><i class="fas fa-calendar"></i> 5 de Marzo, 2024</span>
+                                <span class="press-type"><i class="fas fa-file-alt"></i> Nota de Prensa</span>
+                            </div>
                             <h3>Nueva asociación se une a FANTEA</h3>
                             <p>La Asociación Autismo Mijas-Fuengirola se une oficialmente a FANTEA, fortaleciendo la red de apoyo para las personas autistas en la Costa del Sol.</p>
-                            <div class="press-meta">
-                                <span class="press-date">5 de Marzo, 2024</span>
-                                <a href="#" class="press-link">Leer más</a>
-                            </div>
+                            <a href="#" class="press-link">
+                                <span>Leer más</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </article>
 
-                    <article class="press-item" data-category="media">
+                    <article class="press-card" data-category="media">
                         <div class="press-image">
                             <img src="images/news-2.jpg" alt="Aparición en medios">
+                            <div class="press-overlay">
+                                <span class="press-category">Aparición en Medios</span>
+                            </div>
                         </div>
                         <div class="press-content">
-                            <span class="press-category">Aparición en Medios</span>
+                            <div class="press-meta">
+                                <span class="press-date"><i class="fas fa-calendar"></i> 1 de Marzo, 2024</span>
+                                <span class="press-type"><i class="fas fa-tv"></i> Aparición en Medios</span>
+                            </div>
                             <h3>Entrevista en Diario Sur sobre empleo inclusivo</h3>
                             <p>FANTEA participa en un reportaje sobre empleo inclusivo para personas autistas en la provincia de Málaga.</p>
-                            <div class="press-meta">
-                                <span class="press-date">1 de Marzo, 2024</span>
-                                <a href="#" class="press-link">Leer artículo</a>
-                            </div>
+                            <a href="#" class="press-link">
+                                <span>Leer artículo</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </article>
 
-                    <article class="press-item" data-category="statements">
+                    <article class="press-card" data-category="statements">
                         <div class="press-image">
                             <img src="images/news-3.jpg" alt="Comunicado oficial">
+                            <div class="press-overlay">
+                                <span class="press-category">Comunicado Oficial</span>
+                            </div>
                         </div>
                         <div class="press-content">
-                            <span class="press-category">Comunicado Oficial</span>
+                            <div class="press-meta">
+                                <span class="press-date"><i class="fas fa-calendar"></i> 25 de Febrero, 2024</span>
+                                <span class="press-type"><i class="fas fa-bullhorn"></i> Comunicado Oficial</span>
+                            </div>
                             <h3>Posicionamiento sobre la nueva ley de discapacidad</h3>
                             <p>FANTEA emite su posicionamiento sobre la nueva ley de discapacidad y sus implicaciones para el colectivo TEA.</p>
-                            <div class="press-meta">
-                                <span class="press-date">25 de Febrero, 2024</span>
-                                <a href="#" class="press-link">Leer posicionamiento</a>
-                            </div>
+                            <a href="#" class="press-link">
+                                <span>Leer posicionamiento</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </article>
                 </div>
+            </div>
+        </section>
 
-                <!-- Press Resources -->
-                <div class="press-resources">
+        <!-- Resources Section -->
+        <section id="resources" class="resources-section">
+            <div class="container">
+                <div class="section-header text-center">
                     <h2>Recursos para Medios</h2>
-                    <div class="resources-grid">
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-download"></i>
-                            </div>
-                            <h3>Descargar Notas de Prensa</h3>
-                            <p>Accede a todas nuestras notas de prensa en formato PDF para su uso en medios de comunicación.</p>
-                            <a href="#" class="btn btn-outline">Descargar Todas</a>
-                        </div>
-
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-camera"></i>
-                            </div>
-                            <h3>Material Audiovisual</h3>
-                            <p>Imágenes, logos y material audiovisual de FANTEA para uso en medios de comunicación.</p>
-                            <a href="#" class="btn btn-outline">Acceder al Material</a>
-                        </div>
-
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-user-tie"></i>
-                            </div>
-                            <h3>Contacto para Medios</h3>
-                            <p>Formulario para que periodistas puedan contactar con nuestro equipo de comunicación.</p>
-                            <a href="#contact-form" class="btn btn-outline">Contactar</a>
-                        </div>
-                    </div>
+                    <p>Accede a nuestro material de prensa y recursos para periodistas</p>
                 </div>
 
-                <!-- Contact Form for Journalists -->
-                <div id="contact-form" class="journalist-contact">
-                    <h2>Contacto para Periodistas</h2>
-                    <p>Si eres periodista y necesitas información, entrevistas o material de FANTEA, completa este formulario:</p>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <h3>Descargar Notas de Prensa</h3>
+                        <p>Accede a todas nuestras notas de prensa en formato PDF para su uso en medios de comunicación.</p>
+                        <a href="#" class="resource-link">
+                            <span>Descargar Todas</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3>Material Audiovisual</h3>
+                        <p>Imágenes, logos y material audiovisual de FANTEA para uso en medios de comunicación.</p>
+                        <a href="#" class="resource-link">
+                            <span>Acceder al Material</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>Contacto para Medios</h3>
+                        <p>Formulario para que periodistas puedan contactar con nuestro equipo de comunicación.</p>
+                        <a href="#contact-form" class="resource-link">
+                            <span>Contactar</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form for Journalists -->
+        <section id="contact-form" class="contact-section">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-text">
+                        <h2>Contacto para Periodistas</h2>
+                        <p>Si eres periodista y necesitas información, entrevistas o material de FANTEA, completa este formulario. Nuestro equipo de comunicación te responderá lo antes posible.</p>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <strong>Email de Prensa</strong>
+                                    <span>prensa@fantea.org</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <strong>Teléfono de Prensa</strong>
+                                    <span>+34 952 123 456</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>Horario de Atención</strong>
+                                    <span>Lun-Vie: 9:00-18:00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <form class="contact-form">
                         <div class="form-row">
@@ -258,7 +383,10 @@
                         </div>
                         
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-paper-plane"></i>
+                                Enviar Mensaje
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -334,5 +462,76 @@
     </footer>
 
     <script src="js/main.js"></script>
+    
+    <!-- Script para forzar recarga de estilos CSS -->
+    <script>
+        // Forzar recarga de estilos CSS para asegurar que se apliquen correctamente
+        document.addEventListener('DOMContentLoaded', function() {
+            // Recargar estilos CSS
+            const links = document.querySelectorAll('link[rel="stylesheet"]');
+            links.forEach(link => {
+                const href = link.href;
+                link.href = '';
+                link.href = href + '?v=' + Date.now();
+            });
+            
+            // Filtrado de categorías
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            const pressCards = document.querySelectorAll('.press-card');
+            
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // Actualizar tabs activos
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filtrar tarjetas
+                    pressCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            
+                            setTimeout(() => {
+                                card.style.transition = 'all 0.6s ease';
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 100);
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Aplicar estilos específicos para las tarjetas de prensa
+            const pressCardsArray = Array.from(pressCards);
+            pressCardsArray.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 + (index * 100));
+            });
+            
+            // Aplicar estilos específicos para las tarjetas de recursos
+            const resourceCards = document.querySelectorAll('.resource-card');
+            resourceCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 200 + (index * 100));
+            });
+        });
+    </script>
 </body>
 </html> 
