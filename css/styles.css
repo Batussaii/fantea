@@ -4,18 +4,18 @@
 
 /* Variables CSS */
 :root {
-    /* Colores principales - Nuevo esquema cálido e inclusivo */
-    --primary-color: #8B5CF6;        /* Violeta moderno */
-    --secondary-color: #06B6D4;       /* Teal vibrante */
-    --accent-color: #F59E0B;          /* Ámbar cálido */
-    --text-primary: #1F2937;          /* Gris oscuro cálido */
+    /* Colores principales - Esquema basado en el logo de FANTEA */
+    --primary-color: #1E5F74;        /* Verde azulado oscuro (teal) del logo */
+    --secondary-color: #3B82F6;       /* Azul medio del logo */
+    --accent-color: #10B981;          /* Verde complementario */
+    --text-primary: #1F2937;          /* Gris oscuro */
     --text-secondary: #6B7280;        /* Gris medio */
-    --background: #FEF7FF;            /* Fondo violeta muy claro */
-    --background-light: #F3E8FF;      /* Fondo violeta claro */
-    --border-color: #E5E7EB;          /* Bordes suaves */
-    --shadow-light: 0 2px 8px rgba(139, 92, 246, 0.1);
-    --shadow-medium: 0 4px 16px rgba(139, 92, 246, 0.15);
-    --shadow-heavy: 0 8px 32px rgba(139, 92, 246, 0.2);
+    --background: #F8FAFC;            /* Fondo blanco azulado muy claro */
+    --background-light: #F1F5F9;      /* Fondo gris azulado claro */
+    --border-color: #E2E8F0;          /* Bordes suaves */
+    --shadow-light: 0 2px 8px rgba(30, 95, 116, 0.1);
+    --shadow-medium: 0 4px 16px rgba(30, 95, 116, 0.15);
+    --shadow-heavy: 0 8px 32px rgba(30, 95, 116, 0.2);
     
     /* Tipografía */
     --font-family: 'Inter', system-ui, -apple-system, sans-serif;

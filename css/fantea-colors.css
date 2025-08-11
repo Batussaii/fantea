@@ -1,0 +1,131 @@
+/* ==========================================================================
+   FANTEA - Colores del Logo
+   ========================================================================== */
+
+/* Variables de colores basadas en el logo de FANTEA */
+:root {
+    /* Colores principales del logo */
+    --fantea-teal: #1E5F74;        /* Verde azulado oscuro (FAN) */
+    --fantea-blue: #3B82F6;        /* Azul medio (TEA) */
+    --fantea-green: #10B981;       /* Verde complementario */
+    --fantea-gray: #6B7280;        /* Gris claro (FEDERACIÓN ANDALUZA TEA) */
+
+    /* Variaciones de los colores principales */
+    --fantea-teal-light: #2DD4BF;  /* Teal más claro */
+    --fantea-teal-dark: #134E4A;   /* Teal más oscuro */
+    --fantea-blue-light: #60A5FA;  /* Azul más claro */
+    --fantea-blue-dark: #2563EB;   /* Azul más oscuro */
+    --fantea-green-light: #34D399; /* Verde más claro */
+    --fantea-green-dark: #047857;  /* Verde más oscuro */
+    --fantea-gray-light: #9CA3AF;  /* Gris más claro */
+    --fantea-gray-dark: #374151;   /* Gris más oscuro */
+}
+
+/* Clases utilitarias para texto */
+.text-fantea-teal { color: var(--fantea-teal); }
+.text-fantea-blue { color: var(--fantea-blue); }
+.text-fantea-green { color: var(--fantea-green); }
+.text-fantea-gray { color: var(--fantea-gray); }
+.text-fantea-teal-light { color: var(--fantea-teal-light); }
+.text-fantea-blue-light { color: var(--fantea-blue-light); }
+.text-fantea-green-light { color: var(--fantea-green-light); }
+.text-fantea-gray-light { color: var(--fantea-gray-light); }
+.text-fantea-teal-dark { color: var(--fantea-teal-dark); }
+.text-fantea-blue-dark { color: var(--fantea-blue-dark); }
+.text-fantea-green-dark { color: var(--fantea-green-dark); }
+.text-fantea-gray-dark { color: var(--fantea-gray-dark); }
+
+/* Clases utilitarias para fondos */
+.bg-fantea-teal { background-color: var(--fantea-teal); }
+.bg-fantea-blue { background-color: var(--fantea-blue); }
+.bg-fantea-green { background-color: var(--fantea-green); }
+.bg-fantea-gray { background-color: var(--fantea-gray); }
+.bg-fantea-teal-light { background-color: var(--fantea-teal-light); }
+.bg-fantea-blue-light { background-color: var(--fantea-blue-light); }
+.bg-fantea-green-light { background-color: var(--fantea-green-light); }
+.bg-fantea-gray-light { background-color: var(--fantea-gray-light); }
+.bg-fantea-teal-dark { background-color: var(--fantea-teal-dark); }
+.bg-fantea-blue-dark { background-color: var(--fantea-blue-dark); }
+.bg-fantea-green-dark { background-color: var(--fantea-green-dark); }
+.bg-fantea-gray-dark { background-color: var(--fantea-gray-dark); }
+
+/* Clases utilitarias para bordes */
+.border-fantea-teal { border-color: var(--fantea-teal); }
+.border-fantea-blue { border-color: var(--fantea-blue); }
+.border-fantea-green { border-color: var(--fantea-green); }
+.border-fantea-gray { border-color: var(--fantea-gray); }
+
+/* Gradientes inspirados en el logo */
+.gradient-fantea-teal-blue {
+    background: linear-gradient(to right, var(--fantea-teal), var(--fantea-blue));
+}
+.gradient-fantea-blue-green {
+    background: linear-gradient(to right, var(--fantea-blue), var(--fantea-green));
+}
+
+/* Botones con los colores de FANTEA */
+.btn-fantea-teal {
+    background-color: var(--fantea-teal);
+    color: #fff;
+    border: 1px solid var(--fantea-teal);
+}
+.btn-fantea-teal:hover {
+    background-color: var(--fantea-teal-dark);
+    border-color: var(--fantea-teal-dark);
+}
+
+.btn-fantea-blue {
+    background-color: var(--fantea-blue);
+    color: #fff;
+    border: 1px solid var(--fantea-blue);
+}
+.btn-fantea-blue:hover {
+    background-color: var(--fantea-blue-dark);
+    border-color: var(--fantea-blue-dark);
+}
+
+.btn-fantea-green {
+    background-color: var(--fantea-green);
+    color: #fff;
+    border: 1px solid var(--fantea-green);
+}
+.btn-fantea-green:hover {
+    background-color: var(--fantea-green-dark);
+    border-color: var(--fantea-green-dark);
+}
+
+/* Botones outline con los colores de FANTEA */
+.btn-outline-fantea-teal {
+    background-color: transparent;
+    color: var(--fantea-teal);
+    border: 1px solid var(--fantea-teal);
+}
+.btn-outline-fantea-teal:hover {
+    background-color: var(--fantea-teal);
+    color: #fff;
+}
+
+.btn-outline-fantea-blue {
+    background-color: transparent;
+    color: var(--fantea-blue);
+    border: 1px solid var(--fantea-blue);
+}
+.btn-outline-fantea-blue:hover {
+    background-color: var(--fantea-blue);
+    color: #fff;
+}
+
+.btn-outline-fantea-green {
+    background-color: transparent;
+    color: var(--fantea-green);
+    border: 1px solid var(--fantea-green);
+}
+.btn-outline-fantea-green:hover {
+    background-color: var(--fantea-green);
+    color: #fff;
+}
+
+/* Efectos de hover para enlaces y elementos interactivos */
+.hover-fantea-teal:hover { color: var(--fantea-teal); }
+.hover-fantea-blue:hover { color: var(--fantea-blue); }
+.hover-fantea-green:hover { color: var(--fantea-green); } 

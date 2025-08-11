@@ -1,8 +1,8 @@
-/* Estilos específicos para las áreas de trabajo - FIX */
+/* Estilos específicos para la página de áreas - FIX */
 
 /* Hero Section Mejorado */
 .hero {
-    background: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
     padding: 6rem 0 4rem;
     position: relative;
@@ -115,7 +115,7 @@
 
 .section-header h2 {
     font-size: 3rem;
-    color: #8B5CF6;
+    color: var(--primary-color);
     margin-bottom: 1rem;
     font-weight: 700;
 }
@@ -128,9 +128,10 @@
     line-height: 1.6;
 }
 
+/* Areas Grid */
 .areas-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
 }
 
@@ -151,7 +152,7 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #8B5CF6, #06B6D4);
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
 }
 
 .area-card:hover {
@@ -168,161 +169,230 @@
 }
 
 .area-icon {
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, #8B5CF6, #06B6D4);
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
+    font-size: 24px;
     color: white;
     flex-shrink: 0;
     box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
-    transition: all 0.3s ease;
-}
-
-.area-card:hover .area-icon {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
-}
-
-.area-info {
-    flex: 1;
 }
 
 .area-info h3 {
-    color: #8B5CF6;
-    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-size: 1.25rem;
     margin-bottom: 0.5rem;
     font-weight: 600;
 }
 
-.area-emoji {
-    font-size: 1.5rem;
-    display: block;
-    margin-top: 0.25rem;
+.area-category {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
 }
 
 .area-content {
     padding: 0 2rem 2rem;
 }
 
-.area-description {
+.area-content p {
+    color: #6B7280;
+    line-height: 1.6;
     margin-bottom: 1.5rem;
 }
 
-.area-description p {
-    color: #6B7280;
-    line-height: 1.6;
-    font-size: 1rem;
-    font-style: italic;
-}
-
-.area-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.area-list li {
+.area-services {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.service-item {
+    display: flex;
+    align-items: center;
     gap: 0.75rem;
     color: #6B7280;
-    line-height: 1.6;
-    margin-bottom: 0.75rem;
-    font-size: 0.95rem;
+    font-size: 0.875rem;
 }
 
-.area-list li:last-child {
-    margin-bottom: 0;
-}
-
-.area-list li i {
-    color: #10B981;
-    font-size: 14px;
-    margin-top: 0.25rem;
+.service-item i {
+    color: var(--primary-color);
+    width: 16px;
     flex-shrink: 0;
 }
 
-/* Impact Section */
-.impact-section {
-    padding: 6rem 0;
+.area-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.area-link:hover {
+    color: var(--secondary-color);
+}
+
+/* Services Overview */
+.services-overview {
+    padding: 4rem 0;
     background: white;
 }
 
-.impact-content {
+.services-overview h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+.service-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
+    margin-bottom: 4rem;
 }
 
-.impact-text h2 {
-    font-size: 2.5rem;
-    color: #8B5CF6;
+.service-content.reverse {
+    direction: rtl;
+}
+
+.service-content.reverse > * {
+    direction: ltr;
+}
+
+.service-text h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
     margin-bottom: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
 }
 
-.impact-text p {
-    font-size: 1.125rem;
+.service-text p {
     color: #6B7280;
     line-height: 1.6;
     margin-bottom: 2rem;
+    font-size: 1.125rem;
 }
 
-.impact-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1.5rem;
+.service-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-.impact-stat {
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #6B7280;
+}
+
+.feature-item i {
+    color: var(--primary-color);
+    font-size: 20px;
+    width: 24px;
+    flex-shrink: 0;
+}
+
+.service-image {
     text-align: center;
-    padding: 1.5rem;
+}
+
+.service-img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.15);
+}
+
+/* Programs Section */
+.programs-section {
+    padding: 4rem 0;
     background: #f8f9fa;
+}
+
+.programs-section h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.program-card {
+    background: white;
+    padding: 2rem;
     border-radius: 12px;
     border: 1px solid rgba(139, 92, 246, 0.1);
     transition: all 0.3s ease;
 }
 
-.impact-stat:hover {
+.program-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 25px rgba(139, 92, 246, 0.15);
-    background: white;
 }
 
-.impact-number {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #8B5CF6;
-    margin-bottom: 0.5rem;
-    display: block;
+.program-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 24px;
+    color: white;
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
 }
 
-.impact-label {
-    font-size: 0.875rem;
+.program-card h4 {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.program-card p {
     color: #6B7280;
-    line-height: 1.4;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
 }
 
-.impact-image {
-    text-align: center;
+.program-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
 }
 
-.impact-img {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+.program-link:hover {
+    color: var(--secondary-color);
 }
 
 /* CTA Section */
 .cta-section {
-    background: linear-gradient(135deg, #8B5CF6, #06B6D4);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     padding: 4rem 0;
     text-align: center;
@@ -388,19 +458,27 @@
         gap: 1.5rem;
     }
     
-    .impact-content {
+    .service-content {
         grid-template-columns: 1fr;
         gap: 2rem;
-        text-align: center;
     }
     
-    .impact-text h2 {
+    .service-content.reverse {
+        direction: ltr;
+    }
+    
+    .service-text h3 {
+        font-size: 1.75rem;
+    }
+    
+    .programs-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .services-overview h2,
+    .programs-section h2 {
         font-size: 2rem;
-    }
-    
-    .impact-stats {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 1rem;
     }
     
     .cta-content h2 {
@@ -441,21 +519,15 @@
         padding: 0 1.5rem 1.5rem;
     }
     
-    .area-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 24px;
+    .program-card {
+        padding: 1.5rem;
     }
     
-    .impact-stat {
-        padding: 1rem;
+    .service-text h3 {
+        font-size: 1.5rem;
     }
     
-    .impact-number {
-        font-size: 2rem;
-    }
-    
-    .impact-stats {
-        grid-template-columns: 1fr;
+    .cta-content h2 {
+        font-size: 1.75rem;
     }
 } 
