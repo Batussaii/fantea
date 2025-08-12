@@ -1,0 +1,20 @@
+{
+  "name": "fantea-cms",
+  "version": "1.0.0",
+  "description": "Sistema CMS para FANTEA",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": ["cms", "fantea", "autismo"],
+  "author": "FANTEA",
+  "license": "MIT"
+}

@@ -1,13 +1,23 @@
-# Usar nginx como servidor web
-FROM nginx:alpine
+# Usar Node.js como base
+FROM node:18-alpine
 
-# Copiar archivos del sitio web al directorio de nginx
-COPY . /usr/share/nginx/html
+# Establecer directorio de trabajo
+WORKDIR /app
 
-# Copiar configuración personalizada de nginx
-COPY nginx.conf /etc/nginx/nginx.conf
+# Copiar package.json y package-lock.json
+COPY package*.json ./
 
-# Exponer puerto 8080 (requerido por Fly.io)
+# Instalar dependencias
+RUN npm ci --only=production
+
+# Copiar todo el código fuente
+COPY . .
+
+# Crear directorio para datos del CMS
+RUN mkdir -p /app/data
+
+# Exponer puerto
 EXPOSE 8080
 
-# Nginx se ejecuta automáticamente 
+# Comando para iniciar el servidor
+CMD ["node", "server.js"] 

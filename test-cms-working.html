@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CMS Funcionando - FANTEA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .warning { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+        
+        .test-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 10px 5px;
+            font-size: 16px;
+        }
+        .test-button:hover { background: #0056b3; }
+        .test-button:disabled { background: #6c757d; cursor: not-allowed; }
+        
+        .data-display {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 14px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        h1 { color: #333; text-align: center; }
+        h2 { color: #555; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Test CMS FANTEA - Funcionando</h1>
+        
+        <div id="config-status" class="status info">
+            ⏳ Cargando configuración...
+        </div>
+        
+        <h2>1. Test de Configuración</h2>
+        <button class="test-button" onclick="testConfig()">Probar Configuración</button>
+        <div id="config-display" class="data-display"></div>
+        
+        <h2>2. Test de Conexión al Servidor</h2>
+        <button class="test-button" onclick="testConnection()">Probar Conexión</button>
+        <div id="connection-status" class="status info">⏳ Esperando prueba...</div>
+        
+        <h2>3. Test de Carga de Datos</h2>
+        <button class="test-button" onclick="testLoadData()">Cargar Datos</button>
+        <div id="load-status" class="status info">⏳ Esperando prueba...</div>
+        <div id="data-display" class="data-display"></div>
+        
+        <h2>4. Test de Guardado</h2>
+        <button class="test-button" onclick="testSaveData()">Guardar Datos de Prueba</button>
+        <div id="save-status" class="status info">⏳ Esperando prueba...</div>
+        
+        <h2>5. Test de CMS Sync</h2>
+        <button class="test-button" onclick="testCMSSync()">Probar CMS Sync</button>
+        <div id="sync-status" class="status info">⏳ Esperando prueba...</div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/cms-sync.js"></script>
+    <script>
+        // Función para mostrar estado
+        function showStatus(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.innerHTML = message;
+            element.className = `status ${type}`;
+        }
+
+        // Test 1: Configuración
+        function testConfig() {
+            try {
+                const config = CMS_CONFIG.debug.info;
+                document.getElementById('config-display').textContent = JSON.stringify(config, null, 2);
+                showStatus('config-status', '✅ Configuración cargada correctamente', 'success');
+            } catch (error) {
+                showStatus('config-status', `❌ Error en configuración: ${error.message}`, 'error');
+            }
+        }
+
+        // Test 2: Conexión
+        async function testConnection() {
+            try {
+                showStatus('connection-status', '⏳ Probando conexión...', 'info');
+                const response = await fetch(CMS_CONFIG.apiUrls.load);
+                
+                if (response.ok) {
+                    showStatus('connection-status', '✅ Servidor funcionando correctamente', 'success');
+                } else {
+                    showStatus('connection-status', `❌ Error del servidor: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                showStatus('connection-status', `❌ No se puede conectar: ${error.message}`, 'error');
+            }
+        }
+
+        // Test 3: Cargar datos
+        async function testLoadData() {
+            try {
+                showStatus('load-status', '⏳ Cargando datos...', 'info');
+                const response = await fetch(CMS_CONFIG.apiUrls.load);
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.success) {
+                        document.getElementById('data-display').textContent = JSON.stringify(result.data, null, 2);
+                        showStatus('load-status', '✅ Datos cargados correctamente', 'success');
+                    } else {
+                        showStatus('load-status', '❌ Error en respuesta del servidor', 'error');
+                    }
+                } else {
+                    showStatus('load-status', `❌ Error del servidor: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                showStatus('load-status', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Test 4: Guardar datos
+        async function testSaveData() {
+            try {
+                showStatus('save-status', '⏳ Guardando datos...', 'info');
+                
+                const testData = {
+                    title: 'Test CMS - ' + new Date().toLocaleString(),
+                    description: 'Datos de prueba guardados desde el test',
+                    timestamp: new Date().toISOString()
+                };
+
+                const response = await fetch(CMS_CONFIG.apiUrls.save, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        section: 'test-working',
+                        data: testData,
+                        user: 'test-user'
+                    })
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    showStatus('save-status', `✅ Datos guardados: ${result.message}`, 'success');
+                } else {
+                    showStatus('save-status', `❌ Error guardando: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                showStatus('save-status', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Test 5: CMS Sync
+        async function testCMSSync() {
+            try {
+                showStatus('sync-status', '⏳ Inicializando CMS Sync...', 'info');
+                
+                // Crear instancia del CMS Sync
+                const cmsSync = new CMSSync();
+                
+                // Esperar a que se inicialice
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                showStatus('sync-status', '✅ CMS Sync funcionando correctamente', 'success');
+            } catch (error) {
+                showStatus('sync-status', `❌ Error en CMS Sync: ${error.message}`, 'error');
+            }
+        }
+
+        // Inicialización automática
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                testConfig();
+                testConnection();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

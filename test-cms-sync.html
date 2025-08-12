@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CMS Sync - FANTEA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .test-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #0056b3;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test CMS Sync - FANTEA</h1>
+    
+    <div class="test-section">
+        <h2>1. Test de Guardado de Datos</h2>
+        <p>Este botón simula guardar datos en el localStorage como lo haría el dashboard:</p>
+        <button class="test-button" onclick="testSaveData()">Guardar Datos de Prueba</button>
+        <div id="save-status"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Test de Carga de Datos</h2>
+        <p>Este botón carga los datos guardados y los muestra:</p>
+        <button class="test-button" onclick="testLoadData()">Cargar Datos Guardados</button>
+        <div id="load-status"></div>
+        <pre id="data-display"></pre>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Test de Sincronización</h2>
+        <p>Este botón simula la aplicación de cambios del CMS:</p>
+        <button class="test-button" onclick="testSync()">Aplicar Cambios CMS</button>
+        <div id="sync-status"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>4. Test de Comunicación entre Pestañas</h2>
+        <p>Este botón envía un mensaje que debería ser recibido por otras pestañas:</p>
+        <button class="test-button" onclick="testBroadcast()">Enviar Mensaje Broadcast</button>
+        <div id="broadcast-status"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>5. Limpiar Datos</h2>
+        <p>Este botón limpia todos los datos de prueba:</p>
+        <button class="test-button" onclick="clearTestData()" style="background: #dc3545;">Limpiar Datos</button>
+        <div id="clear-status"></div>
+    </div>
+
+    <script src="js/cms-sync.js"></script>
+    <script>
+        // Función para mostrar estado
+        function showStatus(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.innerHTML = `<div class="status ${type}">${message}</div>`;
+        }
+
+        // Test 1: Guardar datos de prueba
+        function testSaveData() {
+            try {
+                const testData = {
+                    'hero': {
+                        title: 'Título de Prueba - Actualizado',
+                        description: 'Descripción de prueba actualizada desde el dashboard',
+                        image: 'images/test-image.jpg',
+                        lastModified: new Date().toISOString(),
+                        modifiedBy: 'admin'
+                    },
+                    'stats': {
+                        stats: [
+                            { number: '1 de 100', description: 'niños tienen autismo' },
+                            { number: '500+', description: 'familias andaluzas apoyadas' },
+                            { number: '15', description: 'años de experiencia' },
+                            { number: '35+', description: 'asociaciones afiliadas' }
+                        ],
+                        lastModified: new Date().toISOString(),
+                        modifiedBy: 'admin'
+                    },
+                    'asociaciones-list': {
+                        sectionTitle: 'Nuestras Asociaciones - Actualizado',
+                        subtitle: 'Subtítulo actualizado desde el dashboard',
+                        introText: 'Texto de introducción actualizado',
+                        associations: [
+                            {
+                                name: 'Asociación Autismo El Puerto Santa Maria',
+                                province: 'Cádiz',
+                                description: 'Descripción actualizada de la asociación',
+                                website: 'https://ejemplo-actualizado.org'
+                            },
+                            {
+                                name: 'Asociación Autismo Mijas-Fuengirola',
+                                province: 'Málaga',
+                                description: 'Asociación comprometida con la inclusión',
+                                website: 'https://autismomijasfuengirola.org'
+                            }
+                        ],
+                        lastModified: new Date().toISOString(),
+                        modifiedBy: 'admin'
+                    }
+                };
+
+                localStorage.setItem('fantea_cms_data', JSON.stringify(testData));
+                
+                // Disparar evento de actualización
+                window.dispatchEvent(new CustomEvent('cms-data-updated', {
+                    detail: { section: 'hero', data: testData.hero }
+                }));
+
+                showStatus('save-status', '✅ Datos guardados correctamente en localStorage', 'success');
+                
+                // También probar BroadcastChannel si está disponible
+                if (typeof BroadcastChannel !== 'undefined') {
+                    try {
+                        const channel = new BroadcastChannel('fantea-cms');
+                        channel.postMessage({
+                            type: 'CMS_UPDATE',
+                            section: 'hero',
+                            data: testData.hero,
+                            timestamp: Date.now()
+                        });
+                        channel.close();
+                        showStatus('save-status', '✅ Datos guardados y mensaje broadcast enviado', 'success');
+                    } catch (e) {
+                        showStatus('save-status', '✅ Datos guardados (broadcast falló: ' + e.message + ')', 'success');
+                    }
+                }
+                
+            } catch (error) {
+                showStatus('save-status', '❌ Error al guardar datos: ' + error.message, 'error');
+            }
+        }
+
+        // Test 2: Cargar datos guardados
+        function testLoadData() {
+            try {
+                const data = localStorage.getItem('fantea_cms_data');
+                if (data) {
+                    const parsedData = JSON.parse(data);
+                    document.getElementById('data-display').textContent = JSON.stringify(parsedData, null, 2);
+                    showStatus('load-status', '✅ Datos cargados correctamente', 'success');
+                } else {
+                    showStatus('load-status', 'ℹ️ No hay datos guardados', 'info');
+                }
+            } catch (error) {
+                showStatus('load-status', '❌ Error al cargar datos: ' + error.message, 'error');
+            }
+        }
+
+        // Test 3: Probar sincronización
+        function testSync() {
+            try {
+                // Crear una instancia del CMS Sync
+                const cmsSync = new CMSSync();
+                cmsSync.applyCMSChanges();
+                showStatus('sync-status', '✅ Cambios CMS aplicados correctamente', 'success');
+            } catch (error) {
+                showStatus('sync-status', '❌ Error al aplicar cambios: ' + error.message, 'error');
+            }
+        }
+
+        // Test 4: Probar broadcast
+        function testBroadcast() {
+            try {
+                if (typeof BroadcastChannel !== 'undefined') {
+                    const channel = new BroadcastChannel('fantea-cms');
+                    channel.postMessage({
+                        type: 'CMS_UPDATE',
+                        section: 'test',
+                        data: { message: 'Mensaje de prueba desde test-cms-sync.html' },
+                        timestamp: Date.now()
+                    });
+                    channel.close();
+                    showStatus('broadcast-status', '✅ Mensaje broadcast enviado correctamente', 'success');
+                } else {
+                    showStatus('broadcast-status', 'ℹ️ BroadcastChannel no disponible en este navegador', 'info');
+                }
+            } catch (error) {
+                showStatus('broadcast-status', '❌ Error al enviar broadcast: ' + error.message, 'error');
+            }
+        }
+
+        // Test 5: Limpiar datos
+        function clearTestData() {
+            try {
+                localStorage.removeItem('fantea_cms_data');
+                document.getElementById('data-display').textContent = '';
+                showStatus('clear-status', '✅ Datos limpiados correctamente', 'success');
+            } catch (error) {
+                showStatus('clear-status', '❌ Error al limpiar datos: ' + error.message, 'error');
+            }
+        }
+
+        // Escuchar mensajes broadcast
+        if (typeof BroadcastChannel !== 'undefined') {
+            try {
+                const channel = new BroadcastChannel('fantea-cms');
+                channel.addEventListener('message', (event) => {
+                    if (event.data && event.data.type === 'CMS_UPDATE') {
+                        console.log('Mensaje broadcast recibido:', event.data);
+                        showStatus('broadcast-status', '📨 Mensaje broadcast recibido: ' + JSON.stringify(event.data), 'info');
+                    }
+                });
+            } catch (e) {
+                console.log('No se pudo inicializar BroadcastChannel:', e);
+            }
+        }
+
+        // Mostrar estado inicial
+        document.addEventListener('DOMContentLoaded', function() {
+            showStatus('load-status', 'ℹ️ Página cargada. Usa los botones para probar el sistema CMS.', 'info');
+        });
+    </script>
+</body>
+</html> 

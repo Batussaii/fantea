@@ -5,20 +5,39 @@
 
 class CMSSync {
     constructor() {
-        this.cmsData = this.loadCMSData();
+        this.cmsData = {};
         this.currentPage = this.getCurrentPage();
         console.log('CMS Sync iniciado para página:', this.currentPage);
-        console.log('Datos CMS cargados:', this.cmsData);
+        this.initialize();
     }
 
-    // Cargar datos del CMS desde localStorage
-    loadCMSData() {
+    async initialize() {
+        this.cmsData = await this.loadCMSData();
+        console.log('Datos CMS cargados:', this.cmsData);
+        this.applyCMSChanges();
+    }
+
+    // Cargar datos del CMS desde la API del servidor
+    async loadCMSData() {
         try {
-            const data = localStorage.getItem('fantea_cms_data');
-            return data ? JSON.parse(data) : {};
+            const response = await fetch(CMS_CONFIG.apiUrls.load);
+            if (response.ok) {
+                const result = await response.json();
+                return result.success ? result.data : {};
+            } else {
+                console.warn('Error en respuesta del servidor:', response.status);
+                return {};
+            }
         } catch (error) {
-            console.warn('Error cargando datos CMS:', error);
-            return {};
+            console.warn('Error cargando datos CMS desde servidor:', error);
+            // Fallback a localStorage si el servidor no está disponible
+            try {
+                const data = localStorage.getItem('fantea_cms_data');
+                return data ? JSON.parse(data) : {};
+            } catch (localError) {
+                console.warn('Error cargando datos CMS desde localStorage:', localError);
+                return {};
+            }
         }
     }
 
@@ -27,6 +46,20 @@ class CMSSync {
         const path = window.location.pathname;
         if (path.includes('index.html') || path === '/' || path.endsWith('/')) {
             return 'inicio';
+        } else if (path.includes('quienes-somos.html')) {
+            return 'quienes-somos';
+        } else if (path.includes('asociaciones.html')) {
+            return 'asociaciones';
+        } else if (path.includes('areas.html')) {
+            return 'areas';
+        } else if (path.includes('manifiesto.html')) {
+            return 'manifiesto';
+        } else if (path.includes('prensa.html')) {
+            return 'prensa';
+        } else if (path.includes('afiliate.html')) {
+            return 'afiliate';
+        } else if (path.includes('contacto.html')) {
+            return 'contacto';
         } else if (path.includes('nosotros.html')) {
             return 'nosotros';
         } else if (path.includes('autismo.html')) {
@@ -35,10 +68,6 @@ class CMSSync {
             return 'servicios';
         } else if (path.includes('actualidad.html')) {
             return 'actualidad';
-        } else if (path.includes('afiliate.html')) {
-            return 'afiliate';
-        } else if (path.includes('contacto.html')) {
-            return 'contacto';
         }
         return 'unknown';
     }
@@ -54,6 +83,27 @@ class CMSSync {
             case 'inicio':
                 this.applyInicioChanges();
                 break;
+            case 'quienes-somos':
+                this.applyQuienesSomosChanges();
+                break;
+            case 'asociaciones':
+                this.applyAsociacionesChanges();
+                break;
+            case 'areas':
+                this.applyAreasChanges();
+                break;
+            case 'manifiesto':
+                this.applyManifiestoChanges();
+                break;
+            case 'prensa':
+                this.applyPrensaChanges();
+                break;
+            case 'afiliate':
+                this.applyAfiliateChanges();
+                break;
+            case 'contacto':
+                this.applyContactoChanges();
+                break;
             case 'nosotros':
                 this.applyNosotrosChanges();
                 break;
@@ -66,14 +116,8 @@ class CMSSync {
             case 'actualidad':
                 this.applyActualidadChanges();
                 break;
-            case 'afiliate':
-                this.applyAfiliateChanges();
-                break;
-            case 'contacto':
-                this.applyContactoChanges();
-                break;
             default:
-                console.log('Página no reconocida para aplicar cambios CMS');
+                console.log('Página no reconocida para aplicar cambios CMS:', this.currentPage);
         }
     }
 
@@ -89,22 +133,6 @@ class CMSSync {
         }
 
         // Stats Section (estadísticas en hero-stats)
-        if (this.cmsData.stats && this.cmsData.stats.items) {
-            this.cmsData.stats.items.forEach((stat, index) => {
-                this.updateTextContent(`.hero-stats .stat-item:nth-child(${index + 1}) .stat-number`, stat.number);
-                this.updateTextContent(`.hero-stats .stat-item:nth-child(${index + 1}) .stat-text`, stat.label);
-            });
-        }
-
-        // Features Section (características principales)
-        if (this.cmsData.features && this.cmsData.features.items) {
-            this.cmsData.features.items.forEach((feature, index) => {
-                this.updateTextContent(`.features-grid .feature-card:nth-child(${index + 1}) h3`, feature.title);
-                this.updateTextContent(`.features-grid .feature-card:nth-child(${index + 1}) p`, feature.description);
-            });
-        }
-
-        // Stats Section - actualizar las estadísticas en hero-stats
         if (this.cmsData.stats && this.cmsData.stats.stats) {
             this.cmsData.stats.stats.forEach((stat, index) => {
                 this.updateTextContent(`.hero-stats .stat-item:nth-child(${index + 1}) .stat-number`, stat.number);
@@ -112,7 +140,7 @@ class CMSSync {
             });
         }
 
-        // Features Section - sección de características principales
+        // Features Section (características principales)
         if (this.cmsData.features) {
             if (this.cmsData.features.title) {
                 this.updateTextContent('.featured-sections .section-header h2', this.cmsData.features.title);
@@ -139,17 +167,243 @@ class CMSSync {
             this.updateTextContent('.cta-section p', this.cmsData.cta.description);
         }
 
-        // News Section (últimas noticias) - mantener como estaba pero mejorar
-        if (this.cmsData.news && this.cmsData.news.items) {
-            this.cmsData.news.items.forEach((item, index) => {
-                this.updateTextContent(`.news-grid .news-card:nth-child(${index + 1}) h3`, item.title);
-                this.updateTextContent(`.news-grid .news-card:nth-child(${index + 1}) p`, item.summary);
-                this.updateImageSrc(`.news-grid .news-card:nth-child(${index + 1}) .news-image`, item.image);
-                this.updateTextContent(`.news-grid .news-card:nth-child(${index + 1}) .news-category`, item.category);
-            });
+        console.log('Cambios de Inicio aplicados');
+    }
+
+    // Aplicar cambios a página de Quienes Somos
+    applyQuienesSomosChanges() {
+        console.log('Aplicando cambios CMS a página de Quienes Somos...');
+
+        // Header Section
+        if (this.cmsData['quienes-somos-header']) {
+            this.updateTextContent('.hero-title', this.cmsData['quienes-somos-header'].title);
+            this.updateTextContent('.hero-description', this.cmsData['quienes-somos-header'].description);
         }
 
-        console.log('Cambios de Inicio aplicados');
+        // History Section
+        if (this.cmsData.history) {
+            if (this.cmsData.history.title) {
+                this.updateTextContent('.our-history .section-header h2', this.cmsData.history.title);
+            }
+            if (this.cmsData.history.subtitle) {
+                this.updateTextContent('.our-history .section-header p', this.cmsData.history.subtitle);
+            }
+            
+            // Timeline Section
+            if (this.cmsData.history.timeline) {
+                const timelineContainer = document.querySelector('.history-timeline');
+                if (timelineContainer) {
+                    timelineContainer.innerHTML = '';
+                    this.cmsData.history.timeline.forEach(item => {
+                        const timelineItem = document.createElement('div');
+                        timelineItem.className = 'timeline-item';
+                        timelineItem.innerHTML = `
+                            <div class="timeline-year">${item.year}</div>
+                            <div class="timeline-content">
+                                <h3>${item.title}</h3>
+                                <p>${item.description}</p>
+                            </div>
+                        `;
+                        timelineContainer.appendChild(timelineItem);
+                    });
+                }
+            }
+        }
+
+        console.log('Cambios de Quienes Somos aplicados');
+    }
+
+    // Aplicar cambios a página de Asociaciones
+    applyAsociacionesChanges() {
+        console.log('Aplicando cambios CMS a página de Asociaciones...');
+
+        // Header Section
+        if (this.cmsData['asociaciones-header']) {
+            this.updateTextContent('.hero-title', this.cmsData['asociaciones-header'].title);
+            this.updateTextContent('.hero-description', this.cmsData['asociaciones-header'].description);
+        }
+
+        // Associations List Section
+        if (this.cmsData['asociaciones-list']) {
+            if (this.cmsData['asociaciones-list'].sectionTitle) {
+                this.updateTextContent('.associations-section .section-header h2', this.cmsData['asociaciones-list'].sectionTitle);
+            }
+            if (this.cmsData['asociaciones-list'].subtitle) {
+                this.updateTextContent('.associations-section .section-header p', this.cmsData['asociaciones-list'].subtitle);
+            }
+            if (this.cmsData['asociaciones-list'].introText) {
+                this.updateTextContent('.associations-intro p', this.cmsData['asociaciones-list'].introText);
+            }
+            
+            // Associations List
+            if (this.cmsData['asociaciones-list'].associations) {
+                const associationsContainer = document.querySelector('.associations-grid');
+                if (associationsContainer) {
+                    associationsContainer.innerHTML = '';
+                    this.cmsData['asociaciones-list'].associations.forEach(association => {
+                        const associationCard = document.createElement('div');
+                        associationCard.className = 'association-card';
+                        associationCard.innerHTML = `
+                            <div class="association-content">
+                                <h3>${association.name}</h3>
+                                <p class="association-province">${association.province}</p>
+                                <p class="association-description">${association.description}</p>
+                                ${association.website ? `<a href="${association.website}" class="association-link" target="_blank">Visitar web</a>` : ''}
+                            </div>
+                        `;
+                        associationsContainer.appendChild(associationCard);
+                    });
+                }
+            }
+        }
+
+        console.log('Cambios de Asociaciones aplicados');
+    }
+
+    // Aplicar cambios a página de Áreas
+    applyAreasChanges() {
+        console.log('Aplicando cambios CMS a página de Áreas...');
+
+        // Header Section
+        if (this.cmsData['areas-header']) {
+            this.updateTextContent('.hero-title', this.cmsData['areas-header'].title);
+            this.updateTextContent('.hero-description', this.cmsData['areas-header'].description);
+        }
+
+        // Areas List Section
+        if (this.cmsData['areas-list']) {
+            if (this.cmsData['areas-list'].sectionTitle) {
+                this.updateTextContent('.areas-section .section-header h2', this.cmsData['areas-list'].sectionTitle);
+            }
+            if (this.cmsData['areas-list'].subtitle) {
+                this.updateTextContent('.areas-section .section-header p', this.cmsData['areas-list'].subtitle);
+            }
+            
+            // Areas List
+            if (this.cmsData['areas-list'].areas) {
+                const areasContainer = document.querySelector('.areas-grid');
+                if (areasContainer) {
+                    areasContainer.innerHTML = '';
+                    this.cmsData['areas-list'].areas.forEach(area => {
+                        const areaCard = document.createElement('div');
+                        areaCard.className = 'area-card';
+                        areaCard.innerHTML = `
+                            <div class="area-icon">
+                                <i class="${area.icon}"></i>
+                            </div>
+                            <div class="area-content">
+                                <h3>${area.title}</h3>
+                                <p>${area.description}</p>
+                            </div>
+                        `;
+                        areasContainer.appendChild(areaCard);
+                    });
+                }
+            }
+        }
+
+        console.log('Cambios de Áreas aplicados');
+    }
+
+    // Aplicar cambios a página de Manifiesto
+    applyManifiestoChanges() {
+        console.log('Aplicando cambios CMS a página de Manifiesto...');
+
+        // Header Section
+        if (this.cmsData['manifiesto-header']) {
+            this.updateTextContent('.hero-title', this.cmsData['manifiesto-header'].title);
+            this.updateTextContent('.hero-description', this.cmsData['manifiesto-header'].description);
+        }
+
+        // Manifesto Content Section
+        if (this.cmsData['manifiesto-content']) {
+            if (this.cmsData['manifiesto-content'].sectionTitle) {
+                this.updateTextContent('.manifesto-section .section-header h2', this.cmsData['manifiesto-content'].sectionTitle);
+            }
+            if (this.cmsData['manifiesto-content'].introText) {
+                this.updateTextContent('.manifesto-intro p', this.cmsData['manifiesto-content'].introText);
+            }
+            
+            // Principles List
+            if (this.cmsData['manifiesto-content'].principles) {
+                const principlesContainer = document.querySelector('.principles-grid');
+                if (principlesContainer) {
+                    principlesContainer.innerHTML = '';
+                    this.cmsData['manifiesto-content'].principles.forEach(principle => {
+                        const principleCard = document.createElement('div');
+                        principleCard.className = 'principle-card';
+                        principleCard.innerHTML = `
+                            <div class="principle-content">
+                                <h3>${principle.title}</h3>
+                                <p>${principle.description}</p>
+                            </div>
+                        `;
+                        principlesContainer.appendChild(principleCard);
+                    });
+                }
+            }
+        }
+
+        console.log('Cambios de Manifiesto aplicados');
+    }
+
+    // Aplicar cambios a página de Prensa
+    applyPrensaChanges() {
+        console.log('Aplicando cambios CMS a página de Prensa...');
+
+        // Header Section
+        if (this.cmsData['prensa-header']) {
+            this.updateTextContent('.hero-title', this.cmsData['prensa-header'].title);
+            this.updateTextContent('.hero-description', this.cmsData['prensa-header'].description);
+        }
+
+        // Press Content Section
+        if (this.cmsData['prensa-content']) {
+            if (this.cmsData['prensa-content'].sectionTitle) {
+                this.updateTextContent('.press-section .section-header h2', this.cmsData['prensa-content'].sectionTitle);
+            }
+            if (this.cmsData['prensa-content'].introText) {
+                this.updateTextContent('.press-intro p', this.cmsData['prensa-content'].introText);
+            }
+            
+            // Contact Info
+            if (this.cmsData['prensa-content'].contactInfo) {
+                const contactInfo = this.cmsData['prensa-content'].contactInfo;
+                
+                if (contactInfo.email) {
+                    this.updateTextContent('.press-contact .contact-email', contactInfo.email);
+                }
+                if (contactInfo.phone) {
+                    this.updateTextContent('.press-contact .contact-phone', contactInfo.phone);
+                }
+                if (contactInfo.hours) {
+                    this.updateTextContent('.press-contact .contact-hours', contactInfo.hours);
+                }
+            }
+            
+            // Press Releases
+            if (this.cmsData['prensa-content'].pressReleases) {
+                const pressReleasesContainer = document.querySelector('.press-releases-grid');
+                if (pressReleasesContainer) {
+                    pressReleasesContainer.innerHTML = '';
+                    this.cmsData['prensa-content'].pressReleases.forEach(release => {
+                        const releaseCard = document.createElement('div');
+                        releaseCard.className = 'press-release-card';
+                        releaseCard.innerHTML = `
+                            <div class="release-content">
+                                <span class="release-date">${release.date}</span>
+                                <h3>${release.title}</h3>
+                                <p>${release.summary}</p>
+                                ${release.pdfUrl ? `<a href="${release.pdfUrl}" class="release-link" target="_blank">Descargar PDF</a>` : ''}
+                            </div>
+                        `;
+                        pressReleasesContainer.appendChild(releaseCard);
+                    });
+                }
+            }
+        }
+
+        console.log('Cambios de Prensa aplicados');
     }
 
     // Aplicar cambios a página de Nosotros

@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="../js/config.js"></script>
 </head>
 <body class="admin-panel">
     <!-- Admin Navigation -->
@@ -682,11 +683,11 @@
                                     </div>
                                 </div>
                                 <div class="cms-actions">
-                                    <button class="btn-small btn-secondary" onclick="resetSection('stats')">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="stats">
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary" onclick="saveSection('stats')">
+                                    <button class="btn-small btn-primary save-section-btn" data-section="stats">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -781,11 +782,11 @@
                                 </div>
                                 
                                 <div class="cms-actions">
-                                    <button class="btn-small btn-secondary" onclick="resetSection('features')">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="features">
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary" onclick="saveSection('features')">
+                                    <button class="btn-small btn-primary save-section-btn" data-section="features">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -817,7 +818,7 @@
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary" onclick="saveSection('cta')">
+                                    <button class="btn-small btn-primary save-section-btn" data-section="cta">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -852,7 +853,7 @@
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary" onclick="saveSection('quienes-somos-header')">
+                                    <button class="btn-small btn-primary save-section-btn" data-section="quienes-somos-header">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -964,7 +965,7 @@
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary" onclick="saveSection('history')">
+                                    <button class="btn-small btn-primary save-section-btn" data-section="history">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1025,7 +1026,7 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary" onclick="saveSection('mision-vision')">
+                                    <button class="btn-small btn-primary save-section-btn" data-section="mision-vision">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1058,7 +1059,7 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary" onclick="saveSection('valores')">
+                                    <button class="btn-small btn-primary save-section-btn" data-section="valores">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1093,7 +1094,7 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary" onclick="saveSection('asociaciones-header')">
+                                    <button class="btn-small btn-primary save-section-btn" data-section="asociaciones-header">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1222,11 +1223,11 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                                 </div>
                                 
                                 <div class="cms-actions">
-                                    <button class="btn-small btn-secondary" onclick="resetSection('asociaciones-list')">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="asociaciones-list">
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary" onclick="saveSection('asociaciones-list')">
+                                    <button class="btn-small btn-primary save-section-btn" data-section="asociaciones-list">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1261,7 +1262,7 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary" onclick="saveSection('areas-header')">
+                                    <button class="btn-small btn-primary save-section-btn" data-section="areas-header">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1376,7 +1377,7 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary" onclick="saveSection('areas-list')">
+                                    <button class="btn-small btn-primary save-section-btn" data-section="areas-list">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1411,7 +1412,7 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary" onclick="saveSection('manifiesto-header')">
+                                    <button class="btn-small btn-primary save-section-btn" data-section="manifiesto-header">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1512,7 +1513,7 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary" onclick="saveSection('manifiesto-content')">
+                                    <button class="btn-small btn-primary save-section-btn" data-section="manifiesto-content">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1547,7 +1548,7 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary" onclick="saveSection('prensa-header')">
+                                    <button class="btn-small btn-primary save-section-btn" data-section="prensa-header">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1670,7 +1671,7 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary" onclick="saveSection('prensa-content')">
+                                    <button class="btn-small btn-primary save-section-btn" data-section="prensa-content">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>

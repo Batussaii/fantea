@@ -699,10 +699,10 @@ function initializeActionButtons() {
         if (e.target.closest('.save-section-btn')) {
             e.preventDefault();
             const button = e.target.closest('.save-section-btn');
-            const section = button.getAttribute('data-section') || button.onclick?.toString().match(/'([^']+)'/)?.[1];
+            const section = button.getAttribute('data-section');
             if (section) {
                 console.log('Saving section:', section);
-                saveSection(section);
+                saveSection(section, button);
             }
         }
         
@@ -710,7 +710,7 @@ function initializeActionButtons() {
         if (e.target.closest('.reset-section-btn')) {
             e.preventDefault();
             const button = e.target.closest('.reset-section-btn');
-            const section = button.getAttribute('data-section') || button.onclick?.toString().match(/'([^']+)'/)?.[1];
+            const section = button.getAttribute('data-section');
             if (section) {
                 console.log('Resetting section:', section);
                 resetSection(section);
@@ -783,13 +783,31 @@ function handleImageUpload(event, previewId) {
 /**
  * Save individual section
  */
-function saveSection(sectionName, buttonElement = null) {
+async function saveSection(sectionName, buttonElement = null) {
     console.log('Saving section:', sectionName);
     
     // Find the button if not provided
-    const button = buttonElement || document.querySelector(`[data-section="${sectionName}"].save-section-btn`) || 
-                   Array.from(document.querySelectorAll('button')).find(btn => 
-                       btn.onclick && btn.onclick.toString().includes(`'${sectionName}'`));
+    let button = buttonElement;
+    if (!button) {
+        // Try to find button by data-section attribute
+        button = document.querySelector(`[data-section="${sectionName}"].save-section-btn`);
+        
+        // If not found, try to find by onclick attribute
+        if (!button) {
+            const allButtons = document.querySelectorAll('button');
+            button = Array.from(allButtons).find(btn => 
+                btn.onclick && btn.onclick.toString().includes(`'${sectionName}'`));
+        }
+        
+        // If still not found, try to find by text content
+        if (!button) {
+            const allButtons = document.querySelectorAll('button');
+            button = Array.from(allButtons).find(btn => 
+                btn.textContent.includes('Guardar Sección') && 
+                btn.closest('.cms-section') && 
+                btn.closest('.cms-section').querySelector(`[id*="${sectionName}"]`));
+        }
+    }
     
     let originalText = '';
     if (button) {
@@ -799,14 +817,13 @@ function saveSection(sectionName, buttonElement = null) {
         button.disabled = true;
     }
     
-    // Simulate save operation
-    setTimeout(() => {
+    try {
         // Collect section data
         const sectionData = collectSectionData(sectionName);
         console.log('Section data collected:', sectionData);
         
-        // Save to localStorage (in a real app, this would be sent to server)
-        saveSectionData(sectionName, sectionData);
+        // Save to server
+        const savedToServer = await saveSectionData(sectionName, sectionData);
         
         // Restore button and show success
         if (button) {
@@ -814,12 +831,26 @@ function saveSection(sectionName, buttonElement = null) {
             button.disabled = false;
         }
         
-        showCMSNotification(`Sección "${sectionName}" guardada correctamente`, 'success');
+        if (savedToServer) {
+            showCMSNotification(`Sección "${sectionName}" guardada correctamente en servidor`, 'success');
+        } else {
+            showCMSNotification(`Sección "${sectionName}" guardada en localStorage (servidor no disponible)`, 'warning');
+        }
         
         // Update the actual website content (simulation)
         updateWebsiteContent(sectionName, sectionData);
         
-    }, 1500);
+    } catch (error) {
+        console.error('Error saving section:', error);
+        
+        // Restore button and show error
+        if (button) {
+            button.innerHTML = originalText;
+            button.disabled = false;
+        }
+        
+        showCMSNotification(`Error guardando sección "${sectionName}": ${error.message}`, 'error');
+    }
 }
 
 /**
@@ -1068,14 +1099,52 @@ function collectSectionData(sectionName) {
 /**
  * Save section data to localStorage
  */
-function saveSectionData(sectionName, data) {
-    const currentData = JSON.parse(localStorage.getItem('fantea_cms_data') || '{}');
-    currentData[sectionName] = {
-        ...data,
-        lastModified: new Date().toISOString(),
-        modifiedBy: getCurrentUser()
-    };
-    localStorage.setItem('fantea_cms_data', JSON.stringify(currentData));
+async function saveSectionData(sectionName, data) {
+    try {
+        // Intentar guardar en el servidor primero
+        const response = await fetch(CMS_CONFIG.apiUrls.save, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                section: sectionName,
+                data: data,
+                user: getCurrentUser()
+            })
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log('Datos guardados en servidor:', result);
+            
+            // También guardar en localStorage como backup
+            const currentData = JSON.parse(localStorage.getItem('fantea_cms_data') || '{}');
+            currentData[sectionName] = {
+                ...data,
+                lastModified: new Date().toISOString(),
+                modifiedBy: getCurrentUser()
+            };
+            localStorage.setItem('fantea_cms_data', JSON.stringify(currentData));
+            
+            return true;
+        } else {
+            throw new Error(`Error del servidor: ${response.status}`);
+        }
+    } catch (error) {
+        console.warn('Error guardando en servidor, usando localStorage como fallback:', error);
+        
+        // Fallback a localStorage
+        const currentData = JSON.parse(localStorage.getItem('fantea_cms_data') || '{}');
+        currentData[sectionName] = {
+            ...data,
+            lastModified: new Date().toISOString(),
+            modifiedBy: getCurrentUser()
+        };
+        localStorage.setItem('fantea_cms_data', JSON.stringify(currentData));
+        
+        return false;
+    }
 }
 
 /**
