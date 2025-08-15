@@ -1,0 +1,255 @@
+{
+  "page": "inicio",
+  "title": "FANTEA - Inicio",
+  "meta_description": "Federación Andaluza de Autismo. Organización sin ánimo de lucro que agrupa asociaciones de autismo de Andalucía, defendiendo derechos y promoviendo la inclusión de personas autistas y familias",
+  "last_updated": "2025-08-15T12:03:53.359Z",
+  "sections": {
+    "hero": {
+      "title": "Unidos por la diversidad, comprometidos con el autismo en Andalucíaaaaaaa",
+      "title_highlight": "comprometidos con el autismooooo",
+      "description": "FANTEA es la federación que une a las asociaciones de autismo de toda Andalucía para defender derechos, promover inclusión y ofrecer recursos especializados a personas autistas y sus familiasssss.",
+      "image": {
+        "src": "images/hero-inclusive.jpg",
+        "alt": "Familia diversa con niño autista sonriendo"
+      },
+      "buttons": {
+        "about": {
+          "text": "Conócenosssss",
+          "url": "nosotros.html"
+        },
+        "affiliate": {
+          "text": "Afíliateeeee",
+          "url": "afiliate.html"
+        },
+        "donate": {
+          "text": "Haz una Donaciónnnn",
+          "url": "afiliate.html#donaciones"
+        }
+      }
+    },
+    "stats": {
+      "title": "Estadísticassssss",
+      "items": {
+        "0": {
+          "number": "1 de 100000",
+          "text": "niños tienen autismooooo"
+        },
+        "1": {
+          "number": "500+",
+          "text": "familias andaluzas apoyadas"
+        },
+        "2": {
+          "number": "15",
+          "text": "años de experiencia"
+        },
+        "3": {
+          "number": "35+",
+          "text": "asociaciones afiliadas"
+        }
+      }
+    },
+    "pillars": {
+      "title": "Nuestros Pilares Fundamentalesssssss",
+      "subtitle": "Trabajamos en múltiples frentes para construir una sociedad más inclusivaaaaaa",
+      "cards": {
+        "0": {
+          "icon": "fas fa-users",
+          "title": "Quiénes Somossssss",
+          "description": "Conoceeeee FANTEA, la Federación Andaluza TEA que defiende los derechos de las personas autistas y sus familias en Andalucía.",
+          "link": {
+            "text": "Conoce mássss",
+            "url": "quienes-somos.html"
+          }
+        },
+        "1": {
+          "icon": "fas fa-handshake",
+          "title": "Asociaciones Federadassssss",
+          "description": "Descubreeee las asociaciones que forman parte de FANTEA y cómo trabajamos de forma coordinada.",
+          "link": {
+            "text": "Ver asociaciones",
+            "url": "asociaciones.html"
+          }
+        },
+        "2": {
+          "icon": "fas fa-graduation-cap",
+          "title": "Áreas de Trabajo",
+          "description": "Educación, salud, vida adulta, inclusión social y vivienda. Trabajamos en todos los ámbitos de la vida.",
+          "link": {
+            "text": "Ver áreas",
+            "url": "areas.html"
+          }
+        },
+        "3": {
+          "icon": "fas fa-bullhorn",
+          "title": "Nuestro Manifiesto",
+          "description": "Conoce nuestros compromisos y valores para defender los derechos del colectivo TEA en Andalucía.",
+          "link": {
+            "text": "Leer manifiesto",
+            "url": "manifiesto.html"
+          }
+        }
+      }
+    },
+    "news": {
+      "title": "Últimas Noticiassssss",
+      "view_all_text": "Ver todas las noticias",
+      "view_all_url": "prensa.html",
+      "articles": {
+        "0": {
+          "featured": true,
+          "image": {
+            "src": "images/news-1.jpg",
+            "alt": "Investigación sobre autismo"
+          },
+          "category": "Investigación",
+          "title": "Nuevos avances en diagnóstico temprano del autismo",
+          "excerpt": "Investigadores desarrollan herramientas más precisas para la detección temprana del espectro autista...",
+          "date": "15 de Marzo, 2024",
+          "url": "#"
+        },
+        "1": {
+          "featured": false,
+          "image": {
+            "src": "images/news-2.jpg",
+            "alt": "Educación inclusiva"
+          },
+          "category": "Educación",
+          "title": "Nueva guía para la inclusión educativa",
+          "excerpt": "Publicamos recursos actualizados para centros educativos...",
+          "date": "12 de Marzo, 2024",
+          "url": "#"
+        },
+        "2": {
+          "featured": false,
+          "image": {
+            "src": "images/news-3.jpg",
+            "alt": "Jornada Nacional de Autismo"
+          },
+          "category": "Eventos",
+          "title": "Jornada Nacional de Autismo 2024",
+          "excerpt": "Ven a participar en nuestro evento anual el próximo mes...",
+          "date": "8 de Marzo, 2024",
+          "url": "#"
+        }
+      }
+    },
+    "cta": {
+      "title": "Únete a Nuestra Comunidaddddddd",
+      "description": "Forma parte del cambio hacia una sociedad más inclusiva y accesible para las personas autistas y sus familias.",
+      "buttons": {
+        "0": {
+          "text": "Afíliate Ahora",
+          "url": "afiliate.html",
+          "style": "white"
+        },
+        "1": {
+          "text": "Contactar",
+          "url": "contacto.html",
+          "style": "outline-white"
+        }
+      }
+    }
+  },
+  "footer": {
+    "description": "Federación Andaluza de Autismo. Trabajando por la inclusión y los derechos de las personas autistas en Andalucía desde 2009.",
+    "contact": {
+      "address": "Antequera, Málaga",
+      "phone": "+34 954 123 456",
+      "email": "info@fantea.org"
+    },
+    "social_links": [
+      {
+        "platform": "facebook",
+        "url": "#",
+        "icon": "fab fa-facebook"
+      },
+      {
+        "platform": "twitter",
+        "url": "#",
+        "icon": "fab fa-twitter"
+      },
+      {
+        "platform": "instagram",
+        "url": "#",
+        "icon": "fab fa-instagram"
+      },
+      {
+        "platform": "linkedin",
+        "url": "#",
+        "icon": "fab fa-linkedin"
+      },
+      {
+        "platform": "youtube",
+        "url": "#",
+        "icon": "fab fa-youtube"
+      }
+    ],
+    "navigation": [
+      {
+        "text": "Quiénes Somos",
+        "url": "quienes-somos.html"
+      },
+      {
+        "text": "Asociaciones Federadas",
+        "url": "asociaciones.html"
+      },
+      {
+        "text": "Áreas",
+        "url": "areas.html"
+      },
+      {
+        "text": "Nuestro Manifiesto",
+        "url": "manifiesto.html"
+      },
+      {
+        "text": "Prensa",
+        "url": "prensa.html"
+      },
+      {
+        "text": "Afíliate",
+        "url": "afiliate.html"
+      }
+    ],
+    "resources": [
+      {
+        "text": "Estatutos",
+        "url": "estatutos.html"
+      },
+      {
+        "text": "Guías para Familias",
+        "url": "#"
+      },
+      {
+        "text": "Formación Profesional",
+        "url": "#"
+      },
+      {
+        "text": "Centro de Descargas",
+        "url": "#"
+      },
+      {
+        "text": "Preguntas Frecuentes",
+        "url": "#"
+      },
+      {
+        "text": "Política de Privacidad",
+        "url": "#"
+      }
+    ],
+    "copyright": "© 2024 FANTEA - Federación Andaluza de Autismo. Todos los derechos reservados.",
+    "legal_links": [
+      {
+        "text": "Política de Privacidad",
+        "url": "#"
+      },
+      {
+        "text": "Términos de Uso",
+        "url": "#"
+      },
+      {
+        "text": "Cookies",
+        "url": "#"
+      }
+    ]
+  }
+}

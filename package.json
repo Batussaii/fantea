@@ -8,13 +8,18 @@
     "dev": "nodemon server.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
-    "cors": "^2.8.5"
+    "multer": "^2.0.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
   },
-  "keywords": ["cms", "fantea", "autismo"],
+  "keywords": [
+    "cms",
+    "fantea",
+    "autismo"
+  ],
   "author": "FANTEA",
   "license": "MIT"
 }

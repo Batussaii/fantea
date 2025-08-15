@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CMS API - FANTEA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        button {
+            background-color: #1565C0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background-color: #0d47a1; }
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .urls {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .urls a {
+            color: #1565C0;
+            text-decoration: none;
+        }
+        .urls a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test CMS API - FANTEA</h1>
+        <p>Esta página verifica que el sistema CMS esté funcionando correctamente en fly.io</p>
+        
+        <div class="urls">
+            <h3>🌐 URLs de la Aplicación</h3>
+            <ul>
+                <li><strong>Sitio Web:</strong> <a href="https://fantea.fly.dev" target="_blank">https://fantea.fly.dev</a></li>
+                <li><strong>Dashboard CMS:</strong> <a href="https://fantea.fly.dev/admin/login.html" target="_blank">https://fantea.fly.dev/admin/login.html</a></li>
+                <li><strong>API CMS:</strong> <a href="https://fantea.fly.dev/api/cms/load" target="_blank">https://fantea.fly.dev/api/cms/load</a></li>
+            </ul>
+        </div>
+
+        <h3>🔍 Pruebas del Sistema</h3>
+        
+        <button onclick="testAPI()">Probar API del CMS</button>
+        <button onclick="testSave()">Probar Guardado</button>
+        <button onclick="testLoad()">Probar Carga</button>
+        <button onclick="testWebsite()">Probar Sitio Web</button>
+        
+        <div id="results"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://fantea.fly.dev/api/cms';
+        
+        function addResult(message, type = 'info') {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.innerHTML = `<strong>${new Date().toLocaleTimeString()}:</strong> ${message}`;
+            results.appendChild(div);
+        }
+
+        async function testAPI() {
+            addResult('🔍 Probando API del CMS...', 'info');
+            
+            try {
+                const response = await fetch(`${API_BASE}/load`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    addResult('✅ API funcionando correctamente', 'success');
+                    addResult(`📊 Datos recibidos: ${JSON.stringify(data, null, 2)}`, 'info');
+                } else {
+                    addResult(`❌ Error en API: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                addResult(`❌ Error de conexión: ${error.message}`, 'error');
+            }
+        }
+
+        async function testSave() {
+            addResult('💾 Probando guardado de datos...', 'info');
+            
+            const testData = {
+                section: 'test',
+                data: {
+                    title: 'Test desde fly.io',
+                    description: 'Datos de prueba guardados en el servidor',
+                    timestamp: new Date().toISOString()
+                },
+                user: 'test-user'
+            };
+            
+            try {
+                const response = await fetch(`${API_BASE}/save`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    addResult('✅ Datos guardados correctamente en el servidor', 'success');
+                    addResult(`📊 Respuesta: ${JSON.stringify(result, null, 2)}`, 'info');
+                } else {
+                    addResult(`❌ Error al guardar: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                addResult(`❌ Error de conexión: ${error.message}`, 'error');
+            }
+        }
+
+        async function testLoad() {
+            addResult('📥 Probando carga de datos...', 'info');
+            
+            try {
+                const response = await fetch(`${API_BASE}/load`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    addResult('✅ Datos cargados correctamente', 'success');
+                    
+                    if (Object.keys(data.data).length > 0) {
+                        addResult('📊 Datos encontrados en el servidor:', 'success');
+                        Object.keys(data.data).forEach(section => {
+                            addResult(`   - ${section}: ${JSON.stringify(data.data[section], null, 2)}`, 'info');
+                        });
+                    } else {
+                        addResult('📝 No hay datos guardados aún (normal en primera ejecución)', 'info');
+                    }
+                } else {
+                    addResult(`❌ Error al cargar: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                addResult(`❌ Error de conexión: ${error.message}`, 'error');
+            }
+        }
+
+        async function testWebsite() {
+            addResult('🌐 Probando sitio web...', 'info');
+            
+            try {
+                const response = await fetch('https://fantea.fly.dev');
+                
+                if (response.ok) {
+                    addResult('✅ Sitio web funcionando correctamente', 'success');
+                    addResult(`📊 Tamaño de respuesta: ${response.headers.get('content-length')} bytes`, 'info');
+                } else {
+                    addResult(`❌ Error en sitio web: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                addResult(`❌ Error de conexión: ${error.message}`, 'error');
+            }
+        }
+
+        // Auto-test al cargar la página
+        window.addEventListener('load', () => {
+            addResult('🚀 Iniciando pruebas automáticas...', 'info');
+            setTimeout(testAPI, 1000);
+            setTimeout(testWebsite, 2000);
+        });
+    </script>
+</body>
+</html>

@@ -1,50 +1,4 @@
 {
-  "cta": {
-    "title": "Únete a Nuestra Comunidad",
-    "description": "Forma parte del cambio hacia una sociedad más inclusiva y accesible para las personas autistas y sus familias.",
-    "lastModified": "2025-08-12T21:26:02.901Z",
-    "modifiedBy": "admin"
-  },
-  "quienes-somos-header": {
-    "title": "Quienes Somos",
-    "description": "Federación Andaluza TEA - Defendiendo derechos, construyendo futuro",
-    "lastModified": "2025-08-12T21:26:02.905Z",
-    "modifiedBy": "admin"
-  },
-  "history": {
-    "title": "Nuestra Historia",
-    "subtitle": "15 años de lucha por los derechos del colectivo TEA",
-    "timeline": [
-      {
-        "year": "2009",
-        "title": "Fundación de FANTEA",
-        "description": "Nace la Federación Andaluza TEA con el objetivo de unificar esfuerzos y defender los derechos del colectivo autista en Andalucía."
-      },
-      {
-        "year": "2012",
-        "title": "Primeras Alianzas",
-        "description": "FANTEA logra representar a asociaciones de las 8 provincias andaluzas, consolidándose como la voz unificada del colectivo TEA."
-      },
-      {
-        "year": "2020",
-        "title": "Reconocimiento Institucional",
-        "description": "La federación obtiene reconocimiento oficial y comienza a participar en mesas de trabajo con instituciones públicas."
-      },
-      {
-        "year": "2024",
-        "title": "Liderazgo Nacional",
-        "description": "FANTEA se consolida como referente nacional en la defensa de los derechos del colectivo TEA, con más de 35 asociaciones federadas."
-      }
-    ],
-    "lastModified": "2025-08-12T21:26:02.911Z",
-    "modifiedBy": "admin"
-  },
-  "asociaciones-header": {
-    "title": "Asociaciones Federadas",
-    "description": "Unidos por los derechos del colectivo TEA en Andalucía. Descubre las asociaciones que forman parte de FANTEA y trabajan de forma coordinada por una sociedad más inclusiva.",
-    "lastModified": "2025-08-12T21:26:02.918Z",
-    "modifiedBy": "admin"
-  },
   "asociaciones-list": {
     "sectionTitle": "Nuestras Asociaciones",
     "subtitle": "Actualmente, forman parte de FANTEA las siguientes asociaciones que comparten nuestros valores y objetivos:",
@@ -75,13 +29,7 @@
         "website": "info@autismosevilla.org"
       }
     ],
-    "lastModified": "2025-08-12T21:26:02.925Z",
-    "modifiedBy": "admin"
-  },
-  "areas-header": {
-    "title": "Áreas de Trabajo",
-    "description": "Trabajamos en distintos ámbitos para mejorar la calidad de vida de las personas autistas y sus familias. Descubre cómo abordamos cada área con enfoques especializados y compromiso.",
-    "lastModified": "2025-08-12T21:26:02.939Z",
+    "lastModified": "2025-08-15T11:51:36.519Z",
     "modifiedBy": "admin"
   },
   "areas-list": {
@@ -114,13 +62,13 @@
         "description": "Promovemos opciones de vivienda adaptadas que permitan una vida independiente y digna."
       }
     ],
-    "lastModified": "2025-08-12T21:26:02.946Z",
+    "lastModified": "2025-08-15T11:51:36.525Z",
     "modifiedBy": "admin"
   },
   "manifiesto-header": {
     "title": "Nuestro Manifiesto",
     "description": "Los compromisos y valores que guían nuestra lucha por los derechos del colectivo TEA. Descubre los principios que nos mueven a trabajar por una sociedad más inclusiva y justa.",
-    "lastModified": "2025-08-12T21:26:02.953Z",
+    "lastModified": "2025-08-15T11:51:36.539Z",
     "modifiedBy": "admin"
   },
   "manifiesto-content": {
@@ -148,13 +96,13 @@
         "description": "Fomentamos la unión y la colaboración entre asociaciones para fortalecer la voz del colectivo TEA en Andalucía."
       }
     ],
-    "lastModified": "2025-08-12T21:26:02.960Z",
+    "lastModified": "2025-08-15T11:51:36.550Z",
     "modifiedBy": "admin"
   },
   "prensa-header": {
     "title": "Sala de Prensa",
     "description": "Notas de prensa, comunicados oficiales y apariciones en medios de comunicación. Mantente informado sobre las últimas noticias y actividades de FANTEA.",
-    "lastModified": "2025-08-12T21:26:02.968Z",
+    "lastModified": "2025-08-15T11:51:36.567Z",
     "modifiedBy": "admin"
   },
   "prensa-content": {
@@ -185,19 +133,47 @@
         "pdfUrl": "/comunicados/comunicado-2024-03-08.pdf"
       }
     ],
-    "lastModified": "2025-08-12T21:26:02.975Z",
+    "lastModified": "2025-08-15T11:51:36.582Z",
     "modifiedBy": "admin"
   },
   "afiliate-header": {
     "title": "Únete a Nosotros",
     "description": "Forma parte de la mayor red nacional de apoyo a las personas autistas y sus familias",
-    "lastModified": "2025-08-12T21:26:02.982Z",
+    "lastModified": "2025-08-15T11:51:36.596Z",
+    "modifiedBy": "admin"
+  },
+  "afiliate-membership": {
+    "title": "Formas de Participar",
+    "subtitle": "Elige la modalidad que mejor se adapte a tu situación y únete a nuestra causa",
+    "membershipTypes": [
+      {
+        "tabName": "Asociaciones",
+        "title": "Afiliación de Asociaciones",
+        "description": "Si representas una asociación local o regional dedicada al autismo, únete a nuestra red federal para amplificar tu impacto y acceder a recursos compartidos."
+      },
+      {
+        "tabName": "Familias",
+        "title": "Afiliación de Familias",
+        "description": "Familias con personas autistas pueden unirse para acceder a recursos, apoyo mutuo y participar en nuestras actividades."
+      },
+      {
+        "tabName": "Voluntarios",
+        "title": "Programa de Voluntariado",
+        "description": "Únete como voluntario y contribuye con tu tiempo y habilidades para apoyar a la comunidad autista andaluza."
+      },
+      {
+        "tabName": "Colaboradores",
+        "title": "Colaboración Institucional",
+        "description": "Empresas, instituciones y profesionales pueden colaborar con FANTEA mediante patrocinios, donaciones o servicios especializados."
+      }
+    ],
+    "lastModified": "2025-08-15T11:51:36.607Z",
     "modifiedBy": "admin"
   },
   "contacto-header": {
     "title": "Contacto",
     "description": "Estamos aquí para ayudarte. Contacta con nosotros para cualquier consulta, información o apoyo que necesites",
-    "lastModified": "2025-08-12T21:26:02.999Z",
+    "lastModified": "2025-08-15T11:51:36.628Z",
     "modifiedBy": "admin"
   },
   "contacto-info": {
@@ -218,14 +194,7 @@
       "linkedin": "https://linkedin.com/company/fantea",
       "youtube": "https://youtube.com/fantea"
     },
-    "lastModified": "2025-08-12T21:26:03.005Z",
+    "lastModified": "2025-08-15T11:51:36.638Z",
     "modifiedBy": "admin"
-  },
-  "test-working": {
-    "title": "Test CMS - 12/8/2025, 23:26:48",
-    "description": "Datos de prueba guardados desde el test",
-    "timestamp": "2025-08-12T21:26:48.973Z",
-    "lastModified": "2025-08-12T21:26:48.976Z",
-    "modifiedBy": "test-user"
   }
 }

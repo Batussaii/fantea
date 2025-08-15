@@ -3,19 +3,20 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 
 app = "fantea"
-primary_region = "mad"
+primary_region = "cdg"
 
 [build]
 
 [env]
-  PORT = "8080"
+  PORT = "3001"
+  NODE_ENV = "production"
 
 [http_service]
-  internal_port = 8080
+  internal_port = 3001
   force_https = true
-  auto_stop_machines = true
+  auto_stop_machines = false
   auto_start_machines = true
-  min_machines_running = 0
+  min_machines_running = 1
   processes = ["app"]
 
 [[http_service.checks]]
@@ -29,3 +30,8 @@ primary_region = "mad"
   cpu_kind = "shared"
   cpus = 1
   memory_mb = 512
+
+# Volumen persistente para datos del CMS
+[[mounts]]
+  source = "fantea_data"
+  destination = "/app/data"

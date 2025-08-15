@@ -6,6 +6,10 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Configurar ruta de datos persistente
+const DATA_DIR = process.env.NODE_ENV === 'production' ? '/app/data' : '.';
+const CMS_DATA_FILE = path.join(DATA_DIR, 'cms-data.json');
+
 // Middleware
 app.use(cors());
 app.use(express.json({ limit: '50mb' })); // Aumentar límite para imágenes
@@ -17,13 +21,17 @@ app.post('/api/cms/save', async (req, res) => {
     try {
         const { section, data } = req.body;
         
+        // Asegurar que el directorio existe
+        await fs.mkdir(DATA_DIR, { recursive: true });
+        
         // Cargar datos existentes
         let cmsData = {};
         try {
-            const dataFile = await fs.readFile('cms-data.json', 'utf8');
+            const dataFile = await fs.readFile(CMS_DATA_FILE, 'utf8');
             cmsData = JSON.parse(dataFile);
         } catch (error) {
             // Archivo no existe, empezar con objeto vacío
+            console.log('Creando nuevo archivo de datos CMS');
         }
         
         // Actualizar sección
@@ -34,7 +42,7 @@ app.post('/api/cms/save', async (req, res) => {
         };
         
         // Guardar en archivo
-        await fs.writeFile('cms-data.json', JSON.stringify(cmsData, null, 2));
+        await fs.writeFile(CMS_DATA_FILE, JSON.stringify(cmsData, null, 2));
         
         res.json({ success: true, message: 'Datos guardados correctamente' });
     } catch (error) {
@@ -46,7 +54,7 @@ app.post('/api/cms/save', async (req, res) => {
 // Ruta para cargar datos del CMS
 app.get('/api/cms/load', async (req, res) => {
     try {
-        const dataFile = await fs.readFile('cms-data.json', 'utf8');
+        const dataFile = await fs.readFile(CMS_DATA_FILE, 'utf8');
         const cmsData = JSON.parse(dataFile);
         res.json({ success: true, data: cmsData });
     } catch (error) {
@@ -64,7 +72,7 @@ app.get('/api/cms/load', async (req, res) => {
 app.get('/api/cms/load/:section', async (req, res) => {
     try {
         const { section } = req.params;
-        const dataFile = await fs.readFile('cms-data.json', 'utf8');
+        const dataFile = await fs.readFile(CMS_DATA_FILE, 'utf8');
         const cmsData = JSON.parse(dataFile);
         
         if (cmsData[section]) {

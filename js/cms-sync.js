@@ -23,21 +23,32 @@ class CMSSync {
             const response = await fetch(CMS_CONFIG.apiUrls.load);
             if (response.ok) {
                 const result = await response.json();
-                return result.success ? result.data : {};
+                if (result.success) {
+                    // Guardar en localStorage como caché
+                    localStorage.setItem('fantea_cms_data', JSON.stringify(result.data));
+                    return result.data;
+                } else {
+                    console.warn('Error en respuesta del servidor:', result.error);
+                    return this.loadFromLocalStorage();
+                }
             } else {
                 console.warn('Error en respuesta del servidor:', response.status);
-                return {};
+                return this.loadFromLocalStorage();
             }
         } catch (error) {
             console.warn('Error cargando datos CMS desde servidor:', error);
-            // Fallback a localStorage si el servidor no está disponible
-            try {
-                const data = localStorage.getItem('fantea_cms_data');
-                return data ? JSON.parse(data) : {};
-            } catch (localError) {
-                console.warn('Error cargando datos CMS desde localStorage:', localError);
-                return {};
-            }
+            return this.loadFromLocalStorage();
+        }
+    }
+
+    // Fallback a localStorage
+    loadFromLocalStorage() {
+        try {
+            const data = localStorage.getItem('fantea_cms_data');
+            return data ? JSON.parse(data) : {};
+        } catch (localError) {
+            console.warn('Error cargando datos CMS desde localStorage:', localError);
+            return {};
         }
     }
 
@@ -130,6 +141,20 @@ class CMSSync {
             this.updateTextContent('.hero-title', this.cmsData.hero.title);
             this.updateTextContent('.hero-description', this.cmsData.hero.description);
             this.updateImageSrc('.hero-img', this.cmsData.hero.image);
+            
+            // Actualizar botones del hero si están definidos
+            if (this.cmsData.hero.buttons) {
+                const buttons = this.cmsData.hero.buttons;
+                if (buttons.about) {
+                    this.updateTextContent('.hero-actions .btn:nth-child(1)', buttons.about);
+                }
+                if (buttons.affiliate) {
+                    this.updateTextContent('.hero-actions .btn:nth-child(2)', buttons.affiliate);
+                }
+                if (buttons.donate) {
+                    this.updateTextContent('.hero-actions .btn:nth-child(3)', buttons.donate);
+                }
+            }
         }
 
         // Stats Section (estadísticas en hero-stats)
@@ -152,19 +177,40 @@ class CMSSync {
                 this.cmsData.features.features.forEach((feature, index) => {
                     this.updateTextContent(`.features-grid .feature-card:nth-child(${index + 1}) h3`, feature.title);
                     this.updateTextContent(`.features-grid .feature-card:nth-child(${index + 1}) p`, feature.description);
-                    // El icono se podría actualizar también si es necesario
+                    
+                    // Actualizar icono
                     const iconElement = document.querySelector(`.features-grid .feature-card:nth-child(${index + 1}) .feature-icon i`);
                     if (iconElement && feature.icon) {
                         iconElement.className = feature.icon;
+                    }
+                    
+                    // Actualizar enlace y texto del enlace
+                    const linkElement = document.querySelector(`.features-grid .feature-card:nth-child(${index + 1}) .feature-link`);
+                    if (linkElement && feature.linkText) {
+                        linkElement.textContent = feature.linkText;
+                        if (feature.link) {
+                            linkElement.href = feature.link;
+                        }
                     }
                 });
             }
         }
 
-        // CTA Section - llamada a la acción (si existe en la página)
+        // CTA Section - llamada a la acción
         if (this.cmsData.cta) {
             this.updateTextContent('.cta-section h2', this.cmsData.cta.title);
             this.updateTextContent('.cta-section p', this.cmsData.cta.description);
+            
+            // Actualizar botones del CTA si están definidos
+            if (this.cmsData.cta.buttons) {
+                const buttons = this.cmsData.cta.buttons;
+                if (buttons.primary) {
+                    this.updateTextContent('.cta-actions .btn-primary', buttons.primary);
+                }
+                if (buttons.secondary) {
+                    this.updateTextContent('.cta-actions .btn-outline-white', buttons.secondary);
+                }
+            }
         }
 
         console.log('Cambios de Inicio aplicados');

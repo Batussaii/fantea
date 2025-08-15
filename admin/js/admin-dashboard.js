@@ -864,6 +864,11 @@ function collectSectionData(sectionName) {
             data.title = document.getElementById('hero-title')?.value || '';
             data.description = document.getElementById('hero-description')?.value || '';
             data.image = document.getElementById('hero-image-preview')?.src || '';
+            data.buttons = {
+                about: document.getElementById('hero-button-about')?.value || 'Conócenos',
+                affiliate: document.getElementById('hero-button-affiliate')?.value || 'Afíliate',
+                donate: document.getElementById('hero-button-donate')?.value || 'Haz una Donación'
+            };
             break;
             
         case 'stats':
@@ -888,11 +893,12 @@ function collectSectionData(sectionName) {
             const featureItems = document.querySelectorAll('.feature-item-cms');
             featureItems.forEach(item => {
                 const inputs = item.querySelectorAll('.cms-input, .cms-textarea');
-                if (inputs.length >= 3) {
+                if (inputs.length >= 4) {
                     data.features.push({
                         title: inputs[0].value,
                         description: inputs[1].value,
-                        icon: inputs[2].value
+                        icon: inputs[2].value,
+                        linkText: inputs[3].value
                     });
                 }
             });
@@ -901,6 +907,10 @@ function collectSectionData(sectionName) {
         case 'cta':
             data.title = document.getElementById('cta-title')?.value || '';
             data.description = document.getElementById('cta-description')?.value || '';
+            data.buttons = {
+                primary: document.getElementById('cta-button-primary')?.value || 'Afíliate Ahora',
+                secondary: document.getElementById('cta-button-secondary')?.value || 'Contactar'
+            };
             break;
             
         case 'nosotros-header':
@@ -1118,7 +1128,7 @@ async function saveSectionData(sectionName, data) {
             const result = await response.json();
             console.log('Datos guardados en servidor:', result);
             
-            // También guardar en localStorage como backup
+            // Actualizar localStorage con los datos del servidor
             const currentData = JSON.parse(localStorage.getItem('fantea_cms_data') || '{}');
             currentData[sectionName] = {
                 ...data,
@@ -1127,9 +1137,13 @@ async function saveSectionData(sectionName, data) {
             };
             localStorage.setItem('fantea_cms_data', JSON.stringify(currentData));
             
+            // Notificar a todas las pestañas abiertas
+            notifyAllTabs(sectionName, data);
+            
             return true;
         } else {
-            throw new Error(`Error del servidor: ${response.status}`);
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(`Error del servidor: ${response.status} - ${errorData.error || 'Error desconocido'}`);
         }
     } catch (error) {
         console.warn('Error guardando en servidor, usando localStorage como fallback:', error);
@@ -1145,6 +1159,30 @@ async function saveSectionData(sectionName, data) {
         
         return false;
     }
+}
+
+// Notificar a todas las pestañas abiertas
+function notifyAllTabs(sectionName, data) {
+    // BroadcastChannel para comunicación entre pestañas
+    if (typeof BroadcastChannel !== 'undefined') {
+        try {
+            const channel = new BroadcastChannel('fantea-cms');
+            channel.postMessage({
+                type: 'CMS_UPDATE',
+                section: sectionName,
+                data: data,
+                timestamp: Date.now()
+            });
+            channel.close();
+        } catch (e) {
+            console.log('BroadcastChannel no disponible:', e);
+        }
+    }
+
+    // Disparar evento personalizado
+    window.dispatchEvent(new CustomEvent('cms-data-updated', {
+        detail: { section: sectionName, data: data }
+    }));
 }
 
 /**
@@ -1167,6 +1205,11 @@ function loadSectionData(sectionName, data) {
             if (data.title) document.getElementById('hero-title').value = data.title;
             if (data.description) document.getElementById('hero-description').value = data.description;
             if (data.image) document.getElementById('hero-image-preview').src = data.image;
+            if (data.buttons) {
+                if (data.buttons.about) document.getElementById('hero-button-about').value = data.buttons.about;
+                if (data.buttons.affiliate) document.getElementById('hero-button-affiliate').value = data.buttons.affiliate;
+                if (data.buttons.donate) document.getElementById('hero-button-donate').value = data.buttons.donate;
+            }
             break;
             
         case 'stats':
@@ -1194,6 +1237,7 @@ function loadSectionData(sectionName, data) {
                         if (inputs[0]) inputs[0].value = feature.title;
                         if (inputs[1]) inputs[1].value = feature.description;
                         if (inputs[2]) inputs[2].value = feature.icon;
+                        if (inputs[3]) inputs[3].value = feature.linkText || '';
                     }
                 });
             }
@@ -1202,6 +1246,10 @@ function loadSectionData(sectionName, data) {
         case 'cta':
             if (data.title) document.getElementById('cta-title').value = data.title;
             if (data.description) document.getElementById('cta-description').value = data.description;
+            if (data.buttons) {
+                if (data.buttons.primary) document.getElementById('cta-button-primary').value = data.buttons.primary;
+                if (data.buttons.secondary) document.getElementById('cta-button-secondary').value = data.buttons.secondary;
+            }
             break;
             
         case 'nosotros-header':
