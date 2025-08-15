@@ -4,13 +4,13 @@
 
 /* Variables */
 :root {
-    /* Colores Admin */
-    --admin-primary: #1565C0;
-    --admin-secondary: #FF9800;
-    --admin-success: #4CAF50;
-    --admin-warning: #FF9800;
-    --admin-danger: #F44336;
-    --admin-info: #2196F3;
+    /* Colores Admin - Basados en la paleta FANTEA */
+    --admin-primary: var(--fantea-teal);
+    --admin-secondary: var(--fantea-blue);
+    --admin-success: var(--fantea-green);
+    --admin-warning: var(--fantea-teal-light);
+    --admin-danger: var(--fantea-teal-dark);
+    --admin-info: var(--fantea-blue-light);
     
     /* Grises Admin */
     --admin-dark: #212529;
@@ -84,7 +84,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--fantea-gradient-primary);
     position: relative;
     overflow: hidden;
 }

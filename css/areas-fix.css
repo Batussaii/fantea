@@ -38,7 +38,7 @@
 }
 
 .highlight {
-    color: #FCD34D;
+    color: var(--fantea-green);
 }
 
 .hero-description {
@@ -91,7 +91,7 @@
 .stat-number {
     font-size: 3rem;
     font-weight: 700;
-    color: #FCD34D;
+    color: var(--fantea-green);
     margin-bottom: 0.5rem;
     display: block;
 }

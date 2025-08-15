@@ -1,0 +1,197 @@
+{
+  "page": {
+    "title": "Áreas de Trabajo - FANTEA",
+    "description": "Conoce las áreas de trabajo de FANTEA: educación, salud, vida adulta, inclusión social y vivienda. Trabajamos en todos los ámbitos de la vida",
+    "meta": {
+      "title": "Áreas de Trabajo - FANTEA",
+      "description": "Conoce las áreas de trabajo de FANTEA: educación, salud, vida adulta, inclusión social y vivienda. Trabajamos en todos los ámbitos de la vida"
+    }
+  },
+  "hero": {
+    "title": "Áreas de Trabajo",
+    "titleHighlight": "Trabajo",
+    "description": "Trabajamos en distintos ámbitos para mejorar la calidad de vida de las personas autistas y sus familias. Descubre cómo abordamos cada área con enfoques especializados y compromiso.",
+    "image": "hero-inclusive.jpg",
+    "imageAlt": "Personas trabajando en diferentes áreas de inclusión",
+    "buttons": [
+      {
+        "text": "Ver Áreas",
+        "url": "#areas",
+        "style": "primary"
+      },
+      {
+        "text": "Nuestro Manifiesto",
+        "url": "manifiesto.html",
+        "style": "outline"
+      }
+    ]
+  },
+  "stats": {
+    "items": [
+      {
+        "number": "5",
+        "text": "Áreas de Intervención"
+      },
+      {
+        "number": "15+",
+        "text": "Años de Experiencia"
+      },
+      {
+        "number": "1000+",
+        "text": "Familias Atendidas"
+      },
+      {
+        "number": "50+",
+        "text": "Profesionales Formados"
+      }
+    ]
+  },
+  "areas": {
+    "title": "Nuestras Áreas de Intervención",
+    "subtitle": "En FANTEA trabajamos en distintos ámbitos para mejorar la calidad de vida de las personas autistas y sus familias:",
+    "areas": [
+      {
+        "icon": "fas fa-graduation-cap",
+        "title": "Educación",
+        "emoji": "🎓",
+        "description": "Garantizamos una educación inclusiva y de calidad para todas las personas autistas.",
+        "services": [
+          "Apoyos en el aula para garantizar la inclusión",
+          "Modelos sostenibles como el asistente personal",
+          "Formación a docentes y equipos educativos"
+        ]
+      },
+      {
+        "icon": "fas fa-heartbeat",
+        "title": "Salud",
+        "emoji": "🏥",
+        "description": "Promovemos una atención sanitaria accesible y especializada para el colectivo TEA.",
+        "services": [
+          "Atención temprana específica y accesible",
+          "Salud mental adaptada y diagnósticos ágiles",
+          "Formación y sensibilización de profesionales sanitarios"
+        ]
+      },
+      {
+        "icon": "fas fa-briefcase",
+        "title": "Vida Adulta y Empleo",
+        "emoji": "💼",
+        "description": "Facilitamos la transición a la vida adulta y la inserción laboral de las personas autistas.",
+        "services": [
+          "Programas de autonomía personal",
+          "Inserción laboral y adaptación de entornos de trabajo",
+          "Desarrollo de habilidades sociales y laborales"
+        ]
+      },
+      {
+        "icon": "fas fa-globe",
+        "title": "Inclusión Social",
+        "emoji": "🌍",
+        "description": "Trabajamos por una sociedad más inclusiva donde todas las personas tengan las mismas oportunidades.",
+        "services": [
+          "Acceso igualitario a la vida comunitaria",
+          "Recursos de respiro familiar y conciliación",
+          "Actividades de ocio y tiempo libre inclusivas"
+        ]
+      },
+      {
+        "icon": "fas fa-home",
+        "title": "Vivienda y Recursos Residenciales",
+        "emoji": "🏠",
+        "description": "Promovemos opciones de vivienda adaptadas que permitan una vida independiente y digna.",
+        "services": [
+          "Plazas adaptadas y apoyos para una vida independiente",
+          "Modelos de vivienda tutelada y compartida",
+          "Apoyos personalizados según las necesidades individuales"
+        ]
+      }
+    ]
+  },
+  "impact": {
+    "title": "Nuestro Impacto en Cada Área",
+    "description": "En FANTEA hemos logrado resultados significativos en cada una de nuestras áreas de trabajo, mejorando la calidad de vida de miles de personas autistas y sus familias en Andalucía.",
+    "image": "hero-inclusive.jpg",
+    "imageAlt": "Impacto de nuestro trabajo en la comunidad",
+    "stats": [
+      {
+        "number": "95%",
+        "label": "de familias satisfechas con nuestros servicios"
+      },
+      {
+        "number": "80%",
+        "label": "de éxito en inserción laboral"
+      },
+      {
+        "number": "100%",
+        "label": "de centros educativos con formación especializada"
+      }
+    ]
+  },
+  "cta": {
+    "title": "¿Quieres Conocer Más Sobre Nuestro Trabajo?",
+    "description": "Descubre cómo trabajamos en cada área y cómo puedes participar en nuestras iniciativas para crear una sociedad más inclusiva.",
+    "buttons": [
+      {
+        "text": "Leer Nuestro Manifiesto",
+        "url": "manifiesto.html",
+        "style": "primary"
+      },
+      {
+        "text": "Contactar",
+        "url": "contacto.html",
+        "style": "outline"
+      }
+    ]
+  },
+  "navigation": {
+    "menu": [
+      {
+        "text": "Inicio",
+        "url": "index.html"
+      },
+      {
+        "text": "Quiénes somos",
+        "url": "quienes-somos.html"
+      },
+      {
+        "text": "Asociaciones federadas",
+        "url": "asociaciones.html"
+      },
+      {
+        "text": "Áreas",
+        "url": "areas.html",
+        "active": true
+      },
+      {
+        "text": "Nuestro manifiesto",
+        "url": "manifiesto.html"
+      },
+      {
+        "text": "Prensa",
+        "url": "prensa.html"
+      },
+      {
+        "text": "Afíliate",
+        "url": "afiliate.html"
+      },
+      {
+        "text": "Contacto",
+        "url": "contacto.html"
+      }
+    ],
+    "ctaButton": {
+      "text": "Únete a Nosotros",
+      "url": "afiliate.html"
+    }
+  },
+  "accessibility": {
+    "skipLink": "Saltar al contenido principal",
+    "buttons": {
+      "increaseFont": "Aumentar texto",
+      "decreaseFont": "Reducir texto",
+      "highContrast": "Alto contraste",
+      "dyslexiaFont": "Fuente dislexia"
+    }
+  }
+}
+

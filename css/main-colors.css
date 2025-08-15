@@ -1,0 +1,192 @@
+/* ==========================================================================
+   PALETA DE COLORES PRINCIPAL - FANTEA
+   ========================================================================== */
+
+/* Importar la paleta de colores de FANTEA */
+@import url('fantea-colors.css');
+
+/* ==========================================================================
+   VARIABLES GLOBALES DE COLORES
+   ========================================================================== */
+
+:root {
+    /* Mapeo de variables principales para compatibilidad */
+    --primary-color: var(--fantea-teal);
+    --secondary-color: var(--fantea-blue);
+    --accent-color: var(--fantea-green);
+    --text-primary: var(--fantea-text-primary);
+    --text-secondary: var(--fantea-text-secondary);
+    --background: var(--fantea-bg-secondary);
+    --background-light: var(--fantea-bg-tertiary);
+    --border-color: var(--fantea-border);
+    
+    /* Sombras basadas en los colores de FANTEA */
+    --shadow-light: var(--fantea-shadow-light);
+    --shadow-medium: var(--fantea-shadow-medium);
+    --shadow-heavy: var(--fantea-shadow-heavy);
+    
+    /* Gradientes principales */
+    --gradient-primary: var(--fantea-gradient-primary);
+    --gradient-secondary: var(--fantea-gradient-secondary);
+    --gradient-tertiary: var(--fantea-gradient-tertiary);
+}
+
+/* ==========================================================================
+   CLASES DE UTILIDAD GLOBALES
+   ========================================================================== */
+
+/* Colores de texto */
+.text-primary { color: var(--primary-color) !important; }
+.text-secondary { color: var(--secondary-color) !important; }
+.text-accent { color: var(--accent-color) !important; }
+.text-teal { color: var(--fantea-teal) !important; }
+.text-blue { color: var(--fantea-blue) !important; }
+.text-green { color: var(--fantea-green) !important; }
+
+/* Fondos */
+.bg-primary { background-color: var(--primary-color) !important; }
+.bg-secondary { background-color: var(--secondary-color) !important; }
+.bg-accent { background-color: var(--accent-color) !important; }
+.bg-teal { background-color: var(--fantea-teal) !important; }
+.bg-blue { background-color: var(--fantea-blue) !important; }
+.bg-green { background-color: var(--fantea-green) !important; }
+
+/* Bordes */
+.border-primary { border-color: var(--primary-color) !important; }
+.border-secondary { border-color: var(--secondary-color) !important; }
+.border-accent { border-color: var(--accent-color) !important; }
+.border-teal { border-color: var(--fantea-teal) !important; }
+.border-blue { border-color: var(--fantea-blue) !important; }
+.border-green { border-color: var(--fantea-green) !important; }
+
+/* Gradientes */
+.gradient-primary { background: var(--gradient-primary) !important; }
+.gradient-secondary { background: var(--gradient-secondary) !important; }
+.gradient-tertiary { background: var(--gradient-tertiary) !important; }
+
+/* Estados de hover */
+.hover-primary:hover { color: var(--primary-color) !important; }
+.hover-secondary:hover { color: var(--secondary-color) !important; }
+.hover-accent:hover { color: var(--accent-color) !important; }
+
+.hover-bg-primary:hover { background-color: var(--primary-color) !important; }
+.hover-bg-secondary:hover { background-color: var(--secondary-color) !important; }
+.hover-bg-accent:hover { background-color: var(--accent-color) !important; }
+
+/* Estados de focus */
+.focus-primary:focus { 
+    border-color: var(--primary-color) !important; 
+    outline-color: var(--primary-color) !important; 
+}
+.focus-secondary:focus { 
+    border-color: var(--secondary-color) !important; 
+    outline-color: var(--secondary-color) !important; 
+}
+.focus-accent:focus { 
+    border-color: var(--accent-color) !important; 
+    outline-color: var(--accent-color) !important; 
+}
+
+/* ==========================================================================
+   UTILIDADES ESPECÍFICAS PARA FANTEA
+   ========================================================================== */
+
+/* Botones con colores de FANTEA */
+.btn-fantea-primary {
+    background-color: var(--fantea-teal) !important;
+    color: var(--fantea-white) !important;
+    border-color: var(--fantea-teal) !important;
+}
+
+.btn-fantea-primary:hover {
+    background-color: var(--fantea-teal-dark) !important;
+    border-color: var(--fantea-teal-dark) !important;
+}
+
+.btn-fantea-secondary {
+    background-color: var(--fantea-blue) !important;
+    color: var(--fantea-white) !important;
+    border-color: var(--fantea-blue) !important;
+}
+
+.btn-fantea-secondary:hover {
+    background-color: var(--fantea-blue-dark) !important;
+    border-color: var(--fantea-blue-dark) !important;
+}
+
+.btn-fantea-accent {
+    background-color: var(--fantea-green) !important;
+    color: var(--fantea-white) !important;
+    border-color: var(--fantea-green) !important;
+}
+
+.btn-fantea-accent:hover {
+    background-color: var(--fantea-green-dark) !important;
+    border-color: var(--fantea-green-dark) !important;
+}
+
+/* Botones outline */
+.btn-outline-fantea-primary {
+    background-color: transparent !important;
+    color: var(--fantea-teal) !important;
+    border-color: var(--fantea-teal) !important;
+}
+
+.btn-outline-fantea-primary:hover {
+    background-color: var(--fantea-teal) !important;
+    color: var(--fantea-white) !important;
+}
+
+.btn-outline-fantea-secondary {
+    background-color: transparent !important;
+    color: var(--fantea-blue) !important;
+    border-color: var(--fantea-blue) !important;
+}
+
+.btn-outline-fantea-secondary:hover {
+    background-color: var(--fantea-blue) !important;
+    color: var(--fantea-white) !important;
+}
+
+.btn-outline-fantea-accent {
+    background-color: transparent !important;
+    color: var(--fantea-green) !important;
+    border-color: var(--fantea-green) !important;
+}
+
+.btn-outline-fantea-accent:hover {
+    background-color: var(--fantea-green) !important;
+    color: var(--fantea-white) !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE Y ACCESIBILIDAD
+   ========================================================================== */
+
+/* Modo de alto contraste */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-color: var(--fantea-teal-dark);
+        --secondary-color: var(--fantea-blue-dark);
+        --accent-color: var(--fantea-green-dark);
+    }
+}
+
+/* Modo oscuro */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-primary: var(--fantea-white);
+        --text-secondary: var(--fantea-gray-lighter);
+        --background: var(--fantea-teal-darker);
+        --background-light: var(--fantea-teal-dark);
+        --border-color: var(--fantea-gray-dark);
+    }
+}
+
+/* Reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}

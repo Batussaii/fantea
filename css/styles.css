@@ -5,17 +5,17 @@
 /* Variables CSS */
 :root {
     /* Colores principales - Esquema basado en el logo de FANTEA */
-    --primary-color: #1E5F74;        /* Verde azulado oscuro (teal) del logo */
-    --secondary-color: #3B82F6;       /* Azul medio del logo */
-    --accent-color: #10B981;          /* Verde complementario */
-    --text-primary: #1F2937;          /* Gris oscuro */
-    --text-secondary: #6B7280;        /* Gris medio */
-    --background: #F8FAFC;            /* Fondo blanco azulado muy claro */
-    --background-light: #F1F5F9;      /* Fondo gris azulado claro */
-    --border-color: #E2E8F0;          /* Bordes suaves */
-    --shadow-light: 0 2px 8px rgba(30, 95, 116, 0.1);
-    --shadow-medium: 0 4px 16px rgba(30, 95, 116, 0.15);
-    --shadow-heavy: 0 8px 32px rgba(30, 95, 116, 0.2);
+    --primary-color: var(--fantea-teal);        /* Verde azulado oscuro (teal) del logo */
+    --secondary-color: var(--fantea-blue);       /* Azul medio del logo */
+    --accent-color: var(--fantea-green);          /* Verde complementario */
+    --text-primary: var(--fantea-text-primary);          /* Gris oscuro */
+    --text-secondary: var(--fantea-text-secondary);        /* Gris medio */
+    --background: var(--fantea-bg-secondary);            /* Fondo blanco azulado muy claro */
+    --background-light: var(--fantea-bg-tertiary);      /* Fondo gris azulado claro */
+    --border-color: var(--fantea-border);          /* Bordes suaves */
+    --shadow-light: var(--fantea-shadow-light);
+    --shadow-medium: var(--fantea-shadow-medium);
+    --shadow-heavy: var(--fantea-shadow-heavy);
     
     /* Tipografía */
     --font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -69,11 +69,11 @@ body.extra-large-text {
 }
 
 body.high-contrast {
-    --background: #000000;
-    --text-primary: #FFFFFF;
-    --text-secondary: #E0E0E0;
-    --primary-color: #A78BFA;
-    --secondary-color: #22D3EE;
+    --background: var(--fantea-teal-darker);
+    --text-primary: var(--fantea-white);
+    --text-secondary: var(--fantea-gray-lighter);
+    --primary-color: var(--fantea-teal-light);
+    --secondary-color: var(--fantea-blue-light);
 }
 
 body.dyslexia-font {
@@ -111,7 +111,7 @@ body.dyslexia-font {
 }
 
 .btn-primary:hover {
-    background-color: #7C3AED;
+    background-color: var(--fantea-teal-dark);
     transform: translateY(-2px);
     box-shadow: var(--shadow-medium);
 }
@@ -220,7 +220,7 @@ body.dyslexia-font {
 }
 
 .accessibility-options button:last-child:hover {
-    background: #7c3aed;
+    background: var(--fantea-teal-dark);
     transform: scale(1.02);
 }
 
@@ -299,7 +299,7 @@ body.dyslexia-font {
 .nav-link:hover,
 .nav-link.active {
     color: var(--primary-color);
-    background-color: #f8f9fa;
+    background-color: var(--fantea-bg-secondary);
 }
 
 /* BOTÓN HAMBURGUESA SIMPLE */
@@ -319,11 +319,11 @@ body.dyslexia-font {
 }
 
 .hamburger:hover {
-    background-color: #f8f9fa;
+    background-color: var(--fantea-bg-secondary);
 }
 
 .hamburger.active {
-    background-color: #e9ecef;
+    background-color: var(--fantea-gray-lighter);
 }
 
 .hamburger span {
@@ -357,7 +357,7 @@ body.dyslexia-font {
 
 /* Page Header */
 .page-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #A855F7 100%);
+    background: var(--fantea-gradient-primary);
     color: white;
     padding: var(--spacing-xl) 0 var(--spacing-lg);
     text-align: center;
@@ -412,7 +412,7 @@ body.dyslexia-font {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #A855F7 100%);
+    background: var(--fantea-gradient-primary);
     color: white;
     padding: var(--spacing-xl) 0;
     position: relative;
@@ -1573,7 +1573,7 @@ body.dyslexia-font {
 
 /* Call to Action */
 .cta-section {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: var(--fantea-gradient-primary);
     color: white;
     padding: var(--spacing-xl) 0;
     text-align: center;
@@ -1604,7 +1604,7 @@ body.dyslexia-font {
 
 /* Footer */
 .footer {
-    background: #4C1D95;
+    background: var(--fantea-teal-darker);
     color: white;
     padding: var(--spacing-xl) 0 var(--spacing-md);
 }
@@ -1770,7 +1770,7 @@ body.dyslexia-font {
 .province[data-associations="1"],
 .province[data-associations="2"],
 .province[data-associations="3"] {
-    fill: #A78BFA; /* Violeta claro - pocas asociaciones */
+    fill: var(--fantea-teal-light); /* Verde azulado claro - pocas asociaciones */
 }
 
 .province[data-associations="4"],
@@ -1781,7 +1781,7 @@ body.dyslexia-font {
 .province[data-associations="6"],
 .province[data-associations="7"],
 .province[data-associations="8"] {
-    fill: #7C3AED; /* Violeta oscuro - muchas asociaciones */
+    fill: var(--fantea-teal-dark); /* Verde azulado oscuro - muchas asociaciones */
 }
 
 .province.active {
@@ -1835,7 +1835,7 @@ body.dyslexia-font {
 }
 
 .legend-color.low {
-    background-color: #A78BFA;
+    background-color: var(--fantea-teal-light);
 }
 
 .legend-color.medium {
@@ -1843,7 +1843,7 @@ body.dyslexia-font {
 }
 
 .legend-color.high {
-    background-color: #7C3AED;
+    background-color: var(--fantea-teal-dark);
 }
 
 .legend-item span {

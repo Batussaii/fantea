@@ -38,7 +38,7 @@
 }
 
 .highlight {
-    color: #FCD34D;
+    color: var(--fantea-green);
 }
 
 .hero-description {
@@ -91,7 +91,7 @@
 .stat-number {
     font-size: 3rem;
     font-weight: 700;
-    color: #FCD34D;
+    color: var(--fantea-green);
     margin-bottom: 0.5rem;
     display: block;
 }
@@ -105,7 +105,7 @@
 /* Associations Section */
 .associations-section {
     padding: 6rem 0;
-    background: #f8f9fa;
+    background: var(--fantea-bg-secondary);
 }
 
 .section-header {
@@ -122,7 +122,7 @@
 
 .section-header p {
     font-size: 1.25rem;
-    color: #6B7280;
+    color: var(--fantea-text-secondary);
     max-width: 800px;
     margin: 0 auto;
     line-height: 1.6;

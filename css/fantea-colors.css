@@ -1,131 +1,99 @@
 /* ==========================================================================
-   FANTEA - Colores del Logo
+   PALETA DE COLORES FANTEA - BASADA EN EL LOGO
    ========================================================================== */
 
-/* Variables de colores basadas en el logo de FANTEA */
 :root {
-    /* Colores principales del logo */
+    /* COLORES PRINCIPALES DEL LOGO */
     --fantea-teal: #1E5F74;        /* Verde azulado oscuro (FAN) */
     --fantea-blue: #3B82F6;        /* Azul medio (TEA) */
     --fantea-green: #10B981;       /* Verde complementario */
-    --fantea-gray: #6B7280;        /* Gris claro (FEDERACIÓN ANDALUZA TEA) */
-
-    /* Variaciones de los colores principales */
+    --fantea-white: #FFFFFF;       /* Blanco puro */
+    
+    /* VARIACIONES DE VERDE AZULADO (TEAL) */
     --fantea-teal-light: #2DD4BF;  /* Teal más claro */
+    --fantea-teal-lighter: #5EEAD4; /* Teal muy claro */
     --fantea-teal-dark: #134E4A;   /* Teal más oscuro */
+    --fantea-teal-darker: #042F2E; /* Teal muy oscuro */
+    
+    /* VARIACIONES DE AZUL */
     --fantea-blue-light: #60A5FA;  /* Azul más claro */
+    --fantea-blue-lighter: #93C5FD; /* Azul muy claro */
     --fantea-blue-dark: #2563EB;   /* Azul más oscuro */
+    --fantea-blue-darker: #1D4ED8; /* Azul muy oscuro */
+    
+    /* VARIACIONES DE VERDE */
     --fantea-green-light: #34D399; /* Verde más claro */
+    --fantea-green-lighter: #6EE7B7; /* Verde muy claro */
     --fantea-green-dark: #047857;  /* Verde más oscuro */
-    --fantea-gray-light: #9CA3AF;  /* Gris más claro */
-    --fantea-gray-dark: #374151;   /* Gris más oscuro */
+    --fantea-green-darker: #065F46; /* Verde muy oscuro */
+    
+    /* GRISES NEUTRALES (BASADOS EN VERDE AZULADO) */
+    --fantea-gray: #64748B;        /* Gris azulado medio */
+    --fantea-gray-light: #94A3B8;  /* Gris azulado claro */
+    --fantea-gray-lighter: #CBD5E1; /* Gris azulado muy claro */
+    --fantea-gray-dark: #475569;   /* Gris azulado oscuro */
+    --fantea-gray-darker: #334155; /* Gris azulado muy oscuro */
+    
+    /* FONDOS Y BORDES */
+    --fantea-bg-primary: #FFFFFF;   /* Fondo principal blanco */
+    --fantea-bg-secondary: #F8FAFC; /* Fondo secundario blanco azulado */
+    --fantea-bg-tertiary: #F1F5F9;  /* Fondo terciario gris azulado muy claro */
+    --fantea-border: #E2E8F0;       /* Bordes gris azulado claro */
+    --fantea-border-light: #F1F5F9; /* Bordes muy claros */
+    
+    /* TEXTOS */
+    --fantea-text-primary: #1E293B;   /* Texto principal gris oscuro */
+    --fantea-text-secondary: #64748B; /* Texto secundario gris medio */
+    --fantea-text-light: #94A3B8;     /* Texto claro */
+    --fantea-text-white: #FFFFFF;     /* Texto blanco */
+    
+    /* SOMBRAS */
+    --fantea-shadow-light: 0 2px 8px rgba(30, 95, 116, 0.1);
+    --fantea-shadow-medium: 0 4px 16px rgba(30, 95, 116, 0.15);
+    --fantea-shadow-heavy: 0 8px 32px rgba(30, 95, 116, 0.2);
+    
+    /* GRADIENTES */
+    --fantea-gradient-primary: linear-gradient(135deg, var(--fantea-teal) 0%, var(--fantea-blue) 100%);
+    --fantea-gradient-secondary: linear-gradient(135deg, var(--fantea-blue) 0%, var(--fantea-green) 100%);
+    --fantea-gradient-tertiary: linear-gradient(135deg, var(--fantea-teal) 0%, var(--fantea-green) 100%);
+    --fantea-gradient-light: linear-gradient(135deg, var(--fantea-teal-light) 0%, var(--fantea-blue-light) 100%);
 }
 
-/* Clases utilitarias para texto */
-.text-fantea-teal { color: var(--fantea-teal); }
-.text-fantea-blue { color: var(--fantea-blue); }
-.text-fantea-green { color: var(--fantea-green); }
-.text-fantea-gray { color: var(--fantea-gray); }
-.text-fantea-teal-light { color: var(--fantea-teal-light); }
-.text-fantea-blue-light { color: var(--fantea-blue-light); }
-.text-fantea-green-light { color: var(--fantea-green-light); }
-.text-fantea-gray-light { color: var(--fantea-gray-light); }
-.text-fantea-teal-dark { color: var(--fantea-teal-dark); }
-.text-fantea-blue-dark { color: var(--fantea-blue-dark); }
-.text-fantea-green-dark { color: var(--fantea-green-dark); }
-.text-fantea-gray-dark { color: var(--fantea-gray-dark); }
+/* CLASES DE UTILIDAD PARA COLORES */
+.text-teal { color: var(--fantea-teal) !important; }
+.text-blue { color: var(--fantea-blue) !important; }
+.text-green { color: var(--fantea-green) !important; }
+.text-white { color: var(--fantea-white) !important; }
+.text-gray { color: var(--fantea-gray) !important; }
 
-/* Clases utilitarias para fondos */
-.bg-fantea-teal { background-color: var(--fantea-teal); }
-.bg-fantea-blue { background-color: var(--fantea-blue); }
-.bg-fantea-green { background-color: var(--fantea-green); }
-.bg-fantea-gray { background-color: var(--fantea-gray); }
-.bg-fantea-teal-light { background-color: var(--fantea-teal-light); }
-.bg-fantea-blue-light { background-color: var(--fantea-blue-light); }
-.bg-fantea-green-light { background-color: var(--fantea-green-light); }
-.bg-fantea-gray-light { background-color: var(--fantea-gray-light); }
-.bg-fantea-teal-dark { background-color: var(--fantea-teal-dark); }
-.bg-fantea-blue-dark { background-color: var(--fantea-blue-dark); }
-.bg-fantea-green-dark { background-color: var(--fantea-green-dark); }
-.bg-fantea-gray-dark { background-color: var(--fantea-gray-dark); }
+.bg-teal { background-color: var(--fantea-teal) !important; }
+.bg-blue { background-color: var(--fantea-blue) !important; }
+.bg-green { background-color: var(--fantea-green) !important; }
+.bg-white { background-color: var(--fantea-white) !important; }
+.bg-gray { background-color: var(--fantea-gray) !important; }
 
-/* Clases utilitarias para bordes */
-.border-fantea-teal { border-color: var(--fantea-teal); }
-.border-fantea-blue { border-color: var(--fantea-blue); }
-.border-fantea-green { border-color: var(--fantea-green); }
-.border-fantea-gray { border-color: var(--fantea-gray); }
+.border-teal { border-color: var(--fantea-teal) !important; }
+.border-blue { border-color: var(--fantea-blue) !important; }
+.border-green { border-color: var(--fantea-green) !important; }
+.border-white { border-color: var(--fantea-white) !important; }
+.border-gray { border-color: var(--fantea-gray) !important; }
 
-/* Gradientes inspirados en el logo */
-.gradient-fantea-teal-blue {
-    background: linear-gradient(to right, var(--fantea-teal), var(--fantea-blue));
-}
-.gradient-fantea-blue-green {
-    background: linear-gradient(to right, var(--fantea-blue), var(--fantea-green));
-}
+/* GRADIENTES */
+.gradient-primary { background: var(--fantea-gradient-primary) !important; }
+.gradient-secondary { background: var(--fantea-gradient-secondary) !important; }
+.gradient-tertiary { background: var(--fantea-gradient-tertiary) !important; }
+.gradient-light { background: var(--fantea-gradient-light) !important; }
 
-/* Botones con los colores de FANTEA */
-.btn-fantea-teal {
-    background-color: var(--fantea-teal);
-    color: #fff;
-    border: 1px solid var(--fantea-teal);
-}
-.btn-fantea-teal:hover {
-    background-color: var(--fantea-teal-dark);
-    border-color: var(--fantea-teal-dark);
-}
+/* HOVER STATES */
+.hover-teal:hover { color: var(--fantea-teal) !important; }
+.hover-blue:hover { color: var(--fantea-blue) !important; }
+.hover-green:hover { color: var(--fantea-green) !important; }
 
-.btn-fantea-blue {
-    background-color: var(--fantea-blue);
-    color: #fff;
-    border: 1px solid var(--fantea-blue);
-}
-.btn-fantea-blue:hover {
-    background-color: var(--fantea-blue-dark);
-    border-color: var(--fantea-blue-dark);
-}
+.hover-bg-teal:hover { background-color: var(--fantea-teal) !important; }
+.hover-bg-blue:hover { background-color: var(--fantea-blue) !important; }
+.hover-bg-green:hover { background-color: var(--fantea-green) !important; }
 
-.btn-fantea-green {
-    background-color: var(--fantea-green);
-    color: #fff;
-    border: 1px solid var(--fantea-green);
-}
-.btn-fantea-green:hover {
-    background-color: var(--fantea-green-dark);
-    border-color: var(--fantea-green-dark);
-}
-
-/* Botones outline con los colores de FANTEA */
-.btn-outline-fantea-teal {
-    background-color: transparent;
-    color: var(--fantea-teal);
-    border: 1px solid var(--fantea-teal);
-}
-.btn-outline-fantea-teal:hover {
-    background-color: var(--fantea-teal);
-    color: #fff;
-}
-
-.btn-outline-fantea-blue {
-    background-color: transparent;
-    color: var(--fantea-blue);
-    border: 1px solid var(--fantea-blue);
-}
-.btn-outline-fantea-blue:hover {
-    background-color: var(--fantea-blue);
-    color: #fff;
-}
-
-.btn-outline-fantea-green {
-    background-color: transparent;
-    color: var(--fantea-green);
-    border: 1px solid var(--fantea-green);
-}
-.btn-outline-fantea-green:hover {
-    background-color: var(--fantea-green);
-    color: #fff;
-}
-
-/* Efectos de hover para enlaces y elementos interactivos */
-.hover-fantea-teal:hover { color: var(--fantea-teal); }
-.hover-fantea-blue:hover { color: var(--fantea-blue); }
-.hover-fantea-green:hover { color: var(--fantea-green); } 
+/* FOCUS STATES */
+.focus-teal:focus { border-color: var(--fantea-teal) !important; outline-color: var(--fantea-teal) !important; }
+.focus-blue:focus { border-color: var(--fantea-blue) !important; outline-color: var(--fantea-blue) !important; }
+.focus-green:focus { border-color: var(--fantea-green) !important; outline-color: var(--fantea-green) !important; } 

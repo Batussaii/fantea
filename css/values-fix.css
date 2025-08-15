@@ -1,7 +1,7 @@
 /* Estilos específicos para las tarjetas de valores - FIX */
 .values-section {
     padding: 4rem 0 !important;
-    background: #f8f9fa !important;
+    background: var(--fantea-bg-secondary) !important;
     margin: 4rem 0 !important;
     border-radius: 16px !important;
     position: relative !important;
@@ -41,7 +41,7 @@
 
 .values-section .section-header p {
     text-align: center !important;
-    color: #6B7280 !important;
+    color: var(--fantea-text-secondary) !important;
     font-size: 1.25rem !important;
     margin-bottom: 3rem !important;
     max-width: 600px !important;
@@ -132,7 +132,7 @@
 }
 
 .value-card p {
-    color: #6B7280 !important;
+    color: var(--fantea-text-secondary) !important;
     line-height: 1.7 !important;
     font-size: 1rem !important;
     position: relative !important;

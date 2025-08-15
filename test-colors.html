@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de Colores - FANTEA</title>
+    <meta name="description" content="Página de prueba para verificar la nueva paleta de colores de FANTEA">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="css/main-colors.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        .color-test {
+            padding: 2rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border: 2px solid var(--fantea-border);
+        }
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .color-swatch {
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+        }
+        .color-swatch.light {
+            color: var(--fantea-text-primary);
+        }
+        .gradient-test {
+            height: 100px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            margin: 1rem 0;
+        }
+        .button-test {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prueba de Colores - Paleta FANTEA</h1>
+        
+        <div class="color-test">
+            <h2>Colores Principales del Logo</h2>
+            <div class="color-grid">
+                <div class="color-swatch" style="background-color: var(--fantea-teal);">
+                    Teal Principal<br>#1E5F74
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-blue);">
+                    Azul<br>#3B82F6
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-green);">
+                    Verde<br>#10B981
+                </div>
+                <div class="color-swatch light" style="background-color: var(--fantea-white); border: 2px solid var(--fantea-border);">
+                    Blanco<br>#FFFFFF
+                </div>
+            </div>
+        </div>
+
+        <div class="color-test">
+            <h2>Variaciones de Teal</h2>
+            <div class="color-grid">
+                <div class="color-swatch" style="background-color: var(--fantea-teal-lighter); color: var(--fantea-text-primary);">
+                    Teal Muy Claro<br>#5EEAD4
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-teal-light);">
+                    Teal Claro<br>#2DD4BF
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-teal);">
+                    Teal Principal<br>#1E5F74
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-teal-dark);">
+                    Teal Oscuro<br>#134E4A
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-teal-darker);">
+                    Teal Muy Oscuro<br>#042F2E
+                </div>
+            </div>
+        </div>
+
+        <div class="color-test">
+            <h2>Variaciones de Azul</h2>
+            <div class="color-grid">
+                <div class="color-swatch" style="background-color: var(--fantea-blue-lighter); color: var(--fantea-text-primary);">
+                    Azul Muy Claro<br>#93C5FD
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-blue-light);">
+                    Azul Claro<br>#60A5FA
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-blue);">
+                    Azul Principal<br>#3B82F6
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-blue-dark);">
+                    Azul Oscuro<br>#2563EB
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-blue-darker);">
+                    Azul Muy Oscuro<br>#1D4ED8
+                </div>
+            </div>
+        </div>
+
+        <div class="color-test">
+            <h2>Variaciones de Verde</h2>
+            <div class="color-grid">
+                <div class="color-swatch" style="background-color: var(--fantea-green-lighter); color: var(--fantea-text-primary);">
+                    Verde Muy Claro<br>#6EE7B7
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-green-light);">
+                    Verde Claro<br>#34D399
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-green);">
+                    Verde Principal<br>#10B981
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-green-dark);">
+                    Verde Oscuro<br>#047857
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-green-darker);">
+                    Verde Muy Oscuro<br>#065F46
+                </div>
+            </div>
+        </div>
+
+        <div class="color-test">
+            <h2>Grises Neutrales</h2>
+            <div class="color-grid">
+                <div class="color-swatch" style="background-color: var(--fantea-gray-lighter); color: var(--fantea-text-primary);">
+                    Gris Muy Claro<br>#CBD5E1
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-gray-light); color: var(--fantea-text-primary);">
+                    Gris Claro<br>#94A3B8
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-gray);">
+                    Gris Medio<br>#64748B
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-gray-dark);">
+                    Gris Oscuro<br>#475569
+                </div>
+                <div class="color-swatch" style="background-color: var(--fantea-gray-darker);">
+                    Gris Muy Oscuro<br>#334155
+                </div>
+            </div>
+        </div>
+
+        <div class="color-test">
+            <h2>Gradientes</h2>
+            <div class="gradient-test gradient-primary">
+                Gradiente Principal (Teal → Azul)
+            </div>
+            <div class="gradient-test gradient-secondary">
+                Gradiente Secundario (Azul → Verde)
+            </div>
+            <div class="gradient-test gradient-tertiary">
+                Gradiente Terciario (Teal → Verde)
+            </div>
+        </div>
+
+        <div class="color-test">
+            <h2>Botones</h2>
+            <div class="button-test">
+                <a href="#" class="btn btn-fantea-primary">Botón Teal</a>
+                <a href="#" class="btn btn-fantea-secondary">Botón Azul</a>
+                <a href="#" class="btn btn-fantea-accent">Botón Verde</a>
+                <a href="#" class="btn btn-outline-fantea-primary">Outline Teal</a>
+                <a href="#" class="btn btn-outline-fantea-secondary">Outline Azul</a>
+                <a href="#" class="btn btn-outline-fantea-accent">Outline Verde</a>
+            </div>
+        </div>
+
+        <div class="color-test">
+            <h2>Clases de Utilidad</h2>
+            <div class="color-grid">
+                <div class="color-swatch light" style="background-color: var(--fantea-bg-primary);">
+                    Fondo Primario<br>Blanco
+                </div>
+                <div class="color-swatch light" style="background-color: var(--fantea-bg-secondary);">
+                    Fondo Secundario<br>Blanco Azulado
+                </div>
+                <div class="color-swatch light" style="background-color: var(--fantea-bg-tertiary);">
+                    Fondo Terciario<br>Gris Azulado Claro
+                </div>
+            </div>
+        </div>
+
+        <div class="color-test">
+            <h2>Textos</h2>
+            <p style="color: var(--fantea-text-primary); font-size: 1.2rem;">Texto Principal - Gris Oscuro</p>
+            <p style="color: var(--fantea-text-secondary); font-size: 1.2rem;">Texto Secundario - Gris Medio</p>
+            <p style="color: var(--fantea-text-light); font-size: 1.2rem;">Texto Claro - Gris Claro</p>
+            <p style="color: var(--fantea-teal); font-size: 1.2rem;">Texto Teal - Color Principal</p>
+            <p style="color: var(--fantea-blue); font-size: 1.2rem;">Texto Azul - Color Secundario</p>
+            <p style="color: var(--fantea-green); font-size: 1.2rem;">Texto Verde - Color de Acento</p>
+        </div>
+
+        <div class="color-test">
+            <h2>Verificación de Variables</h2>
+            <p><strong>Variables principales mapeadas correctamente:</strong></p>
+            <ul>
+                <li>--primary-color: <span style="color: var(--primary-color);">✓ Teal</span></li>
+                <li>--secondary-color: <span style="color: var(--secondary-color);">✓ Azul</span></li>
+                <li>--accent-color: <span style="color: var(--accent-color);">✓ Verde</span></li>
+                <li>--text-primary: <span style="color: var(--text-primary);">✓ Gris Oscuro</span></li>
+                <li>--text-secondary: <span style="color: var(--text-secondary);">✓ Gris Medio</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Verificar que las variables CSS están disponibles
+        const root = getComputedStyle(document.documentElement);
+        const variables = [
+            '--fantea-teal',
+            '--fantea-blue', 
+            '--fantea-green',
+            '--primary-color',
+            '--secondary-color',
+            '--accent-color'
+        ];
+        
+        console.log('Verificación de variables CSS:');
+        variables.forEach(varName => {
+            const value = root.getPropertyValue(varName);
+            console.log(`${varName}: ${value}`);
+        });
+    </script>
+</body>
+</html>
