@@ -2076,3 +2076,245 @@ body {
         width: 100%;
     }
 }
+
+/* ==========================================================================
+   GESTIÓN DE ARCHIVOS
+   ========================================================================== */
+
+.file-management-section {
+    margin-bottom: 2rem;
+}
+
+.file-management-section .section-card {
+    background: var(--admin-white);
+    border-radius: var(--admin-radius-lg);
+    box-shadow: var(--admin-shadow);
+    overflow: hidden;
+}
+
+.file-management-section .card-header {
+    padding: var(--admin-spacing-xl);
+    border-bottom: 1px solid var(--admin-gray-200);
+    background: var(--admin-gray-50);
+}
+
+.file-management-section .card-header h3 {
+    color: var(--admin-primary);
+    font-size: var(--admin-font-size-xl);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.file-management-section .card-header p {
+    color: var(--admin-gray-600);
+    font-size: var(--admin-font-size-sm);
+    margin: 0;
+}
+
+.current-file-info {
+    padding: var(--admin-spacing-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--admin-gray-200);
+}
+
+.file-preview {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.file-preview i {
+    font-size: 2.5rem;
+    color: var(--admin-danger);
+    background: var(--admin-gray-100);
+    padding: 1rem;
+    border-radius: var(--admin-radius);
+}
+
+.file-details h4 {
+    color: var(--admin-gray-900);
+    font-size: var(--admin-font-size-lg);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.file-details p {
+    color: var(--admin-gray-600);
+    font-size: var(--admin-font-size-sm);
+    margin: 0;
+}
+
+.file-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.upload-section {
+    padding: var(--admin-spacing-xl);
+}
+
+.upload-section h4 {
+    color: var(--admin-gray-900);
+    font-size: var(--admin-font-size-lg);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.upload-area {
+    border: 2px dashed var(--admin-gray-300);
+    border-radius: var(--admin-radius-lg);
+    padding: 2rem;
+    text-align: center;
+    background: var(--admin-gray-50);
+    transition: var(--admin-transition);
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.upload-area:hover {
+    border-color: var(--admin-primary);
+    background: var(--admin-gray-100);
+}
+
+.upload-area.dragover {
+    border-color: var(--admin-primary);
+    background: var(--admin-primary);
+    color: var(--admin-white);
+}
+
+.upload-content i {
+    font-size: 3rem;
+    color: var(--admin-gray-400);
+    margin-bottom: 1rem;
+}
+
+.upload-area:hover .upload-content i,
+.upload-area.dragover .upload-content i {
+    color: var(--admin-primary);
+}
+
+.upload-area.dragover .upload-content i {
+    color: var(--admin-white);
+}
+
+.upload-content p {
+    color: var(--admin-gray-700);
+    font-size: var(--admin-font-size-base);
+    margin-bottom: 0.5rem;
+}
+
+.upload-area.dragover .upload-content p {
+    color: var(--admin-white);
+}
+
+.upload-content small {
+    color: var(--admin-gray-500);
+    font-size: var(--admin-font-size-sm);
+}
+
+.upload-area.dragover .upload-content small {
+    color: var(--admin-white);
+    opacity: 0.8;
+}
+
+.upload-progress {
+    margin: 1rem 0;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--admin-gray-200);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--admin-primary);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.upload-progress p {
+    color: var(--admin-gray-600);
+    font-size: var(--admin-font-size-sm);
+    margin: 0;
+    text-align: center;
+}
+
+.upload-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+}
+
+.files-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: var(--admin-spacing-xl);
+}
+
+.file-item {
+    background: var(--admin-gray-50);
+    border: 1px solid var(--admin-gray-200);
+    border-radius: var(--admin-radius);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.file-item-icon {
+    font-size: 1.5rem;
+    color: var(--admin-primary);
+}
+
+.file-item-info {
+    flex: 1;
+}
+
+.file-item-name {
+    font-weight: 600;
+    color: var(--admin-gray-900);
+    margin-bottom: 0.25rem;
+}
+
+.file-item-meta {
+    font-size: var(--admin-font-size-sm);
+    color: var(--admin-gray-600);
+}
+
+.file-item-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Responsive para gestión de archivos */
+@media (max-width: 768px) {
+    .current-file-info {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .file-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .upload-actions {
+        flex-direction: column;
+    }
+    
+    .files-grid {
+        grid-template-columns: 1fr;
+    }
+}

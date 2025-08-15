@@ -1941,10 +1941,97 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                     <h1>Gestión de Archivos</h1>
                     <p>Sube y organiza documentos, imágenes y recursos</p>
                 </div>
-                <div class="coming-soon">
-                    <i class="fas fa-tools"></i>
-                    <h3>Sección en desarrollo</h3>
-                    <p>Esta funcionalidad estará disponible próximamente</p>
+                
+                <!-- Gestión de Estatutos -->
+                <div class="file-management-section">
+                    <div class="section-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-file-pdf"></i> Estatutos de FANTEA</h3>
+                            <p>Gestiona el archivo PDF de los estatutos que se descarga desde la página de asociaciones</p>
+                        </div>
+                        
+                        <div class="current-file-info">
+                            <div class="file-preview">
+                                <i class="fas fa-file-pdf"></i>
+                                <div class="file-details">
+                                    <h4 id="currentStatutesName">Estatutos-FANTEA-2024.pdf</h4>
+                                    <p id="currentStatutesInfo">Última actualización: <span id="currentStatutesDate">15 de Marzo, 2024</span></p>
+                                    <p>Tamaño: <span id="currentStatutesSize">2.4 MB</span></p>
+                                </div>
+                            </div>
+                            <div class="file-actions">
+                                <button class="btn btn-secondary" onclick="downloadCurrentStatutes()">
+                                    <i class="fas fa-download"></i> Descargar
+                                </button>
+                                <button class="btn btn-danger" onclick="deleteCurrentStatutes()">
+                                    <i class="fas fa-trash"></i> Eliminar
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="upload-section">
+                            <h4>Subir Nuevo Archivo</h4>
+                            <div class="upload-area" id="statutesUploadArea">
+                                <div class="upload-content">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Arrastra aquí el archivo PDF o haz clic para seleccionar</p>
+                                    <small>Solo archivos PDF. Máximo 10MB</small>
+                                </div>
+                                <input type="file" id="statutesFileInput" accept=".pdf" style="display: none;">
+                            </div>
+                            
+                            <div class="upload-progress" id="statutesUploadProgress" style="display: none;">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="statutesProgressFill"></div>
+                                </div>
+                                <p id="statutesProgressText">Subiendo archivo...</p>
+                            </div>
+                            
+                            <div class="upload-actions">
+                                <button class="btn btn-primary" id="uploadStatutesBtn" onclick="uploadStatutes()" disabled>
+                                    <i class="fas fa-upload"></i> Subir Estatutos
+                                </button>
+                                <button class="btn btn-outline" onclick="clearStatutesUpload()">
+                                    <i class="fas fa-times"></i> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gestión de Otros Archivos -->
+                <div class="file-management-section">
+                    <div class="section-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-folder-open"></i> Otros Documentos</h3>
+                            <p>Gestiona otros archivos y documentos del sitio web</p>
+                        </div>
+                        
+                        <div class="files-grid" id="filesGrid">
+                            <!-- Los archivos se cargarán dinámicamente aquí -->
+                        </div>
+                        
+                        <div class="upload-section">
+                            <h4>Subir Nuevo Documento</h4>
+                            <div class="upload-area" id="generalUploadArea">
+                                <div class="upload-content">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Arrastra aquí archivos o haz clic para seleccionar</p>
+                                    <small>PDF, DOC, DOCX, JPG, PNG. Máximo 10MB</small>
+                                </div>
+                                <input type="file" id="generalFileInput" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" multiple style="display: none;">
+                            </div>
+                            
+                            <div class="upload-actions">
+                                <button class="btn btn-primary" id="uploadGeneralBtn" onclick="uploadGeneralFiles()" disabled>
+                                    <i class="fas fa-upload"></i> Subir Archivos
+                                </button>
+                                <button class="btn btn-outline" onclick="clearGeneralUpload()">
+                                    <i class="fas fa-times"></i> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -2160,27 +2247,260 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
 
         // Función para mostrar notificaciones
         function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.className = `notification notification-${type}`;
-            notification.innerHTML = `
-                <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
-                <span>${message}</span>
-                <button onclick="this.parentElement.remove()">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
+            // Implementación básica de notificaciones
+            alert(`${type.toUpperCase()}: ${message}`);
+        }
+
+        // ==========================================================================
+        // GESTIÓN DE ARCHIVOS - FUNCIONALIDAD
+        // ==========================================================================
+
+        // Variables globales para archivos
+        let selectedStatutesFile = null;
+        let selectedGeneralFiles = [];
+
+        // Inicialización de la gestión de archivos
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeFileManagement();
+        });
+
+        function initializeFileManagement() {
+            // Configurar drag and drop para estatutos
+            const statutesUploadArea = document.getElementById('statutesUploadArea');
+            const statutesFileInput = document.getElementById('statutesFileInput');
+
+            if (statutesUploadArea && statutesFileInput) {
+                // Click para seleccionar archivo
+                statutesUploadArea.addEventListener('click', () => {
+                    statutesFileInput.click();
+                });
+
+                // Drag and drop
+                statutesUploadArea.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    statutesUploadArea.classList.add('dragover');
+                });
+
+                statutesUploadArea.addEventListener('dragleave', () => {
+                    statutesUploadArea.classList.remove('dragover');
+                });
+
+                statutesUploadArea.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    statutesUploadArea.classList.remove('dragover');
+                    
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        handleStatutesFileSelect(files[0]);
+                    }
+                });
+
+                // Cambio de archivo seleccionado
+                statutesFileInput.addEventListener('change', (e) => {
+                    if (e.target.files.length > 0) {
+                        handleStatutesFileSelect(e.target.files[0]);
+                    }
+                });
+            }
+
+            // Configurar drag and drop para archivos generales
+            const generalUploadArea = document.getElementById('generalUploadArea');
+            const generalFileInput = document.getElementById('generalFileInput');
+
+            if (generalUploadArea && generalFileInput) {
+                // Click para seleccionar archivos
+                generalUploadArea.addEventListener('click', () => {
+                    generalFileInput.click();
+                });
+
+                // Drag and drop
+                generalUploadArea.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    generalUploadArea.classList.add('dragover');
+                });
+
+                generalUploadArea.addEventListener('dragleave', () => {
+                    generalUploadArea.classList.remove('dragover');
+                });
+
+                generalUploadArea.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    generalUploadArea.classList.remove('dragover');
+                    
+                    const files = Array.from(e.dataTransfer.files);
+                    handleGeneralFilesSelect(files);
+                });
+
+                // Cambio de archivos seleccionados
+                generalFileInput.addEventListener('change', (e) => {
+                    const files = Array.from(e.target.files);
+                    handleGeneralFilesSelect(files);
+                });
+            }
+        }
+
+        // Manejo de selección de archivo de estatutos
+        function handleStatutesFileSelect(file) {
+            if (file.type !== 'application/pdf') {
+                showNotification('Solo se permiten archivos PDF para los estatutos', 'error');
+                return;
+            }
+
+            if (file.size > 10 * 1024 * 1024) { // 10MB
+                showNotification('El archivo es demasiado grande. Máximo 10MB', 'error');
+                return;
+            }
+
+            selectedStatutesFile = file;
+            document.getElementById('uploadStatutesBtn').disabled = false;
             
-            document.body.appendChild(notification);
+            // Mostrar información del archivo
+            const uploadArea = document.getElementById('statutesUploadArea');
+            uploadArea.querySelector('.upload-content p').textContent = `Archivo seleccionado: ${file.name}`;
+            uploadArea.querySelector('.upload-content small').textContent = `Tamaño: ${(file.size / 1024 / 1024).toFixed(2)} MB`;
+        }
+
+        // Manejo de selección de archivos generales
+        function handleGeneralFilesSelect(files) {
+            selectedGeneralFiles = [];
             
-            // Auto-remove después de 5 segundos
-            setTimeout(() => {
-                if (notification.parentElement) {
-                    notification.remove();
+            files.forEach(file => {
+                const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/jpeg', 'image/png'];
+                
+                if (!allowedTypes.includes(file.type)) {
+                    showNotification(`Tipo de archivo no permitido: ${file.name}`, 'error');
+                    return;
                 }
-            }, 5000);
+
+                if (file.size > 10 * 1024 * 1024) { // 10MB
+                    showNotification(`Archivo demasiado grande: ${file.name}`, 'error');
+                    return;
+                }
+
+                selectedGeneralFiles.push(file);
+            });
+
+            if (selectedGeneralFiles.length > 0) {
+                document.getElementById('uploadGeneralBtn').disabled = false;
+                
+                // Mostrar información de archivos
+                const uploadArea = document.getElementById('generalUploadArea');
+                uploadArea.querySelector('.upload-content p').textContent = `${selectedGeneralFiles.length} archivo(s) seleccionado(s)`;
+                uploadArea.querySelector('.upload-content small').textContent = `Total: ${(selectedGeneralFiles.reduce((sum, file) => sum + file.size, 0) / 1024 / 1024).toFixed(2)} MB`;
+            }
+        }
+
+        // Subir estatutos
+        function uploadStatutes() {
+            if (!selectedStatutesFile) {
+                showNotification('No hay archivo seleccionado', 'error');
+                return;
+            }
+
+            const progressBar = document.getElementById('statutesProgressFill');
+            const progressText = document.getElementById('statutesProgressText');
+            const progressContainer = document.getElementById('statutesUploadProgress');
+            const uploadBtn = document.getElementById('uploadStatutesBtn');
+
+            // Mostrar progreso
+            progressContainer.style.display = 'block';
+            uploadBtn.disabled = true;
+
+            // Simular progreso de subida
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 20;
+                if (progress > 100) progress = 100;
+                
+                progressBar.style.width = progress + '%';
+                progressText.textContent = `Subiendo... ${Math.round(progress)}%`;
+
+                if (progress === 100) {
+                    clearInterval(interval);
+                    
+                    setTimeout(() => {
+                        // Simular éxito
+                        showNotification('Estatutos subidos correctamente', 'success');
+                        
+                        // Actualizar información del archivo actual
+                        document.getElementById('currentStatutesName').textContent = selectedStatutesFile.name;
+                        document.getElementById('currentStatutesDate').textContent = new Date().toLocaleDateString('es-ES', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                        document.getElementById('currentStatutesSize').textContent = (selectedStatutesFile.size / 1024 / 1024).toFixed(2) + ' MB';
+                        
+                        // Ocultar progreso y limpiar
+                        progressContainer.style.display = 'none';
+                        uploadBtn.disabled = false;
+                        clearStatutesUpload();
+                        
+                        // Aquí guardarías el archivo en el servidor
+                        console.log('Archivo de estatutos subido:', selectedStatutesFile);
+                    }, 500);
+                }
+            }, 200);
+        }
+
+        // Subir archivos generales
+        function uploadGeneralFiles() {
+            if (selectedGeneralFiles.length === 0) {
+                showNotification('No hay archivos seleccionados', 'error');
+                return;
+            }
+
+            showNotification(`${selectedGeneralFiles.length} archivo(s) subido(s) correctamente`, 'success');
+            
+            // Aquí procesarías los archivos en el servidor
+            selectedGeneralFiles.forEach(file => {
+                console.log('Archivo subido:', file);
+            });
+            
+            clearGeneralUpload();
+        }
+
+        // Limpiar selección de estatutos
+        function clearStatutesUpload() {
+            selectedStatutesFile = null;
+            document.getElementById('uploadStatutesBtn').disabled = true;
+            document.getElementById('statutesFileInput').value = '';
+            
+            const uploadArea = document.getElementById('statutesUploadArea');
+            uploadArea.querySelector('.upload-content p').textContent = 'Arrastra aquí el archivo PDF o haz clic para seleccionar';
+            uploadArea.querySelector('.upload-content small').textContent = 'Solo archivos PDF. Máximo 10MB';
+        }
+
+        // Limpiar selección de archivos generales
+        function clearGeneralUpload() {
+            selectedGeneralFiles = [];
+            document.getElementById('uploadGeneralBtn').disabled = true;
+            document.getElementById('generalFileInput').value = '';
+            
+            const uploadArea = document.getElementById('generalUploadArea');
+            uploadArea.querySelector('.upload-content p').textContent = 'Arrastra aquí archivos o haz clic para seleccionar';
+            uploadArea.querySelector('.upload-content small').textContent = 'PDF, DOC, DOCX, JPG, PNG. Máximo 10MB';
+        }
+
+        // Descargar estatutos actuales
+        function downloadCurrentStatutes() {
+            // Aquí implementarías la descarga del archivo actual
+            showNotification('Descarga iniciada', 'info');
+            console.log('Descargando estatutos actuales...');
+        }
+
+        // Eliminar estatutos actuales
+        function deleteCurrentStatutes() {
+            if (confirm('¿Estás seguro de que quieres eliminar los estatutos actuales?')) {
+                showNotification('Estatutos eliminados correctamente', 'success');
+                console.log('Estatutos eliminados...');
+                
+                // Limpiar información del archivo
+                document.getElementById('currentStatutesName').textContent = 'No hay archivo subido';
+                document.getElementById('currentStatutesDate').textContent = 'N/A';
+                document.getElementById('currentStatutesSize').textContent = 'N/A';
+            }
         }
     </script>
-</body>
-</html> 
 </body>
 </html> 

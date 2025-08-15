@@ -77,6 +77,7 @@
                         <div class="hero-actions">
                             <a href="#associations" class="btn btn-primary btn-large">Ver Asociaciones</a>
                             <a href="#join" class="btn btn-outline btn-large">Unirse a FANTEA</a>
+                            <a href="#download-statutes" class="btn btn-secondary btn-large">Descarga Nuestros Estatutos</a>
                         </div>
                     </div>
                     <div class="hero-image">
@@ -286,6 +287,43 @@
                 </div>
             </div>
         </section>
+
+        <!-- Download Statutes Section -->
+        <section id="download-statutes" class="statutes-section">
+            <div class="container">
+                <div class="statutes-content">
+                    <div class="statutes-text">
+                        <h2>Nuestros Estatutos</h2>
+                        <p>Descarga los estatutos oficiales de FANTEA para conocer en detalle nuestra estructura organizativa, objetivos y funcionamiento interno. Este documento es fundamental para entender cómo trabajamos y cómo puedes formar parte de nuestra federación.</p>
+                        <div class="statutes-features">
+                            <div class="feature-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Formato PDF accesible</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-download"></i>
+                                <span>Descarga gratuita</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Actualizado 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="statutes-action">
+                        <a href="#" class="statutes-download-btn" id="download-statutes-btn">
+                            <div class="download-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <div class="download-info">
+                                <span class="download-title">Descargar Estatutos</span>
+                                <span class="download-subtitle">PDF Oficial FANTEA</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -395,6 +433,31 @@
                     card.style.transform = 'translateY(0)';
                 }, 200 + (index * 100));
             });
+            
+            // Manejo de descarga de estatutos
+            const downloadStatutesBtn = document.getElementById('download-statutes-btn');
+            if (downloadStatutesBtn) {
+                downloadStatutesBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Aquí puedes cambiar la URL del PDF de los estatutos
+                    const statutesUrl = '/data/uploads/estatutos/estatutos-fantea.pdf';
+                    
+                    // Crear un enlace temporal para la descarga
+                    const link = document.createElement('a');
+                    link.href = statutesUrl;
+                    link.download = 'Estatutos-FANTEA-2024.pdf';
+                    link.target = '_blank';
+                    
+                    // Simular clic en el enlace
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // Mostrar mensaje de confirmación
+                    alert('Descarga iniciada. Si no se descarga automáticamente, revisa tu carpeta de descargas.');
+                });
+            }
         });
     </script>
 </body>
