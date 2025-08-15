@@ -50,8 +50,59 @@
 
 .hero-actions {
     display: flex;
-    gap: 1rem;
+    gap: 1.25rem;
     flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+/* Estilos específicos para el botón de estatutos en el hero */
+.hero-actions .btn-secondary {
+    background: linear-gradient(135deg, var(--fantea-teal) 0%, var(--fantea-blue) 100%);
+    border: 2px solid transparent;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 6px 20px rgba(30, 95, 116, 0.25);
+}
+
+.hero-actions .btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.hero-actions .btn-secondary:hover::before {
+    left: 100%;
+}
+
+.hero-actions .btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(30, 95, 116, 0.35);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-decoration: none;
+}
+
+.hero-actions .btn-secondary:active {
+    transform: translateY(-1px);
+    transition: all 0.1s ease;
+}
+
+.hero-actions .btn-secondary i {
+    transition: all 0.3s ease;
+}
+
+.hero-actions .btn-secondary:hover i {
+    transform: translateY(-1px);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .hero-image {
@@ -426,63 +477,120 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    background: linear-gradient(135deg, var(--fantea-teal), var(--fantea-blue));
+    gap: 1.5rem;
+    background: linear-gradient(135deg, var(--fantea-teal) 0%, var(--fantea-blue) 50%, var(--fantea-green) 100%);
     color: white;
-    padding: 2rem;
-    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
     text-decoration: none;
-    transition: all 0.4s ease;
-    box-shadow: 0 8px 24px rgba(30, 95, 116, 0.3);
-    border: none;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 12px 32px rgba(30, 95, 116, 0.25), 0 4px 16px rgba(59, 130, 246, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
-    min-width: 200px;
+    min-width: 220px;
+    position: relative;
+    overflow: hidden;
+}
+
+.statutes-download-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.statutes-download-btn:hover::before {
+    left: 100%;
 }
 
 .statutes-download-btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 32px rgba(30, 95, 116, 0.4);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(30, 95, 116, 0.35), 0 8px 24px rgba(59, 130, 246, 0.25);
     color: white;
     text-decoration: none;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.statutes-download-btn:active {
+    transform: translateY(-2px) scale(0.98);
+    transition: all 0.1s ease;
 }
 
 .statutes-download-btn .download-icon {
-    width: 60px;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.2);
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.4s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    z-index: 2;
 }
 
 .statutes-download-btn .download-icon i {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     color: white;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .statutes-download-btn:hover .download-icon {
-    transform: scale(1.1);
-    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.15) rotate(5deg);
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.statutes-download-btn:hover .download-icon i {
+    transform: translateY(-2px);
 }
 
 .statutes-download-btn .download-info {
     text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
 .statutes-download-btn .download-title {
     display: block;
-    font-size: 1.25rem;
+    font-size: 1.375rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
 }
 
 .statutes-download-btn .download-subtitle {
     display: block;
-    font-size: 0.875rem;
-    opacity: 0.9;
+    font-size: 0.9375rem;
+    opacity: 0.95;
     font-weight: 500;
+    letter-spacing: 0.25px;
+}
+
+/* Animaciones adicionales para el botón de estatutos */
+@keyframes statutesPulse {
+    0%, 100% {
+        box-shadow: 0 12px 32px rgba(30, 95, 116, 0.25), 0 4px 16px rgba(59, 130, 246, 0.15);
+    }
+    50% {
+        box-shadow: 0 12px 32px rgba(30, 95, 116, 0.35), 0 4px 16px rgba(59, 130, 246, 0.25);
+    }
+}
+
+.statutes-download-btn {
+    animation: statutesPulse 3s ease-in-out infinite;
+}
+
+.statutes-download-btn:hover {
+    animation: none;
 }
 
 /* Responsive Design */
