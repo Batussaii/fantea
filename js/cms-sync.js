@@ -713,50 +713,133 @@ class CMSSync {
         if (this.cmsData['prensa-header']) {
             this.updateTextContent('.hero-title', this.cmsData['prensa-header'].title);
             this.updateTextContent('.hero-description', this.cmsData['prensa-header'].description);
+            this.updateImageSrc('.hero-img', this.cmsData['prensa-header'].image);
+            
+            // Actualizar botones del hero
+            if (this.cmsData['prensa-header'].buttons) {
+                const buttons = this.cmsData['prensa-header'].buttons;
+                const btnNoticias = document.querySelector('.hero-actions .btn:nth-child(1)');
+                const btnRecursos = document.querySelector('.hero-actions .btn:nth-child(2)');
+                if (btnNoticias && buttons[0]) { 
+                    btnNoticias.textContent = buttons[0].text; 
+                    btnNoticias.href = buttons[0].url || btnNoticias.href; 
+                }
+                if (btnRecursos && buttons[1]) { 
+                    btnRecursos.textContent = buttons[1].text; 
+                    btnRecursos.href = buttons[1].url || btnRecursos.href; 
+                }
+            }
         }
 
-        // Press Content Section
-        if (this.cmsData['prensa-content']) {
-            if (this.cmsData['prensa-content'].sectionTitle) {
-                this.updateTextContent('.press-section .section-header h2', this.cmsData['prensa-content'].sectionTitle);
+        // Stats Section
+        if (this.cmsData['prensa-stats'] && this.cmsData['prensa-stats'].items) {
+            this.cmsData['prensa-stats'].items.forEach((stat, index) => {
+                this.updateTextContent(`.hero-stats .stat-item:nth-child(${index + 1}) .stat-number`, stat.number);
+                this.updateTextContent(`.hero-stats .stat-item:nth-child(${index + 1}) .stat-text`, stat.description);
+            });
+        }
+
+        // Press Items Section
+        if (this.cmsData['prensa-items']) {
+            // Actualizar cada artículo de prensa individualmente
+            if (this.cmsData['prensa-items'].articles) {
+                this.cmsData['prensa-items'].articles.forEach((article, index) => {
+                    const pressCard = document.querySelector(`.press-grid .press-card:nth-child(${index + 1})`);
+                    if (pressCard) {
+                        // Actualizar imagen
+                        const image = pressCard.querySelector('.press-image img');
+                        if (image && article.image) image.src = article.image;
+                        
+                        // Actualizar categoría
+                        const category = pressCard.querySelector('.press-category');
+                        if (category && article.category) category.textContent = article.category;
+                        
+                        // Actualizar fecha
+                        const date = pressCard.querySelector('.press-date');
+                        if (date && article.date) date.innerHTML = `<i class="fas fa-calendar"></i> ${article.date}`;
+                        
+                        // Actualizar tipo
+                        const type = pressCard.querySelector('.press-type');
+                        if (type && article.type) type.innerHTML = `<i class="fas fa-${article.typeIcon}"></i> ${article.type}`;
+                        
+                        // Actualizar título
+                        const title = pressCard.querySelector('h3');
+                        if (title && article.title) title.textContent = article.title;
+                        
+                        // Actualizar descripción
+                        const description = pressCard.querySelector('p');
+                        if (description && article.description) description.textContent = article.description;
+                        
+                        // Actualizar enlace
+                        const link = pressCard.querySelector('.press-link span');
+                        if (link && article.linkText) link.textContent = article.linkText;
+                        
+                        // Actualizar URL del enlace
+                        const linkElement = pressCard.querySelector('.press-link');
+                        if (linkElement && article.linkUrl) linkElement.href = article.linkUrl;
+                    }
+                });
             }
-            if (this.cmsData['prensa-content'].introText) {
-                this.updateTextContent('.press-intro p', this.cmsData['prensa-content'].introText);
+        }
+
+        // Resources Section
+        if (this.cmsData['prensa-resources']) {
+            if (this.cmsData['prensa-resources'].title) {
+                this.updateTextContent('.resources-section .section-header h2', this.cmsData['prensa-resources'].title);
+            }
+            if (this.cmsData['prensa-resources'].subtitle) {
+                this.updateTextContent('.resources-section .section-header p', this.cmsData['prensa-resources'].subtitle);
+            }
+            
+            // Resources List - Actualizar cada recurso individualmente
+            if (this.cmsData['prensa-resources'].resources) {
+                this.cmsData['prensa-resources'].resources.forEach((resource, index) => {
+                    const resourceCard = document.querySelector(`.resources-grid .resource-card:nth-child(${index + 1})`);
+                    if (resourceCard) {
+                        // Actualizar icono
+                        const icon = resourceCard.querySelector('.resource-icon i');
+                        if (icon && resource.icon) icon.className = resource.icon;
+                        
+                        // Actualizar título
+                        const title = resourceCard.querySelector('h3');
+                        if (title && resource.title) title.textContent = resource.title;
+                        
+                        // Actualizar descripción
+                        const description = resourceCard.querySelector('p');
+                        if (description && resource.description) description.textContent = resource.description;
+                        
+                        // Actualizar enlace
+                        const link = resourceCard.querySelector('.resource-link span');
+                        if (link && resource.linkText) link.textContent = resource.linkText;
+                        
+                        // Actualizar URL del enlace
+                        const linkElement = resourceCard.querySelector('.resource-link');
+                        if (linkElement && resource.linkUrl) linkElement.href = resource.linkUrl;
+                    }
+                });
+            }
+        }
+
+        // Contact Section
+        if (this.cmsData['prensa-contact']) {
+            if (this.cmsData['prensa-contact'].title) {
+                this.updateTextContent('.contact-section .contact-text h2', this.cmsData['prensa-contact'].title);
+            }
+            if (this.cmsData['prensa-contact'].description) {
+                this.updateTextContent('.contact-section .contact-text p', this.cmsData['prensa-contact'].description);
             }
             
             // Contact Info
-            if (this.cmsData['prensa-content'].contactInfo) {
-                const contactInfo = this.cmsData['prensa-content'].contactInfo;
-                
+            if (this.cmsData['prensa-contact'].contactInfo) {
+                const contactInfo = this.cmsData['prensa-contact'].contactInfo;
                 if (contactInfo.email) {
-                    this.updateTextContent('.press-contact .contact-email', contactInfo.email);
+                    this.updateTextContent('.contact-item:nth-child(1) span', contactInfo.email);
                 }
                 if (contactInfo.phone) {
-                    this.updateTextContent('.press-contact .contact-phone', contactInfo.phone);
+                    this.updateTextContent('.contact-item:nth-child(2) span', contactInfo.phone);
                 }
                 if (contactInfo.hours) {
-                    this.updateTextContent('.press-contact .contact-hours', contactInfo.hours);
-                }
-            }
-            
-            // Press Releases
-            if (this.cmsData['prensa-content'].pressReleases) {
-                const pressReleasesContainer = document.querySelector('.press-releases-grid');
-                if (pressReleasesContainer) {
-                    pressReleasesContainer.innerHTML = '';
-                    this.cmsData['prensa-content'].pressReleases.forEach(release => {
-                        const releaseCard = document.createElement('div');
-                        releaseCard.className = 'press-release-card';
-                        releaseCard.innerHTML = `
-                            <div class="release-content">
-                                <span class="release-date">${release.date}</span>
-                                <h3>${release.title}</h3>
-                                <p>${release.summary}</p>
-                                ${release.pdfUrl ? `<a href="${release.pdfUrl}" class="release-link" target="_blank">Descargar PDF</a>` : ''}
-                            </div>
-                        `;
-                        pressReleasesContainer.appendChild(releaseCard);
-                    });
+                    this.updateTextContent('.contact-item:nth-child(3) span', contactInfo.hours);
                 }
             }
         }

@@ -2854,6 +2854,7 @@
 
                     <!-- Prensa Page Content -->
                     <div id="prensa-cms" class="cms-page-content">
+                        <!-- Banner de Página -->
                         <div class="cms-section">
                             <div class="section-header-cms">
                                 <h3><i class="fas fa-header"></i> Banner de Página</h3>
@@ -2865,27 +2866,47 @@
                             <div class="section-content-cms">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="prensa-title">Título Principal</label>
-                                        <input type="text" id="prensa-title" class="cms-input" value="Sala de Prensa">
+                                        <label for="prensa-header-title">Título Principal</label>
+                                        <input type="text" id="prensa-header-title" class="cms-input" value="Sala de Prensa">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="prensa-description">Descripción</label>
-                                    <textarea id="prensa-description" class="cms-textarea" rows="4">Notas de prensa, comunicados oficiales y apariciones en medios de comunicación. Mantente informado sobre las últimas noticias y actividades de FANTEA.</textarea>
+                                    <label for="prensa-header-description">Descripción</label>
+                                    <textarea id="prensa-header-description" class="cms-textarea" rows="4">Notas de prensa, comunicados oficiales y apariciones en medios de comunicación. Mantente informado sobre las últimas noticias y actividades de FANTEA.</textarea>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="prensa-image">Imagen del Banner de Prensa</label>
+                                        <label for="prensa-header-image">Imagen del Banner de Prensa</label>
                                         <div class="image-upload-container">
-                                            <img id="prensa-image-preview" src="../images/hero-inclusive.jpg" alt="Vista previa" class="image-preview">
+                                            <img id="prensa-header-image-preview" src="../images/hero-inclusive.jpg" alt="Vista previa" class="image-preview">
                                             <div class="image-upload-overlay">
-                                                <button type="button" class="btn-upload" onclick="uploadImage('prensa-image')">
+                                                <button type="button" class="btn-upload" onclick="uploadImage('prensa-header-image')">
                                                     <i class="fas fa-camera"></i>
                                                     Cambiar Imagen
                                                 </button>
                                             </div>
                                         </div>
-                                        <input type="file" id="prensa-image-input" accept="image/*" style="display: none;">
+                                        <input type="file" id="prensa-header-image-input" accept="image/*" style="display: none;">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="prensa-header-button-noticias">Botón "Ver Noticias"</label>
+                                        <input type="text" id="prensa-header-button-noticias" class="cms-input" value="Ver Noticias">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="prensa-header-url-noticias">URL</label>
+                                        <input type="text" id="prensa-header-url-noticias" class="cms-input" value="#press-items">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="prensa-header-button-recursos">Botón "Recursos"</label>
+                                        <input type="text" id="prensa-header-button-recursos" class="cms-input" value="Recursos">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="prensa-header-url-recursos">URL</label>
+                                        <input type="text" id="prensa-header-url-recursos" class="cms-input" value="#resources">
                                     </div>
                                 </div>
                                 <div class="cms-actions">
@@ -2901,9 +2922,447 @@
                             </div>
                         </div>
 
+                        <!-- Estadísticas -->
                         <div class="cms-section">
                             <div class="section-header-cms">
-                                <h3><i class="fas fa-newspaper"></i> Recursos de Prensa</h3>
+                                <h3><i class="fas fa-chart-bar"></i> Estadísticas</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="stats-grid-cms">
+                                    <div class="stat-item-cms">
+                                        <h4>Estadística 1</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Número</label>
+                                                <input type="text" id="prensa-stats-number1" class="cms-input" value="50+">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" id="prensa-stats-description1" class="cms-input" value="Notas de Prensa">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="stat-item-cms">
+                                        <h4>Estadística 2</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Número</label>
+                                                <input type="text" id="prensa-stats-number2" class="cms-input" value="25+">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" id="prensa-stats-description2" class="cms-input" value="Apariciones en Medios">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="stat-item-cms">
+                                        <h4>Estadística 3</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Número</label>
+                                                <input type="text" id="prensa-stats-number3" class="cms-input" value="15+">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" id="prensa-stats-description3" class="cms-input" value="Comunicados Oficiales">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="stat-item-cms">
+                                        <h4>Estadística 4</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Número</label>
+                                                <input type="text" id="prensa-stats-number4" class="cms-input" value="100+">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" id="prensa-stats-description4" class="cms-input" value="Periodistas Contactados">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('prensa-stats')">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="prensa-stats">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Artículos de Prensa -->
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-newspaper"></i> Artículos de Prensa</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="articles-grid-cms">
+                                    <!-- Artículo 1 -->
+                                    <div class="article-item-cms">
+                                        <h4>Artículo 1</h4>
+                                        <div class="form-group">
+                                            <label>Imagen</label>
+                                            <div class="image-upload-container">
+                                                <img id="prensa-items-article1-image-preview" src="../images/news-1.jpg" alt="Vista previa" class="image-preview">
+                                                <div class="image-upload-overlay">
+                                                    <button type="button" class="btn-upload" onclick="uploadImage('prensa-items-article1-image')">
+                                                        <i class="fas fa-camera"></i>
+                                                        Cambiar Imagen
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <input type="file" id="prensa-items-article1-image-input" accept="image/*" style="display: none;">
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Categoría</label>
+                                                <input type="text" id="prensa-items-article1-category" class="cms-input" value="Nota de Prensa">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Fecha</label>
+                                                <input type="text" id="prensa-items-article1-date" class="cms-input" value="15 de Marzo, 2024">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Tipo</label>
+                                                <input type="text" id="prensa-items-article1-type" class="cms-input" value="Nota de Prensa">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Icono (Font Awesome)</label>
+                                                <input type="text" id="prensa-items-article1-typeIcon" class="cms-input" value="file-alt">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" id="prensa-items-article1-title" class="cms-input" value="FANTEA presenta su manifiesto por los derechos del colectivo TEA">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea id="prensa-items-article1-description" class="cms-textarea" rows="3">La Federación Andaluza TEA presenta su manifiesto con los compromisos fundamentales para defender los derechos de las personas autistas y sus familias en Andalucía.</textarea>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" id="prensa-items-article1-linkText" class="cms-input" value="Leer más">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL del Enlace</label>
+                                                <input type="text" id="prensa-items-article1-linkUrl" class="cms-input" value="#">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Artículo 2 -->
+                                    <div class="article-item-cms">
+                                        <h4>Artículo 2</h4>
+                                        <div class="form-group">
+                                            <label>Imagen</label>
+                                            <div class="image-upload-container">
+                                                <img id="prensa-items-article2-image-preview" src="../images/news-2.jpg" alt="Vista previa" class="image-preview">
+                                                <div class="image-upload-overlay">
+                                                    <button type="button" class="btn-upload" onclick="uploadImage('prensa-items-article2-image')">
+                                                        <i class="fas fa-camera"></i>
+                                                        Cambiar Imagen
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <input type="file" id="prensa-items-article2-image-input" accept="image/*" style="display: none;">
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Categoría</label>
+                                                <input type="text" id="prensa-items-article2-category" class="cms-input" value="Aparición en Medios">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Fecha</label>
+                                                <input type="text" id="prensa-items-article2-date" class="cms-input" value="12 de Marzo, 2024">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Tipo</label>
+                                                <input type="text" id="prensa-items-article2-type" class="cms-input" value="Aparición en Medios">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Icono (Font Awesome)</label>
+                                                <input type="text" id="prensa-items-article2-typeIcon" class="cms-input" value="tv">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" id="prensa-items-article2-title" class="cms-input" value="FANTEA en Canal Sur: La importancia de la inclusión educativa">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea id="prensa-items-article2-description" class="cms-textarea" rows="3">Nuestro presidente participó en el programa \"Andalucía Directo\" para hablar sobre la importancia de la inclusión educativa para las personas autistas.</textarea>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" id="prensa-items-article2-linkText" class="cms-input" value="Ver entrevista">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL del Enlace</label>
+                                                <input type="text" id="prensa-items-article2-linkUrl" class="cms-input" value="#">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Artículo 3 -->
+                                    <div class="article-item-cms">
+                                        <h4>Artículo 3</h4>
+                                        <div class="form-group">
+                                            <label>Imagen</label>
+                                            <div class="image-upload-container">
+                                                <img id="prensa-items-article3-image-preview" src="../images/news-3.jpg" alt="Vista previa" class="image-preview">
+                                                <div class="image-upload-overlay">
+                                                    <button type="button" class="btn-upload" onclick="uploadImage('prensa-items-article3-image')">
+                                                        <i class="fas fa-camera"></i>
+                                                        Cambiar Imagen
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <input type="file" id="prensa-items-article3-image-input" accept="image/*" style="display: none;">
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Categoría</label>
+                                                <input type="text" id="prensa-items-article3-category" class="cms-input" value="Comunicado Oficial">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Fecha</label>
+                                                <input type="text" id="prensa-items-article3-date" class="cms-input" value="8 de Marzo, 2024">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Tipo</label>
+                                                <input type="text" id="prensa-items-article3-type" class="cms-input" value="Comunicado Oficial">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Icono (Font Awesome)</label>
+                                                <input type="text" id="prensa-items-article3-typeIcon" class="cms-input" value="bullhorn">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" id="prensa-items-article3-title" class="cms-input" value="Comunicado sobre la situación de la atención temprana en Andalucía">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea id="prensa-items-article3-description" class="cms-textarea" rows="3">FANTEA emite un comunicado oficial sobre la situación actual de la atención temprana en Andalucía y las necesidades urgentes del colectivo TEA.</textarea>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" id="prensa-items-article3-linkText" class="cms-input" value="Leer comunicado">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL del Enlace</label>
+                                                <input type="text" id="prensa-items-article3-linkUrl" class="cms-input" value="#">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Artículo 4 -->
+                                    <div class="article-item-cms">
+                                        <h4>Artículo 4</h4>
+                                        <div class="form-group">
+                                            <label>Imagen</label>
+                                            <div class="image-upload-container">
+                                                <img id="prensa-items-article4-image-preview" src="../images/news-1.jpg" alt="Vista previa" class="image-preview">
+                                                <div class="image-upload-overlay">
+                                                    <button type="button" class="btn-upload" onclick="uploadImage('prensa-items-article4-image')">
+                                                        <i class="fas fa-camera"></i>
+                                                        Cambiar Imagen
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <input type="file" id="prensa-items-article4-image-input" accept="image/*" style="display: none;">
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Categoría</label>
+                                                <input type="text" id="prensa-items-article4-category" class="cms-input" value="Nota de Prensa">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Fecha</label>
+                                                <input type="text" id="prensa-items-article4-date" class="cms-input" value="5 de Marzo, 2024">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Tipo</label>
+                                                <input type="text" id="prensa-items-article4-type" class="cms-input" value="Nota de Prensa">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Icono (Font Awesome)</label>
+                                                <input type="text" id="prensa-items-article4-typeIcon" class="cms-input" value="file-alt">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" id="prensa-items-article4-title" class="cms-input" value="Nueva asociación se une a FANTEA">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea id="prensa-items-article4-description" class="cms-textarea" rows="3">La Asociación Autismo Mijas-Fuengirola se une oficialmente a FANTEA, fortaleciendo la red de apoyo para las personas autistas en la Costa del Sol.</textarea>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" id="prensa-items-article4-linkText" class="cms-input" value="Leer más">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL del Enlace</label>
+                                                <input type="text" id="prensa-items-article4-linkUrl" class="cms-input" value="#">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Artículo 5 -->
+                                    <div class="article-item-cms">
+                                        <h4>Artículo 5</h4>
+                                        <div class="form-group">
+                                            <label>Imagen</label>
+                                            <div class="image-upload-container">
+                                                <img id="prensa-items-article5-image-preview" src="../images/news-2.jpg" alt="Vista previa" class="image-preview">
+                                                <div class="image-upload-overlay">
+                                                    <button type="button" class="btn-upload" onclick="uploadImage('prensa-items-article5-image')">
+                                                        <i class="fas fa-camera"></i>
+                                                        Cambiar Imagen
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <input type="file" id="prensa-items-article5-image-input" accept="image/*" style="display: none;">
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Categoría</label>
+                                                <input type="text" id="prensa-items-article5-category" class="cms-input" value="Aparición en Medios">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Fecha</label>
+                                                <input type="text" id="prensa-items-article5-date" class="cms-input" value="1 de Marzo, 2024">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Tipo</label>
+                                                <input type="text" id="prensa-items-article5-type" class="cms-input" value="Aparición en Medios">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Icono (Font Awesome)</label>
+                                                <input type="text" id="prensa-items-article5-typeIcon" class="cms-input" value="tv">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" id="prensa-items-article5-title" class="cms-input" value="Entrevista en Diario Sur sobre empleo inclusivo">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea id="prensa-items-article5-description" class="cms-textarea" rows="3">FANTEA participa en un reportaje sobre empleo inclusivo para personas autistas en la provincia de Málaga.</textarea>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" id="prensa-items-article5-linkText" class="cms-input" value="Leer artículo">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL del Enlace</label>
+                                                <input type="text" id="prensa-items-article5-linkUrl" class="cms-input" value="#">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Artículo 6 -->
+                                    <div class="article-item-cms">
+                                        <h4>Artículo 6</h4>
+                                        <div class="form-group">
+                                            <label>Imagen</label>
+                                            <div class="image-upload-container">
+                                                <img id="prensa-items-article6-image-preview" src="../images/news-3.jpg" alt="Vista previa" class="image-preview">
+                                                <div class="image-upload-overlay">
+                                                    <button type="button" class="btn-upload" onclick="uploadImage('prensa-items-article6-image')">
+                                                        <i class="fas fa-camera"></i>
+                                                        Cambiar Imagen
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <input type="file" id="prensa-items-article6-image-input" accept="image/*" style="display: none;">
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Categoría</label>
+                                                <input type="text" id="prensa-items-article6-category" class="cms-input" value="Comunicado Oficial">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Fecha</label>
+                                                <input type="text" id="prensa-items-article6-date" class="cms-input" value="25 de Febrero, 2024">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Tipo</label>
+                                                <input type="text" id="prensa-items-article6-type" class="cms-input" value="Comunicado Oficial">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Icono (Font Awesome)</label>
+                                                <input type="text" id="prensa-items-article6-typeIcon" class="cms-input" value="bullhorn">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" id="prensa-items-article6-title" class="cms-input" value="Posicionamiento sobre la nueva ley de discapacidad">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea id="prensa-items-article6-description" class="cms-textarea" rows="3">FANTEA emite su posicionamiento sobre la nueva ley de discapacidad y sus implicaciones para el colectivo TEA.</textarea>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" id="prensa-items-article6-linkText" class="cms-input" value="Leer posicionamiento">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL del Enlace</label>
+                                                <input type="text" id="prensa-items-article6-linkUrl" class="cms-input" value="#">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('prensa-items')">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="prensa-items">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recursos -->
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-download"></i> Recursos para Medios</h3>
                                 <button class="btn-small toggle-section">
                                     <i class="fas fa-chevron-down"></i>
                                     Expandir
@@ -2912,46 +3371,156 @@
                             <div class="section-content-cms collapsed">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="prensa-intro-title">Título de la Sección</label>
-                                        <input type="text" id="prensa-intro-title" class="cms-input" value="Recursos para Medios">
+                                        <label for="prensa-resources-title">Título de la Sección</label>
+                                        <input type="text" id="prensa-resources-title" class="cms-input" value="Recursos para Medios">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="prensa-intro-text">Texto de Introducción</label>
-                                    <textarea id="prensa-intro-text" class="cms-textarea" rows="3">Accede a nuestro material de prensa y recursos para periodistas</textarea>
+                                    <label for="prensa-resources-subtitle">Subtítulo</label>
+                                    <input type="text" id="prensa-resources-subtitle" class="cms-input" value="Accede a nuestro material de prensa y recursos para periodistas">
                                 </div>
                                 
-                                <h4>Información de Contacto para Prensa</h4>
-                                <div class="press-contact-cms">
-                                    <div class="form-group">
-                                        <label>Email de Prensa</label>
-                                        <input type="email" class="cms-input" value="prensa@fantea.org">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Teléfono de Prensa</label>
-                                        <input type="text" class="cms-input" value="+34 952 123 456">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Horario de Atención a Medios</label>
-                                        <input type="text" class="cms-input" value="Lun-Vie: 9:00-18:00">
-                                    </div>
-                                </div>
-                                
-                                <h4>Comunicados de Prensa</h4>
-                                <div class="press-releases-cms">
-                                    <div class="press-release-item-cms">
-                                        <h4>Comunicado 1</h4>
-                                        <div class="form-row">
-                                            <div class="form-group">
-                                                <label>Fecha</label>
-                                                <input type="date" class="cms-input" value="2024-03-15">
-                                            </div>
-                                                                                    <div class="form-group">
-                                            <label>Título</label>
-                                            <input type="text" class="cms-input" value="FANTEA presenta su manifiesto por los derechos del colectivo TEA">
-                                        </div>
+                                <div class="resources-grid-cms">
+                                    <!-- Recurso 1 -->
+                                    <div class="resource-item-cms">
+                                        <h4>Recurso 1</h4>
+                                        <div class="form-group">
+                                            <label>Icono (Font Awesome)</label>
+                                            <input type="text" id="prensa-resources-resource1-icon" class="cms-input" value="fas fa-download">
                                         </div>
                                         <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" id="prensa-resources-resource1-title" class="cms-input" value="Descargar Notas de Prensa">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea id="prensa-resources-resource1-description" class="cms-textarea" rows="3">Accede a todas nuestras notas de prensa en formato PDF para su uso en medios de comunicación.</textarea>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" id="prensa-resources-resource1-linkText" class="cms-input" value="Descargar Todas">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL del Enlace</label>
+                                                <input type="text" id="prensa-resources-resource1-linkUrl" class="cms-input" value="#">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Recurso 2 -->
+                                    <div class="resource-item-cms">
+                                        <h4>Recurso 2</h4>
+                                        <div class="form-group">
+                                            <label>Icono (Font Awesome)</label>
+                                            <input type="text" id="prensa-resources-resource2-icon" class="cms-input" value="fas fa-camera">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" id="prensa-resources-resource2-title" class="cms-input" value="Material Audiovisual">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea id="prensa-resources-resource2-description" class="cms-textarea" rows="3">Imágenes, logos y material audiovisual de FANTEA para uso en medios de comunicación.</textarea>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" id="prensa-resources-resource2-linkText" class="cms-input" value="Acceder al Material">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL del Enlace</label>
+                                                <input type="text" id="prensa-resources-resource2-linkUrl" class="cms-input" value="#">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Recurso 3 -->
+                                    <div class="resource-item-cms">
+                                        <h4>Recurso 3</h4>
+                                        <div class="form-group">
+                                            <label>Icono (Font Awesome)</label>
+                                            <input type="text" id="prensa-resources-resource3-icon" class="cms-input" value="fas fa-user-tie">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" id="prensa-resources-resource3-title" class="cms-input" value="Contacto para Medios">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea id="prensa-resources-resource3-description" class="cms-textarea" rows="3">Formulario para que periodistas puedan contactar con nuestro equipo de comunicación.</textarea>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" id="prensa-resources-resource3-linkText" class="cms-input" value="Contactar">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL del Enlace</label>
+                                                <input type="text" id="prensa-resources-resource3-linkUrl" class="cms-input" value="#contact-form">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('prensa-resources')">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="prensa-resources">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contacto -->
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-envelope"></i> Contacto para Periodistas</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="prensa-contact-title">Título</label>
+                                        <input type="text" id="prensa-contact-title" class="cms-input" value="Contacto para Periodistas">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="prensa-contact-description">Descripción</label>
+                                    <textarea id="prensa-contact-description" class="cms-textarea" rows="4">Si eres periodista y necesitas información, entrevistas o material de FANTEA, completa este formulario. Nuestro equipo de comunicación te responderá lo antes posible.</textarea>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="prensa-contact-email">Email de Prensa</label>
+                                        <input type="email" id="prensa-contact-email" class="cms-input" value="prensa@fantea.org">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="prensa-contact-phone">Teléfono de Prensa</label>
+                                        <input type="text" id="prensa-contact-phone" class="cms-input" value="+34 952 123 456">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="prensa-contact-hours">Horario de Atención</label>
+                                    <input type="text" id="prensa-contact-hours" class="cms-input" value="Lun-Vie: 9:00-18:00">
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('prensa-contact')">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="prensa-contact">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                                             <label>Resumen</label>
                                             <textarea class="cms-textarea" rows="3">La Federación Andaluza TEA presenta su manifiesto con los compromisos fundamentales para defender los derechos de las personas autistas y sus familias en Andalucía.</textarea>
                                         </div>

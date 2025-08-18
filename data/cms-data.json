@@ -413,5 +413,116 @@
     ],
     "lastModified": "2025-08-18T14:26:59.295Z",
     "modifiedBy": "admin"
+  },
+  "prensa-header": {
+    "title": "Sala de Prensaa",
+    "description": "Notas de prensa, comunicados oficiales y apariciones en medios de comunicación. Mantente informado sobre las últimas noticias y actividades de FANTEAaa.",
+    "image": "http://localhost:3001/uploads/images/prensa-header-image_1755530418981_Logo.png",
+    "buttons": [
+      {
+        "text": "Ver Noticias",
+        "url": "#press-items"
+      },
+      {
+        "text": "Recursos",
+        "url": "#resources"
+      }
+    ],
+    "lastModified": "2025-08-18T15:20:28.085Z",
+    "modifiedBy": "admin"
+  },
+  "prensa-stats": {
+    "items": [
+      {
+        "number": "50+++",
+        "description": "Notas de Prensa"
+      },
+      {
+        "number": "25+",
+        "description": "Apariciones en Medios"
+      },
+      {
+        "number": "15+",
+        "description": "Comunicados Oficiales"
+      },
+      {
+        "number": "100+",
+        "description": "Periodistas Contactados"
+      }
+    ],
+    "lastModified": "2025-08-18T15:20:35.346Z",
+    "modifiedBy": "admin"
+  },
+  "prensa-items": {
+    "articles": [
+      {
+        "image": "http://localhost:3001/uploads/images/prensa-items-article1-image_1755530450165_Logo.png",
+        "category": "Nota de Prensa",
+        "date": "15 de Marzo, 2024",
+        "type": "Nota de Prensa",
+        "typeIcon": "file-alt",
+        "title": "FANTEA presenta su manifiesto por los derechos del colectivo TEA",
+        "description": "La Federación Andaluza TEA presenta su manifiesto con los compromisos fundamentales para defender los derechos de las personas autistas y sus familias en Andalucía.",
+        "linkText": "Leer más",
+        "linkUrl": "https://www.google.es"
+      },
+      {
+        "image": "http://localhost:3001/images/news-2.jpg",
+        "category": "Aparición en Medios",
+        "date": "12 de Marzo, 2024",
+        "type": "Aparición en Medios",
+        "typeIcon": "tv",
+        "title": "FANTEA en Canal Sur: La importancia de la inclusión educativa",
+        "description": "Nuestro presidente participó en el programa \\\"Andalucía Directo\\\" para hablar sobre la importancia de la inclusión educativa para las personas autistas.",
+        "linkText": "Ver entrevista",
+        "linkUrl": "#"
+      },
+      {
+        "image": "http://localhost:3001/images/news-3.jpg",
+        "category": "Comunicado Oficial",
+        "date": "8 de Marzo, 2024",
+        "type": "Comunicado Oficial",
+        "typeIcon": "bullhorn",
+        "title": "Comunicado sobre la situación de la atención temprana en Andalucía",
+        "description": "FANTEA emite un comunicado oficial sobre la situación actual de la atención temprana en Andalucía y las necesidades urgentes del colectivo TEA.",
+        "linkText": "Leer comunicado",
+        "linkUrl": "#"
+      },
+      {
+        "image": "http://localhost:3001/images/news-1.jpg",
+        "category": "Nota de Prensa",
+        "date": "5 de Marzo, 2024",
+        "type": "Nota de Prensa",
+        "typeIcon": "file-alt",
+        "title": "Nueva asociación se une a FANTEA",
+        "description": "La Asociación Autismo Mijas-Fuengirola se une oficialmente a FANTEA, fortaleciendo la red de apoyo para las personas autistas en la Costa del Sol.",
+        "linkText": "Leer más",
+        "linkUrl": "#"
+      },
+      {
+        "image": "http://localhost:3001/images/news-2.jpg",
+        "category": "Aparición en Medios",
+        "date": "1 de Marzo, 2024",
+        "type": "Aparición en Medios",
+        "typeIcon": "tv",
+        "title": "Entrevista en Diario Sur sobre empleo inclusivo",
+        "description": "FANTEA participa en un reportaje sobre empleo inclusivo para personas autistas en la provincia de Málaga.",
+        "linkText": "Leer artículo",
+        "linkUrl": "#"
+      },
+      {
+        "image": "http://localhost:3001/images/news-3.jpg",
+        "category": "Comunicado Oficial",
+        "date": "25 de Febrero, 2024",
+        "type": "Comunicado Oficial",
+        "typeIcon": "bullhorn",
+        "title": "Posicionamiento sobre la nueva ley de discapacidad",
+        "description": "FANTEA emite su posicionamiento sobre la nueva ley de discapacidad y sus implicaciones para el colectivo TEA.",
+        "linkText": "Leer posicionamiento",
+        "linkUrl": "#"
+      }
+    ],
+    "lastModified": "2025-08-18T15:22:27.808Z",
+    "modifiedBy": "admin"
   }
 }

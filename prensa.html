@@ -464,6 +464,11 @@
         </div>
     </footer>
 
+    <!-- CMS Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/cache-buster.js"></script>
+    <script src="js/cms-sync.js"></script>
+    
     <script src="js/main.js"></script>
     
     <!-- Script para forzar recarga de estilos CSS -->
@@ -534,6 +539,12 @@
                     card.style.transform = 'translateY(0)';
                 }, 200 + (index * 100));
             });
+            
+            // Inicializar CMS para prensa
+            if (typeof cmsSync !== 'undefined') {
+                cmsSync.init();
+                cmsSync.applyPrensaChanges();
+            }
         });
     </script>
 </body>

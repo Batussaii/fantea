@@ -1407,38 +1407,149 @@ function collectSectionData(sectionName) {
             break;
             
         case 'prensa-header':
-            data.title = document.getElementById('prensa-title')?.value || '';
-            data.description = document.getElementById('prensa-description')?.value || '';
+            data.title = document.getElementById('prensa-header-title')?.value || '';
+            data.description = document.getElementById('prensa-header-description')?.value || '';
+            data.image = document.getElementById('prensa-header-image-preview')?.src || '';
+            data.buttons = [
+                {
+                    text: document.getElementById('prensa-header-button-noticias')?.value || '',
+                    url: document.getElementById('prensa-header-url-noticias')?.value || ''
+                },
+                {
+                    text: document.getElementById('prensa-header-button-recursos')?.value || '',
+                    url: document.getElementById('prensa-header-url-recursos')?.value || ''
+                }
+            ];
             break;
             
-        case 'prensa-content':
-            data.sectionTitle = document.getElementById('prensa-intro-title')?.value || '';
-            data.introText = document.getElementById('prensa-intro-text')?.value || '';
-            data.contactInfo = {};
-            data.pressReleases = [];
-            
-            // Contact info
-            const pressContactItems = document.querySelectorAll('.press-contact-cms .cms-input');
-            pressContactItems.forEach((input, index) => {
-                const labels = ['email', 'phone', 'hours'];
-                if (input.value.trim()) {
-                    data.contactInfo[labels[index]] = input.value.trim();
+        case 'prensa-stats':
+            data.items = [
+                {
+                    number: document.getElementById('prensa-stats-number1')?.value || '',
+                    description: document.getElementById('prensa-stats-description1')?.value || ''
+                },
+                {
+                    number: document.getElementById('prensa-stats-number2')?.value || '',
+                    description: document.getElementById('prensa-stats-description2')?.value || ''
+                },
+                {
+                    number: document.getElementById('prensa-stats-number3')?.value || '',
+                    description: document.getElementById('prensa-stats-description3')?.value || ''
+                },
+                {
+                    number: document.getElementById('prensa-stats-number4')?.value || '',
+                    description: document.getElementById('prensa-stats-description4')?.value || ''
                 }
-            });
+            ];
+            break;
             
-            // Press releases
-            const pressReleaseItems = document.querySelectorAll('.press-release-item-cms');
-            pressReleaseItems.forEach(item => {
-                const inputs = item.querySelectorAll('.cms-input, .cms-textarea');
-                if (inputs.length >= 4) {
-                    data.pressReleases.push({
-                        date: inputs[0].value,
-                        title: inputs[1].value,
-                        summary: inputs[2].value,
-                        pdfUrl: inputs[3].value
-                    });
+        case 'prensa-items':
+            data.articles = [
+                {
+                    image: document.getElementById('prensa-items-article1-image-preview')?.src || '',
+                    category: document.getElementById('prensa-items-article1-category')?.value || '',
+                    date: document.getElementById('prensa-items-article1-date')?.value || '',
+                    type: document.getElementById('prensa-items-article1-type')?.value || '',
+                    typeIcon: document.getElementById('prensa-items-article1-typeIcon')?.value || '',
+                    title: document.getElementById('prensa-items-article1-title')?.value || '',
+                    description: document.getElementById('prensa-items-article1-description')?.value || '',
+                    linkText: document.getElementById('prensa-items-article1-linkText')?.value || '',
+                    linkUrl: document.getElementById('prensa-items-article1-linkUrl')?.value || ''
+                },
+                {
+                    image: document.getElementById('prensa-items-article2-image-preview')?.src || '',
+                    category: document.getElementById('prensa-items-article2-category')?.value || '',
+                    date: document.getElementById('prensa-items-article2-date')?.value || '',
+                    type: document.getElementById('prensa-items-article2-type')?.value || '',
+                    typeIcon: document.getElementById('prensa-items-article2-typeIcon')?.value || '',
+                    title: document.getElementById('prensa-items-article2-title')?.value || '',
+                    description: document.getElementById('prensa-items-article2-description')?.value || '',
+                    linkText: document.getElementById('prensa-items-article2-linkText')?.value || '',
+                    linkUrl: document.getElementById('prensa-items-article2-linkUrl')?.value || ''
+                },
+                {
+                    image: document.getElementById('prensa-items-article3-image-preview')?.src || '',
+                    category: document.getElementById('prensa-items-article3-category')?.value || '',
+                    date: document.getElementById('prensa-items-article3-date')?.value || '',
+                    type: document.getElementById('prensa-items-article3-type')?.value || '',
+                    typeIcon: document.getElementById('prensa-items-article3-typeIcon')?.value || '',
+                    title: document.getElementById('prensa-items-article3-title')?.value || '',
+                    description: document.getElementById('prensa-items-article3-description')?.value || '',
+                    linkText: document.getElementById('prensa-items-article3-linkText')?.value || '',
+                    linkUrl: document.getElementById('prensa-items-article3-linkUrl')?.value || ''
+                },
+                {
+                    image: document.getElementById('prensa-items-article4-image-preview')?.src || '',
+                    category: document.getElementById('prensa-items-article4-category')?.value || '',
+                    date: document.getElementById('prensa-items-article4-date')?.value || '',
+                    type: document.getElementById('prensa-items-article4-type')?.value || '',
+                    typeIcon: document.getElementById('prensa-items-article4-typeIcon')?.value || '',
+                    title: document.getElementById('prensa-items-article4-title')?.value || '',
+                    description: document.getElementById('prensa-items-article4-description')?.value || '',
+                    linkText: document.getElementById('prensa-items-article4-linkText')?.value || '',
+                    linkUrl: document.getElementById('prensa-items-article4-linkUrl')?.value || ''
+                },
+                {
+                    image: document.getElementById('prensa-items-article5-image-preview')?.src || '',
+                    category: document.getElementById('prensa-items-article5-category')?.value || '',
+                    date: document.getElementById('prensa-items-article5-date')?.value || '',
+                    type: document.getElementById('prensa-items-article5-type')?.value || '',
+                    typeIcon: document.getElementById('prensa-items-article5-typeIcon')?.value || '',
+                    title: document.getElementById('prensa-items-article5-title')?.value || '',
+                    description: document.getElementById('prensa-items-article5-description')?.value || '',
+                    linkText: document.getElementById('prensa-items-article5-linkText')?.value || '',
+                    linkUrl: document.getElementById('prensa-items-article5-linkUrl')?.value || ''
+                },
+                {
+                    image: document.getElementById('prensa-items-article6-image-preview')?.src || '',
+                    category: document.getElementById('prensa-items-article6-category')?.value || '',
+                    date: document.getElementById('prensa-items-article6-date')?.value || '',
+                    type: document.getElementById('prensa-items-article6-type')?.value || '',
+                    typeIcon: document.getElementById('prensa-items-article6-typeIcon')?.value || '',
+                    title: document.getElementById('prensa-items-article6-title')?.value || '',
+                    description: document.getElementById('prensa-items-article6-description')?.value || '',
+                    linkText: document.getElementById('prensa-items-article6-linkText')?.value || '',
+                    linkUrl: document.getElementById('prensa-items-article6-linkUrl')?.value || ''
                 }
-            });
+            ];
+            break;
+            
+        case 'prensa-resources':
+            data.title = document.getElementById('prensa-resources-title')?.value || '';
+            data.subtitle = document.getElementById('prensa-resources-subtitle')?.value || '';
+            data.resources = [
+                {
+                    icon: document.getElementById('prensa-resources-resource1-icon')?.value || '',
+                    title: document.getElementById('prensa-resources-resource1-title')?.value || '',
+                    description: document.getElementById('prensa-resources-resource1-description')?.value || '',
+                    linkText: document.getElementById('prensa-resources-resource1-linkText')?.value || '',
+                    linkUrl: document.getElementById('prensa-resources-resource1-linkUrl')?.value || ''
+                },
+                {
+                    icon: document.getElementById('prensa-resources-resource2-icon')?.value || '',
+                    title: document.getElementById('prensa-resources-resource2-title')?.value || '',
+                    description: document.getElementById('prensa-resources-resource2-description')?.value || '',
+                    linkText: document.getElementById('prensa-resources-resource2-linkText')?.value || '',
+                    linkUrl: document.getElementById('prensa-resources-resource2-linkUrl')?.value || ''
+                },
+                {
+                    icon: document.getElementById('prensa-resources-resource3-icon')?.value || '',
+                    title: document.getElementById('prensa-resources-resource3-title')?.value || '',
+                    description: document.getElementById('prensa-resources-resource3-description')?.value || '',
+                    linkText: document.getElementById('prensa-resources-resource3-linkText')?.value || '',
+                    linkUrl: document.getElementById('prensa-resources-resource3-linkUrl')?.value || ''
+                }
+            ];
+            break;
+            
+        case 'prensa-contact':
+            data.title = document.getElementById('prensa-contact-title')?.value || '';
+            data.description = document.getElementById('prensa-contact-description')?.value || '';
+            data.contactInfo = {
+                email: document.getElementById('prensa-contact-email')?.value || '',
+                phone: document.getElementById('prensa-contact-phone')?.value || '',
+                hours: document.getElementById('prensa-contact-hours')?.value || ''
+            };
             break;
             
         case 'afiliate-header':
@@ -1983,6 +2094,72 @@ function loadSectionData(sectionName, data) {
                     document.getElementById('manifiesto-cta-button-contactar').value = data.buttons[1].text;
                     document.getElementById('manifiesto-cta-url-contactar').value = data.buttons[1].url;
                 }
+            }
+            break;
+            
+        case 'prensa-header':
+            if (data.title) document.getElementById('prensa-header-title').value = data.title;
+            if (data.description) document.getElementById('prensa-header-description').value = data.description;
+            if (data.image) document.getElementById('prensa-header-image-preview').src = data.image;
+            if (data.buttons) {
+                if (data.buttons[0]) {
+                    document.getElementById('prensa-header-button-noticias').value = data.buttons[0].text;
+                    document.getElementById('prensa-header-url-noticias').value = data.buttons[0].url;
+                }
+                if (data.buttons[1]) {
+                    document.getElementById('prensa-header-button-recursos').value = data.buttons[1].text;
+                    document.getElementById('prensa-header-url-recursos').value = data.buttons[1].url;
+                }
+            }
+            break;
+            
+        case 'prensa-stats':
+            if (data.items) {
+                data.items.forEach((stat, index) => {
+                    if (stat.number) document.getElementById(`prensa-stats-number${index + 1}`).value = stat.number;
+                    if (stat.description) document.getElementById(`prensa-stats-description${index + 1}`).value = stat.description;
+                });
+            }
+            break;
+            
+        case 'prensa-items':
+            if (data.articles) {
+                data.articles.forEach((article, index) => {
+                    if (article.image) document.getElementById(`prensa-items-article${index + 1}-image-preview`).src = article.image;
+                    if (article.category) document.getElementById(`prensa-items-article${index + 1}-category`).value = article.category;
+                    if (article.date) document.getElementById(`prensa-items-article${index + 1}-date`).value = article.date;
+                    if (article.type) document.getElementById(`prensa-items-article${index + 1}-type`).value = article.type;
+                    if (article.typeIcon) document.getElementById(`prensa-items-article${index + 1}-typeIcon`).value = article.typeIcon;
+                    if (article.title) document.getElementById(`prensa-items-article${index + 1}-title`).value = article.title;
+                    if (article.description) document.getElementById(`prensa-items-article${index + 1}-description`).value = article.description;
+                    if (article.linkText) document.getElementById(`prensa-items-article${index + 1}-linkText`).value = article.linkText;
+                    if (article.linkUrl) document.getElementById(`prensa-items-article${index + 1}-linkUrl`).value = article.linkUrl;
+                });
+            }
+            break;
+            
+        case 'prensa-resources':
+            if (data.title) document.getElementById('prensa-resources-title').value = data.title;
+            if (data.subtitle) document.getElementById('prensa-resources-subtitle').value = data.subtitle;
+            
+            if (data.resources) {
+                data.resources.forEach((resource, index) => {
+                    if (resource.icon) document.getElementById(`prensa-resources-resource${index + 1}-icon`).value = resource.icon;
+                    if (resource.title) document.getElementById(`prensa-resources-resource${index + 1}-title`).value = resource.title;
+                    if (resource.description) document.getElementById(`prensa-resources-resource${index + 1}-description`).value = resource.description;
+                    if (resource.linkText) document.getElementById(`prensa-resources-resource${index + 1}-linkText`).value = resource.linkText;
+                    if (resource.linkUrl) document.getElementById(`prensa-resources-resource${index + 1}-linkUrl`).value = resource.linkUrl;
+                });
+            }
+            break;
+            
+        case 'prensa-contact':
+            if (data.title) document.getElementById('prensa-contact-title').value = data.title;
+            if (data.description) document.getElementById('prensa-contact-description').value = data.description;
+            if (data.contactInfo) {
+                if (data.contactInfo.email) document.getElementById('prensa-contact-email').value = data.contactInfo.email;
+                if (data.contactInfo.phone) document.getElementById('prensa-contact-phone').value = data.contactInfo.phone;
+                if (data.contactInfo.hours) document.getElementById('prensa-contact-hours').value = data.contactInfo.hours;
             }
             break;
             
