@@ -1171,26 +1171,132 @@ function collectSectionData(sectionName) {
             break;
             
         case 'areas-header':
-            data.title = document.getElementById('areas-title')?.value || '';
-            data.description = document.getElementById('areas-description')?.value || '';
+            data.title = document.getElementById('areas-header-title')?.value || '';
+            data.description = document.getElementById('areas-header-description')?.value || '';
+            data.image = document.getElementById('areas-header-image-preview')?.src || '';
+            data.buttons = [
+                {
+                    text: document.getElementById('areas-header-button-ver')?.value || '',
+                    url: document.getElementById('areas-header-url-ver')?.value || ''
+                },
+                {
+                    text: document.getElementById('areas-header-button-manifiesto')?.value || '',
+                    url: document.getElementById('areas-header-url-manifiesto')?.value || ''
+                }
+            ];
+            break;
+            
+        case 'areas-stats':
+            data.items = [
+                {
+                    number: document.getElementById('areas-stats-number1')?.value || '',
+                    description: document.getElementById('areas-stats-description1')?.value || ''
+                },
+                {
+                    number: document.getElementById('areas-stats-number2')?.value || '',
+                    description: document.getElementById('areas-stats-description2')?.value || ''
+                },
+                {
+                    number: document.getElementById('areas-stats-number3')?.value || '',
+                    description: document.getElementById('areas-stats-description3')?.value || ''
+                },
+                {
+                    number: document.getElementById('areas-stats-number4')?.value || '',
+                    description: document.getElementById('areas-stats-description4')?.value || ''
+                }
+            ];
             break;
             
         case 'areas-list':
-            data.sectionTitle = document.getElementById('areas-intro-title')?.value || '';
-            data.subtitle = document.getElementById('areas-intro-subtitle')?.value || '';
-            data.areas = [];
-            
-            const areaItems = document.querySelectorAll('.area-item-cms');
-            areaItems.forEach(item => {
-                const inputs = item.querySelectorAll('.cms-input, .cms-textarea');
-                if (inputs.length >= 3) {
-                    data.areas.push({
-                        icon: inputs[0].value,
-                        title: inputs[1].value,
-                        description: inputs[2].value
-                    });
+            data.title = document.getElementById('areas-list-title')?.value || '';
+            data.subtitle = document.getElementById('areas-list-subtitle')?.value || '';
+            data.areas = [
+                {
+                    title: document.getElementById('areas-list-area1-title')?.value || '',
+                    emoji: document.getElementById('areas-list-area1-emoji')?.value || '',
+                    description: document.getElementById('areas-list-area1-description')?.value || '',
+                    features: [
+                        document.getElementById('areas-list-area1-feature1')?.value || '',
+                        document.getElementById('areas-list-area1-feature2')?.value || '',
+                        document.getElementById('areas-list-area1-feature3')?.value || ''
+                    ]
+                },
+                {
+                    title: document.getElementById('areas-list-area2-title')?.value || '',
+                    emoji: document.getElementById('areas-list-area2-emoji')?.value || '',
+                    description: document.getElementById('areas-list-area2-description')?.value || '',
+                    features: [
+                        document.getElementById('areas-list-area2-feature1')?.value || '',
+                        document.getElementById('areas-list-area2-feature2')?.value || '',
+                        document.getElementById('areas-list-area2-feature3')?.value || ''
+                    ]
+                },
+                {
+                    title: document.getElementById('areas-list-area3-title')?.value || '',
+                    emoji: document.getElementById('areas-list-area3-emoji')?.value || '',
+                    description: document.getElementById('areas-list-area3-description')?.value || '',
+                    features: [
+                        document.getElementById('areas-list-area3-feature1')?.value || '',
+                        document.getElementById('areas-list-area3-feature2')?.value || '',
+                        document.getElementById('areas-list-area3-feature3')?.value || ''
+                    ]
+                },
+                {
+                    title: document.getElementById('areas-list-area4-title')?.value || '',
+                    emoji: document.getElementById('areas-list-area4-emoji')?.value || '',
+                    description: document.getElementById('areas-list-area4-description')?.value || '',
+                    features: [
+                        document.getElementById('areas-list-area4-feature1')?.value || '',
+                        document.getElementById('areas-list-area4-feature2')?.value || '',
+                        document.getElementById('areas-list-area4-feature3')?.value || ''
+                    ]
+                },
+                {
+                    title: document.getElementById('areas-list-area5-title')?.value || '',
+                    emoji: document.getElementById('areas-list-area5-emoji')?.value || '',
+                    description: document.getElementById('areas-list-area5-description')?.value || '',
+                    features: [
+                        document.getElementById('areas-list-area5-feature1')?.value || '',
+                        document.getElementById('areas-list-area5-feature2')?.value || '',
+                        document.getElementById('areas-list-area5-feature3')?.value || ''
+                    ]
                 }
-            });
+            ];
+            break;
+            
+        case 'areas-impact':
+            data.title = document.getElementById('areas-impact-title')?.value || '';
+            data.description = document.getElementById('areas-impact-description')?.value || '';
+            data.image = document.getElementById('areas-impact-image-preview')?.src || '';
+            data.stats = [
+                {
+                    percentage: document.getElementById('areas-impact-percentage1')?.value || '',
+                    description: document.getElementById('areas-impact-description1')?.value || ''
+                },
+                {
+                    percentage: document.getElementById('areas-impact-percentage2')?.value || '',
+                    description: document.getElementById('areas-impact-description2')?.value || ''
+                },
+                {
+                    percentage: document.getElementById('areas-impact-percentage3')?.value || '',
+                    description: document.getElementById('areas-impact-description3')?.value || ''
+                }
+            ];
+            break;
+            
+        case 'areas-cta':
+            data.title = document.getElementById('areas-cta-title')?.value || '';
+            data.description = document.getElementById('areas-cta-description')?.value || '';
+            data.buttons = [
+                {
+                    text: document.getElementById('areas-cta-button-manifiesto')?.value || '',
+                    url: document.getElementById('areas-cta-url-manifiesto')?.value || ''
+                },
+                {
+                    text: document.getElementById('areas-cta-button-contactar')?.value || '',
+                    url: document.getElementById('areas-cta-url-contactar')?.value || ''
+                }
+            ];
             break;
             
         case 'manifiesto-header':
@@ -1663,26 +1769,77 @@ function loadSectionData(sectionName, data) {
             break;
             
         case 'areas-header':
-            if (data.title) document.getElementById('areas-title').value = data.title;
-            if (data.description) document.getElementById('areas-description').value = data.description;
+            if (data.title) document.getElementById('areas-header-title').value = data.title;
+            if (data.description) document.getElementById('areas-header-description').value = data.description;
+            if (data.image) document.getElementById('areas-header-image-preview').src = data.image;
+            if (data.buttons) {
+                if (data.buttons[0]) {
+                    document.getElementById('areas-header-button-ver').value = data.buttons[0].text;
+                    document.getElementById('areas-header-url-ver').value = data.buttons[0].url;
+                }
+                if (data.buttons[1]) {
+                    document.getElementById('areas-header-button-manifiesto').value = data.buttons[1].text;
+                    document.getElementById('areas-header-url-manifiesto').value = data.buttons[1].url;
+                }
+            }
+            break;
+            
+        case 'areas-stats':
+            if (data.items) {
+                data.items.forEach((stat, index) => {
+                    if (stat.number) document.getElementById(`areas-stats-number${index + 1}`).value = stat.number;
+                    if (stat.description) document.getElementById(`areas-stats-description${index + 1}`).value = stat.description;
+                });
+            }
             break;
             
         case 'areas-list':
-            if (data.sectionTitle) document.getElementById('areas-intro-title').value = data.sectionTitle;
-            if (data.subtitle) document.getElementById('areas-intro-subtitle').value = data.subtitle;
+            if (data.title) document.getElementById('areas-list-title').value = data.title;
+            if (data.subtitle) document.getElementById('areas-list-subtitle').value = data.subtitle;
             
             if (data.areas) {
-                const areaItems = document.querySelectorAll('.area-item-cms');
                 data.areas.forEach((area, index) => {
-                    if (areaItems[index]) {
-                        const inputs = areaItems[index].querySelectorAll('.cms-input, .cms-textarea');
-                        if (inputs[0]) inputs[0].value = area.icon;
-                        if (inputs[1]) inputs[1].value = area.title;
-                        if (inputs[2]) inputs[2].value = area.description;
+                    if (area.title) document.getElementById(`areas-list-area${index + 1}-title`).value = area.title;
+                    if (area.emoji) document.getElementById(`areas-list-area${index + 1}-emoji`).value = area.emoji;
+                    if (area.description) document.getElementById(`areas-list-area${index + 1}-description`).value = area.description;
+                    if (area.features) {
+                        area.features.forEach((feature, featureIndex) => {
+                            if (feature) document.getElementById(`areas-list-area${index + 1}-feature${featureIndex + 1}`).value = feature;
+                        });
                     }
                 });
             }
             break;
+            
+        case 'areas-impact':
+            if (data.title) document.getElementById('areas-impact-title').value = data.title;
+            if (data.description) document.getElementById('areas-impact-description').value = data.description;
+            if (data.image) document.getElementById('areas-impact-image-preview').src = data.image;
+            
+            if (data.stats) {
+                data.stats.forEach((stat, index) => {
+                    if (stat.percentage) document.getElementById(`areas-impact-percentage${index + 1}`).value = stat.percentage;
+                    if (stat.description) document.getElementById(`areas-impact-description${index + 1}`).value = stat.description;
+                });
+            }
+            break;
+            
+        case 'areas-cta':
+            if (data.title) document.getElementById('areas-cta-title').value = data.title;
+            if (data.description) document.getElementById('areas-cta-description').value = data.description;
+            if (data.buttons) {
+                if (data.buttons[0]) {
+                    document.getElementById('areas-cta-button-manifiesto').value = data.buttons[0].text;
+                    document.getElementById('areas-cta-url-manifiesto').value = data.buttons[0].url;
+                }
+                if (data.buttons[1]) {
+                    document.getElementById('areas-cta-button-contactar').value = data.buttons[1].text;
+                    document.getElementById('areas-cta-url-contactar').value = data.buttons[1].url;
+                }
+            }
+            break;
+            
+
             
         case 'manifiesto-header':
             if (data.title) document.getElementById('manifiesto-title').value = data.title;

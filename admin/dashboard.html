@@ -1969,6 +1969,7 @@
 
                     <!-- Áreas Page Content -->
                     <div id="areas-cms" class="cms-page-content">
+                        <!-- Banner de Página -->
                         <div class="cms-section">
                             <div class="section-header-cms">
                                 <h3><i class="fas fa-header"></i> Banner de Página</h3>
@@ -1980,27 +1981,47 @@
                             <div class="section-content-cms">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="areas-title">Título Principal</label>
-                                        <input type="text" id="areas-title" class="cms-input" value="Áreas de Trabajo">
+                                        <label for="areas-header-title">Título Principal</label>
+                                        <input type="text" id="areas-header-title" class="cms-input" value="Áreas de Trabajo">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="areas-description">Descripción</label>
-                                    <textarea id="areas-description" class="cms-textarea" rows="4">Trabajamos en distintos ámbitos para mejorar la calidad de vida de las personas autistas y sus familias. Descubre cómo abordamos cada área con enfoques especializados y compromiso.</textarea>
+                                    <label for="areas-header-description">Descripción</label>
+                                    <textarea id="areas-header-description" class="cms-textarea" rows="4">Trabajamos en distintos ámbitos para mejorar la calidad de vida de las personas autistas y sus familias. Descubre cómo abordamos cada área con enfoques especializados y compromiso.</textarea>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="areas-image">Imagen del Banner de Áreas</label>
+                                        <label for="areas-header-image">Imagen del Banner de Áreas</label>
                                         <div class="image-upload-container">
-                                            <img id="areas-image-preview" src="../images/hero-inclusive.jpg" alt="Vista previa" class="image-preview">
+                                            <img id="areas-header-image-preview" src="../images/hero-inclusive.jpg" alt="Vista previa" class="image-preview">
                                             <div class="image-upload-overlay">
-                                                <button type="button" class="btn-upload" onclick="uploadImage('areas-image')">
+                                                <button type="button" class="btn-upload" onclick="uploadImage('areas-header-image')">
                                                     <i class="fas fa-camera"></i>
                                                     Cambiar Imagen
                                                 </button>
                                             </div>
                                         </div>
-                                        <input type="file" id="areas-image-input" accept="image/*" style="display: none;">
+                                        <input type="file" id="areas-header-image-input" accept="image/*" style="display: none;">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="areas-header-button-ver">Botón "Ver Áreas"</label>
+                                        <input type="text" id="areas-header-button-ver" class="cms-input" value="Ver Áreas">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="areas-header-url-ver">URL</label>
+                                        <input type="text" id="areas-header-url-ver" class="cms-input" value="#areas">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="areas-header-button-manifiesto">Botón "Nuestro Manifiesto"</label>
+                                        <input type="text" id="areas-header-button-manifiesto" class="cms-input" value="Nuestro Manifiesto">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="areas-header-url-manifiesto">URL</label>
+                                        <input type="text" id="areas-header-url-manifiesto" class="cms-input" value="/manifiesto.html">
                                     </div>
                                 </div>
                                 <div class="cms-actions">
@@ -2016,6 +2037,84 @@
                             </div>
                         </div>
 
+                        <!-- Estadísticas -->
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-chart-bar"></i> Estadísticas</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="stats-grid-cms">
+                                    <div class="stat-item-cms">
+                                        <h4>Estadística 1</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Número</label>
+                                                <input type="text" id="areas-stats-number1" class="cms-input" value="5">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" id="areas-stats-description1" class="cms-input" value="Áreas de Intervención">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="stat-item-cms">
+                                        <h4>Estadística 2</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Número</label>
+                                                <input type="text" id="areas-stats-number2" class="cms-input" value="15+">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" id="areas-stats-description2" class="cms-input" value="Años de Experiencia">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="stat-item-cms">
+                                        <h4>Estadística 3</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Número</label>
+                                                <input type="text" id="areas-stats-number3" class="cms-input" value="1000+">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" id="areas-stats-description3" class="cms-input" value="Familias Atendidas">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="stat-item-cms">
+                                        <h4>Estadística 4</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Número</label>
+                                                <input type="text" id="areas-stats-number4" class="cms-input" value="50+">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" id="areas-stats-description4" class="cms-input" value="Profesionales Formados">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('areas-stats')">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="areas-stats">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Áreas de Intervención -->
                         <div class="cms-section">
                             <div class="section-header-cms">
                                 <h3><i class="fas fa-map-marked-alt"></i> Áreas de Intervención</h3>
@@ -2026,47 +2125,317 @@
                             </div>
                             <div class="section-content-cms collapsed">
                                 <div class="form-row">
-                                                                    <div class="form-group">
-                                    <label for="areas-intro-title">Título de la Sección</label>
-                                    <input type="text" id="areas-intro-title" class="cms-input" value="Nuestras Áreas de Intervención">
-                                </div>
+                                    <div class="form-group">
+                                        <label for="areas-list-title">Título de la Sección</label>
+                                        <input type="text" id="areas-list-title" class="cms-input" value="Nuestras Áreas de Intervención">
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="areas-intro-subtitle">Subtítulo</label>
-                                    <input type="text" id="areas-intro-subtitle" class="cms-input" value="En FANTEA trabajamos en distintos ámbitos para mejorar la calidad de vida de las personas autistas y sus familias:">
+                                    <label for="areas-list-subtitle">Subtítulo</label>
+                                    <input type="text" id="areas-list-subtitle" class="cms-input" value="En FANTEA trabajamos en distintos ámbitos para mejorar la calidad de vida de las personas autistas y sus familias:">
                                 </div>
                                 
                                 <div class="areas-grid-cms">
+                                    <!-- Área 1: Educación -->
                                     <div class="area-item-cms">
-                                        <h4>Área 1</h4>
+                                        <h4>Área 1: Educación</h4>
                                         <div class="form-group">
-                                            <label>Icono (Font Awesome)</label>
-                                            <input type="text" class="cms-input" value="fas fa-graduation-cap" placeholder="fas fa-icon">
+                                            <label>Emoji</label>
+                                            <input type="text" id="areas-list-area1-emoji" class="cms-input" value="🎓">
                                         </div>
                                         <div class="form-group">
                                             <label>Título</label>
-                                            <input type="text" class="cms-input" value="Educación">
+                                            <input type="text" id="areas-list-area1-title" class="cms-input" value="Educación">
                                         </div>
                                         <div class="form-group">
                                             <label>Descripción</label>
-                                            <textarea class="cms-textarea" rows="3">Garantizamos una educación inclusiva y de calidad para todas las personas autistas.</textarea>
+                                            <textarea id="areas-list-area1-description" class="cms-textarea" rows="3">Garantizamos una educación inclusiva y de calidad para todas las personas autistas.</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Característica 1</label>
+                                            <input type="text" id="areas-list-area1-feature1" class="cms-input" value="Apoyos en el aula para garantizar la inclusión">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Característica 2</label>
+                                            <input type="text" id="areas-list-area1-feature2" class="cms-input" value="Modelos sostenibles como el asistente personal">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Característica 3</label>
+                                            <input type="text" id="areas-list-area1-feature3" class="cms-input" value="Formación a docentes y equipos educativos">
                                         </div>
                                     </div>
                                     
+                                    <!-- Área 2: Salud -->
                                     <div class="area-item-cms">
-                                        <h4>Área 2</h4>
+                                        <h4>Área 2: Salud</h4>
                                         <div class="form-group">
-                                            <label>Icono (Font Awesome)</label>
-                                            <input type="text" class="cms-input" value="fas fa-heartbeat" placeholder="fas fa-icon">
+                                            <label>Emoji</label>
+                                            <input type="text" id="areas-list-area2-emoji" class="cms-input" value="🏥">
                                         </div>
                                         <div class="form-group">
                                             <label>Título</label>
-                                            <input type="text" class="cms-input" value="Salud">
+                                            <input type="text" id="areas-list-area2-title" class="cms-input" value="Salud">
                                         </div>
                                         <div class="form-group">
                                             <label>Descripción</label>
-                                            <textarea class="cms-textarea" rows="3">Promovemos una atención sanitaria accesible y especializada para el colectivo TEA.</textarea>
+                                            <textarea id="areas-list-area2-description" class="cms-textarea" rows="3">Promovemos una atención sanitaria accesible y especializada para el colectivo TEA.</textarea>
                                         </div>
+                                        <div class="form-group">
+                                            <label>Característica 1</label>
+                                            <input type="text" id="areas-list-area2-feature1" class="cms-input" value="Atención temprana específica y accesible">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Característica 2</label>
+                                            <input type="text" id="areas-list-area2-feature2" class="cms-input" value="Salud mental adaptada y diagnósticos ágiles">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Característica 3</label>
+                                            <input type="text" id="areas-list-area2-feature3" class="cms-input" value="Formación y sensibilización de profesionales sanitarios">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Área 3: Vida Adulta y Empleo -->
+                                    <div class="area-item-cms">
+                                        <h4>Área 3: Vida Adulta y Empleo</h4>
+                                        <div class="form-group">
+                                            <label>Emoji</label>
+                                            <input type="text" id="areas-list-area3-emoji" class="cms-input" value="💼">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" id="areas-list-area3-title" class="cms-input" value="Vida Adulta y Empleo">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea id="areas-list-area3-description" class="cms-textarea" rows="3">Facilitamos la transición a la vida adulta y la inserción laboral de las personas autistas.</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Característica 1</label>
+                                            <input type="text" id="areas-list-area3-feature1" class="cms-input" value="Programas de autonomía personal">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Característica 2</label>
+                                            <input type="text" id="areas-list-area3-feature2" class="cms-input" value="Inserción laboral y adaptación de entornos de trabajo">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Característica 3</label>
+                                            <input type="text" id="areas-list-area3-feature3" class="cms-input" value="Desarrollo de habilidades sociales y laborales">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Área 4: Inclusión Social -->
+                                    <div class="area-item-cms">
+                                        <h4>Área 4: Inclusión Social</h4>
+                                        <div class="form-group">
+                                            <label>Emoji</label>
+                                            <input type="text" id="areas-list-area4-emoji" class="cms-input" value="🌍">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" id="areas-list-area4-title" class="cms-input" value="Inclusión Social">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea id="areas-list-area4-description" class="cms-textarea" rows="3">Trabajamos por una sociedad más inclusiva donde todas las personas tengan las mismas oportunidades.</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Característica 1</label>
+                                            <input type="text" id="areas-list-area4-feature1" class="cms-input" value="Acceso igualitario a la vida comunitaria">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Característica 2</label>
+                                            <input type="text" id="areas-list-area4-feature2" class="cms-input" value="Recursos de respiro familiar y conciliación">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Característica 3</label>
+                                            <input type="text" id="areas-list-area4-feature3" class="cms-input" value="Actividades de ocio y tiempo libre inclusivas">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Área 5: Vivienda -->
+                                    <div class="area-item-cms">
+                                        <h4>Área 5: Vivienda y Recursos Residenciales</h4>
+                                        <div class="form-group">
+                                            <label>Emoji</label>
+                                            <input type="text" id="areas-list-area5-emoji" class="cms-input" value="🏠">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" id="areas-list-area5-title" class="cms-input" value="Vivienda y Recursos Residenciales">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea id="areas-list-area5-description" class="cms-textarea" rows="3">Promovemos opciones de vivienda adaptadas que permitan una vida independiente y digna.</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Característica 1</label>
+                                            <input type="text" id="areas-list-area5-feature1" class="cms-input" value="Plazas adaptadas y apoyos para una vida independiente">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Característica 2</label>
+                                            <input type="text" id="areas-list-area5-feature2" class="cms-input" value="Modelos de vivienda tutelada y compartida">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Característica 3</label>
+                                            <input type="text" id="areas-list-area5-feature3" class="cms-input" value="Apoyos personalizados según las necesidades individuales">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('areas-list')">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="areas-list">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Impacto -->
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-chart-line"></i> Nuestro Impacto</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="areas-impact-title">Título</label>
+                                        <input type="text" id="areas-impact-title" class="cms-input" value="Nuestro Impacto en Cada Área">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="areas-impact-description">Descripción</label>
+                                    <textarea id="areas-impact-description" class="cms-textarea" rows="4">En FANTEA hemos logrado resultados significativos en cada una de nuestras áreas de trabajo, mejorando la calidad de vida de miles de personas autistas y sus familias en Andalucía.</textarea>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="areas-impact-image">Imagen de Impacto</label>
+                                        <div class="image-upload-container">
+                                            <img id="areas-impact-image-preview" src="../images/hero-inclusive.jpg" alt="Vista previa" class="image-preview">
+                                            <div class="image-upload-overlay">
+                                                <button type="button" class="btn-upload" onclick="uploadImage('areas-impact-image')">
+                                                    <i class="fas fa-camera"></i>
+                                                    Cambiar Imagen
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <input type="file" id="areas-impact-image-input" accept="image/*" style="display: none;">
+                                    </div>
+                                </div>
+                                
+                                <div class="impact-stats-grid-cms">
+                                    <div class="impact-stat-item-cms">
+                                        <h4>Estadística de Impacto 1</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Porcentaje</label>
+                                                <input type="text" id="areas-impact-percentage1" class="cms-input" value="95%">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" id="areas-impact-description1" class="cms-input" value="de familias satisfechas con nuestros servicios">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="impact-stat-item-cms">
+                                        <h4>Estadística de Impacto 2</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Porcentaje</label>
+                                                <input type="text" id="areas-impact-percentage2" class="cms-input" value="80%">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" id="areas-impact-description2" class="cms-input" value="de éxito en inserción laboral">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="impact-stat-item-cms">
+                                        <h4>Estadística de Impacto 3</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Porcentaje</label>
+                                                <input type="text" id="areas-impact-percentage3" class="cms-input" value="100%">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" id="areas-impact-description3" class="cms-input" value="de centros educativos con formación especializada">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('areas-impact')">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="areas-impact">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA -->
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-bullhorn"></i> Llamada a la Acción</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="areas-cta-title">Título</label>
+                                        <input type="text" id="areas-cta-title" class="cms-input" value="¿Quieres Conocer Más Sobre Nuestro Trabajo?">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="areas-cta-description">Descripción</label>
+                                    <textarea id="areas-cta-description" class="cms-textarea" rows="4">Descubre cómo trabajamos en cada área y cómo puedes participar en nuestras iniciativas para crear una sociedad más inclusiva.</textarea>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="areas-cta-button-manifiesto">Botón "Leer Nuestro Manifiesto"</label>
+                                        <input type="text" id="areas-cta-button-manifiesto" class="cms-input" value="Leer Nuestro Manifiesto">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="areas-cta-url-manifiesto">URL</label>
+                                        <input type="text" id="areas-cta-url-manifiesto" class="cms-input" value="/manifiesto.html">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="areas-cta-button-contactar">Botón "Contactar"</label>
+                                        <input type="text" id="areas-cta-button-contactar" class="cms-input" value="Contactar">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="areas-cta-url-contactar">URL</label>
+                                        <input type="text" id="areas-cta-url-contactar" class="cms-input" value="/contacto.html">
+                                    </div>
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary" onclick="resetSection('areas-cta')">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="areas-cta">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                                     </div>
                                     
                                     <div class="area-item-cms">

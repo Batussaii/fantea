@@ -341,6 +341,11 @@
         </div>
     </footer>
 
+    <!-- CMS Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/cache-buster.js"></script>
+    <script src="js/cms-sync.js"></script>
+    
     <script src="js/main.js"></script>
     
     <!-- Script para forzar recarga de estilos CSS -->
@@ -380,6 +385,12 @@
                     stat.style.transform = 'translateY(0)';
                 }, 200 + (index * 100));
             });
+            
+            // Inicializar CMS para áreas
+            if (typeof cmsSync !== 'undefined') {
+                cmsSync.init();
+                cmsSync.applyAreasChanges();
+            }
         });
     </script>
 </body>

@@ -472,36 +472,115 @@ class CMSSync {
         if (this.cmsData['areas-header']) {
             this.updateTextContent('.hero-title', this.cmsData['areas-header'].title);
             this.updateTextContent('.hero-description', this.cmsData['areas-header'].description);
+            this.updateImageSrc('.hero-img', this.cmsData['areas-header'].image);
+            
+            // Actualizar botones del hero
+            if (this.cmsData['areas-header'].buttons) {
+                const buttons = this.cmsData['areas-header'].buttons;
+                const btnVer = document.querySelector('.hero-actions .btn:nth-child(1)');
+                const btnManifiesto = document.querySelector('.hero-actions .btn:nth-child(2)');
+                if (btnVer && buttons.ver) { 
+                    btnVer.textContent = buttons.ver; 
+                    btnVer.href = buttons.verUrl || btnVer.href; 
+                }
+                if (btnManifiesto && buttons.manifiesto) { 
+                    btnManifiesto.textContent = buttons.manifiesto; 
+                    btnManifiesto.href = buttons.manifiestoUrl || btnManifiesto.href; 
+                }
+            }
+        }
+
+        // Stats Section
+        if (this.cmsData['areas-stats'] && this.cmsData['areas-stats'].items) {
+            this.cmsData['areas-stats'].items.forEach((stat, index) => {
+                this.updateTextContent(`.hero-stats .stat-item:nth-child(${index + 1}) .stat-number`, stat.number);
+                this.updateTextContent(`.hero-stats .stat-item:nth-child(${index + 1}) .stat-text`, stat.description);
+            });
         }
 
         // Areas List Section
         if (this.cmsData['areas-list']) {
-            if (this.cmsData['areas-list'].sectionTitle) {
-                this.updateTextContent('.areas-section .section-header h2', this.cmsData['areas-list'].sectionTitle);
+            if (this.cmsData['areas-list'].title) {
+                this.updateTextContent('.areas-section .section-header h2', this.cmsData['areas-list'].title);
             }
             if (this.cmsData['areas-list'].subtitle) {
                 this.updateTextContent('.areas-section .section-header p', this.cmsData['areas-list'].subtitle);
             }
             
-            // Areas List
+            // Areas List - Actualizar cada área individualmente
             if (this.cmsData['areas-list'].areas) {
-                const areasContainer = document.querySelector('.areas-grid');
-                if (areasContainer) {
-                    areasContainer.innerHTML = '';
-                    this.cmsData['areas-list'].areas.forEach(area => {
-                        const areaCard = document.createElement('div');
-                        areaCard.className = 'area-card';
-                        areaCard.innerHTML = `
-                            <div class="area-icon">
-                                <i class="${area.icon}"></i>
-                            </div>
-                            <div class="area-content">
-                                <h3>${area.title}</h3>
-                                <p>${area.description}</p>
-                            </div>
-                        `;
-                        areasContainer.appendChild(areaCard);
-                    });
+                this.cmsData['areas-list'].areas.forEach((area, index) => {
+                    const areaCard = document.querySelector(`.areas-grid .area-card:nth-child(${index + 1})`);
+                    if (areaCard) {
+                        // Actualizar título
+                        const title = areaCard.querySelector('.area-info h3');
+                        if (title && area.title) title.textContent = area.title;
+                        
+                        // Actualizar emoji
+                        const emoji = areaCard.querySelector('.area-emoji');
+                        if (emoji && area.emoji) emoji.textContent = area.emoji;
+                        
+                        // Actualizar descripción
+                        const description = areaCard.querySelector('.area-description p');
+                        if (description && area.description) description.textContent = area.description;
+                        
+                        // Actualizar lista de características
+                        if (area.features) {
+                            const featuresList = areaCard.querySelector('.area-list');
+                            if (featuresList) {
+                                featuresList.innerHTML = '';
+                                area.features.forEach(feature => {
+                                    const li = document.createElement('li');
+                                    li.innerHTML = `<i class="fas fa-check"></i>${feature}`;
+                                    featuresList.appendChild(li);
+                                });
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Impact Section
+        if (this.cmsData['areas-impact']) {
+            if (this.cmsData['areas-impact'].title) {
+                this.updateTextContent('.impact-section .impact-text h2', this.cmsData['areas-impact'].title);
+            }
+            if (this.cmsData['areas-impact'].description) {
+                this.updateTextContent('.impact-section .impact-text p', this.cmsData['areas-impact'].description);
+            }
+            this.updateImageSrc('.impact-img', this.cmsData['areas-impact'].image);
+            
+            // Impact Stats
+            if (this.cmsData['areas-impact'].stats) {
+                this.cmsData['areas-impact'].stats.forEach((stat, index) => {
+                    this.updateTextContent(`.impact-stats .impact-stat:nth-child(${index + 1}) .impact-number`, stat.percentage);
+                    this.updateTextContent(`.impact-stats .impact-stat:nth-child(${index + 1}) .impact-label`, stat.description);
+                });
+            }
+        }
+
+        // CTA Section
+        if (this.cmsData['areas-cta']) {
+            if (this.cmsData['areas-cta'].title) {
+                this.updateTextContent('.cta-section .cta-content h2', this.cmsData['areas-cta'].title);
+            }
+            if (this.cmsData['areas-cta'].description) {
+                this.updateTextContent('.cta-section .cta-content p', this.cmsData['areas-cta'].description);
+            }
+            
+            // CTA Buttons
+            if (this.cmsData['areas-cta'].buttons) {
+                const buttons = this.cmsData['areas-cta'].buttons;
+                const btnManifiesto = document.querySelector('.cta-actions .btn:nth-child(1)');
+                const btnContactar = document.querySelector('.cta-actions .btn:nth-child(2)');
+                if (btnManifiesto && buttons.manifiesto) { 
+                    btnManifiesto.textContent = buttons.manifiesto; 
+                    btnManifiesto.href = buttons.manifiestoUrl || btnManifiesto.href; 
+                }
+                if (btnContactar && buttons.contactar) { 
+                    btnContactar.textContent = buttons.contactar; 
+                    btnContactar.href = buttons.contactarUrl || btnContactar.href; 
                 }
             }
         }

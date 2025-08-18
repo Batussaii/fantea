@@ -167,5 +167,139 @@
     ],
     "lastModified": "2025-08-18T10:50:41.757Z",
     "modifiedBy": "admin"
+  },
+  "areas-header": {
+    "title": "Áreas de Trabajoo",
+    "description": "Trabajamos en distintos ámbitos para mejorar la calidad de vida de las personas autistas y sus familias. Descubre cómo abordamos cada área con enfoques especializados y compromisoo.",
+    "image": "http://localhost:3001/uploads/images/areas-header-image_1755517584816_Logo.png",
+    "buttons": [
+      {
+        "text": "Ver Áreass",
+        "url": "#areas"
+      },
+      {
+        "text": "Nuestro Manifiestoo",
+        "url": "/manifiesto.html"
+      }
+    ],
+    "lastModified": "2025-08-18T11:46:36.794Z",
+    "modifiedBy": "admin"
+  },
+  "areas-stats": {
+    "items": [
+      {
+        "number": "55",
+        "description": "Áreas de Intervención"
+      },
+      {
+        "number": "15+",
+        "description": "Años de Experiencia"
+      },
+      {
+        "number": "1000+",
+        "description": "Familias Atendidas"
+      },
+      {
+        "number": "50+",
+        "description": "Profesionales Formados"
+      }
+    ],
+    "lastModified": "2025-08-18T11:47:02.562Z",
+    "modifiedBy": "admin"
+  },
+  "areas-list": {
+    "title": "Nuestras Áreas de Intervención",
+    "subtitle": "En FANTEA trabajamos en distintos ámbitos para mejorar la calidad de vida de las personas autistas y sus familias:",
+    "areas": [
+      {
+        "title": "Educación",
+        "emoji": "🎓",
+        "description": "Garantizamos una educación inclusiva y de calidad para todas las personas autistas.",
+        "features": [
+          "Apoyos en el aula para garantizar la inclusión",
+          "Modelos sostenibles como el asistente personal",
+          "Formación a docentes y equipos educativos"
+        ]
+      },
+      {
+        "title": "Salud",
+        "emoji": "🏥",
+        "description": "Promovemos una atención sanitaria accesible y especializada para el colectivo TEA.",
+        "features": [
+          "Atención temprana específica y accesible",
+          "Salud mental adaptada y diagnósticos ágiles",
+          "Formación y sensibilización de profesionales sanitarios"
+        ]
+      },
+      {
+        "title": "Vida Adulta y Empleo",
+        "emoji": "💼",
+        "description": "Facilitamos la transición a la vida adulta y la inserción laboral de las personas autistas.",
+        "features": [
+          "Programas de autonomía personal",
+          "Inserción laboral y adaptación de entornos de trabajo",
+          "Desarrollo de habilidades sociales y laborales"
+        ]
+      },
+      {
+        "title": "Inclusión Social",
+        "emoji": "🌍",
+        "description": "Trabajamos por una sociedad más inclusiva donde todas las personas tengan las mismas oportunidades.",
+        "features": [
+          "Acceso igualitario a la vida comunitaria",
+          "Recursos de respiro familiar y conciliación",
+          "Actividades de ocio y tiempo libre inclusivas"
+        ]
+      },
+      {
+        "title": "Vivienda y Recursos Residenciales",
+        "emoji": "🏠",
+        "description": "Promovemos opciones de vivienda adaptadas que permitan una vida independiente y digna.",
+        "features": [
+          "Plazas adaptadas y apoyos para una vida independiente",
+          "Modelos de vivienda tutelada y compartida",
+          "Apoyos personalizados según las necesidades individuales"
+        ]
+      }
+    ],
+    "lastModified": "2025-08-18T11:47:55.081Z",
+    "modifiedBy": "admin"
+  },
+  "areas-impact": {
+    "title": "Nuestro Impacto en Cada Áreaa",
+    "description": "En FANTEA hemos logrado resultados significativos en cada una de nuestras áreas de trabajo, mejorando la calidad de vida de miles de personas autistas y sus familias en Andalucíaa.",
+    "image": "http://localhost:3001/uploads/images/areas-impact-image_1755517693610_WhatsApp_Image_2025-08-11_at_22.41.27_27323bd1.jpg",
+    "stats": [
+      {
+        "percentage": "955%",
+        "description": "de familias satisfechas con nuestros servicios"
+      },
+      {
+        "percentage": "80%",
+        "description": "de éxito en inserción laboral"
+      },
+      {
+        "percentage": "100%",
+        "description": "de centros educativos con formación especializada"
+      }
+    ],
+    "lastModified": "2025-08-18T11:48:29.929Z",
+    "modifiedBy": "admin"
+  },
+  "areas-cta": {
+    "title": "¿Quieres Conocer Más Sobre Nuestro Trabajoo?",
+    "description": "Descubre cómo trabajamos en cada área y cómo puedes participar en nuestras iniciativas para crear una sociedad más inclusivaa.",
+    "buttons": [
+      {
+        "text": "Leer Nuestro Manifiesto",
+        "url": "/manifiesto.html"
+      },
+      {
+        "text": "Contactar",
+        "url": "/contacto.html"
+      }
+    ],
+    "lastModified": "2025-08-18T11:48:43.233Z",
+    "modifiedBy": "admin"
   }
 }
