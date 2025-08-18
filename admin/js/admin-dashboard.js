@@ -1078,6 +1078,15 @@ function collectSectionData(sectionName) {
         case 'asociaciones-header':
             data.title = document.getElementById('asociaciones-title')?.value || '';
             data.description = document.getElementById('asociaciones-description')?.value || '';
+            data.image = document.getElementById('asociaciones-image-preview')?.src || '';
+            data.buttons = {
+                ver: document.getElementById('asociaciones-button-ver')?.value || 'Ver Asociaciones',
+                verUrl: document.getElementById('asociaciones-url-ver')?.value || '#associations',
+                unirse: document.getElementById('asociaciones-button-unirse')?.value || 'Unirse a FANTEA',
+                unirseUrl: document.getElementById('asociaciones-url-unirse')?.value || '#join',
+                estatutos: document.getElementById('asociaciones-button-estatutos')?.value || 'Descarga Nuestros Estatutos',
+                estatutosUrl: document.getElementById('asociaciones-url-estatutos')?.value || '#download-statutes'
+            };
             break;
             
         case 'asociaciones-list':
@@ -1098,6 +1107,67 @@ function collectSectionData(sectionName) {
                     });
                 }
             });
+            break;
+
+        case 'asociaciones-stats':
+            data.stats = [];
+            const asociacionesStatsItems = document.querySelectorAll('.stats-grid-cms .stat-item-cms');
+            asociacionesStatsItems.forEach(item => {
+                const inputs = item.querySelectorAll('.cms-input');
+                if (inputs.length >= 2) {
+                    data.stats.push({
+                        number: inputs[0].value,
+                        description: inputs[1].value
+                    });
+                }
+            });
+            break;
+
+        case 'asociaciones-join':
+            data.title = document.getElementById('asociaciones-join-title')?.value || '';
+            data.description = document.getElementById('asociaciones-join-text')?.value || '';
+            data.buttons = {
+                primary: document.getElementById('asociaciones-join-button-primary')?.value || '',
+                primaryUrl: document.getElementById('asociaciones-join-url-primary')?.value || '',
+                secondary: document.getElementById('asociaciones-join-button-secondary')?.value || '',
+                secondaryUrl: document.getElementById('asociaciones-join-url-secondary')?.value || ''
+            };
+            break;
+
+        case 'asociaciones-benefits':
+            data.benefits = [];
+            const benefitItems = document.querySelectorAll('.benefits-list-cms .benefit-item-cms');
+            benefitItems.forEach(item => {
+                const inputs = item.querySelectorAll('.cms-input');
+                if (inputs.length >= 3) {
+                    data.benefits.push({
+                        icon: inputs[0].value,
+                        title: inputs[1].value,
+                        description: inputs[2].value
+                    });
+                }
+            });
+            break;
+
+        case 'asociaciones-cta':
+            data.title = document.getElementById('asociaciones-cta-title')?.value || '';
+            data.description = document.getElementById('asociaciones-cta-description')?.value || '';
+            data.buttons = {
+                primary: document.getElementById('asociaciones-cta-button-primary')?.value || '',
+                primaryUrl: document.getElementById('asociaciones-cta-url-primary')?.value || '',
+                secondary: document.getElementById('asociaciones-cta-button-secondary')?.value || '',
+                secondaryUrl: document.getElementById('asociaciones-cta-url-secondary')?.value || ''
+            };
+            break;
+
+        case 'asociaciones-statutes':
+            data.title = document.getElementById('asociaciones-statutes-title')?.value || '';
+            data.description = document.getElementById('asociaciones-statutes-description')?.value || '';
+            data.features = [
+                document.getElementById('asociaciones-statutes-feature1')?.value || '',
+                document.getElementById('asociaciones-statutes-feature2')?.value || '',
+                document.getElementById('asociaciones-statutes-feature3')?.value || ''
+            ];
             break;
             
         case 'areas-header':
@@ -1503,6 +1573,15 @@ function loadSectionData(sectionName, data) {
         case 'asociaciones-header':
             if (data.title) document.getElementById('asociaciones-title').value = data.title;
             if (data.description) document.getElementById('asociaciones-description').value = data.description;
+            if (data.image) document.getElementById('asociaciones-image-preview').src = data.image;
+            if (data.buttons) {
+                if (data.buttons.ver) document.getElementById('asociaciones-button-ver').value = data.buttons.ver;
+                if (data.buttons.verUrl) document.getElementById('asociaciones-url-ver').value = data.buttons.verUrl;
+                if (data.buttons.unirse) document.getElementById('asociaciones-button-unirse').value = data.buttons.unirse;
+                if (data.buttons.unirseUrl) document.getElementById('asociaciones-url-unirse').value = data.buttons.unirseUrl;
+                if (data.buttons.estatutos) document.getElementById('asociaciones-button-estatutos').value = data.buttons.estatutos;
+                if (data.buttons.estatutosUrl) document.getElementById('asociaciones-url-estatutos').value = data.buttons.estatutosUrl;
+            }
             break;
             
         case 'asociaciones-list':
@@ -1521,6 +1600,65 @@ function loadSectionData(sectionName, data) {
                         if (inputs[3]) inputs[3].value = association.website;
                     }
                 });
+            }
+            break;
+
+        case 'asociaciones-stats':
+            if (data.stats) {
+                const asociacionesStatsItems = document.querySelectorAll('.stats-grid-cms .stat-item-cms');
+                data.stats.forEach((stat, index) => {
+                    if (asociacionesStatsItems[index]) {
+                        const inputs = asociacionesStatsItems[index].querySelectorAll('.cms-input');
+                        if (inputs[0]) inputs[0].value = stat.number;
+                        if (inputs[1]) inputs[1].value = stat.description;
+                    }
+                });
+            }
+            break;
+
+        case 'asociaciones-join':
+            if (data.title) document.getElementById('asociaciones-join-title').value = data.title;
+            if (data.description) document.getElementById('asociaciones-join-text').value = data.description;
+            if (data.buttons) {
+                if (data.buttons.primary) document.getElementById('asociaciones-join-button-primary').value = data.buttons.primary;
+                if (data.buttons.primaryUrl) document.getElementById('asociaciones-join-url-primary').value = data.buttons.primaryUrl;
+                if (data.buttons.secondary) document.getElementById('asociaciones-join-button-secondary').value = data.buttons.secondary;
+                if (data.buttons.secondaryUrl) document.getElementById('asociaciones-join-url-secondary').value = data.buttons.secondaryUrl;
+            }
+            break;
+
+        case 'asociaciones-benefits':
+            if (data.benefits) {
+                const benefitItems = document.querySelectorAll('.benefits-list-cms .benefit-item-cms');
+                data.benefits.forEach((benefit, index) => {
+                    if (benefitItems[index]) {
+                        const inputs = benefitItems[index].querySelectorAll('.cms-input');
+                        if (inputs[0]) inputs[0].value = benefit.icon;
+                        if (inputs[1]) inputs[1].value = benefit.title;
+                        if (inputs[2]) inputs[2].value = benefit.description;
+                    }
+                });
+            }
+            break;
+
+        case 'asociaciones-cta':
+            if (data.title) document.getElementById('asociaciones-cta-title').value = data.title;
+            if (data.description) document.getElementById('asociaciones-cta-description').value = data.description;
+            if (data.buttons) {
+                if (data.buttons.primary) document.getElementById('asociaciones-cta-button-primary').value = data.buttons.primary;
+                if (data.buttons.primaryUrl) document.getElementById('asociaciones-cta-url-primary').value = data.buttons.primaryUrl;
+                if (data.buttons.secondary) document.getElementById('asociaciones-cta-button-secondary').value = data.buttons.secondary;
+                if (data.buttons.secondaryUrl) document.getElementById('asociaciones-cta-url-secondary').value = data.buttons.secondaryUrl;
+            }
+            break;
+
+        case 'asociaciones-statutes':
+            if (data.title) document.getElementById('asociaciones-statutes-title').value = data.title;
+            if (data.description) document.getElementById('asociaciones-statutes-description').value = data.description;
+            if (data.features) {
+                if (data.features[0]) document.getElementById('asociaciones-statutes-feature1').value = data.features[0];
+                if (data.features[1]) document.getElementById('asociaciones-statutes-feature2').value = data.features[1];
+                if (data.features[2]) document.getElementById('asociaciones-statutes-feature3').value = data.features[2];
             }
             break;
             
@@ -1709,7 +1847,12 @@ function saveAllChanges(buttonElement = null) {
         
         // Asociaciones page
         'asociaciones-header': collectSectionData('asociaciones-header'),
+        'asociaciones-stats': collectSectionData('asociaciones-stats'),
         'asociaciones-list': collectSectionData('asociaciones-list'),
+        'asociaciones-join': collectSectionData('asociaciones-join'),
+        'asociaciones-benefits': collectSectionData('asociaciones-benefits'),
+        'asociaciones-cta': collectSectionData('asociaciones-cta'),
+        'asociaciones-statutes': collectSectionData('asociaciones-statutes'),
         
         // Areas page
         'areas-header': collectSectionData('areas-header'),

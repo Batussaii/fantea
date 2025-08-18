@@ -1,0 +1,171 @@
+{
+  "asociaciones-header": {
+    "title": "Asociaciones Federadass",
+    "description": "Unidos por los derechos del colectivo TEA en Andalucía. Descubre las asociaciones que forman parte de FANTEA y trabajan de forma coordinada por una sociedad más inclusivaa.",
+    "image": "http://localhost:3001/uploads/images/asociaciones-image_1755513241964_Logo.png",
+    "buttons": {
+      "ver": "Ver Asociaciones",
+      "verUrl": "#associations",
+      "unirse": "Unirse a FANTEA",
+      "unirseUrl": "#join",
+      "estatutos": "Descarga Nuestros Estatutos",
+      "estatutosUrl": "#download-statutes"
+    },
+    "lastModified": "2025-08-18T10:34:10.042Z",
+    "modifiedBy": "admin"
+  },
+  "asociaciones-stats": {
+    "stats": [
+      {
+        "number": "1 de 100",
+        "description": "niños tienen autismo"
+      },
+      {
+        "number": "500+",
+        "description": "familias andaluzas apoyadas"
+      },
+      {
+        "number": "15",
+        "description": "años de experiencia"
+      },
+      {
+        "number": "35+",
+        "description": "asociaciones afiliadas"
+      },
+      {
+        "number": "15+",
+        "description": "años de experiencia"
+      },
+      {
+        "number": "35+",
+        "description": "asociaciones federadas"
+      },
+      {
+        "number": "500+",
+        "description": "familias apoyadas"
+      },
+      {
+        "number": "8",
+        "description": "provincias andaluzas"
+      },
+      {
+        "number": "35+++",
+        "description": "Asociaciones Federadasss"
+      },
+      {
+        "number": "8",
+        "description": "Provincias Andaluzas"
+      },
+      {
+        "number": "15",
+        "description": "Años de Experiencia"
+      },
+      {
+        "number": "5000+",
+        "description": "Familias Atendidas"
+      }
+    ],
+    "lastModified": "2025-08-18T10:34:19.966Z",
+    "modifiedBy": "admin"
+  },
+  "asociaciones-list": {
+    "sectionTitle": "Nuestras Asociacionesss",
+    "subtitle": "Actualmente, forman parte de FANTEA las siguientes asociaciones que comparten nuestros valores y objetivossss:",
+    "introText": "FANTEAaaa está abierta a que se sumen otras asociaciones andaluzas que compartan nuestros valores y objetivos, con el fin de fortalecer la voz del colectivo y trabajar de forma coordinada.",
+    "associations": [
+      {
+        "name": "Asociación Autismo El Puertoooo",
+        "province": "Cádiz",
+        "description": "Asociación dedicada al apoyo y defensa de los derechos de las personas autistas y sus familias en la provincia de Cádizzzz.",
+        "website": "info@autismoelpuerto.org"
+      },
+      {
+        "name": "Asociación Autismo Mijas-Fuengirola",
+        "province": "Málaga",
+        "description": "Asociación comprometida con la inclusión y el apoyo a las personas autistas y sus familias en la Costa del Sol.",
+        "website": "info@autismomijasfuengirola.org"
+      },
+      {
+        "name": "Asociación Autismo Granada",
+        "province": "Granada",
+        "description": "Asociación que trabaja por la inclusión y el apoyo integral a las personas autistas y sus familias en la provincia de Granada.",
+        "website": "info@autismogranada.org"
+      },
+      {
+        "name": "Asociación Autismo Sevilla",
+        "province": "Sevilla",
+        "description": "Asociación comprometida con la defensa de los derechos y la mejora de la calidad de vida de las personas autistas en Sevilla.",
+        "website": "info@autismosevilla.org"
+      },
+      {
+        "name": "test",
+        "province": "test",
+        "description": "test",
+        "website": "test"
+      }
+    ],
+    "lastModified": "2025-08-18T10:35:27.902Z",
+    "modifiedBy": "admin"
+  },
+  "asociaciones-join": {
+    "title": "¿Quieres Unirte a FANTEAa?",
+    "description": "FANTEAa está abierta a que se sumen otras asociaciones andaluzas que compartan nuestros valores y objetivos, con el fin de fortalecer la voz del colectivo y trabajar de forma coordinada.",
+    "buttons": {
+      "primary": "Solicitar Afiliaciónn",
+      "primaryUrl": "afiliate.html",
+      "secondary": "Contactarr",
+      "secondaryUrl": "contacto.html"
+    },
+    "lastModified": "2025-08-18T10:50:02.977Z",
+    "modifiedBy": "admin"
+  },
+  "asociaciones-benefits": {
+    "benefits": [
+      {
+        "icon": "fas fa-bullhorn",
+        "title": "Voz Unidaa",
+        "description": "Mayor capacidad de incidencia política y sociall"
+      },
+      {
+        "icon": "fas fa-hands-helping",
+        "title": "Apoyo Mutuo",
+        "description": "Compartir recursos, experiencias y mejores prácticas"
+      },
+      {
+        "icon": "fas fa-users",
+        "title": "Red de Contactos",
+        "description": "Conectarse con otras asociaciones y profesionales"
+      },
+      {
+        "icon": "fas fa-graduation-cap",
+        "title": "Formación",
+        "description": "Acceso a programas de formación y capacitación"
+      }
+    ],
+    "lastModified": "2025-08-18T10:50:18.132Z",
+    "modifiedBy": "admin"
+  },
+  "asociaciones-cta": {
+    "title": "¿Listo para Unirte a Nuestra Redd?",
+    "description": "Forma parte de la mayor red de asociaciones TEA de Andalucía y trabaja junto a nosotros por una sociedad más inclusiva y justaa.",
+    "buttons": {
+      "primary": "Solicitar Afiliaciónn",
+      "primaryUrl": "afiliate.html",
+      "secondary": "Más Información",
+      "secondaryUrl": "contacto.html"
+    },
+    "lastModified": "2025-08-18T10:50:32.420Z",
+    "modifiedBy": "admin"
+  },
+  "asociaciones-statutes": {
+    "title": "Nuestros Estatutoss",
+    "description": "Descarga los estatutos oficiales de FANTEA para conocer en detalle nuestra estructura organizativa, objetivos y funcionamiento interno. Este documento es fundamental para entender cómo trabajamos y cómo puedes formar parte de nuestra federación.",
+    "features": [
+      "Formato PDF accesible",
+      "Descarga gratuitaa",
+      "Actualizado 2024"
+    ],
+    "lastModified": "2025-08-18T10:50:41.757Z",
+    "modifiedBy": "admin"
+  }
+}

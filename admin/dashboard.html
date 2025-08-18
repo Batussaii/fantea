@@ -1473,12 +1473,119 @@
                                         <input type="file" id="asociaciones-image-input" accept="image/*" style="display: none;">
                                     </div>
                                 </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="asociaciones-button-ver">Botón "Ver Asociaciones"</label>
+                                        <input type="text" id="asociaciones-button-ver" class="cms-input" value="Ver Asociaciones">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asociaciones-url-ver">URL</label>
+                                        <input type="text" id="asociaciones-url-ver" class="cms-input" value="#associations">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="asociaciones-button-unirse">Botón "Unirse a FANTEA"</label>
+                                        <input type="text" id="asociaciones-button-unirse" class="cms-input" value="Unirse a FANTEA">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asociaciones-url-unirse">URL</label>
+                                        <input type="text" id="asociaciones-url-unirse" class="cms-input" value="#join">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="asociaciones-button-estatutos">Botón "Descarga Nuestros Estatutos"</label>
+                                        <input type="text" id="asociaciones-button-estatutos" class="cms-input" value="Descarga Nuestros Estatutos">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asociaciones-url-estatutos">URL</label>
+                                        <input type="text" id="asociaciones-url-estatutos" class="cms-input" value="#download-statutes">
+                                    </div>
+                                </div>
                                 <div class="cms-actions">
                                     <button class="btn-small btn-secondary" onclick="resetSection('asociaciones-header')">
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
                                     <button class="btn-small btn-primary save-section-btn" data-section="asociaciones-header">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Estadísticas (Hero) -->
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-chart-bar"></i> Estadísticas</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="stats-grid-cms">
+                                    <div class="stat-item-cms">
+                                        <h4>Estadística 1</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Número</label>
+                                                <input type="text" class="cms-input" value="35+">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" class="cms-input" value="Asociaciones Federadas">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="stat-item-cms">
+                                        <h4>Estadística 2</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Número</label>
+                                                <input type="text" class="cms-input" value="8">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" class="cms-input" value="Provincias Andaluzas">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="stat-item-cms">
+                                        <h4>Estadística 3</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Número</label>
+                                                <input type="text" class="cms-input" value="15">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" class="cms-input" value="Años de Experiencia">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="stat-item-cms">
+                                        <h4>Estadística 4</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Número</label>
+                                                <input type="text" class="cms-input" value="5000+">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" class="cms-input" value="Familias Atendidas">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="asociaciones-stats">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="asociaciones-stats">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1612,6 +1719,246 @@
                                         Deshacer
                                     </button>
                                     <button class="btn-small btn-primary save-section-btn" data-section="asociaciones-list">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sección Unirse (Join) -->
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-user-plus"></i> Sección de Afiliación</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="asociaciones-join-title">Título</label>
+                                        <input type="text" id="asociaciones-join-title" class="cms-input" value="¿Quieres Unirte a FANTEA?">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="asociaciones-join-text">Descripción</label>
+                                    <textarea id="asociaciones-join-text" class="cms-textarea" rows="4">FANTEA está abierta a que se sumen otras asociaciones andaluzas que compartan nuestros valores y objetivos, con el fin de fortalecer la voz del colectivo y trabajar de forma coordinada.</textarea>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="asociaciones-join-button-primary">Botón Primario</label>
+                                        <input type="text" id="asociaciones-join-button-primary" class="cms-input" value="Solicitar Afiliación">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asociaciones-join-url-primary">URL</label>
+                                        <input type="text" id="asociaciones-join-url-primary" class="cms-input" value="afiliate.html">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="asociaciones-join-button-secondary">Botón Secundario</label>
+                                        <input type="text" id="asociaciones-join-button-secondary" class="cms-input" value="Contactar">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asociaciones-join-url-secondary">URL</label>
+                                        <input type="text" id="asociaciones-join-url-secondary" class="cms-input" value="contacto.html">
+                                    </div>
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="asociaciones-join">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="asociaciones-join">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Beneficios de la Afiliación -->
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-gift"></i> Beneficios de la Afiliación</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="benefits-list-cms">
+                                    <div class="benefit-item-cms">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Icono</label>
+                                                <input type="text" class="cms-input" value="fas fa-bullhorn" placeholder="fas fa-...">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Título</label>
+                                                <input type="text" class="cms-input" value="Voz Unida">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <input type="text" class="cms-input" value="Mayor capacidad de incidencia política y social">
+                                        </div>
+                                    </div>
+                                    <div class="benefit-item-cms">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Icono</label>
+                                                <input type="text" class="cms-input" value="fas fa-hands-helping" placeholder="fas fa-...">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Título</label>
+                                                <input type="text" class="cms-input" value="Apoyo Mutuo">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <input type="text" class="cms-input" value="Compartir recursos, experiencias y mejores prácticas">
+                                        </div>
+                                    </div>
+                                    <div class="benefit-item-cms">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Icono</label>
+                                                <input type="text" class="cms-input" value="fas fa-users" placeholder="fas fa-...">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Título</label>
+                                                <input type="text" class="cms-input" value="Red de Contactos">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <input type="text" class="cms-input" value="Conectarse con otras asociaciones y profesionales">
+                                        </div>
+                                    </div>
+                                    <div class="benefit-item-cms">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Icono</label>
+                                                <input type="text" class="cms-input" value="fas fa-graduation-cap" placeholder="fas fa-...">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Título</label>
+                                                <input type="text" class="cms-input" value="Formación">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <input type="text" class="cms-input" value="Acceso a programas de formación y capacitación">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="asociaciones-benefits">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="asociaciones-benefits">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA final -->
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-bullseye"></i> Llamada a la Acción (CTA)</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="asociaciones-cta-title">Título</label>
+                                        <input type="text" id="asociaciones-cta-title" class="cms-input" value="¿Listo para Unirte a Nuestra Red?">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="asociaciones-cta-description">Descripción</label>
+                                    <textarea id="asociaciones-cta-description" class="cms-textarea" rows="3">Forma parte de la mayor red de asociaciones TEA de Andalucía y trabaja junto a nosotros por una sociedad más inclusiva y justa.</textarea>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="asociaciones-cta-button-primary">Botón Primario</label>
+                                        <input type="text" id="asociaciones-cta-button-primary" class="cms-input" value="Solicitar Afiliación">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asociaciones-cta-url-primary">URL</label>
+                                        <input type="text" id="asociaciones-cta-url-primary" class="cms-input" value="afiliate.html">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="asociaciones-cta-button-secondary">Botón Secundario</label>
+                                        <input type="text" id="asociaciones-cta-button-secondary" class="cms-input" value="Más Información">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asociaciones-cta-url-secondary">URL</label>
+                                        <input type="text" id="asociaciones-cta-url-secondary" class="cms-input" value="contacto.html">
+                                    </div>
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="asociaciones-cta">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="asociaciones-cta">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sección de Estatutos -->
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-file-pdf"></i> Nuestros Estatutos</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="asociaciones-statutes-title">Título</label>
+                                        <input type="text" id="asociaciones-statutes-title" class="cms-input" value="Nuestros Estatutos">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="asociaciones-statutes-description">Descripción</label>
+                                    <textarea id="asociaciones-statutes-description" class="cms-textarea" rows="4">Descarga los estatutos oficiales de FANTEA para conocer en detalle nuestra estructura organizativa, objetivos y funcionamiento interno. Este documento es fundamental para entender cómo trabajamos y cómo puedes formar parte de nuestra federación.</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="asociaciones-statutes-feature1">Característica 1</label>
+                                    <input type="text" id="asociaciones-statutes-feature1" class="cms-input" value="Formato PDF accesible">
+                                </div>
+                                <div class="form-group">
+                                    <label for="asociaciones-statutes-feature2">Característica 2</label>
+                                    <input type="text" id="asociaciones-statutes-feature2" class="cms-input" value="Descarga gratuita">
+                                </div>
+                                <div class="form-group">
+                                    <label for="asociaciones-statutes-feature3">Característica 3</label>
+                                    <input type="text" id="asociaciones-statutes-feature3" class="cms-input" value="Actualizado 2024">
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="asociaciones-statutes">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="asociaciones-statutes">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>

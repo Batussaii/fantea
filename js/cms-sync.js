@@ -354,6 +354,16 @@ class CMSSync {
         if (this.cmsData['asociaciones-header']) {
             this.updateTextContent('.hero-title', this.cmsData['asociaciones-header'].title);
             this.updateTextContent('.hero-description', this.cmsData['asociaciones-header'].description);
+            this.updateImageSrc('.hero-img', this.cmsData['asociaciones-header'].image);
+            if (this.cmsData['asociaciones-header'].buttons) {
+                const b = this.cmsData['asociaciones-header'].buttons;
+                const btnVer = document.querySelector('.hero-actions .btn:nth-child(1)');
+                const btnUnirse = document.querySelector('.hero-actions .btn:nth-child(2)');
+                const btnEst = document.querySelector('.hero-actions .btn:nth-child(3)');
+                if (btnVer) { btnVer.textContent = b.ver || btnVer.textContent; btnVer.href = b.verUrl || btnVer.href; }
+                if (btnUnirse) { btnUnirse.textContent = b.unirse || btnUnirse.textContent; btnUnirse.href = b.unirseUrl || btnUnirse.href; }
+                if (btnEst) { btnEst.textContent = b.estatutos || btnEst.textContent; btnEst.href = b.estatutosUrl || btnEst.href; }
+            }
         }
 
         // Associations List Section
@@ -387,6 +397,67 @@ class CMSSync {
                         associationsContainer.appendChild(associationCard);
                     });
                 }
+            }
+        }
+
+        // Stats in hero
+        if (this.cmsData['asociaciones-stats'] && this.cmsData['asociaciones-stats'].stats) {
+            this.cmsData['asociaciones-stats'].stats.forEach((stat, index) => {
+                this.updateTextContent(`.hero-stats .stat-item:nth-child(${index + 1}) .stat-number`, stat.number);
+                this.updateTextContent(`.hero-stats .stat-item:nth-child(${index + 1}) .stat-text`, stat.description);
+            });
+        }
+
+        // Join section
+        if (this.cmsData['asociaciones-join']) {
+            this.updateTextContent('#join .join-text h2', this.cmsData['asociaciones-join'].title);
+            this.updateTextContent('#join .join-text p', this.cmsData['asociaciones-join'].description);
+            if (this.cmsData['asociaciones-join'].buttons) {
+                const jb1 = document.querySelector('#join .join-actions .btn:nth-child(1)');
+                const jb2 = document.querySelector('#join .join-actions .btn:nth-child(2)');
+                if (jb1) { jb1.textContent = this.cmsData['asociaciones-join'].buttons.primary || jb1.textContent; jb1.href = this.cmsData['asociaciones-join'].buttons.primaryUrl || jb1.href; }
+                if (jb2) { jb2.textContent = this.cmsData['asociaciones-join'].buttons.secondary || jb2.textContent; jb2.href = this.cmsData['asociaciones-join'].buttons.secondaryUrl || jb2.href; }
+            }
+        }
+
+        // Benefits section
+        if (this.cmsData['asociaciones-benefits'] && this.cmsData['asociaciones-benefits'].benefits) {
+            const cards = document.querySelectorAll('.benefits-grid .benefit-card');
+            this.cmsData['asociaciones-benefits'].benefits.forEach((b, index) => {
+                if (cards[index]) {
+                    const icon = cards[index].querySelector('.benefit-icon i');
+                    const title = cards[index].querySelector('h4');
+                    const desc = cards[index].querySelector('p');
+                    if (icon && b.icon) icon.className = b.icon;
+                    if (title && b.title) title.textContent = b.title;
+                    if (desc && b.description) desc.textContent = b.description;
+                }
+            });
+        }
+
+        // CTA section
+        if (this.cmsData['asociaciones-cta']) {
+            this.updateTextContent('.cta-section .cta-content h2', this.cmsData['asociaciones-cta'].title);
+            this.updateTextContent('.cta-section .cta-content p', this.cmsData['asociaciones-cta'].description);
+            if (this.cmsData['asociaciones-cta'].buttons) {
+                const b1 = document.querySelector('.cta-actions .btn:nth-child(1)');
+                const b2 = document.querySelector('.cta-actions .btn:nth-child(2)');
+                if (b1) { b1.textContent = this.cmsData['asociaciones-cta'].buttons.primary || b1.textContent; b1.href = this.cmsData['asociaciones-cta'].buttons.primaryUrl || b1.href; }
+                if (b2) { b2.textContent = this.cmsData['asociaciones-cta'].buttons.secondary || b2.textContent; b2.href = this.cmsData['asociaciones-cta'].buttons.secondaryUrl || b2.href; }
+            }
+        }
+
+        // Statutes section
+        if (this.cmsData['asociaciones-statutes']) {
+            this.updateTextContent('#download-statutes .statutes-text h2', this.cmsData['asociaciones-statutes'].title);
+            this.updateTextContent('#download-statutes .statutes-text p', this.cmsData['asociaciones-statutes'].description);
+            if (this.cmsData['asociaciones-statutes'].features) {
+                const featureItems = document.querySelectorAll('.statutes-features .feature-item span');
+                this.cmsData['asociaciones-statutes'].features.forEach((feature, index) => {
+                    if (featureItems[index] && feature) {
+                        featureItems[index].textContent = feature;
+                    }
+                });
             }
         }
 
