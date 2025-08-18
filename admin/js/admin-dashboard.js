@@ -664,13 +664,17 @@ function toggleCMSSection(button) {
  * Initialize image upload functionality
  */
 function initializeImageUploads() {
-    // Hero image upload
-    const heroImageInput = document.getElementById('hero-image-input');
-    if (heroImageInput) {
-        heroImageInput.addEventListener('change', function(e) {
-            handleImageUpload(e, 'hero-image-preview');
+    // Attach change listeners to all image file inputs that follow the pattern *-image-input
+    const imageInputs = document.querySelectorAll('input[type="file"][id$="-image-input"]');
+    imageInputs.forEach((input) => {
+        input.addEventListener('change', function(e) {
+            // Derive the base id (remove the trailing -input) to build the preview id
+            const inputId = e.target.id; // e.g., quienes-somos-header-image-input
+            const baseId = inputId.replace(/-input$/, ''); // e.g., quienes-somos-header-image
+            const previewId = `${baseId}-preview`; // e.g., quienes-somos-header-image-preview
+            handleImageUpload(e, previewId);
         });
-    }
+    });
 }
 
 /**
@@ -761,22 +765,59 @@ function uploadImage(imageId) {
  * Handle image file selection
  */
 function handleImageUpload(event, previewId) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const preview = document.getElementById(previewId);
-            if (preview) {
-                preview.src = e.target.result;
-                
-                // Show success notification
-                showCMSNotification('Imagen cargada correctamente', 'success');
-                
-                // Mark as changed for saving
-                markContentChanged();
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async function(e) {
+        const preview = document.getElementById(previewId);
+        if (preview) {
+            // Set immediate preview using base64 while uploading
+            preview.src = e.target.result;
+            showCMSNotification('Imagen cargada, subiendo...', 'info');
+
+            try {
+                // Build a safe filename
+                const timePart = Date.now();
+                const sanitizedName = (file.name || 'image').replace(/[^a-zA-Z0-9_.-]/g, '_');
+                const filename = `${previewId.replace(/-preview$/, '')}_${timePart}_${sanitizedName}`;
+
+                // Upload to server
+                const uploadedUrl = await uploadImageData(e.target.result, filename);
+                if (uploadedUrl) {
+                    preview.src = uploadedUrl; // ensure persisted URL is saved
+                    // Mark as changed for saving
+                    markContentChanged();
+                    showCMSNotification('Imagen subida correctamente', 'success');
+                } else {
+                    showCMSNotification('No se pudo subir la imagen. Se usará vista previa local.', 'warning');
+                }
+            } catch (err) {
+                console.warn('Error uploading image:', err);
+                showCMSNotification('Error subiendo imagen. Se usará vista previa local.', 'error');
             }
-        };
-        reader.readAsDataURL(file);
+        }
+    };
+    reader.readAsDataURL(file);
+}
+
+// Upload base64 image data to server and return the URL
+async function uploadImageData(imageBase64, filename) {
+    try {
+        const response = await fetch(CMS_CONFIG.apiUrls.upload, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ imageData: imageBase64, filename })
+        });
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.error || `HTTP ${response.status}`);
+        }
+        const result = await response.json();
+        return result && result.url ? result.url : null;
+    } catch (error) {
+        console.error('uploadImageData error:', error);
+        return null;
     }
 }
 

@@ -7,14 +7,17 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Configurar ruta de datos persistente
-const DATA_DIR = process.env.NODE_ENV === 'production' ? '/app/data' : '.';
+const DATA_DIR = process.env.NODE_ENV === 'production' ? '/app/data' : path.join(__dirname, 'data');
 const CMS_DATA_FILE = path.join(DATA_DIR, 'cms-data.json');
 
 // Middleware
 app.use(cors());
 app.use(express.json({ limit: '50mb' })); // Aumentar límite para imágenes
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.use(express.static('.')); // Servir archivos estáticos
+app.use(express.static('.')); // Servir archivos estáticos desde la app
+// Servir archivos subidos desde el volumen persistente
+const UPLOADS_DIR = path.join(DATA_DIR, 'uploads');
+app.use('/uploads', express.static(UPLOADS_DIR));
 
 // Ruta para guardar datos del CMS
 app.post('/api/cms/save', async (req, res) => {
@@ -90,13 +93,13 @@ app.get('/api/cms/load/:section', async (req, res) => {
     }
 });
 
-// Ruta para subir imágenes
+// Ruta para subir imágenes (persistentes)
 app.post('/api/upload/image', async (req, res) => {
     try {
         const { imageData, filename } = req.body;
         
-        // Crear directorio de imágenes si no existe
-        const imagesDir = path.join(__dirname, 'images', 'cms');
+        // Crear directorio de imágenes dentro del volumen persistente si no existe
+        const imagesDir = path.join(UPLOADS_DIR, 'images');
         await fs.mkdir(imagesDir, { recursive: true });
         
         // Guardar imagen (asumiendo que viene en base64)
@@ -108,7 +111,8 @@ app.post('/api/upload/image', async (req, res) => {
         
         res.json({ 
             success: true, 
-            url: `/images/cms/${filename}`,
+            // Devolver URL pública servida por Express desde el volumen persistente
+            url: `/uploads/images/${filename}`,
             message: 'Imagen subida correctamente' 
         });
     } catch (error) {
