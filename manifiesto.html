@@ -76,7 +76,6 @@
                         <p class="hero-description">Los compromisos y valores que guían nuestra lucha por los derechos del colectivo TEA. Descubre los principios que nos mueven a trabajar por una sociedad más inclusiva y justa.</p>
                         <div class="hero-actions">
                             <a href="#commitments" class="btn btn-primary btn-large">Ver Compromisos</a>
-                            <a href="#download" class="btn btn-outline btn-large">Descargar PDF</a>
                         </div>
                     </div>
                     <div class="hero-image">
@@ -170,42 +169,7 @@
             </div>
         </section>
 
-        <!-- Download Section -->
-        <section id="download" class="download-section">
-            <div class="container">
-                <div class="download-content">
-                    <div class="download-text">
-                        <h2>Manifiesto Completo</h2>
-                        <p>Si quieres leer el manifiesto completo en formato PDF, puedes descargarlo aquí. Este documento contiene todos nuestros compromisos, valores y propuestas detalladas para mejorar la calidad de vida del colectivo TEA en Andalucía.</p>
-                        <div class="download-features">
-                            <div class="feature-item">
-                                <i class="fas fa-file-pdf"></i>
-                                <span>Formato PDF accesible</span>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-download"></i>
-                                <span>Descarga gratuita</span>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-clock"></i>
-                                <span>Actualizado 2024</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="download-action">
-                        <a href="#" class="download-btn">
-                            <div class="download-icon">
-                                <i class="fas fa-download"></i>
-                            </div>
-                            <div class="download-info">
-                                <span class="download-title">Descargar Manifiesto</span>
-                                <span class="download-subtitle">PDF Completo</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
+
 
         <!-- Values Section -->
         <section class="values-section">
@@ -333,6 +297,11 @@
         </div>
     </footer>
 
+    <!-- CMS Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/cache-buster.js"></script>
+    <script src="js/cms-sync.js"></script>
+    
     <script src="js/main.js"></script>
     
     <!-- Script para forzar recarga de estilos CSS -->
@@ -372,6 +341,12 @@
                     card.style.transform = 'translateY(0)';
                 }, 200 + (index * 100));
             });
+            
+            // Inicializar CMS para manifiesto
+            if (typeof cmsSync !== 'undefined') {
+                cmsSync.init();
+                cmsSync.applyManifiestoChanges();
+            }
         });
     </script>
 </body>

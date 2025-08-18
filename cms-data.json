@@ -453,5 +453,107 @@
         "url": "/contacto.html"
       }
     ]
+  },
+  "manifiesto-header": {
+    "title": "Nuestro Manifiesto",
+    "description": "Los compromisos y valores que guían nuestra lucha por los derechos del colectivo TEA. Descubre los principios que nos mueven a trabajar por una sociedad más inclusiva y justa.",
+    "image": "/images/manifiesto-banner.jpg",
+    "buttons": [
+      {
+        "text": "Ver Compromisos",
+        "url": "#commitments"
+      }
+    ]
+  },
+  "manifiesto-stats": {
+    "items": [
+      {
+        "number": "5",
+        "description": "Compromisos Fundamentales"
+      },
+      {
+        "number": "4",
+        "description": "Valores Principales"
+      },
+      {
+        "number": "15",
+        "description": "Años de Lucha"
+      },
+      {
+        "number": "100%",
+        "description": "Compromiso con las Familias"
+      }
+    ]
+  },
+  "manifiesto-commitments": {
+    "title": "Nuestros Compromisos",
+    "subtitle": "FANTEA nace por y para las personas autistas y sus familias, con el compromiso de:",
+    "commitments": [
+      {
+        "title": "No dejar a nadie atrás",
+        "description": "Trabajamos para que todas las personas autistas y sus familias tengan acceso a los recursos y apoyos que necesitan, sin excepción.",
+        "icon": "fas fa-users"
+      },
+      {
+        "title": "Defender apoyos reales, justos y gratuitos",
+        "description": "Luchamos por servicios de calidad que sean accesibles para todas las familias, independientemente de su situación económica.",
+        "icon": "fas fa-balance-scale"
+      },
+      {
+        "title": "Reivindicar más recursos públicos",
+        "description": "Exigimos más recursos públicos docentes, técnicos y sanitarios para garantizar una atención integral y de calidad.",
+        "icon": "fas fa-hand-holding-heart"
+      },
+      {
+        "title": "Trabajar con transparencia y participación",
+        "description": "Actuamos con total transparencia y fomentamos la participación activa de las familias en todas nuestras decisiones.",
+        "icon": "fas fa-eye"
+      },
+      {
+        "title": "Promover la unión y colaboración",
+        "description": "Fomentamos la unión y la colaboración entre asociaciones para fortalecer la voz del colectivo TEA en Andalucía.",
+        "icon": "fas fa-hands-helping"
+      }
+    ]
+  },
+  "manifiesto-values": {
+    "title": "Nuestros Valores Fundamentales",
+    "subtitle": "Los principios que guían cada una de nuestras acciones y decisiones",
+    "values": [
+      {
+        "title": "Dignidad",
+        "description": "Reconocemos la dignidad inherente de todas las personas autistas y sus familias, respetando su autonomía y derechos fundamentales.",
+        "icon": "fas fa-crown"
+      },
+      {
+        "title": "Justicia Social",
+        "description": "Luchamos por la igualdad de oportunidades y el acceso a derechos fundamentales para todas las personas del colectivo TEA.",
+        "icon": "fas fa-gavel"
+      },
+      {
+        "title": "Inclusión",
+        "description": "Promovemos una sociedad inclusiva que valore la neurodiversidad y reconozca las capacidades de todas las personas.",
+        "icon": "fas fa-heart"
+      },
+      {
+        "title": "Empoderamiento",
+        "description": "Fomentamos la autonomía y la participación activa de las familias en la toma de decisiones que les afectan.",
+        "icon": "fas fa-rocket"
+      }
+    ]
+  },
+  "manifiesto-cta": {
+    "title": "¿Compartes Nuestros Valores?",
+    "description": "Si tu asociación comparte estos compromisos y valores, únete a FANTEA y sumemos fuerzas para defender los derechos del colectivo TEA en Andalucía.",
+    "buttons": [
+      {
+        "text": "Unirse a FANTEA",
+        "url": "/afiliate.html"
+      },
+      {
+        "text": "Contactar",
+        "url": "/contacto.html"
+      }
+    ]
   }
 }

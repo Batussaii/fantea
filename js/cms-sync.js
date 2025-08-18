@@ -596,33 +596,108 @@ class CMSSync {
         if (this.cmsData['manifiesto-header']) {
             this.updateTextContent('.hero-title', this.cmsData['manifiesto-header'].title);
             this.updateTextContent('.hero-description', this.cmsData['manifiesto-header'].description);
+            this.updateImageSrc('.hero-img', this.cmsData['manifiesto-header'].image);
+            
+            // Actualizar botones del hero
+            if (this.cmsData['manifiesto-header'].buttons) {
+                const buttons = this.cmsData['manifiesto-header'].buttons;
+                const btnCompromisos = document.querySelector('.hero-actions .btn:nth-child(1)');
+                if (btnCompromisos && buttons[0]) { 
+                    btnCompromisos.textContent = buttons[0].text; 
+                    btnCompromisos.href = buttons[0].url || btnCompromisos.href; 
+                }
+            }
         }
 
-        // Manifesto Content Section
-        if (this.cmsData['manifiesto-content']) {
-            if (this.cmsData['manifiesto-content'].sectionTitle) {
-                this.updateTextContent('.manifesto-section .section-header h2', this.cmsData['manifiesto-content'].sectionTitle);
+        // Stats Section
+        if (this.cmsData['manifiesto-stats'] && this.cmsData['manifiesto-stats'].items) {
+            this.cmsData['manifiesto-stats'].items.forEach((stat, index) => {
+                this.updateTextContent(`.hero-stats .stat-item:nth-child(${index + 1}) .stat-number`, stat.number);
+                this.updateTextContent(`.hero-stats .stat-item:nth-child(${index + 1}) .stat-text`, stat.description);
+            });
+        }
+
+        // Commitments Section
+        if (this.cmsData['manifiesto-commitments']) {
+            if (this.cmsData['manifiesto-commitments'].title) {
+                this.updateTextContent('.commitments-section .section-header h2', this.cmsData['manifiesto-commitments'].title);
             }
-            if (this.cmsData['manifiesto-content'].introText) {
-                this.updateTextContent('.manifesto-intro p', this.cmsData['manifiesto-content'].introText);
+            if (this.cmsData['manifiesto-commitments'].subtitle) {
+                this.updateTextContent('.commitments-section .section-header p', this.cmsData['manifiesto-commitments'].subtitle);
             }
             
-            // Principles List
-            if (this.cmsData['manifiesto-content'].principles) {
-                const principlesContainer = document.querySelector('.principles-grid');
-                if (principlesContainer) {
-                    principlesContainer.innerHTML = '';
-                    this.cmsData['manifiesto-content'].principles.forEach(principle => {
-                        const principleCard = document.createElement('div');
-                        principleCard.className = 'principle-card';
-                        principleCard.innerHTML = `
-                            <div class="principle-content">
-                                <h3>${principle.title}</h3>
-                                <p>${principle.description}</p>
-                            </div>
-                        `;
-                        principlesContainer.appendChild(principleCard);
-                    });
+            // Commitments List - Actualizar cada compromiso individualmente
+            if (this.cmsData['manifiesto-commitments'].commitments) {
+                this.cmsData['manifiesto-commitments'].commitments.forEach((commitment, index) => {
+                    const commitmentCard = document.querySelector(`.commitments-grid .commitment-card:nth-child(${index + 1})`);
+                    if (commitmentCard) {
+                        // Actualizar título
+                        const title = commitmentCard.querySelector('h3');
+                        if (title && commitment.title) title.textContent = commitment.title;
+                        
+                        // Actualizar descripción
+                        const description = commitmentCard.querySelector('p');
+                        if (description && commitment.description) description.textContent = commitment.description;
+                        
+                        // Actualizar icono
+                        const icon = commitmentCard.querySelector('.commitment-icon i');
+                        if (icon && commitment.icon) icon.className = commitment.icon;
+                    }
+                });
+            }
+        }
+
+        // Values Section
+        if (this.cmsData['manifiesto-values']) {
+            if (this.cmsData['manifiesto-values'].title) {
+                this.updateTextContent('.values-section .section-header h2', this.cmsData['manifiesto-values'].title);
+            }
+            if (this.cmsData['manifiesto-values'].subtitle) {
+                this.updateTextContent('.values-section .section-header p', this.cmsData['manifiesto-values'].subtitle);
+            }
+            
+            // Values List - Actualizar cada valor individualmente
+            if (this.cmsData['manifiesto-values'].values) {
+                this.cmsData['manifiesto-values'].values.forEach((value, index) => {
+                    const valueCard = document.querySelector(`.values-grid .value-card:nth-child(${index + 1})`);
+                    if (valueCard) {
+                        // Actualizar título
+                        const title = valueCard.querySelector('h3');
+                        if (title && value.title) title.textContent = value.title;
+                        
+                        // Actualizar descripción
+                        const description = valueCard.querySelector('p');
+                        if (description && value.description) description.textContent = value.description;
+                        
+                        // Actualizar icono
+                        const icon = valueCard.querySelector('.value-icon i');
+                        if (icon && value.icon) icon.className = value.icon;
+                    }
+                });
+            }
+        }
+
+        // CTA Section
+        if (this.cmsData['manifiesto-cta']) {
+            if (this.cmsData['manifiesto-cta'].title) {
+                this.updateTextContent('.cta-section .cta-content h2', this.cmsData['manifiesto-cta'].title);
+            }
+            if (this.cmsData['manifiesto-cta'].description) {
+                this.updateTextContent('.cta-section .cta-content p', this.cmsData['manifiesto-cta'].description);
+            }
+            
+            // CTA Buttons
+            if (this.cmsData['manifiesto-cta'].buttons) {
+                const buttons = this.cmsData['manifiesto-cta'].buttons;
+                const btnUnirse = document.querySelector('.cta-actions .btn:nth-child(1)');
+                const btnContactar = document.querySelector('.cta-actions .btn:nth-child(2)');
+                if (btnUnirse && buttons.unirse) { 
+                    btnUnirse.textContent = buttons.unirse; 
+                    btnUnirse.href = buttons.unirseUrl || btnUnirse.href; 
+                }
+                if (btnContactar && buttons.contactar) { 
+                    btnContactar.textContent = buttons.contactar; 
+                    btnContactar.href = buttons.contactarUrl || btnContactar.href; 
                 }
             }
         }

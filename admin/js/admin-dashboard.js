@@ -1300,25 +1300,110 @@ function collectSectionData(sectionName) {
             break;
             
         case 'manifiesto-header':
-            data.title = document.getElementById('manifiesto-title')?.value || '';
-            data.description = document.getElementById('manifiesto-description')?.value || '';
+            data.title = document.getElementById('manifiesto-header-title')?.value || '';
+            data.description = document.getElementById('manifiesto-header-description')?.value || '';
+            data.image = document.getElementById('manifiesto-header-image-preview')?.src || '';
+            data.buttons = [
+                {
+                    text: document.getElementById('manifiesto-header-button-compromisos')?.value || '',
+                    url: document.getElementById('manifiesto-header-url-compromisos')?.value || ''
+                }
+            ];
             break;
             
-        case 'manifiesto-content':
-            data.sectionTitle = document.getElementById('manifiesto-intro-title')?.value || '';
-            data.introText = document.getElementById('manifiesto-intro-text')?.value || '';
-            data.principles = [];
-            
-            const principleItems = document.querySelectorAll('.principle-item-cms');
-            principleItems.forEach(item => {
-                const inputs = item.querySelectorAll('.cms-input, .cms-textarea');
-                if (inputs.length >= 2) {
-                    data.principles.push({
-                        title: inputs[0].value,
-                        description: inputs[1].value
-                    });
+        case 'manifiesto-stats':
+            data.items = [
+                {
+                    number: document.getElementById('manifiesto-stats-number1')?.value || '',
+                    description: document.getElementById('manifiesto-stats-description1')?.value || ''
+                },
+                {
+                    number: document.getElementById('manifiesto-stats-number2')?.value || '',
+                    description: document.getElementById('manifiesto-stats-description2')?.value || ''
+                },
+                {
+                    number: document.getElementById('manifiesto-stats-number3')?.value || '',
+                    description: document.getElementById('manifiesto-stats-description3')?.value || ''
+                },
+                {
+                    number: document.getElementById('manifiesto-stats-number4')?.value || '',
+                    description: document.getElementById('manifiesto-stats-description4')?.value || ''
                 }
-            });
+            ];
+            break;
+            
+        case 'manifiesto-commitments':
+            data.title = document.getElementById('manifiesto-commitments-title')?.value || '';
+            data.subtitle = document.getElementById('manifiesto-commitments-subtitle')?.value || '';
+            data.commitments = [
+                {
+                    title: document.getElementById('manifiesto-commitments-commitment1-title')?.value || '',
+                    description: document.getElementById('manifiesto-commitments-commitment1-description')?.value || '',
+                    icon: document.getElementById('manifiesto-commitments-commitment1-icon')?.value || ''
+                },
+                {
+                    title: document.getElementById('manifiesto-commitments-commitment2-title')?.value || '',
+                    description: document.getElementById('manifiesto-commitments-commitment2-description')?.value || '',
+                    icon: document.getElementById('manifiesto-commitments-commitment2-icon')?.value || ''
+                },
+                {
+                    title: document.getElementById('manifiesto-commitments-commitment3-title')?.value || '',
+                    description: document.getElementById('manifiesto-commitments-commitment3-description')?.value || '',
+                    icon: document.getElementById('manifiesto-commitments-commitment3-icon')?.value || ''
+                },
+                {
+                    title: document.getElementById('manifiesto-commitments-commitment4-title')?.value || '',
+                    description: document.getElementById('manifiesto-commitments-commitment4-description')?.value || '',
+                    icon: document.getElementById('manifiesto-commitments-commitment4-icon')?.value || ''
+                },
+                {
+                    title: document.getElementById('manifiesto-commitments-commitment5-title')?.value || '',
+                    description: document.getElementById('manifiesto-commitments-commitment5-description')?.value || '',
+                    icon: document.getElementById('manifiesto-commitments-commitment5-icon')?.value || ''
+                }
+            ];
+            break;
+            
+        case 'manifiesto-values':
+            data.title = document.getElementById('manifiesto-values-title')?.value || '';
+            data.subtitle = document.getElementById('manifiesto-values-subtitle')?.value || '';
+            data.values = [
+                {
+                    title: document.getElementById('manifiesto-values-value1-title')?.value || '',
+                    description: document.getElementById('manifiesto-values-value1-description')?.value || '',
+                    icon: document.getElementById('manifiesto-values-value1-icon')?.value || ''
+                },
+                {
+                    title: document.getElementById('manifiesto-values-value2-title')?.value || '',
+                    description: document.getElementById('manifiesto-values-value2-description')?.value || '',
+                    icon: document.getElementById('manifiesto-values-value2-icon')?.value || ''
+                },
+                {
+                    title: document.getElementById('manifiesto-values-value3-title')?.value || '',
+                    description: document.getElementById('manifiesto-values-value3-description')?.value || '',
+                    icon: document.getElementById('manifiesto-values-value3-icon')?.value || ''
+                },
+                {
+                    title: document.getElementById('manifiesto-values-value4-title')?.value || '',
+                    description: document.getElementById('manifiesto-values-value4-description')?.value || '',
+                    icon: document.getElementById('manifiesto-values-value4-icon')?.value || ''
+                }
+            ];
+            break;
+            
+        case 'manifiesto-cta':
+            data.title = document.getElementById('manifiesto-cta-title')?.value || '';
+            data.description = document.getElementById('manifiesto-cta-description')?.value || '';
+            data.buttons = [
+                {
+                    text: document.getElementById('manifiesto-cta-button-unirse')?.value || '',
+                    url: document.getElementById('manifiesto-cta-url-unirse')?.value || ''
+                },
+                {
+                    text: document.getElementById('manifiesto-cta-button-contactar')?.value || '',
+                    url: document.getElementById('manifiesto-cta-url-contactar')?.value || ''
+                }
+            ];
             break;
             
         case 'prensa-header':
@@ -1835,6 +1920,68 @@ function loadSectionData(sectionName, data) {
                 if (data.buttons[1]) {
                     document.getElementById('areas-cta-button-contactar').value = data.buttons[1].text;
                     document.getElementById('areas-cta-url-contactar').value = data.buttons[1].url;
+                }
+            }
+            break;
+            
+        case 'manifiesto-header':
+            if (data.title) document.getElementById('manifiesto-header-title').value = data.title;
+            if (data.description) document.getElementById('manifiesto-header-description').value = data.description;
+            if (data.image) document.getElementById('manifiesto-header-image-preview').src = data.image;
+            if (data.buttons) {
+                if (data.buttons[0]) {
+                    document.getElementById('manifiesto-header-button-compromisos').value = data.buttons[0].text;
+                    document.getElementById('manifiesto-header-url-compromisos').value = data.buttons[0].url;
+                }
+            }
+            break;
+            
+        case 'manifiesto-stats':
+            if (data.items) {
+                data.items.forEach((stat, index) => {
+                    if (stat.number) document.getElementById(`manifiesto-stats-number${index + 1}`).value = stat.number;
+                    if (stat.description) document.getElementById(`manifiesto-stats-description${index + 1}`).value = stat.description;
+                });
+            }
+            break;
+            
+        case 'manifiesto-commitments':
+            if (data.title) document.getElementById('manifiesto-commitments-title').value = data.title;
+            if (data.subtitle) document.getElementById('manifiesto-commitments-subtitle').value = data.subtitle;
+            
+            if (data.commitments) {
+                data.commitments.forEach((commitment, index) => {
+                    if (commitment.title) document.getElementById(`manifiesto-commitments-commitment${index + 1}-title`).value = commitment.title;
+                    if (commitment.description) document.getElementById(`manifiesto-commitments-commitment${index + 1}-description`).value = commitment.description;
+                    if (commitment.icon) document.getElementById(`manifiesto-commitments-commitment${index + 1}-icon`).value = commitment.icon;
+                });
+            }
+            break;
+            
+        case 'manifiesto-values':
+            if (data.title) document.getElementById('manifiesto-values-title').value = data.title;
+            if (data.subtitle) document.getElementById('manifiesto-values-subtitle').value = data.subtitle;
+            
+            if (data.values) {
+                data.values.forEach((value, index) => {
+                    if (value.title) document.getElementById(`manifiesto-values-value${index + 1}-title`).value = value.title;
+                    if (value.description) document.getElementById(`manifiesto-values-value${index + 1}-description`).value = value.description;
+                    if (value.icon) document.getElementById(`manifiesto-values-value${index + 1}-icon`).value = value.icon;
+                });
+            }
+            break;
+            
+        case 'manifiesto-cta':
+            if (data.title) document.getElementById('manifiesto-cta-title').value = data.title;
+            if (data.description) document.getElementById('manifiesto-cta-description').value = data.description;
+            if (data.buttons) {
+                if (data.buttons[0]) {
+                    document.getElementById('manifiesto-cta-button-unirse').value = data.buttons[0].text;
+                    document.getElementById('manifiesto-cta-url-unirse').value = data.buttons[0].url;
+                }
+                if (data.buttons[1]) {
+                    document.getElementById('manifiesto-cta-button-contactar').value = data.buttons[1].text;
+                    document.getElementById('manifiesto-cta-url-contactar').value = data.buttons[1].url;
                 }
             }
             break;
