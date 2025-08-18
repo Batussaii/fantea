@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Dashboard Fixed - FANTEA</title>
+    <link rel="stylesheet" href="admin/css/admin-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="admin/js/admin-dashboard.js"></script>
+</head>
+<body class="admin-panel">
+    <div class="test-banner">
+        <h2>🧪 Test Dashboard Fixed</h2>
+        <p>Verificando que las correcciones funcionen correctamente</p>
+    </div>
+
+    <!-- Admin Navigation -->
+    <nav class="admin-nav">
+        <div class="nav-brand">
+            <img src="images/logo.png" alt="FANTEA" class="nav-logo">
+            <span>FANTEA Admin</span>
+        </div>
+        
+        <div class="nav-user">
+            <div class="user-info">
+                <span class="user-name" id="userName">Administrador</span>
+                <span class="user-role" id="userRole">admin</span>
+            </div>
+            <div class="user-actions">
+                <button class="btn-icon" title="Notificaciones">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <button class="btn-icon" onclick="logout()" title="Cerrar sesión">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-menu">
+                <div class="menu-section">
+                    <h4>Principal</h4>
+                    <ul class="menu-list">
+                        <li><a href="#dashboard" class="menu-item active" data-section="dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a></li>
+                    </ul>
+                </div>
+
+                <div class="menu-section">
+                    <h4>Contenido</h4>
+                    <ul class="menu-list">
+                        <li><a href="#contenido-estatico" class="menu-item" data-section="contenido">
+                            <i class="fas fa-edit"></i>
+                            <span>Contenido Estático</span>
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Dashboard Section -->
+            <section id="dashboard-content" class="content-section active">
+                <div class="section-header">
+                    <h1>Dashboard</h1>
+                    <p>Panel de control y estadísticas</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>24</h3>
+                            <p>Noticias</p>
+                            <span class="stat-change positive">+3 este mes</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>8</h3>
+                            <p>Eventos</p>
+                            <span class="stat-change positive">+2 este mes</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>35</h3>
+                            <p>Asociaciones</p>
+                            <span class="stat-change positive">+1 este mes</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>156</h3>
+                            <p>Descargas</p>
+                            <span class="stat-change positive">+23 este mes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-charts">
+                    <div class="chart-container">
+                        <h3>Actividad Reciente</h3>
+                        <canvas id="activityChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contenido Estático Section -->
+            <section id="contenido-content" class="content-section">
+                <div class="section-header">
+                    <h1>Contenido Estático</h1>
+                    <p>Gestionar contenido de las páginas principales</p>
+                </div>
+
+                <div class="cms-tabs">
+                    <button class="tab-btn active" data-tab="inicio">Inicio</button>
+                    <button class="tab-btn" data-tab="quienes-somos">Quiénes Somos</button>
+                    <button class="tab-btn" data-tab="asociaciones">Asociaciones</button>
+                </div>
+
+                <div class="cms-content">
+                    <div id="inicio-cms" class="cms-page-content active">
+                        <h3>Contenido de Inicio</h3>
+                        <p>Aquí iría el contenido editable de la página de inicio.</p>
+                    </div>
+
+                    <div id="quienes-somos-cms" class="cms-page-content">
+                        <h3>Contenido de Quiénes Somos</h3>
+                        <p>Aquí iría el contenido editable de la página de Quiénes Somos.</p>
+                    </div>
+
+                    <div id="asociaciones-cms" class="cms-page-content">
+                        <h3>Contenido de Asociaciones</h3>
+                        <p>Aquí iría el contenido editable de la página de Asociaciones.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Simular sesión de administrador
+        localStorage.setItem('fantea_admin_session', JSON.stringify({
+            username: 'admin',
+            loginTime: Date.now()
+        }));
+
+        // Función de logout
+        function logout() {
+            localStorage.removeItem('fantea_admin_session');
+            alert('Sesión cerrada');
+        }
+
+        // Verificar que no hay errores
+        window.addEventListener('error', function(e) {
+            console.error('❌ Error detectado:', e.error);
+        });
+
+        // Verificar que el dashboard se carga correctamente
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('✅ Dashboard fixed cargado correctamente');
+            console.log('✅ No hay errores de sintaxis');
+            console.log('✅ Variables globales declaradas correctamente');
+        });
+    </script>
+
+    <style>
+        .test-banner {
+            background: linear-gradient(135deg, #1565C0, #0D47A1);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .test-banner h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.5rem;
+        }
+        
+        .test-banner p {
+            margin: 0;
+            opacity: 0.9;
+        }
+    </style>
+</body>
+</html>

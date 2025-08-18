@@ -216,31 +216,100 @@ class CMSSync {
         console.log('Cambios de Inicio aplicados');
     }
 
-    // Aplicar cambios a página de Quienes Somos
+    // Aplicar cambios a página de Quiénes Somos
     applyQuienesSomosChanges() {
-        console.log('Aplicando cambios CMS a página de Quienes Somos...');
+        console.log('Aplicando cambios CMS a página de Quiénes Somos...');
 
         // Header Section
         if (this.cmsData['quienes-somos-header']) {
             this.updateTextContent('.hero-title', this.cmsData['quienes-somos-header'].title);
-            this.updateTextContent('.hero-description', this.cmsData['quienes-somos-header'].description);
+            this.updateTextContent('.hero-description', this.cmsData['quienes-somos-header'].subtitle);
+            this.updateImageSrc('.hero-img', this.cmsData['quienes-somos-header'].image);
+            
+            // Actualizar botones del hero
+            if (this.cmsData['quienes-somos-header'].buttons) {
+                const buttons = this.cmsData['quienes-somos-header'].buttons;
+                if (buttons.mision) {
+                    this.updateTextContent('.hero-actions .btn:nth-child(1)', buttons.mision);
+                }
+                if (buttons.valores) {
+                    this.updateTextContent('.hero-actions .btn:nth-child(2)', buttons.valores);
+                }
+            }
         }
 
-        // History Section
-        if (this.cmsData.history) {
-            if (this.cmsData.history.title) {
-                this.updateTextContent('.our-history .section-header h2', this.cmsData.history.title);
+        // Stats Section
+        if (this.cmsData['quienes-somos-stats'] && this.cmsData['quienes-somos-stats'].stats) {
+            this.cmsData['quienes-somos-stats'].stats.forEach((stat, index) => {
+                this.updateTextContent(`.hero-stats .stat-item:nth-child(${index + 1}) .stat-number`, stat.number);
+                this.updateTextContent(`.hero-stats .stat-item:nth-child(${index + 1}) .stat-text`, stat.description);
+            });
+        }
+
+        // Misión y Visión Section
+        if (this.cmsData['quienes-somos-mision']) {
+            if (this.cmsData['quienes-somos-mision'].title) {
+                this.updateTextContent('.featured-sections .section-header h2', this.cmsData['quienes-somos-mision'].title);
             }
-            if (this.cmsData.history.subtitle) {
-                this.updateTextContent('.our-history .section-header p', this.cmsData.history.subtitle);
+            if (this.cmsData['quienes-somos-mision'].subtitle) {
+                this.updateTextContent('.featured-sections .section-header p', this.cmsData['quienes-somos-mision'].subtitle);
             }
             
-            // Timeline Section
-            if (this.cmsData.history.timeline) {
+            // Cards de Misión y Visión
+            if (this.cmsData['quienes-somos-mision'].cards) {
+                this.cmsData['quienes-somos-mision'].cards.forEach((card, index) => {
+                    this.updateTextContent(`.features-grid .feature-card:nth-child(${index + 1}) h3`, card.title);
+                    this.updateTextContent(`.features-grid .feature-card:nth-child(${index + 1}) p:first-of-type`, card.description);
+                    this.updateTextContent(`.features-grid .feature-card:nth-child(${index + 1}) p:last-of-type`, card.highlight);
+                    
+                    // Actualizar icono
+                    const iconElement = document.querySelector(`.features-grid .feature-card:nth-child(${index + 1}) .feature-icon i`);
+                    if (iconElement && card.icon) {
+                        iconElement.className = card.icon;
+                    }
+                });
+            }
+        }
+
+        // Valores Section
+        if (this.cmsData['quienes-somos-valores']) {
+            if (this.cmsData['quienes-somos-valores'].title) {
+                this.updateTextContent('.values-section .section-header h2', this.cmsData['quienes-somos-valores'].title);
+            }
+            if (this.cmsData['quienes-somos-valores'].subtitle) {
+                this.updateTextContent('.values-section .section-header p', this.cmsData['quienes-somos-valores'].subtitle);
+            }
+            
+            // Valores
+            if (this.cmsData['quienes-somos-valores'].values) {
+                this.cmsData['quienes-somos-valores'].values.forEach((value, index) => {
+                    this.updateTextContent(`.values-grid .value-card:nth-child(${index + 1}) h3`, value.title);
+                    this.updateTextContent(`.values-grid .value-card:nth-child(${index + 1}) p`, value.description);
+                    
+                    // Actualizar icono
+                    const iconElement = document.querySelector(`.values-grid .value-card:nth-child(${index + 1}) .value-icon i`);
+                    if (iconElement && value.icon) {
+                        iconElement.className = value.icon;
+                    }
+                });
+            }
+        }
+
+        // Historia Section
+        if (this.cmsData['quienes-somos-historia']) {
+            if (this.cmsData['quienes-somos-historia'].title) {
+                this.updateTextContent('.our-history .section-header h2', this.cmsData['quienes-somos-historia'].title);
+            }
+            if (this.cmsData['quienes-somos-historia'].subtitle) {
+                this.updateTextContent('.our-history .section-header p', this.cmsData['quienes-somos-historia'].subtitle);
+            }
+            
+            // Timeline
+            if (this.cmsData['quienes-somos-historia'].timeline) {
                 const timelineContainer = document.querySelector('.history-timeline');
                 if (timelineContainer) {
                     timelineContainer.innerHTML = '';
-                    this.cmsData.history.timeline.forEach(item => {
+                    this.cmsData['quienes-somos-historia'].timeline.forEach(item => {
                         const timelineItem = document.createElement('div');
                         timelineItem.className = 'timeline-item';
                         timelineItem.innerHTML = `
@@ -256,7 +325,25 @@ class CMSSync {
             }
         }
 
-        console.log('Cambios de Quienes Somos aplicados');
+        // CTA Section
+        if (this.cmsData['quienes-somos-cta']) {
+            this.updateTextContent('.cta-section .cta-content h2', this.cmsData['quienes-somos-cta'].title);
+            this.updateTextContent('.cta-section .cta-content p', this.cmsData['quienes-somos-cta'].description);
+            
+            // Botones del CTA
+            if (this.cmsData['quienes-somos-cta'].buttons) {
+                this.cmsData['quienes-somos-cta'].buttons.forEach((button, index) => {
+                    const buttonElement = document.querySelector(`.cta-actions .btn:nth-child(${index + 1})`);
+                    if (buttonElement) {
+                        buttonElement.textContent = button.text;
+                        buttonElement.href = button.url;
+                        buttonElement.className = `btn ${button.type === 'primary' ? 'btn-primary' : 'btn-outline'}`;
+                    }
+                });
+            }
+        }
+
+        console.log('Cambios de Quiénes Somos aplicados');
     }
 
     // Aplicar cambios a página de Asociaciones

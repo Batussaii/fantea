@@ -140,13 +140,13 @@ function switchSection(sectionName) {
     currentSection = sectionName;
     
     // Cargar datos específicos de la sección
-    loadSectionData(sectionName);
+    loadSectionSpecificData(sectionName);
 }
 
 /**
  * Cargar datos específicos de cada sección
  */
-function loadSectionData(section) {
+function loadSectionSpecificData(section) {
     switch (section) {
         case 'dashboard':
             loadDashboardData();
@@ -938,8 +938,100 @@ function collectSectionData(sectionName) {
             
         // New sections for updated pages
         case 'quienes-somos-header':
-            data.title = document.getElementById('quienes-somos-title')?.value || '';
-            data.description = document.getElementById('quienes-somos-description')?.value || '';
+            data.title = document.getElementById('quienes-somos-header-title')?.value || '';
+            data.subtitle = document.getElementById('quienes-somos-header-subtitle')?.value || '';
+            data.image = document.getElementById('quienes-somos-header-image-preview')?.src || '';
+            data.buttons = {
+                mision: document.getElementById('quienes-somos-button-mision')?.value || 'Nuestra Misión',
+                valores: document.getElementById('quienes-somos-button-valores')?.value || 'Nuestros Valores'
+            };
+            break;
+            
+        case 'quienes-somos-stats':
+            data.stats = [];
+            const quienesSomosStatItems = document.querySelectorAll('.stat-item-cms');
+            quienesSomosStatItems.forEach(item => {
+                const inputs = item.querySelectorAll('.cms-input');
+                if (inputs.length >= 2) {
+                    data.stats.push({
+                        number: inputs[0].value,
+                        description: inputs[1].value
+                    });
+                }
+            });
+            break;
+            
+        case 'quienes-somos-mision':
+            data.title = document.getElementById('quienes-somos-mision-title')?.value || '';
+            data.subtitle = document.getElementById('quienes-somos-mision-subtitle')?.value || '';
+            data.cards = [];
+            
+            const quienesSomosFeatureItems = document.querySelectorAll('.feature-item-cms');
+            quienesSomosFeatureItems.forEach(item => {
+                const inputs = item.querySelectorAll('.cms-input, .cms-textarea');
+                if (inputs.length >= 4) {
+                    data.cards.push({
+                        icon: inputs[0].value,
+                        title: inputs[1].value,
+                        description: inputs[2].value,
+                        highlight: inputs[3].value
+                    });
+                }
+            });
+            break;
+            
+        case 'quienes-somos-valores':
+            data.title = document.getElementById('quienes-somos-valores-title')?.value || '';
+            data.subtitle = document.getElementById('quienes-somos-valores-subtitle')?.value || '';
+            data.values = [];
+            
+            const valueItems = document.querySelectorAll('.value-item-cms');
+            valueItems.forEach(item => {
+                const inputs = item.querySelectorAll('.cms-input, .cms-textarea');
+                if (inputs.length >= 3) {
+                    data.values.push({
+                        icon: inputs[0].value,
+                        title: inputs[1].value,
+                        description: inputs[2].value
+                    });
+                }
+            });
+            break;
+            
+        case 'quienes-somos-historia':
+            data.title = document.getElementById('quienes-somos-historia-title')?.value || '';
+            data.subtitle = document.getElementById('quienes-somos-historia-subtitle')?.value || '';
+            data.timeline = [];
+            
+            const quienesSomosTimelineItems = document.querySelectorAll('.timeline-item-cms');
+            quienesSomosTimelineItems.forEach(item => {
+                const inputs = item.querySelectorAll('.cms-input, .cms-textarea');
+                if (inputs.length >= 3) {
+                    data.timeline.push({
+                        year: inputs[0].value,
+                        title: inputs[1].value,
+                        description: inputs[2].value
+                    });
+                }
+            });
+            break;
+            
+        case 'quienes-somos-cta':
+            data.title = document.getElementById('quienes-somos-cta-title')?.value || '';
+            data.description = document.getElementById('quienes-somos-cta-description')?.value || '';
+            data.buttons = [];
+            
+            const ctaButtonItems = document.querySelectorAll('.cta-button-item-cms');
+            ctaButtonItems.forEach(item => {
+                const inputs = item.querySelectorAll('.cms-input, select');
+                if (inputs.length >= 3) {
+                    data.buttons.push({
+                        text: inputs[0].value,
+                        url: inputs[1].value,
+                        type: inputs[2].value
+                    });
+                }
+            });
             break;
             
         case 'asociaciones-header':
@@ -1276,8 +1368,95 @@ function loadSectionData(sectionName, data) {
             
         // New sections loading for updated pages
         case 'quienes-somos-header':
-            if (data.title) document.getElementById('quienes-somos-title').value = data.title;
-            if (data.description) document.getElementById('quienes-somos-description').value = data.description;
+            if (data.title) document.getElementById('quienes-somos-header-title').value = data.title;
+            if (data.subtitle) document.getElementById('quienes-somos-header-subtitle').value = data.subtitle;
+            if (data.image) document.getElementById('quienes-somos-header-image-preview').src = data.image;
+            if (data.buttons) {
+                if (data.buttons.mision) document.getElementById('quienes-somos-button-mision').value = data.buttons.mision;
+                if (data.buttons.valores) document.getElementById('quienes-somos-button-valores').value = data.buttons.valores;
+            }
+            break;
+            
+        case 'quienes-somos-stats':
+            if (data.stats) {
+                const quienesSomosStatItems = document.querySelectorAll('.stat-item-cms');
+                data.stats.forEach((stat, index) => {
+                    if (quienesSomosStatItems[index]) {
+                        const inputs = quienesSomosStatItems[index].querySelectorAll('.cms-input');
+                        if (inputs[0]) inputs[0].value = stat.number;
+                        if (inputs[1]) inputs[1].value = stat.description;
+                    }
+                });
+            }
+            break;
+            
+        case 'quienes-somos-mision':
+            if (data.title) document.getElementById('quienes-somos-mision-title').value = data.title;
+            if (data.subtitle) document.getElementById('quienes-somos-mision-subtitle').value = data.subtitle;
+            
+            if (data.cards) {
+                const quienesSomosFeatureItems = document.querySelectorAll('.feature-item-cms');
+                data.cards.forEach((card, index) => {
+                    if (quienesSomosFeatureItems[index]) {
+                        const inputs = quienesSomosFeatureItems[index].querySelectorAll('.cms-input, .cms-textarea');
+                        if (inputs[0]) inputs[0].value = card.icon;
+                        if (inputs[1]) inputs[1].value = card.title;
+                        if (inputs[2]) inputs[2].value = card.description;
+                        if (inputs[3]) inputs[3].value = card.highlight;
+                    }
+                });
+            }
+            break;
+            
+        case 'quienes-somos-valores':
+            if (data.title) document.getElementById('quienes-somos-valores-title').value = data.title;
+            if (data.subtitle) document.getElementById('quienes-somos-valores-subtitle').value = data.subtitle;
+            
+            if (data.values) {
+                const quienesSomosValueItems = document.querySelectorAll('.value-item-cms');
+                data.values.forEach((value, index) => {
+                    if (quienesSomosValueItems[index]) {
+                        const inputs = quienesSomosValueItems[index].querySelectorAll('.cms-input, .cms-textarea');
+                        if (inputs[0]) inputs[0].value = value.icon;
+                        if (inputs[1]) inputs[1].value = value.title;
+                        if (inputs[2]) inputs[2].value = value.description;
+                    }
+                });
+            }
+            break;
+            
+        case 'quienes-somos-historia':
+            if (data.title) document.getElementById('quienes-somos-historia-title').value = data.title;
+            if (data.subtitle) document.getElementById('quienes-somos-historia-subtitle').value = data.subtitle;
+            
+            if (data.timeline) {
+                const quienesSomosTimelineItems = document.querySelectorAll('.timeline-item-cms');
+                data.timeline.forEach((item, index) => {
+                    if (quienesSomosTimelineItems[index]) {
+                        const inputs = quienesSomosTimelineItems[index].querySelectorAll('.cms-input, .cms-textarea');
+                        if (inputs[0]) inputs[0].value = item.year;
+                        if (inputs[1]) inputs[1].value = item.title;
+                        if (inputs[2]) inputs[2].value = item.description;
+                    }
+                });
+            }
+            break;
+            
+        case 'quienes-somos-cta':
+            if (data.title) document.getElementById('quienes-somos-cta-title').value = data.title;
+            if (data.description) document.getElementById('quienes-somos-cta-description').value = data.description;
+            
+            if (data.buttons) {
+                const ctaButtonItems = document.querySelectorAll('.cta-button-item-cms');
+                data.buttons.forEach((button, index) => {
+                    if (ctaButtonItems[index]) {
+                        const inputs = ctaButtonItems[index].querySelectorAll('.cms-input, select');
+                        if (inputs[0]) inputs[0].value = button.text;
+                        if (inputs[1]) inputs[1].value = button.url;
+                        if (inputs[2]) inputs[2].value = button.type;
+                    }
+                });
+            }
             break;
             
         case 'asociaciones-header':
@@ -1479,9 +1658,13 @@ function saveAllChanges(buttonElement = null) {
         features: collectSectionData('features'),
         cta: collectSectionData('cta'),
         
-        // Quienes Somos page
+        // Quiénes Somos page
         'quienes-somos-header': collectSectionData('quienes-somos-header'),
-        history: collectSectionData('history'),
+        'quienes-somos-stats': collectSectionData('quienes-somos-stats'),
+        'quienes-somos-mision': collectSectionData('quienes-somos-mision'),
+        'quienes-somos-valores': collectSectionData('quienes-somos-valores'),
+        'quienes-somos-historia': collectSectionData('quienes-somos-historia'),
+        'quienes-somos-cta': collectSectionData('quienes-somos-cta'),
         
         // Asociaciones page
         'asociaciones-header': collectSectionData('asociaciones-header'),

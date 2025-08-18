@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiénes Somos - FANTEA</title>
-    <meta name="description" content="Conoce FANTEA, la Federación Andaluza TEA que defiende los derechos de las personas autistas y sus familias en Andalucía">
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <title>Test CMS Quiénes Somos - FANTEA</title>
     <link rel="stylesheet" href="css/main-colors.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/values-fix.css">
@@ -14,81 +11,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/cache-buster.js"></script>
 </head>
 <body>
-    <!-- Skip link para accesibilidad -->
-    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
-
-    <!-- Botón de Accesibilidad -->
-    <div id="accessibility-panel" class="accessibility-panel">
-        <button id="accessibility-btn" class="accessibility-btn" aria-label="Opciones de accesibilidad">
-            <i class="fas fa-universal-access"></i>
-        </button>
-        <div id="accessibility-options" class="accessibility-options hidden">
-            <button onclick="increaseFontSize()">Aumentar texto</button>
-            <button onclick="decreaseFontSize()">Reducir texto</button>
-            <button onclick="toggleHighContrast()">Alto contraste</button>
-            <button onclick="toggleDyslexiaFont()">Fuente dislexia</button>
-        </div>
+    <div class="cms-test-banner">
+        <h2>🧪 Test CMS - Página Quiénes Somos</h2>
+        <p>Esta página verifica que el sistema CMS funcione correctamente con la página de Quiénes Somos</p>
+        <button onclick="testCMS()" class="btn btn-primary">Probar CMS</button>
+        <button onclick="loadTestData()" class="btn btn-outline">Cargar Datos de Prueba</button>
+        <button onclick="checkCMSData()" class="btn btn-outline">Verificar Datos CMS</button>
     </div>
-
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="container">
-                <button class="nav-toggle" aria-label="Abrir menú de navegación">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                
-                <div class="nav-brand">
-                    <img src="images/logo.png" alt="Logo FANTEA" class="logo">
-                    <span class="brand-text">FANTEA</span>
-                </div>
-                
-                <ul class="nav-menu">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
-                    <li class="nav-item"><a href="quienes-somos.html" class="nav-link active">Quiénes somos</a></li>
-                    <li class="nav-item"><a href="asociaciones.html" class="nav-link">Asociaciones federadas</a></li>
-                    <li class="nav-item"><a href="areas.html" class="nav-link">Áreas</a></li>
-                    <li class="nav-item"><a href="manifiesto.html" class="nav-link">Nuestro manifiesto</a></li>
-                    <li class="nav-item"><a href="prensa.html" class="nav-link">Prensa</a></li>
-                    <li class="nav-item"><a href="afiliate.html" class="nav-link">Afíliate</a></li>
-                    <li class="nav-item"><a href="contacto.html" class="nav-link">Contacto</a></li>
-                </ul>
-
-                <div class="nav-actions">
-                    <a href="afiliate.html" class="btn btn-primary">Únete a Nosotros</a>
-                    
-                    <!-- Language Selector -->
-                    <div class="language-selector">
-                        <button class="lang-btn" aria-label="Seleccionar idioma">
-                            <span class="lang-flag">🇪🇸</span>
-                            <span class="lang-code">ES</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="lang-dropdown" style="display: none;">
-                            <div class="lang-option" data-lang="es">
-                                <span class="lang-flag">🇪🇸</span>
-                                <span class="lang-name">Español</span>
-                            </div>
-                            <div class="lang-option" data-lang="en">
-                                <span class="lang-flag">🇺🇸</span>
-                                <span class="lang-name">English</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <button class="nav-toggle" aria-label="Abrir menú de navegación">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </nav>
-    </header>
 
     <!-- Main Content -->
     <main id="main-content">
@@ -287,126 +220,207 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <img src="images/logo-white.png" alt="Logo FANTEA">
-                        <h3>FANTEA</h3>
-                    </div>
-                    <p>Federación Andaluza de Autismo. Trabajando por la inclusión y los derechos de las personas autistas en Andalucía desde 2009.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Navegación</h4>
-                    <ul class="footer-links">
-                        <li><a href="quienes-somos.html">Quiénes Somos</a></li>
-                        <li><a href="asociaciones.html">Asociaciones Federadas</a></li>
-                        <li><a href="areas.html">Áreas</a></li>
-                        <li><a href="manifiesto.html">Nuestro Manifiesto</a></li>
-                        <li><a href="prensa.html">Prensa</a></li>
-                        <li><a href="afiliate.html">Afíliate</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Recursos</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Guías para Familias</a></li>
-                        <li><a href="#">Formación Profesional</a></li>
-                        <li><a href="#">Centro de Descargas</a></li>
-                        <li><a href="#">Preguntas Frecuentes</a></li>
-                        <li><a href="#">Política de Privacidad</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Contacto</h4>
-                    <div class="contact-info">
-                        <p><i class="fas fa-map-marker-alt"></i> Antequera, Málaga</p>
-                        <p><i class="fas fa-envelope"></i> info@fantea.org</p>
-                    </div>
-                    <div class="footer-actions">
-                        <a href="contacto.html" class="btn btn-primary">Contactar</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <div class="footer-bottom-content">
-                    <p>&copy; 2024 FANTEA - Federación Andaluza de Autismo. Todos los derechos reservados.</p>
-                    <div class="footer-bottom-links">
-                        <a href="#">Política de Privacidad</a>
-                        <a href="#">Términos de Uso</a>
-                        <a href="#">Cookies</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="js/main.js"></script>
-    <script src="js/translations.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/cache-buster.js"></script>
     <script src="js/cms-sync.js"></script>
-    
-    <!-- Script para forzar recarga de estilos CSS -->
     <script>
-        // Forzar recarga de estilos CSS para asegurar que se apliquen correctamente
-        document.addEventListener('DOMContentLoaded', function() {
-            // Recargar estilos CSS
-            const links = document.querySelectorAll('link[rel="stylesheet"]');
-            links.forEach(link => {
-                const href = link.href;
-                link.href = '';
-                link.href = href + '?v=' + Date.now();
+        // Inicializar CMS
+        const cmsSync = new CMSSync();
+        cmsSync.currentPage = 'quienes-somos';
+        cmsSync.init();
+
+        // Función para probar el CMS
+        function testCMS() {
+            console.log('🧪 Probando CMS de Quiénes Somos...');
+            
+            // Simular datos de prueba
+            const testData = {
+                'quienes-somos-header': {
+                    title: '🧪 TEST - Quiénes Somos',
+                    subtitle: '🧪 TEST - Federación Andaluza TEA - Defendiendo derechos, construyendo futuro',
+                    image: 'images/hero-inclusive.jpg',
+                    buttons: {
+                        mision: '🧪 TEST - Nuestra Misión',
+                        valores: '🧪 TEST - Nuestros Valores'
+                    }
+                },
+                'quienes-somos-stats': {
+                    stats: [
+                        { number: '🧪 20+', description: '🧪 años de experiencia TEST' },
+                        { number: '🧪 40+', description: '🧪 asociaciones federadas TEST' },
+                        { number: '🧪 600+', description: '🧪 familias apoyadas TEST' },
+                        { number: '🧪 8', description: '🧪 provincias andaluzas TEST' }
+                    ]
+                },
+                'quienes-somos-mision': {
+                    title: '🧪 TEST - Nuestra Misión y Visión',
+                    subtitle: '🧪 TEST - Unidos por la inclusión y los derechos del colectivo TEA en Andalucía',
+                    cards: [
+                        {
+                            icon: 'fas fa-bullseye',
+                            title: '🧪 TEST - Nuestra Misión',
+                            description: '🧪 TEST - La Federación Andaluza TEA (FANTEA) es una entidad sin ánimo de lucro formada por asociaciones de familias de personas autistas de diferentes provincias andaluzas.',
+                            highlight: '🧪 TEST - Nacemos con un objetivo claro: defender los derechos de las personas con autismo y sus familias en todos los ámbitos de la vida.'
+                        },
+                        {
+                            icon: 'fas fa-eye',
+                            title: '🧪 TEST - Nuestra Visión',
+                            description: '🧪 TEST - Construir una sociedad inclusiva donde las personas autistas tengan las mismas oportunidades y derechos que el resto de la ciudadanía.',
+                            highlight: '🧪 TEST - Queremos ser la voz unificada del colectivo TEA en Andalucía, promoviendo la inclusión real y efectiva.'
+                        },
+                        {
+                            icon: 'fas fa-map-marker-alt',
+                            title: '🧪 TEST - Nuestra Sede',
+                            description: '🧪 TEST - Nuestra sede se encuentra en Antequera, centro geográfico de Andalucía, símbolo de unión y punto de encuentro para todo el movimiento asociativo TEA.',
+                            highlight: '🧪 TEST - Desde aquí coordinamos acciones en las 8 provincias andaluzas.'
+                        },
+                        {
+                            icon: 'fas fa-users',
+                            title: '🧪 TEST - Familias Unidas',
+                            description: '🧪 TEST - Somos una federación independiente, plural y abierta, que trabaja desde la transparencia, la justicia social y la participación activa de las familias.',
+                            highlight: '🧪 TEST - Creemos en el poder de la unión para lograr cambios reales.'
+                        }
+                    ]
+                },
+                'quienes-somos-valores': {
+                    title: '🧪 TEST - Nuestros Principios',
+                    subtitle: '🧪 TEST - Los valores que guían nuestro trabajo diario',
+                    values: [
+                        {
+                            icon: 'fas fa-heart',
+                            title: '🧪 TEST - Compromiso',
+                            description: '🧪 TEST - Defendemos los derechos de las personas autistas y sus familias con dedicación y pasión. Cada acción que realizamos está guiada por nuestro compromiso inquebrantable con la causa.'
+                        },
+                        {
+                            icon: 'fas fa-handshake',
+                            title: '🧪 TEST - Unión',
+                            description: '🧪 TEST - Trabajamos unidos para fortalecer la voz del colectivo TEA en Andalucía. Creemos que juntos somos más fuertes y podemos lograr cambios significativos.'
+                        },
+                        {
+                            icon: 'fas fa-eye',
+                            title: '🧪 TEST - Transparencia',
+                            description: '🧪 TEST - Actuamos con total transparencia y rendición de cuentas ante las familias. Creemos en la honestidad y la claridad en todas nuestras acciones.'
+                        },
+                        {
+                            icon: 'fas fa-users',
+                            title: '🧪 TEST - Participación',
+                            description: '🧪 TEST - Fomentamos la participación activa de todas las familias en nuestras decisiones. Tu voz es importante y queremos escucharla.'
+                        }
+                    ]
+                },
+                'quienes-somos-historia': {
+                    title: '🧪 TEST - Nuestra Historia',
+                    subtitle: '🧪 TEST - 15 años de lucha por los derechos del colectivo TEA',
+                    timeline: [
+                        {
+                            year: '🧪 2009',
+                            title: '🧪 TEST - Fundación de FANTEA',
+                            description: '🧪 TEST - Nace la Federación Andaluza TEA con el objetivo de unificar esfuerzos y defender los derechos del colectivo autista en Andalucía.'
+                        },
+                        {
+                            year: '🧪 2015',
+                            title: '🧪 TEST - Expansión Regional',
+                            description: '🧪 TEST - FANTEA logra representar a asociaciones de las 8 provincias andaluzas, consolidándose como la voz unificada del colectivo TEA.'
+                        },
+                        {
+                            year: '🧪 2020',
+                            title: '🧪 TEST - Reconocimiento Institucional',
+                            description: '🧪 TEST - La federación obtiene reconocimiento oficial y comienza a participar en mesas de trabajo con instituciones públicas.'
+                        },
+                        {
+                            year: '🧪 2024',
+                            title: '🧪 TEST - Liderazgo Nacional',
+                            description: '🧪 TEST - FANTEA se consolida como referente nacional en la defensa de los derechos del colectivo TEA, con más de 35 asociaciones federadas.'
+                        }
+                    ]
+                },
+                'quienes-somos-cta': {
+                    title: '🧪 TEST - ¿Quieres Conocernos Mejor?',
+                    description: '🧪 TEST - Descubre nuestras áreas de trabajo, conoce las asociaciones federadas y únete a nuestra lucha por los derechos del colectivo TEA.',
+                    buttons: [
+                        {
+                            text: '🧪 TEST - Ver Áreas de Trabajo',
+                            url: 'areas.html',
+                            type: 'primary'
+                        },
+                        {
+                            text: '🧪 TEST - Conocer Asociaciones',
+                            url: 'asociaciones.html',
+                            type: 'outline'
+                        },
+                        {
+                            text: '🧪 TEST - Leer Nuestro Manifiesto',
+                            url: 'manifiesto.html',
+                            type: 'outline'
+                        }
+                    ]
+                }
+            };
+
+            // Aplicar datos de prueba
+            cmsSync.cmsData = testData;
+            cmsSync.applyQuienesSomosChanges();
+            
+            alert('🧪 Datos de prueba aplicados! Revisa la página para ver los cambios.');
+        }
+
+        // Función para cargar datos reales del CMS
+        function loadTestData() {
+            console.log('📥 Cargando datos reales del CMS...');
+            cmsSync.loadCMSData().then(() => {
+                cmsSync.applyQuienesSomosChanges();
+                alert('📥 Datos reales del CMS cargados y aplicados!');
+            });
+        }
+
+        // Función para verificar datos del CMS
+        function checkCMSData() {
+            console.log('🔍 Verificando datos del CMS...');
+            console.log('Datos actuales:', cmsSync.cmsData);
+            
+            const sections = [
+                'quienes-somos-header',
+                'quienes-somos-stats',
+                'quienes-somos-mision',
+                'quienes-somos-valores',
+                'quienes-somos-historia',
+                'quienes-somos-cta'
+            ];
+            
+            sections.forEach(section => {
+                if (cmsSync.cmsData[section]) {
+                    console.log(`✅ ${section}:`, cmsSync.cmsData[section]);
+                } else {
+                    console.log(`❌ ${section}: No encontrado`);
+                }
             });
             
-            // Aplicar estilos específicos para las tarjetas de valores
-            const valueCards = document.querySelectorAll('.value-card');
-            valueCards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                
-                setTimeout(() => {
-                    card.style.transition = 'all 0.6s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 100);
-            });
-        });
+            alert('🔍 Revisa la consola para ver los datos del CMS');
+        }
     </script>
 
-    <!-- Inicialización del CMS -->
-    <script>
-        // Inicializar CMS para la página de Quiénes Somos
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('🔄 Inicializando CMS para Quiénes Somos...');
-            
-            // Crear instancia del CMS
-            const cmsSync = new CMSSync();
-            cmsSync.currentPage = 'quienes-somos';
-            
-            // Inicializar el CMS
-            cmsSync.init().then(() => {
-                console.log('✅ CMS inicializado correctamente para Quiénes Somos');
-                
-                // Aplicar cambios específicos de la página
-                cmsSync.applyQuienesSomosChanges();
-            }).catch(error => {
-                console.error('❌ Error al inicializar CMS:', error);
-            });
-        });
-    </script>
+    <style>
+        .cms-test-banner {
+            background: linear-gradient(135deg, #1565C0, #0D47A1);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .cms-test-banner h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.5rem;
+        }
+        
+        .cms-test-banner p {
+            margin: 0 0 20px 0;
+            opacity: 0.9;
+        }
+        
+        .cms-test-banner button {
+            margin: 0 10px;
+        }
+    </style>
 </body>
-</html> 
+</html>

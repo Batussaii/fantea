@@ -13,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="../js/config.js"></script>
+    <script src="js/admin-dashboard.js"></script>
 </head>
 <body class="admin-panel">
     <!-- Admin Navigation -->
@@ -867,11 +868,12 @@
                         </div>
                     </div>
 
-                    <!-- Quienes Somos Page Content -->
+                    <!-- Quiénes Somos Page Content -->
                     <div id="quienes-somos-cms" class="cms-page-content">
+                        <!-- Header Section -->
                         <div class="cms-section">
                             <div class="section-header-cms">
-                                <h3><i class="fas fa-header"></i> Banner de Página</h3>
+                                <h3><i class="fas fa-header"></i> Banner Principal</h3>
                                 <button class="btn-small toggle-section">
                                     <i class="fas fa-chevron-up"></i>
                                     Contraer
@@ -880,31 +882,41 @@
                             <div class="section-content-cms">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="quienes-somos-title">Título Principal</label>
-                                        <input type="text" id="quienes-somos-title" class="cms-input" value="Quienes Somos">
+                                        <label for="quienes-somos-header-title">Título Principal</label>
+                                        <input type="text" id="quienes-somos-header-title" class="cms-input" value="Quiénes Somos">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="quienes-somos-description">Descripción</label>
-                                    <textarea id="quienes-somos-description" class="cms-textarea" rows="4">Federación Andaluza TEA - Defendiendo derechos, construyendo futuro</textarea>
+                                    <label for="quienes-somos-header-subtitle">Subtítulo</label>
+                                    <textarea id="quienes-somos-header-subtitle" class="cms-textarea" rows="3">Federación Andaluza TEA - Defendiendo derechos, construyendo futuro</textarea>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="quienes-somos-image">Imagen del Banner</label>
+                                        <label for="quienes-somos-header-image">Imagen del Banner de Quiénes Somos</label>
                                         <div class="image-upload-container">
-                                            <img id="quienes-somos-image-preview" src="../images/hero-inclusive.jpg" alt="Vista previa" class="image-preview">
+                                            <img id="quienes-somos-header-image-preview" src="../images/hero-inclusive.jpg" alt="Vista previa" class="image-preview">
                                             <div class="image-upload-overlay">
-                                                <button type="button" class="btn-upload" onclick="uploadImage('quienes-somos-image')">
+                                                <button type="button" class="btn-upload" onclick="uploadImage('quienes-somos-header-image')">
                                                     <i class="fas fa-camera"></i>
                                                     Cambiar Imagen
                                                 </button>
                                             </div>
                                         </div>
-                                        <input type="file" id="quienes-somos-image-input" accept="image/*" style="display: none;">
+                                        <input type="file" id="quienes-somos-header-image-input" accept="image/*" style="display: none;">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="quienes-somos-button-mision">Botón "Nuestra Misión"</label>
+                                        <input type="text" id="quienes-somos-button-mision" class="cms-input" value="Nuestra Misión">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="quienes-somos-button-valores">Botón "Nuestros Valores"</label>
+                                        <input type="text" id="quienes-somos-button-valores" class="cms-input" value="Nuestros Valores">
                                     </div>
                                 </div>
                                 <div class="cms-actions">
-                                    <button class="btn-small btn-secondary" onclick="resetSection('quienes-somos-header')">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="quienes-somos-header">
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
@@ -916,6 +928,300 @@
                             </div>
                         </div>
 
+                        <!-- Stats Section -->
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-chart-bar"></i> Estadísticas</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="stats-grid-cms">
+                                    <div class="stat-item-cms">
+                                        <h4>Estadística 1</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Número</label>
+                                                <input type="text" class="cms-input" value="15+">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" class="cms-input" value="años de experiencia">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="stat-item-cms">
+                                        <h4>Estadística 2</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Número</label>
+                                                <input type="text" class="cms-input" value="35+">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" class="cms-input" value="asociaciones federadas">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="stat-item-cms">
+                                        <h4>Estadística 3</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Número</label>
+                                                <input type="text" class="cms-input" value="500+">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" class="cms-input" value="familias apoyadas">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="stat-item-cms">
+                                        <h4>Estadística 4</h4>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Número</label>
+                                                <input type="text" class="cms-input" value="8">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <input type="text" class="cms-input" value="provincias andaluzas">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="quienes-somos-stats">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="quienes-somos-stats">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Misión y Visión Section -->
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-bullseye"></i> Misión y Visión</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="quienes-somos-mision-title">Título de la Sección</label>
+                                        <input type="text" id="quienes-somos-mision-title" class="cms-input" value="Nuestra Misión y Visión">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quienes-somos-mision-subtitle">Subtítulo</label>
+                                    <input type="text" id="quienes-somos-mision-subtitle" class="cms-input" value="Unidos por la inclusión y los derechos del colectivo TEA en Andalucía">
+                                </div>
+                                
+                                <div class="features-grid-cms">
+                                    <div class="feature-item-cms">
+                                        <h4>Nuestra Misión</h4>
+                                        <div class="form-group">
+                                            <label>Icono (Font Awesome)</label>
+                                            <input type="text" class="cms-input" value="fas fa-bullseye" placeholder="fas fa-icon">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" class="cms-input" value="Nuestra Misión">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">La Federación Andaluza TEA (FANTEA) es una entidad sin ánimo de lucro formada por asociaciones de familias de personas autistas de diferentes provincias andaluzas.</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Texto Destacado</label>
+                                            <textarea class="cms-textarea" rows="2">Nacemos con un objetivo claro: defender los derechos de las personas con autismo y sus familias en todos los ámbitos de la vida.</textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="feature-item-cms">
+                                        <h4>Nuestra Visión</h4>
+                                        <div class="form-group">
+                                            <label>Icono (Font Awesome)</label>
+                                            <input type="text" class="cms-input" value="fas fa-eye" placeholder="fas fa-icon">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" class="cms-input" value="Nuestra Visión">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">Construir una sociedad inclusiva donde las personas autistas tengan las mismas oportunidades y derechos que el resto de la ciudadanía.</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Texto Destacado</label>
+                                            <textarea class="cms-textarea" rows="2">Queremos ser la voz unificada del colectivo TEA en Andalucía, promoviendo la inclusión real y efectiva.</textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="feature-item-cms">
+                                        <h4>Nuestra Sede</h4>
+                                        <div class="form-group">
+                                            <label>Icono (Font Awesome)</label>
+                                            <input type="text" class="cms-input" value="fas fa-map-marker-alt" placeholder="fas fa-icon">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" class="cms-input" value="Nuestra Sede">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">Nuestra sede se encuentra en Antequera, centro geográfico de Andalucía, símbolo de unión y punto de encuentro para todo el movimiento asociativo TEA.</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Texto Destacado</label>
+                                            <textarea class="cms-textarea" rows="2">Desde aquí coordinamos acciones en las 8 provincias andaluzas.</textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="feature-item-cms">
+                                        <h4>Familias Unidas</h4>
+                                        <div class="form-group">
+                                            <label>Icono (Font Awesome)</label>
+                                            <input type="text" class="cms-input" value="fas fa-users" placeholder="fas fa-icon">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" class="cms-input" value="Familias Unidas">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">Somos una federación independiente, plural y abierta, que trabaja desde la transparencia, la justicia social y la participación activa de las familias.</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Texto Destacado</label>
+                                            <textarea class="cms-textarea" rows="2">Creemos en el poder de la unión para lograr cambios reales.</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="quienes-somos-mision">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="quienes-somos-mision">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Valores Section -->
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-heart"></i> Nuestros Principios</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="quienes-somos-valores-title">Título de la Sección</label>
+                                        <input type="text" id="quienes-somos-valores-title" class="cms-input" value="Nuestros Principios">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quienes-somos-valores-subtitle">Subtítulo</label>
+                                    <input type="text" id="quienes-somos-valores-subtitle" class="cms-input" value="Los valores que guían nuestro trabajo diario">
+                                </div>
+                                
+                                <div class="values-grid-cms">
+                                    <div class="value-item-cms">
+                                        <h4>Compromiso</h4>
+                                        <div class="form-group">
+                                            <label>Icono (Font Awesome)</label>
+                                            <input type="text" class="cms-input" value="fas fa-heart" placeholder="fas fa-icon">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" class="cms-input" value="Compromiso">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">Defendemos los derechos de las personas autistas y sus familias con dedicación y pasión. Cada acción que realizamos está guiada por nuestro compromiso inquebrantable con la causa.</textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="value-item-cms">
+                                        <h4>Unión</h4>
+                                        <div class="form-group">
+                                            <label>Icono (Font Awesome)</label>
+                                            <input type="text" class="cms-input" value="fas fa-handshake" placeholder="fas fa-icon">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" class="cms-input" value="Unión">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">Trabajamos unidos para fortalecer la voz del colectivo TEA en Andalucía. Creemos que juntos somos más fuertes y podemos lograr cambios significativos.</textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="value-item-cms">
+                                        <h4>Transparencia</h4>
+                                        <div class="form-group">
+                                            <label>Icono (Font Awesome)</label>
+                                            <input type="text" class="cms-input" value="fas fa-eye" placeholder="fas fa-icon">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" class="cms-input" value="Transparencia">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">Actuamos con total transparencia y rendición de cuentas ante las familias. Creemos en la honestidad y la claridad en todas nuestras acciones.</textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="value-item-cms">
+                                        <h4>Participación</h4>
+                                        <div class="form-group">
+                                            <label>Icono (Font Awesome)</label>
+                                            <input type="text" class="cms-input" value="fas fa-users" placeholder="fas fa-icon">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Título</label>
+                                            <input type="text" class="cms-input" value="Participación">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción</label>
+                                            <textarea class="cms-textarea" rows="3">Fomentamos la participación activa de todas las familias en nuestras decisiones. Tu voz es importante y queremos escucharla.</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="quienes-somos-valores">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="quienes-somos-valores">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Historia Section -->
                         <div class="cms-section">
                             <div class="section-header-cms">
                                 <h3><i class="fas fa-history"></i> Nuestra Historia</h3>
@@ -927,13 +1233,13 @@
                             <div class="section-content-cms collapsed">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="history-title">Título de la Sección</label>
-                                        <input type="text" id="history-title" class="cms-input" value="Nuestra Historia">
+                                        <label for="quienes-somos-historia-title">Título de la Sección</label>
+                                        <input type="text" id="quienes-somos-historia-title" class="cms-input" value="Nuestra Historia">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="history-subtitle">Subtítulo</label>
-                                    <input type="text" id="history-subtitle" class="cms-input" value="15 años de lucha por los derechos del colectivo TEA">
+                                    <label for="quienes-somos-historia-subtitle">Subtítulo</label>
+                                    <input type="text" id="quienes-somos-historia-subtitle" class="cms-input" value="15 años de lucha por los derechos del colectivo TEA">
                                 </div>
                                 
                                 <div class="timeline-cms">
@@ -960,11 +1266,11 @@
                                         <div class="form-row">
                                             <div class="form-group">
                                                 <label>Año</label>
-                                                <input type="text" class="cms-input" value="2012">
+                                                <input type="text" class="cms-input" value="2015">
                                             </div>
                                             <div class="form-group">
                                                 <label>Título del Evento</label>
-                                                <input type="text" class="cms-input" value="Primeras Alianzas">
+                                                <input type="text" class="cms-input" value="Expansión Regional">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -1016,11 +1322,11 @@
                                 </div>
                                 
                                 <div class="cms-actions">
-                                    <button class="btn-small btn-secondary" onclick="resetSection('history')">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="quienes-somos-historia">
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary save-section-btn" data-section="history">
+                                    <button class="btn-small btn-primary save-section-btn" data-section="quienes-somos-historia">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1028,9 +1334,10 @@
                             </div>
                         </div>
 
+                        <!-- CTA Section -->
                         <div class="cms-section">
                             <div class="section-header-cms">
-                                <h3><i class="fas fa-bullseye"></i> Misión y Visión</h3>
+                                <h3><i class="fas fa-bullhorn"></i> Llamada a la Acción</h3>
                                 <button class="btn-small toggle-section">
                                     <i class="fas fa-chevron-down"></i>
                                     Expandir
@@ -1039,49 +1346,87 @@
                             <div class="section-content-cms collapsed">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="mision-title">Título de la Sección</label>
-                                        <input type="text" id="mision-title" class="cms-input" value="Nuestra Misión y Visión">
+                                        <label for="quienes-somos-cta-title">Título CTA</label>
+                                        <input type="text" id="quienes-somos-cta-title" class="cms-input" value="¿Quieres Conocernos Mejor?">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="mision-subtitle">Subtítulo</label>
-                                    <input type="text" id="mision-subtitle" class="cms-input" value="Unidos por la inclusión y los derechos del colectivo TEA en Andalucía">
+                                    <label for="quienes-somos-cta-description">Descripción</label>
+                                    <textarea id="quienes-somos-cta-description" class="cms-textarea" rows="3">Descubre nuestras áreas de trabajo, conoce las asociaciones federadas y únete a nuestra lucha por los derechos del colectivo TEA.</textarea>
                                 </div>
                                 
-                                <div class="form-group">
-                                    <label for="mision-text">Texto de Misión</label>
-                                    <textarea id="mision-text" class="cms-textarea" rows="4">La Federación Andaluza TEA (FANTEA) es una entidad sin ánimo de lucro formada por asociaciones de familias de personas autistas de diferentes provincias andaluzas.
-
-Nacemos con un objetivo claro: defender los derechos de las personas con autismo y sus familias en todos los ámbitos de la vida.</textarea>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="vision-text">Texto de Visión</label>
-                                    <textarea id="vision-text" class="cms-textarea" rows="4">Construir una sociedad inclusiva donde las personas autistas tengan las mismas oportunidades y derechos que el resto de la ciudadanía.
-
-Queremos ser la voz unificada del colectivo TEA en Andalucía, promoviendo la inclusión real y efectiva.</textarea>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="sede-text">Texto de Sede</label>
-                                    <textarea id="sede-text" class="cms-textarea" rows="3">Nuestra sede se encuentra en Antequera, centro geográfico de Andalucía, símbolo de unión y punto de encuentro para todo el movimiento asociativo TEA.
-
-Desde aquí coordinamos acciones en las 8 provincias andaluzas.</textarea>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="familias-text">Texto de Familias</label>
-                                    <textarea id="familias-text" class="cms-textarea" rows="3">Somos una federación independiente, plural y abierta, que trabaja desde la transparencia, la justicia social y la participación activa de las familias.
-
-Creemos en el poder de la unión para lograr cambios reales.</textarea>
+                                <div class="cta-buttons-cms">
+                                    <h4>Botones de Acción</h4>
+                                    <div class="cta-button-item-cms">
+                                        <h5>Botón Principal</h5>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Botón</label>
+                                                <input type="text" class="cms-input" value="Ver Áreas de Trabajo">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Enlace</label>
+                                                <input type="text" class="cms-input" value="areas.html">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tipo</label>
+                                                <select class="cms-input">
+                                                    <option value="primary" selected>Principal</option>
+                                                    <option value="outline">Secundario</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="cta-button-item-cms">
+                                        <h5>Botón Secundario 1</h5>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Botón</label>
+                                                <input type="text" class="cms-input" value="Conocer Asociaciones">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Enlace</label>
+                                                <input type="text" class="cms-input" value="asociaciones.html">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tipo</label>
+                                                <select class="cms-input">
+                                                    <option value="primary">Principal</option>
+                                                    <option value="outline" selected>Secundario</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="cta-button-item-cms">
+                                        <h5>Botón Secundario 2</h5>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Botón</label>
+                                                <input type="text" class="cms-input" value="Leer Nuestro Manifiesto">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Enlace</label>
+                                                <input type="text" class="cms-input" value="manifiesto.html">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tipo</label>
+                                                <select class="cms-input">
+                                                    <option value="primary">Principal</option>
+                                                    <option value="outline" selected>Secundario</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 
                                 <div class="cms-actions">
-                                    <button class="btn-small btn-secondary" onclick="resetSection('mision-vision')">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="quienes-somos-cta">
                                         <i class="fas fa-undo"></i>
                                         Deshacer
                                     </button>
-                                    <button class="btn-small btn-primary save-section-btn" data-section="mision-vision">
+                                    <button class="btn-small btn-primary save-section-btn" data-section="quienes-somos-cta">
                                         <i class="fas fa-save"></i>
                                         Guardar Sección
                                     </button>
@@ -1089,38 +1434,7 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                             </div>
                         </div>
 
-                        <div class="cms-section">
-                            <div class="section-header-cms">
-                                <h3><i class="fas fa-heart"></i> Nuestros Valores</h3>
-                                <button class="btn-small toggle-section">
-                                    <i class="fas fa-chevron-down"></i>
-                                    Expandir
-                                </button>
-                            </div>
-                            <div class="section-content-cms collapsed">
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="valores-title">Título de la Sección</label>
-                                        <input type="text" id="valores-title" class="cms-input" value="Nuestros Principios">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="valores-subtitle">Subtítulo</label>
-                                    <input type="text" id="valores-subtitle" class="cms-input" value="Los valores que guían nuestro trabajo diario">
-                                </div>
-                                
-                                <div class="cms-actions">
-                                    <button class="btn-small btn-secondary" onclick="resetSection('valores')">
-                                        <i class="fas fa-undo"></i>
-                                        Deshacer
-                                    </button>
-                                    <button class="btn-small btn-primary save-section-btn" data-section="valores">
-                                        <i class="fas fa-save"></i>
-                                        Guardar Sección
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
 
                     <!-- Asociaciones Federadas Page Content -->
@@ -1146,7 +1460,7 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="asociaciones-image">Imagen del Banner</label>
+                                        <label for="asociaciones-image">Imagen del Banner de Asociaciones</label>
                                         <div class="image-upload-container">
                                             <img id="asociaciones-image-preview" src="../images/hero-inclusive.jpg" alt="Vista previa" class="image-preview">
                                             <div class="image-upload-overlay">
@@ -1329,7 +1643,7 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="areas-image">Imagen del Banner</label>
+                                        <label for="areas-image">Imagen del Banner de Áreas</label>
                                         <div class="image-upload-container">
                                             <img id="areas-image-preview" src="../images/hero-inclusive.jpg" alt="Vista previa" class="image-preview">
                                             <div class="image-upload-overlay">
@@ -1494,7 +1808,7 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="manifiesto-image">Imagen del Banner</label>
+                                        <label for="manifiesto-image">Imagen del Banner del Manifiesto</label>
                                         <div class="image-upload-container">
                                             <img id="manifiesto-image-preview" src="../images/hero-inclusive.jpg" alt="Vista previa" class="image-preview">
                                             <div class="image-upload-overlay">
@@ -1645,7 +1959,7 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="prensa-image">Imagen del Banner</label>
+                                        <label for="prensa-image">Imagen del Banner de Prensa</label>
                                         <div class="image-upload-container">
                                             <img id="prensa-image-preview" src="../images/hero-inclusive.jpg" alt="Vista previa" class="image-preview">
                                             <div class="image-upload-overlay">
@@ -1818,7 +2132,7 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="afiliate-image">Imagen del Banner</label>
+                                        <label for="afiliate-image">Imagen del Banner de Afíliate</label>
                                         <div class="image-upload-container">
                                             <img id="afiliate-image-preview" src="../images/hero-inclusive.jpg" alt="Vista previa" class="image-preview">
                                             <div class="image-upload-overlay">
@@ -1967,7 +2281,7 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="contacto-image">Imagen del Banner</label>
+                                        <label for="contacto-image">Imagen del Banner de Contacto</label>
                                         <div class="image-upload-container">
                                             <img id="contacto-image-preview" src="../images/hero-inclusive.jpg" alt="Vista previa" class="image-preview">
                                             <div class="image-upload-overlay">
@@ -2295,7 +2609,6 @@ Creemos en el poder de la unión para lograr cambios reales.</textarea>
         </div>
     </div>
 
-    <script src="js/admin-dashboard.js"></script>
     <script>
         // Funcionalidad específica para gestión de noticias
         function openNewsEditor(newsId = null) {
