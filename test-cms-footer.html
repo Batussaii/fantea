@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CMS Footer</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        .debug-info { background: #f0f0f0; padding: 10px; margin: 10px 0; }
+        .footer { background: #333; color: white; padding: 20px; margin-top: 50px; }
+        .footer-content { display: flex; flex-wrap: wrap; gap: 20px; }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-logo h3 { margin: 0; }
+        .social-links a { color: white; margin-right: 10px; }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links a { color: white; text-decoration: none; }
+        .contact-info p { margin: 5px 0; }
+        .footer-actions .btn-primary { background: #007bff; color: white; padding: 8px 16px; text-decoration: none; border-radius: 4px; }
+        .footer-bottom-content { display: flex; justify-content: space-between; align-items: center; }
+        .footer-bottom-links a { color: white; margin-left: 15px; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>Test CMS Footer</h1>
+    
+    <div class="test-section">
+        <h2>Debug Information</h2>
+        <div id="debug-info" class="debug-info">
+            <p>Checking CMS initialization...</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <h3>FANTEA</h3>
+                    </div>
+                    <p>Federación Andaluza de Autismo. Trabajando por la inclusión y los derechos de las personas autistas en Andalucía desde 2009.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">Facebook</a>
+                        <a href="#" aria-label="Twitter">Twitter</a>
+                        <a href="#" aria-label="Instagram">Instagram</a>
+                        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                        <a href="#" aria-label="YouTube">YouTube</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul class="footer-links">
+                        <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+                        <li><a href="asociaciones.html">Asociaciones Federadas</a></li>
+                        <li><a href="areas.html">Áreas</a></li>
+                        <li><a href="manifiesto.html">Nuestro Manifiesto</a></li>
+                        <li><a href="prensa.html">Prensa</a></li>
+                        <li><a href="afiliate.html">Afíliate</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="estatutos.html">Estatutos</a></li>
+                        <li><a href="#">Guías para Familias</a></li>
+                        <li><a href="#">Formación Profesional</a></li>
+                        <li><a href="#">Centro de Descargas</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> <span>Antequera, Málaga</span></p>
+                        <p><i class="fas fa-phone"></i> <span>+34 954 123 456</span></p>
+                        <p><i class="fas fa-envelope"></i> <span>info@fantea.org</span></p>
+                    </div>
+                    <div class="footer-actions">
+                        <a href="contacto.html" class="btn-primary">Contactar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 FANTEA - Federación Andaluza de Autismo. Todos los derechos reservados.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Política de Privacidad</a>
+                        <a href="#">Términos de Uso</a>
+                        <a href="#">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/cms-sync.js"></script>
+    <script src="js/cms-footer-config.js"></script>
+    <script src="js/cms-footer-init.js"></script>
+    <script src="init-footer-sections.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const debugInfo = document.getElementById('debug-info');
+            
+            // Check if CMSSync is available
+            if (typeof CMSSync !== 'undefined') {
+                debugInfo.innerHTML += '<p>✓ CMSSync is available</p>';
+                
+                // Initialize CMS sync for footer
+                const cmsSync = new CMSSync('footer');
+                
+                // Add debug logging
+                cmsSync.loadAndApplyChanges().then(() => {
+                    debugInfo.innerHTML += '<p>✓ CMS data loaded and applied</p>';
+                    debugInfo.innerHTML += '<p>CMS Data: ' + JSON.stringify(cmsSync.cmsData, null, 2) + '</p>';
+                }).catch(error => {
+                    debugInfo.innerHTML += '<p>✗ Error loading CMS data: ' + error.message + '</p>';
+                });
+            } else {
+                debugInfo.innerHTML += '<p>✗ CMSSync is not available</p>';
+            }
+        });
+    </script>
+</body>
+</html>

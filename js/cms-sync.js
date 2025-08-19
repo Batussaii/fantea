@@ -4,9 +4,9 @@
  */
 
 class CMSSync {
-    constructor() {
+    constructor(page = null) {
         this.cmsData = {};
-        this.currentPage = this.getCurrentPage();
+        this.currentPage = page || this.getCurrentPage();
         console.log('CMS Sync iniciado para página:', this.currentPage);
         this.initialize();
     }
@@ -79,6 +79,8 @@ class CMSSync {
             return 'servicios';
         } else if (path.includes('actualidad.html')) {
             return 'actualidad';
+        } else if (path.includes('test-cms-footer.html')) {
+            return 'footer';
         }
         return 'unknown';
     }
@@ -114,6 +116,9 @@ class CMSSync {
                 break;
             case 'contacto':
                 this.applyContactoChanges();
+                break;
+            case 'footer':
+                this.applyFooterChanges();
                 break;
             case 'nosotros':
                 this.applyNosotrosChanges();
@@ -1401,6 +1406,108 @@ class CMSSync {
         console.log('Cambios de Contacto aplicados');
     }
 
+    // Aplicar cambios a página de Footer
+    applyFooterChanges() {
+        console.log('Aplicando cambios CMS a Footer...');
+
+        // Logo y descripción principal
+        if (this.cmsData['footer-logo']) {
+            this.updateTextContent('.footer-logo h3', this.cmsData['footer-logo'].title);
+            this.updateTextContent('.footer-section:first-child p', this.cmsData['footer-logo'].description);
+        }
+
+        // Redes sociales
+        if (this.cmsData['footer-social']) {
+            const socialLinks = document.querySelectorAll('.social-links a');
+            if (socialLinks.length >= 5) {
+                if (this.cmsData['footer-social'].facebook) {
+                    socialLinks[0].href = this.cmsData['footer-social'].facebook;
+                }
+                if (this.cmsData['footer-social'].twitter) {
+                    socialLinks[1].href = this.cmsData['footer-social'].twitter;
+                }
+                if (this.cmsData['footer-social'].instagram) {
+                    socialLinks[2].href = this.cmsData['footer-social'].instagram;
+                }
+                if (this.cmsData['footer-social'].linkedin) {
+                    socialLinks[3].href = this.cmsData['footer-social'].linkedin;
+                }
+                if (this.cmsData['footer-social'].youtube) {
+                    socialLinks[4].href = this.cmsData['footer-social'].youtube;
+                }
+            }
+        }
+
+        // Navegación
+        if (this.cmsData['footer-navigation']) {
+            this.updateTextContent('.footer-section:nth-child(2) h4', this.cmsData['footer-navigation'].title);
+            
+            if (this.cmsData['footer-navigation'].links) {
+                const navLinks = document.querySelectorAll('.footer-section:nth-child(2) .footer-links li a');
+                this.cmsData['footer-navigation'].links.forEach((link, index) => {
+                    if (navLinks[index]) {
+                        navLinks[index].textContent = link.text;
+                        navLinks[index].href = link.url;
+                    }
+                });
+            }
+        }
+
+        // Recursos
+        if (this.cmsData['footer-resources']) {
+            this.updateTextContent('.footer-section:nth-child(3) h4', this.cmsData['footer-resources'].title);
+            
+            if (this.cmsData['footer-resources'].links) {
+                const resourceLinks = document.querySelectorAll('.footer-section:nth-child(3) .footer-links li a');
+                this.cmsData['footer-resources'].links.forEach((link, index) => {
+                    if (resourceLinks[index]) {
+                        resourceLinks[index].textContent = link.text;
+                        resourceLinks[index].href = link.url;
+                    }
+                });
+            }
+        }
+
+        // Contacto
+        if (this.cmsData['footer-contact']) {
+            this.updateTextContent('.footer-section:nth-child(4) h4', this.cmsData['footer-contact'].title);
+            
+            const contactInfo = document.querySelectorAll('.footer-section:nth-child(4) .contact-info p');
+            if (contactInfo.length >= 3) {
+                if (this.cmsData['footer-contact'].address) {
+                    contactInfo[0].innerHTML = `<i class="fas fa-map-marker-alt"></i> <span>${this.cmsData['footer-contact'].address}</span>`;
+                }
+                if (this.cmsData['footer-contact'].phone) {
+                    contactInfo[1].innerHTML = `<i class="fas fa-phone"></i> <span>${this.cmsData['footer-contact'].phone}</span>`;
+                }
+                if (this.cmsData['footer-contact'].email) {
+                    contactInfo[2].innerHTML = `<i class="fas fa-envelope"></i> <span>${this.cmsData['footer-contact'].email}</span>`;
+                }
+            }
+            
+            if (this.cmsData['footer-contact'].buttonText) {
+                this.updateTextContent('.footer-actions .btn-primary', this.cmsData['footer-contact'].buttonText);
+            }
+        }
+
+        // Footer bottom
+        if (this.cmsData['footer-bottom']) {
+            this.updateTextContent('.footer-bottom-content p', this.cmsData['footer-bottom'].copyright);
+            
+            if (this.cmsData['footer-bottom'].links) {
+                const bottomLinks = document.querySelectorAll('.footer-bottom-links a');
+                this.cmsData['footer-bottom'].links.forEach((link, index) => {
+                    if (bottomLinks[index]) {
+                        bottomLinks[index].textContent = link.text;
+                        bottomLinks[index].href = link.url;
+                    }
+                });
+            }
+        }
+
+        console.log('Cambios de Footer aplicados');
+    }
+
     // Métodos helper para actualizar contenido
     updateTextContent(selector, content) {
         if (!content) return;
@@ -1450,6 +1557,19 @@ class CMSSync {
             console.log(`Actualizado atributo ${attribute} de ${selector}:`, value);
         } else {
             console.warn(`Elemento no encontrado: ${selector}`);
+        }
+    }
+
+    // Método público para cargar y aplicar cambios
+    async loadAndApplyChanges() {
+        try {
+            this.cmsData = await this.loadCMSData();
+            console.log('Datos CMS cargados:', this.cmsData);
+            this.applyCMSChanges();
+            return this.cmsData;
+        } catch (error) {
+            console.error('Error al cargar y aplicar cambios CMS:', error);
+            throw error;
         }
     }
 

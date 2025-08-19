@@ -599,6 +599,10 @@
                         <i class="fas fa-envelope"></i>
                         Contacto
                     </button>
+                    <button class="cms-tab" data-page="footer">
+                        <i class="fas fa-shoe-prints"></i>
+                        Pie de Página
+                    </button>
                 </div>
 
                 <!-- Content Areas -->
@@ -4610,6 +4614,426 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Footer Page Content -->
+                    <div id="footer-cms" class="cms-page-content">
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-shoe-prints"></i> Logo y Descripción</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-up"></i>
+                                    Contraer
+                                </button>
+                            </div>
+                            <div class="section-content-cms">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="footer-logo-title">Título del Logo</label>
+                                        <input type="text" id="footer-logo-title" class="cms-input" value="FANTEA">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="footer-logo-description">Descripción</label>
+                                    <textarea id="footer-logo-description" class="cms-textarea" rows="4">Federación Andaluza de Autismo. Trabajando por la inclusión y los derechos de las personas autistas en Andalucía desde 2009.</textarea>
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="footer-logo">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="footer-logo">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-share-alt"></i> Redes Sociales</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="footer-social-facebook">Facebook</label>
+                                        <input type="url" id="footer-social-facebook" class="cms-input" value="https://facebook.com/fantea">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="footer-social-twitter">Twitter/X</label>
+                                        <input type="url" id="footer-social-twitter" class="cms-input" value="https://twitter.com/fantea">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="footer-social-instagram">Instagram</label>
+                                        <input type="url" id="footer-social-instagram" class="cms-input" value="https://instagram.com/fantea">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="footer-social-linkedin">LinkedIn</label>
+                                        <input type="url" id="footer-social-linkedin" class="cms-input" value="https://linkedin.com/company/fantea">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="footer-social-youtube">YouTube</label>
+                                        <input type="url" id="footer-social-youtube" class="cms-input" value="https://youtube.com/fantea">
+                                    </div>
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="footer-social">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="footer-social">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-sitemap"></i> Navegación</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="form-group">
+                                    <label for="footer-navigation-title">Título de la Sección</label>
+                                    <input type="text" id="footer-navigation-title" class="cms-input" value="Navegación">
+                                </div>
+                                <div id="footer-navigation-links">
+                                    <h4>Enlaces de Navegación</h4>
+                                    <div class="navigation-link-item">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" class="cms-input" value="Sobre Nosotros">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL</label>
+                                                <input type="text" class="cms-input" value="quienes-somos.html">
+                                            </div>
+                                            <button type="button" class="btn-remove-cms" onclick="removeNavigationLink(this)">×</button>
+                                        </div>
+                                    </div>
+                                    <div class="navigation-link-item">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" class="cms-input" value="Asociaciones Federadas">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL</label>
+                                                <input type="text" class="cms-input" value="asociaciones.html">
+                                            </div>
+                                            <button type="button" class="btn-remove-cms" onclick="removeNavigationLink(this)">×</button>
+                                        </div>
+                                    </div>
+                                    <div class="navigation-link-item">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" class="cms-input" value="Áreas">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL</label>
+                                                <input type="text" class="cms-input" value="areas.html">
+                                            </div>
+                                            <button type="button" class="btn-remove-cms" onclick="removeNavigationLink(this)">×</button>
+                                        </div>
+                                    </div>
+                                    <div class="navigation-link-item">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" class="cms-input" value="Nuestro Manifiesto">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL</label>
+                                                <input type="text" class="cms-input" value="manifiesto.html">
+                                            </div>
+                                            <button type="button" class="btn-remove-cms" onclick="removeNavigationLink(this)">×</button>
+                                        </div>
+                                    </div>
+                                    <div class="navigation-link-item">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" class="cms-input" value="Prensa">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL</label>
+                                                <input type="text" class="cms-input" value="prensa.html">
+                                            </div>
+                                            <button type="button" class="btn-remove-cms" onclick="removeNavigationLink(this)">×</button>
+                                        </div>
+                                    </div>
+                                    <div class="navigation-link-item">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" class="cms-input" value="Afíliate">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL</label>
+                                                <input type="text" class="cms-input" value="afiliate.html">
+                                            </div>
+                                            <button type="button" class="btn-remove-cms" onclick="removeNavigationLink(this)">×</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-small btn-secondary" onclick="addNavigationLink()">
+                                    <i class="fas fa-plus"></i> Agregar Enlace
+                                </button>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="footer-navigation">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="footer-navigation">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-book"></i> Recursos</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="form-group">
+                                    <label for="footer-resources-title">Título de la Sección</label>
+                                    <input type="text" id="footer-resources-title" class="cms-input" value="Recursos">
+                                </div>
+                                <div id="footer-resources-links">
+                                    <h4>Enlaces de Recursos</h4>
+                                    <div class="resource-link-item">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" class="cms-input" value="Estatutos">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL</label>
+                                                <input type="text" class="cms-input" value="estatutos.html">
+                                            </div>
+                                            <button type="button" class="btn-remove-cms" onclick="removeResourceLink(this)">×</button>
+                                        </div>
+                                    </div>
+                                    <div class="resource-link-item">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" class="cms-input" value="Guías para Familias">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL</label>
+                                                <input type="text" class="cms-input" value="#">
+                                            </div>
+                                            <button type="button" class="btn-remove-cms" onclick="removeResourceLink(this)">×</button>
+                                        </div>
+                                    </div>
+                                    <div class="resource-link-item">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" class="cms-input" value="Formación Profesional">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL</label>
+                                                <input type="text" class="cms-input" value="#">
+                                            </div>
+                                            <button type="button" class="btn-remove-cms" onclick="removeResourceLink(this)">×</button>
+                                        </div>
+                                    </div>
+                                    <div class="resource-link-item">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" class="cms-input" value="Centro de Descargas">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL</label>
+                                                <input type="text" class="cms-input" value="#">
+                                            </div>
+                                            <button type="button" class="btn-remove-cms" onclick="removeResourceLink(this)">×</button>
+                                        </div>
+                                    </div>
+                                    <div class="resource-link-item">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" class="cms-input" value="Preguntas Frecuentes">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL</label>
+                                                <input type="text" class="cms-input" value="#">
+                                            </div>
+                                            <button type="button" class="btn-remove-cms" onclick="removeResourceLink(this)">×</button>
+                                        </div>
+                                    </div>
+                                    <div class="resource-link-item">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" class="cms-input" value="Política de Privacidad">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL</label>
+                                                <input type="text" class="cms-input" value="#">
+                                            </div>
+                                            <button type="button" class="btn-remove-cms" onclick="removeResourceLink(this)">×</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-small btn-secondary" onclick="addResourceLink()">
+                                    <i class="fas fa-plus"></i> Agregar Enlace
+                                </button>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="footer-resources">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="footer-resources">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-envelope"></i> Contacto</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="form-group">
+                                    <label for="footer-contact-title">Título de la Sección</label>
+                                    <input type="text" id="footer-contact-title" class="cms-input" value="Contacto">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="footer-contact-address">Dirección</label>
+                                        <input type="text" id="footer-contact-address" class="cms-input" value="Calle Principal 123, Sevilla">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="footer-contact-phone">Teléfono</label>
+                                        <input type="text" id="footer-contact-phone" class="cms-input" value="+34 954 123 456">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="footer-contact-email">Email</label>
+                                        <input type="email" id="footer-contact-email" class="cms-input" value="info@fantea.org">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="footer-contact-button">Texto del Botón</label>
+                                    <input type="text" id="footer-contact-button" class="cms-input" value="Contactar">
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="footer-contact">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="footer-contact">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cms-section">
+                            <div class="section-header-cms">
+                                <h3><i class="fas fa-copyright"></i> Pie de Página</h3>
+                                <button class="btn-small toggle-section">
+                                    <i class="fas fa-chevron-down"></i>
+                                    Expandir
+                                </button>
+                            </div>
+                            <div class="section-content-cms collapsed">
+                                <div class="form-group">
+                                    <label for="footer-bottom-copyright">Texto de Copyright</label>
+                                    <input type="text" id="footer-bottom-copyright" class="cms-input" value="© 2024 FANTEA - Federación Andaluza de Autismo. Todos los derechos reservados.">
+                                </div>
+                                <div id="footer-bottom-links">
+                                    <h4>Enlaces del Pie de Página</h4>
+                                    <div class="bottom-link-item">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" class="cms-input" value="Política de Privacidad">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL</label>
+                                                <input type="text" class="cms-input" value="#">
+                                            </div>
+                                            <button type="button" class="btn-remove-cms" onclick="removeBottomLink(this)">×</button>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-link-item">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" class="cms-input" value="Términos de Uso">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL</label>
+                                                <input type="text" class="cms-input" value="#">
+                                            </div>
+                                            <button type="button" class="btn-remove-cms" onclick="removeBottomLink(this)">×</button>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-link-item">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Texto del Enlace</label>
+                                                <input type="text" class="cms-input" value="Cookies">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>URL</label>
+                                                <input type="text" class="cms-input" value="#">
+                                            </div>
+                                            <button type="button" class="btn-remove-cms" onclick="removeBottomLink(this)">×</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-small btn-secondary" onclick="addBottomLink()">
+                                    <i class="fas fa-plus"></i> Agregar Enlace
+                                </button>
+                                <div class="cms-actions">
+                                    <button class="btn-small btn-secondary reset-section-btn" data-section="footer-bottom">
+                                        <i class="fas fa-undo"></i>
+                                        Deshacer
+                                    </button>
+                                    <button class="btn-small btn-primary save-section-btn" data-section="footer-bottom">
+                                        <i class="fas fa-save"></i>
+                                        Guardar Sección
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -5154,27 +5578,27 @@
                 // Actualizar progreso a 100%
                 progressBar.style.width = '100%';
                 progressText.textContent = 'Subida completada';
-
-                setTimeout(() => {
+                    
+                    setTimeout(() => {
                     // Mostrar éxito
                     showNotification(result.message, 'success');
-                    
-                    // Actualizar información del archivo actual
+                        
+                        // Actualizar información del archivo actual
                     document.getElementById('currentStatutesName').textContent = result.file.originalName;
                     document.getElementById('currentStatutesDate').textContent = new Date(result.file.uploadedAt).toLocaleDateString('es-ES', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    });
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
                     document.getElementById('currentStatutesSize').textContent = (result.file.size / 1024 / 1024).toFixed(2) + ' MB';
-                    
-                    // Ocultar progreso y limpiar
-                    progressContainer.style.display = 'none';
-                    uploadBtn.disabled = false;
-                    clearStatutesUpload();
-                    
+                        
+                        // Ocultar progreso y limpiar
+                        progressContainer.style.display = 'none';
+                        uploadBtn.disabled = false;
+                        clearStatutesUpload();
+                        
                     console.log('Archivo de estatutos subido:', result.file);
-                }, 500);
+                    }, 500);
 
             } catch (error) {
                 console.error('Error subiendo estatutos:', error);
@@ -5196,7 +5620,7 @@
             try {
                 // Crear FormData para enviar los archivos
                 const formData = new FormData();
-                selectedGeneralFiles.forEach(file => {
+            selectedGeneralFiles.forEach(file => {
                     formData.append('documents', file);
                 });
                 formData.append('user', getCurrentUser());
@@ -5217,8 +5641,8 @@
                 
                 // Recargar información de archivos
                 await loadFileInfo();
-                
-                clearGeneralUpload();
+            
+            clearGeneralUpload();
 
             } catch (error) {
                 console.error('Error subiendo archivos:', error);

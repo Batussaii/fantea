@@ -1752,6 +1752,73 @@ function collectSectionData(sectionName) {
             data.title = document.getElementById('afiliate-ayuda-title')?.value || '';
             data.description = document.getElementById('afiliate-ayuda-description')?.value || '';
             break;
+            
+        // Footer sections
+        case 'footer-logo':
+            data.title = document.getElementById('footer-logo-title')?.value || '';
+            data.description = document.getElementById('footer-logo-description')?.value || '';
+            break;
+            
+        case 'footer-social':
+            data.facebook = document.getElementById('footer-social-facebook')?.value || '';
+            data.twitter = document.getElementById('footer-social-twitter')?.value || '';
+            data.instagram = document.getElementById('footer-social-instagram')?.value || '';
+            data.linkedin = document.getElementById('footer-social-linkedin')?.value || '';
+            data.youtube = document.getElementById('footer-social-youtube')?.value || '';
+            break;
+            
+        case 'footer-navigation':
+            data.title = document.getElementById('footer-navigation-title')?.value || '';
+            data.links = [];
+            const navigationItems = document.querySelectorAll('#footer-navigation-links .navigation-link-item');
+            navigationItems.forEach(item => {
+                const inputs = item.querySelectorAll('.cms-input');
+                if (inputs.length >= 2) {
+                    data.links.push({
+                        text: inputs[0].value,
+                        url: inputs[1].value
+                    });
+                }
+            });
+            break;
+            
+        case 'footer-resources':
+            data.title = document.getElementById('footer-resources-title')?.value || '';
+            data.links = [];
+            const resourceItems = document.querySelectorAll('#footer-resources-links .resource-link-item');
+            resourceItems.forEach(item => {
+                const inputs = item.querySelectorAll('.cms-input');
+                if (inputs.length >= 2) {
+                    data.links.push({
+                        text: inputs[0].value,
+                        url: inputs[1].value
+                    });
+                }
+            });
+            break;
+            
+        case 'footer-contact':
+            data.title = document.getElementById('footer-contact-title')?.value || '';
+            data.address = document.getElementById('footer-contact-address')?.value || '';
+            data.phone = document.getElementById('footer-contact-phone')?.value || '';
+            data.email = document.getElementById('footer-contact-email')?.value || '';
+            data.buttonText = document.getElementById('footer-contact-button')?.value || '';
+            break;
+            
+        case 'footer-bottom':
+            data.copyright = document.getElementById('footer-bottom-copyright')?.value || '';
+            data.links = [];
+            const bottomItems = document.querySelectorAll('#footer-bottom-links .bottom-link-item');
+            bottomItems.forEach(item => {
+                const inputs = item.querySelectorAll('.cms-input');
+                if (inputs.length >= 2) {
+                    data.links.push({
+                        text: inputs[0].value,
+                        url: inputs[1].value
+                    });
+                }
+            });
+            break;
     }
     
     return data;
@@ -2472,6 +2539,49 @@ function loadSectionData(sectionName, data) {
                 populateFAQ(data.questions);
             }
             break;
+            
+        // Footer sections
+        case 'footer-logo':
+            if (data.title) document.getElementById('footer-logo-title').value = data.title;
+            if (data.description) document.getElementById('footer-logo-description').value = data.description;
+            break;
+            
+        case 'footer-social':
+            if (data.facebook) document.getElementById('footer-social-facebook').value = data.facebook;
+            if (data.twitter) document.getElementById('footer-social-twitter').value = data.twitter;
+            if (data.instagram) document.getElementById('footer-social-instagram').value = data.instagram;
+            if (data.linkedin) document.getElementById('footer-social-linkedin').value = data.linkedin;
+            if (data.youtube) document.getElementById('footer-social-youtube').value = data.youtube;
+            break;
+            
+        case 'footer-navigation':
+            if (data.title) document.getElementById('footer-navigation-title').value = data.title;
+            if (data.links && Array.isArray(data.links)) {
+                populateNavigationLinks(data.links);
+            }
+            break;
+            
+        case 'footer-resources':
+            if (data.title) document.getElementById('footer-resources-title').value = data.title;
+            if (data.links && Array.isArray(data.links)) {
+                populateResourceLinks(data.links);
+            }
+            break;
+            
+        case 'footer-contact':
+            if (data.title) document.getElementById('footer-contact-title').value = data.title;
+            if (data.address) document.getElementById('footer-contact-address').value = data.address;
+            if (data.phone) document.getElementById('footer-contact-phone').value = data.phone;
+            if (data.email) document.getElementById('footer-contact-email').value = data.email;
+            if (data.buttonText) document.getElementById('footer-contact-button').value = data.buttonText;
+            break;
+            
+        case 'footer-bottom':
+            if (data.copyright) document.getElementById('footer-bottom-copyright').value = data.copyright;
+            if (data.links && Array.isArray(data.links)) {
+                populateBottomLinks(data.links);
+            }
+            break;
     }
 }
 
@@ -2555,7 +2665,15 @@ function saveAllChanges(buttonElement = null) {
         'contacto-ubicacion': collectSectionData('contacto-ubicacion'),
         'contacto-transporte': collectSectionData('contacto-transporte'),
         'contacto-accesibilidad': collectSectionData('contacto-accesibilidad'),
-        'contacto-faq': collectSectionData('contacto-faq')
+        'contacto-faq': collectSectionData('contacto-faq'),
+        
+        // Footer page
+        'footer-logo': collectSectionData('footer-logo'),
+        'footer-social': collectSectionData('footer-social'),
+        'footer-navigation': collectSectionData('footer-navigation'),
+        'footer-resources': collectSectionData('footer-resources'),
+        'footer-contact': collectSectionData('footer-contact'),
+        'footer-bottom': collectSectionData('footer-bottom')
     };
     
     // Simulate save operation
@@ -3327,5 +3445,207 @@ function populateFAQ(questions) {
             <button type="button" class="btn-remove-cms" onclick="removeFAQCMS(this)">×</button>
         `;
         container.appendChild(faqItem);
+    });
+}
+
+// ==========================================================================
+// FOOTER CMS FUNCTIONS
+// ==========================================================================
+
+/**
+ * Add navigation link to footer
+ */
+function addNavigationLink() {
+    const container = document.getElementById('footer-navigation-links');
+    const linkItems = container.querySelectorAll('.navigation-link-item');
+    const newIndex = linkItems.length + 1;
+    
+    const linkItem = document.createElement('div');
+    linkItem.className = 'navigation-link-item';
+    linkItem.innerHTML = `
+        <div class="form-row">
+            <div class="form-group">
+                <label>Texto del Enlace</label>
+                <input type="text" class="cms-input" value="Nuevo Enlace">
+            </div>
+            <div class="form-group">
+                <label>URL</label>
+                <input type="text" class="cms-input" value="#">
+            </div>
+            <button type="button" class="btn-remove-cms" onclick="removeNavigationLink(this)">×</button>
+        </div>
+    `;
+    container.appendChild(linkItem);
+}
+
+/**
+ * Remove navigation link from footer
+ */
+function removeNavigationLink(button) {
+    if (confirm('¿Estás seguro de que quieres eliminar este enlace?')) {
+        button.closest('.navigation-link-item').remove();
+    }
+}
+
+/**
+ * Add resource link to footer
+ */
+function addResourceLink() {
+    const container = document.getElementById('footer-resources-links');
+    const linkItems = container.querySelectorAll('.resource-link-item');
+    const newIndex = linkItems.length + 1;
+    
+    const linkItem = document.createElement('div');
+    linkItem.className = 'resource-link-item';
+    linkItem.innerHTML = `
+        <div class="form-row">
+            <div class="form-group">
+                <label>Texto del Enlace</label>
+                <input type="text" class="cms-input" value="Nuevo Recurso">
+            </div>
+            <div class="form-group">
+                <label>URL</label>
+                <input type="text" class="cms-input" value="#">
+            </div>
+            <button type="button" class="btn-remove-cms" onclick="removeResourceLink(this)">×</button>
+        </div>
+    `;
+    container.appendChild(linkItem);
+}
+
+/**
+ * Remove resource link from footer
+ */
+function removeResourceLink(button) {
+    if (confirm('¿Estás seguro de que quieres eliminar este enlace?')) {
+        button.closest('.resource-link-item').remove();
+    }
+}
+
+/**
+ * Add bottom link to footer
+ */
+function addBottomLink() {
+    const container = document.getElementById('footer-bottom-links');
+    const linkItems = container.querySelectorAll('.bottom-link-item');
+    const newIndex = linkItems.length + 1;
+    
+    const linkItem = document.createElement('div');
+    linkItem.className = 'bottom-link-item';
+    linkItem.innerHTML = `
+        <div class="form-row">
+            <div class="form-group">
+                <label>Texto del Enlace</label>
+                <input type="text" class="cms-input" value="Nuevo Enlace">
+            </div>
+            <div class="form-group">
+                <label>URL</label>
+                <input type="text" class="cms-input" value="#">
+            </div>
+            <button type="button" class="btn-remove-cms" onclick="removeBottomLink(this)">×</button>
+        </div>
+    `;
+    container.appendChild(linkItem);
+}
+
+/**
+ * Remove bottom link from footer
+ */
+function removeBottomLink(button) {
+    if (confirm('¿Estás seguro de que quieres eliminar este enlace?')) {
+        button.closest('.bottom-link-item').remove();
+    }
+}
+
+/**
+ * Populate navigation links
+ */
+function populateNavigationLinks(links) {
+    const container = document.getElementById('footer-navigation-links');
+    if (!container) return;
+    
+    // Clear existing items
+    container.innerHTML = '';
+    
+    // Add each link
+    links.forEach(link => {
+        const linkItem = document.createElement('div');
+        linkItem.className = 'navigation-link-item';
+        linkItem.innerHTML = `
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Texto del Enlace</label>
+                    <input type="text" class="cms-input" value="${link.text || ''}">
+                </div>
+                <div class="form-group">
+                    <label>URL</label>
+                    <input type="text" class="cms-input" value="${link.url || ''}">
+                </div>
+                <button type="button" class="btn-remove-cms" onclick="removeNavigationLink(this)">×</button>
+            </div>
+        `;
+        container.appendChild(linkItem);
+    });
+}
+
+/**
+ * Populate resource links
+ */
+function populateResourceLinks(links) {
+    const container = document.getElementById('footer-resources-links');
+    if (!container) return;
+    
+    // Clear existing items
+    container.innerHTML = '';
+    
+    // Add each link
+    links.forEach(link => {
+        const linkItem = document.createElement('div');
+        linkItem.className = 'resource-link-item';
+        linkItem.innerHTML = `
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Texto del Enlace</label>
+                    <input type="text" class="cms-input" value="${link.text || ''}">
+                </div>
+                <div class="form-group">
+                    <label>URL</label>
+                    <input type="text" class="cms-input" value="${link.url || ''}">
+                </div>
+                <button type="button" class="btn-remove-cms" onclick="removeResourceLink(this)">×</button>
+            </div>
+        `;
+        container.appendChild(linkItem);
+    });
+}
+
+/**
+ * Populate bottom links
+ */
+function populateBottomLinks(links) {
+    const container = document.getElementById('footer-bottom-links');
+    if (!container) return;
+    
+    // Clear existing items
+    container.innerHTML = '';
+    
+    // Add each link
+    links.forEach(link => {
+        const linkItem = document.createElement('div');
+        linkItem.className = 'bottom-link-item';
+        linkItem.innerHTML = `
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Texto del Enlace</label>
+                    <input type="text" class="cms-input" value="${link.text || ''}">
+                </div>
+                <div class="form-group">
+                    <label>URL</label>
+                    <input type="text" class="cms-input" value="${link.url || ''}">
+                </div>
+                <button type="button" class="btn-remove-cms" onclick="removeBottomLink(this)">×</button>
+            </div>
+        `;
+        container.appendChild(linkItem);
     });
 }

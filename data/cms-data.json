@@ -673,5 +673,110 @@
     "mimetype": "application/pdf",
     "uploadedAt": "2025-08-19T10:05:42.198Z",
     "uploadedBy": "admin"
+  },
+  "footer-logo": {
+    "title": "fante",
+    "description": "Federación Andaluza de Autismo. Trabajando por la inclusión y los derechos de las personas autistas en Andalucía desde 2009.safsaf",
+    "lastModified": "2025-08-19T11:01:08.380Z",
+    "modifiedBy": "admin"
+  },
+  "footer-resources": {
+    "title": "Recursosafasfs",
+    "links": [
+      {
+        "text": "Estatutos",
+        "url": "estatutos.html"
+      },
+      {
+        "text": "Guías para Familias",
+        "url": "#"
+      },
+      {
+        "text": "Formación Profesional",
+        "url": "#"
+      },
+      {
+        "text": "Centro de Descargas",
+        "url": "#"
+      },
+      {
+        "text": "Preguntas Frecuentes",
+        "url": "#"
+      },
+      {
+        "text": "Política de Privacidad",
+        "url": "#"
+      }
+    ],
+    "lastModified": "2025-08-19T10:35:12.554Z",
+    "modifiedBy": "admin"
+  },
+  "footer-social": {
+    "facebook": "https://facebook.com/fantea",
+    "twitter": "https://twitter.com/fantea",
+    "instagram": "https://instagram.com/fantea",
+    "linkedin": "https://linkedin.com/company/fantea",
+    "youtube": "https://youtube.com/fantea",
+    "lastModified": "2025-08-19T10:54:37.302Z",
+    "modifiedBy": "admin"
+  },
+  "footer-navigation": {
+    "title": "Navegación",
+    "links": [
+      {
+        "text": "Sobre Nosotros",
+        "url": "quienes-somos.html"
+      },
+      {
+        "text": "Asociaciones Federadas",
+        "url": "asociaciones.html"
+      },
+      {
+        "text": "Áreas",
+        "url": "areas.html"
+      },
+      {
+        "text": "Nuestro Manifiesto",
+        "url": "manifiesto.html"
+      },
+      {
+        "text": "Prensa",
+        "url": "prensa.html"
+      },
+      {
+        "text": "Afíliate",
+        "url": "afiliate.html"
+      }
+    ],
+    "lastModified": "2025-08-19T10:54:37.320Z",
+    "modifiedBy": "admin"
+  },
+  "footer-contact": {
+    "title": "Contacto",
+    "address": "Calle Principal 123, Sevilla",
+    "phone": "+34 954 123 456",
+    "email": "info@fantea.org",
+    "buttonText": "Contactar",
+    "lastModified": "2025-08-19T10:54:37.332Z",
+    "modifiedBy": "admin"
+  },
+  "footer-bottom": {
+    "copyright": "© 2024 FANTEA - Federación Andaluza de Autismo. Todos los derechos reservados.",
+    "links": [
+      {
+        "text": "Política de Privacidad",
+        "url": "#"
+      },
+      {
+        "text": "Términos de Uso",
+        "url": "#"
+      },
+      {
+        "text": "Cookies",
+        "url": "#"
+      }
+    ],
+    "lastModified": "2025-08-19T10:54:37.361Z",
+    "modifiedBy": "admin"
   }
 }

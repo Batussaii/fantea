@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initialize Footer Sections</title>
+</head>
+<body>
+    <h1>Initializing Missing Footer Sections</h1>
+    <div id="status"></div>
+
+    <script src="js/config.js"></script>
+    <script>
+        const missingSections = {
+            'footer-social': {
+                facebook: 'https://facebook.com/fantea',
+                twitter: 'https://twitter.com/fantea',
+                instagram: 'https://instagram.com/fantea',
+                linkedin: 'https://linkedin.com/company/fantea',
+                youtube: 'https://youtube.com/fantea'
+            },
+            'footer-navigation': {
+                title: 'Navegación',
+                links: [
+                    { text: 'Sobre Nosotros', url: 'quienes-somos.html' },
+                    { text: 'Asociaciones Federadas', url: 'asociaciones.html' },
+                    { text: 'Áreas', url: 'areas.html' },
+                    { text: 'Nuestro Manifiesto', url: 'manifiesto.html' },
+                    { text: 'Prensa', url: 'prensa.html' },
+                    { text: 'Afíliate', url: 'afiliate.html' }
+                ]
+            },
+            'footer-contact': {
+                title: 'Contacto',
+                address: 'Calle Principal 123, Sevilla',
+                phone: '+34 954 123 456',
+                email: 'info@fantea.org',
+                buttonText: 'Contactar'
+            },
+            'footer-bottom': {
+                copyright: '© 2024 FANTEA - Federación Andaluza de Autismo. Todos los derechos reservados.',
+                links: [
+                    { text: 'Política de Privacidad', url: '#' },
+                    { text: 'Términos de Uso', url: '#' },
+                    { text: 'Cookies', url: '#' }
+                ]
+            }
+        };
+
+        async function initializeMissingSections() {
+            const statusDiv = document.getElementById('status');
+            
+            for (const [section, data] of Object.entries(missingSections)) {
+                try {
+                    statusDiv.innerHTML += `<p>Initializing ${section}...</p>`;
+                    
+                    const response = await fetch(CMS_CONFIG.apiUrls.save, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            section: section,
+                            data: data
+                        })
+                    });
+                    
+                    if (response.ok) {
+                        statusDiv.innerHTML += `<p style="color: green;">✓ Section ${section} initialized successfully</p>`;
+                    } else {
+                        statusDiv.innerHTML += `<p style="color: red;">✗ Failed to initialize section ${section}</p>`;
+                    }
+                } catch (error) {
+                    statusDiv.innerHTML += `<p style="color: red;">✗ Error initializing section ${section}: ${error.message}</p>`;
+                }
+            }
+            
+            statusDiv.innerHTML += `<p><strong>Initialization complete!</strong></p>`;
+        }
+
+        // Run the initialization when page loads
+        document.addEventListener('DOMContentLoaded', initializeMissingSections);
+    </script>
+</body>
+</html>
