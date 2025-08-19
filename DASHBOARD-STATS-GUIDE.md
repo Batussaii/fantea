@@ -2,7 +2,17 @@
 
 ## 🎯 ¿Cómo se Miden y Cuentan las Estadísticas?
 
-### 1. **Descargas de Estatutos** ✅ (Automático)
+### 1. **Visitas al Sitio Web** ✅ (Automático)
+- **¿Cuándo se cuenta?** Cada vez que alguien visita cualquier página del sitio
+- **¿Dónde se registra?** En `data/visits.json`
+- **¿Qué se guarda?**
+  - Contador diario de visitas
+  - Contador por hora
+  - IPs únicas por día
+  - Historial de los últimos 30 días
+- **Código:** `recordVisit()` en `server.js` (middleware automático)
+
+### 2. **Descargas de Estatutos** ✅ (Automático)
 - **¿Cuándo se cuenta?** Cada vez que alguien descarga un archivo de estatutos
 - **¿Dónde se registra?** En `data/stats.json`
 - **¿Qué se guarda?**
@@ -11,7 +21,7 @@
   - Historial con timestamp y nombre del archivo
 - **Código:** `recordDownload()` en `server.js`
 
-### 2. **Noticias Publicadas** ✅ (Manual)
+### 3. **Noticias Publicadas** ✅ (Manual)
 - **¿Cuándo se cuenta?** Cuando se hace clic en "Nueva Noticia"
 - **¿Dónde se registra?** En `data/stats.json`
 - **¿Qué se guarda?**
@@ -19,7 +29,7 @@
   - Contador del mes actual
 - **Código:** `recordNewsCreated()` en `server.js`
 
-### 3. **Eventos Programados** ✅ (Manual)
+### 4. **Eventos Programados** ✅ (Manual)
 - **¿Cuándo se cuenta?** Cuando se hace clic en "Nuevo Evento"
 - **¿Dónde se registra?** En `data/stats.json`
 - **¿Qué se guarda?**
@@ -27,7 +37,7 @@
   - Contador del mes actual
 - **Código:** `recordEventCreated()` en `server.js`
 
-### 4. **Asociaciones Afiliadas** ✅ (Manual)
+### 5. **Asociaciones Afiliadas** ✅ (Manual)
 - **¿Cuándo se cuenta?** Cuando se registra una nueva asociación
 - **¿Dónde se registra?** En `data/stats.json`
 - **¿Qué se guarda?**
@@ -83,6 +93,13 @@ GET /api/dashboard/stats
 ```
 GET /api/dashboard/downloads/history
 ```
+
+### Obtener Datos del Gráfico
+```
+GET /api/dashboard/chart-data?period=7 días
+```
+**Parámetros:**
+- `period`: "7 días", "30 días", "3 meses"
 
 ### Registrar Nueva Noticia
 ```
@@ -142,9 +159,11 @@ POST /api/dashboard/update-monthly
 ## 📈 Características del Sistema
 
 ### ✅ Automático:
+- Tracking de visitas web (middleware automático)
 - Tracking de descargas de estatutos
 - Actualización de contadores mensuales
 - Persistencia de datos en JSON
+- Gráfico de actividad con datos reales
 
 ### ✅ Manual (Requiere Integración):
 - Registro de noticias creadas

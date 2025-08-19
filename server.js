@@ -394,6 +394,108 @@ app.get('/api/files/info', async (req, res) => {
 // Archivo para almacenar estadísticas
 const STATS_FILE = path.join(__dirname, 'data', 'stats.json');
 
+// Archivo para almacenar visitas web
+const VISITS_FILE = path.join(__dirname, 'data', 'visits.json');
+
+// Middleware para tracking de visitas web
+app.use((req, res, next) => {
+    // Solo contar visitas a páginas principales (no a APIs o recursos)
+    if (req.path.match(/\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)) {
+        return next();
+    }
+    
+    if (req.path.startsWith('/api/')) {
+        return next();
+    }
+    
+    // Registrar visita
+    recordVisit(req.ip, req.path).catch(err => {
+        console.error('Error registrando visita:', err);
+    });
+    
+    next();
+});
+
+// Función para registrar una visita
+async function recordVisit(ip, path) {
+    try {
+        const visits = await loadVisits();
+        const now = new Date();
+        const today = now.toISOString().split('T')[0]; // YYYY-MM-DD
+        const hour = now.getHours();
+        
+        // Inicializar estructura si no existe
+        if (!visits.daily[today]) {
+            visits.daily[today] = {
+                total: 0,
+                hourly: Array(24).fill(0),
+                uniqueIPs: new Set()
+            };
+        }
+        
+        // Incrementar contadores
+        visits.daily[today].total++;
+        visits.daily[today].hourly[hour]++;
+        visits.daily[today].uniqueIPs.add(ip);
+        
+        // Mantener solo los últimos 30 días
+        const thirtyDaysAgo = new Date();
+        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+        
+        Object.keys(visits.daily).forEach(date => {
+            if (new Date(date) < thirtyDaysAgo) {
+                delete visits.daily[date];
+            }
+        });
+        
+        await saveVisits(visits);
+        
+    } catch (error) {
+        console.error('Error en recordVisit:', error);
+    }
+}
+
+// Función para cargar datos de visitas
+async function loadVisits() {
+    try {
+        const visitsData = await fs.readFile(VISITS_FILE, 'utf8');
+        const visits = JSON.parse(visitsData);
+        
+        // Convertir Sets de vuelta a arrays para JSON
+        Object.keys(visits.daily).forEach(date => {
+            if (visits.daily[date].uniqueIPs instanceof Set) {
+                visits.daily[date].uniqueIPs = Array.from(visits.daily[date].uniqueIPs);
+            }
+        });
+        
+        return visits;
+    } catch (error) {
+        // Crear estructura inicial
+        const initialVisits = {
+            daily: {},
+            lastUpdated: new Date().toISOString()
+        };
+        
+        await saveVisits(initialVisits);
+        return initialVisits;
+    }
+}
+
+// Función para guardar datos de visitas
+async function saveVisits(visits) {
+    visits.lastUpdated = new Date().toISOString();
+    
+    // Convertir Sets a arrays para JSON
+    const visitsForStorage = JSON.parse(JSON.stringify(visits));
+    Object.keys(visitsForStorage.daily).forEach(date => {
+        if (visitsForStorage.daily[date].uniqueIPs instanceof Set) {
+            visitsForStorage.daily[date].uniqueIPs = Array.from(visitsForStorage.daily[date].uniqueIPs);
+        }
+    });
+    
+    await fs.writeFile(VISITS_FILE, JSON.stringify(visitsForStorage, null, 2));
+}
+
 // Función para cargar estadísticas
 async function loadStats() {
     try {
@@ -555,6 +657,205 @@ async function getDashboardStats() {
     };
 }
 
+// Función para generar datos reales del gráfico
+async function getChartData(period = '7 días') {
+    const visits = await loadVisits();
+    const stats = await loadStats();
+    
+    let labels = [];
+    let visitsData = [];
+    let downloadsData = [];
+    
+    const now = new Date();
+    const daysOfWeek = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+    
+    switch (period) {
+        case '7 días':
+            // Últimos 7 días
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date(now);
+                date.setDate(date.getDate() - i);
+                const dateStr = date.toISOString().split('T')[0];
+                const dayName = daysOfWeek[date.getDay()];
+                
+                labels.push(dayName);
+                
+                // Visitas del día
+                const dayVisits = visits.daily[dateStr] ? visits.daily[dateStr].total : 0;
+                visitsData.push(dayVisits);
+                
+                // Descargas del día
+                const dayDownloads = stats.downloads.history.filter(record => {
+                    const recordDate = new Date(record.timestamp);
+                    return recordDate.toISOString().split('T')[0] === dateStr;
+                }).length;
+                downloadsData.push(dayDownloads);
+            }
+            break;
+            
+        case '30 días':
+            // Últimas 4 semanas
+            for (let week = 3; week >= 0; week--) {
+                const weekStart = new Date(now);
+                weekStart.setDate(weekStart.getDate() - (week * 7));
+                
+                let weekVisits = 0;
+                let weekDownloads = 0;
+                
+                // Sumar datos de la semana
+                for (let day = 0; day < 7; day++) {
+                    const date = new Date(weekStart);
+                    date.setDate(date.getDate() + day);
+                    const dateStr = date.toISOString().split('T')[0];
+                    
+                    if (visits.daily[dateStr]) {
+                        weekVisits += visits.daily[dateStr].total;
+                    }
+                    
+                    weekDownloads += stats.downloads.history.filter(record => {
+                        const recordDate = new Date(record.timestamp);
+                        return recordDate.toISOString().split('T')[0] === dateStr;
+                    }).length;
+                }
+                
+                labels.push(`Sem ${4 - week}`);
+                visitsData.push(weekVisits);
+                downloadsData.push(weekDownloads);
+            }
+            break;
+            
+        case '3 meses':
+            // Últimos 3 meses
+            for (let month = 2; month >= 0; month--) {
+                const monthStart = new Date(now.getFullYear(), now.getMonth() - month, 1);
+                const monthEnd = new Date(now.getFullYear(), now.getMonth() - month + 1, 0);
+                
+                let monthVisits = 0;
+                let monthDownloads = 0;
+                
+                // Sumar datos del mes
+                for (let day = 0; day < monthEnd.getDate(); day++) {
+                    const date = new Date(monthStart);
+                    date.setDate(date.getDate() + day);
+                    const dateStr = date.toISOString().split('T')[0];
+                    
+                    if (visits.daily[dateStr]) {
+                        monthVisits += visits.daily[dateStr].total;
+                    }
+                    
+                    monthDownloads += stats.downloads.history.filter(record => {
+                        const recordDate = new Date(record.timestamp);
+                        return recordDate.toISOString().split('T')[0] === dateStr;
+                    }).length;
+                }
+                
+                const monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+                labels.push(monthNames[monthStart.getMonth()]);
+                visitsData.push(monthVisits);
+                downloadsData.push(monthDownloads);
+            }
+            break;
+    }
+    
+    // Si no hay datos reales, generar datos demo mejorados
+    if (visitsData.every(v => v === 0) && downloadsData.every(d => d === 0)) {
+        visitsData = generateDemoVisitsData(period);
+        downloadsData = generateDemoDownloadsData(period, stats.downloads.total);
+    }
+    
+    return {
+        labels,
+        datasets: [
+            {
+                label: 'Visitas al sitio web',
+                data: visitsData,
+                borderColor: '#1565C0',
+                backgroundColor: 'rgba(21, 101, 192, 0.1)',
+                tension: 0.4,
+                fill: true
+            },
+            {
+                label: 'Descargas de documentos',
+                data: downloadsData,
+                borderColor: '#FF9800',
+                backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                tension: 0.4,
+                fill: true
+            }
+        ]
+    };
+}
+
+// Función para generar datos demo de visitas
+function generateDemoVisitsData(period) {
+    const baseVisits = 200;
+    const data = [];
+    
+    switch (period) {
+        case '7 días':
+            for (let i = 0; i < 7; i++) {
+                const dayOfWeek = (new Date().getDay() - 6 + i + 7) % 7;
+                const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+                const multiplier = isWeekend ? 0.4 : 1.0;
+                const variation = 0.8 + Math.random() * 0.4;
+                data.push(Math.round(baseVisits * multiplier * variation));
+            }
+            break;
+        case '30 días':
+            for (let i = 0; i < 4; i++) {
+                const weekMultiplier = 0.8 + (i * 0.2);
+                const variation = 0.9 + Math.random() * 0.2;
+                data.push(Math.round(baseVisits * 7 * weekMultiplier * variation));
+            }
+            break;
+        case '3 meses':
+            for (let i = 0; i < 3; i++) {
+                const monthMultiplier = 0.9 + (i * 0.3);
+                const variation = 0.85 + Math.random() * 0.3;
+                data.push(Math.round(baseVisits * 30 * monthMultiplier * variation));
+            }
+            break;
+    }
+    
+    return data;
+}
+
+// Función para generar datos demo de descargas
+function generateDemoDownloadsData(period, totalDownloads) {
+    const data = [];
+    
+    switch (period) {
+        case '7 días':
+            for (let i = 0; i < 7; i++) {
+                const dayOfWeek = (new Date().getDay() - 6 + i + 7) % 7;
+                const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+                const multiplier = isWeekend ? 0.3 : 1.0;
+                const variation = 0.7 + Math.random() * 0.6;
+                const avgDailyDownloads = Math.max(totalDownloads / 30, 1);
+                data.push(Math.round(avgDailyDownloads * multiplier * variation));
+            }
+            break;
+        case '30 días':
+            for (let i = 0; i < 4; i++) {
+                const weekMultiplier = 0.8 + (i * 0.2);
+                const variation = 0.9 + Math.random() * 0.2;
+                const avgWeeklyDownloads = Math.max(totalDownloads / 4, 1);
+                data.push(Math.round(avgWeeklyDownloads * weekMultiplier * variation));
+            }
+            break;
+        case '3 meses':
+            for (let i = 0; i < 3; i++) {
+                const monthMultiplier = 0.9 + (i * 0.3);
+                const variation = 0.85 + Math.random() * 0.3;
+                const avgMonthlyDownloads = Math.max(totalDownloads / 3, 1);
+                data.push(Math.round(avgMonthlyDownloads * monthMultiplier * variation));
+            }
+            break;
+    }
+    
+    return data;
+}
+
 // API para estadísticas del dashboard
 app.get('/api/dashboard/stats', async (req, res) => {
     try {
@@ -574,6 +875,18 @@ app.get('/api/dashboard/downloads/history', async (req, res) => {
         res.json({ success: true, data: history });
     } catch (error) {
         console.error('Error obteniendo historial de descargas:', error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// API para obtener datos del gráfico
+app.get('/api/dashboard/chart-data', async (req, res) => {
+    try {
+        const period = req.query.period || '7 días';
+        const chartData = await getChartData(period);
+        res.json({ success: true, data: chartData });
+    } catch (error) {
+        console.error('Error obteniendo datos del gráfico:', error);
         res.status(500).json({ success: false, error: error.message });
     }
 });

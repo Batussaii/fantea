@@ -370,70 +370,137 @@ function getTimeAgo(date) {
 /**
  * Inicializar gráfico de actividad
  */
-function initializeChart() {
+async function initializeChart() {
     const ctx = document.getElementById('activityChart');
     if (!ctx) return;
     
-    // Datos de ejemplo para el gráfico
-    const chartData = {
-        labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
-        datasets: [
-            {
-                label: 'Visitas al sitio web',
-                data: [340, 290, 420, 380, 510, 280, 190],
-                borderColor: '#1565C0',
-                backgroundColor: 'rgba(21, 101, 192, 0.1)',
-                tension: 0.4,
-                fill: true
-            },
-            {
-                label: 'Descargas de documentos',
-                data: [20, 35, 28, 42, 55, 25, 18],
-                borderColor: '#FF9800',
-                backgroundColor: 'rgba(255, 152, 0, 0.1)',
-                tension: 0.4,
-                fill: true
-            }
-        ]
-    };
+    // Mostrar loading
+    ctx.style.opacity = '0.5';
     
-    activityChart = new Chart(ctx, {
-        type: 'line',
-        data: chartData,
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'bottom',
-                    labels: {
-                        usePointStyle: true,
-                        padding: 20
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        color: 'rgba(0,0,0,0.05)'
+    try {
+        // Obtener datos reales del servidor
+        const response = await fetch('/api/dashboard/chart-data?period=7 días');
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+        
+        const result = await response.json();
+        if (!result.success) {
+            throw new Error(result.error || 'Error obteniendo datos del gráfico');
+        }
+        
+        const chartData = result.data;
+        
+        activityChart = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20
+                        }
                     }
                 },
-                x: {
-                    grid: {
-                        display: false
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0,0,0,0.05)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                elements: {
+                    point: {
+                        radius: 4,
+                        hoverRadius: 6
                     }
                 }
-            },
-            elements: {
-                point: {
-                    radius: 4,
-                    hoverRadius: 6
+            }
+        });
+        
+        // Restaurar opacidad
+        ctx.style.opacity = '1';
+        
+    } catch (error) {
+        console.error('Error inicializando gráfico:', error);
+        
+        // Fallback a datos demo
+        const fallbackData = {
+            labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+            datasets: [
+                {
+                    label: 'Visitas al sitio web',
+                    data: [340, 290, 420, 380, 510, 280, 190],
+                    borderColor: '#1565C0',
+                    backgroundColor: 'rgba(21, 101, 192, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                },
+                {
+                    label: 'Descargas de documentos',
+                    data: [20, 35, 28, 42, 55, 25, 18],
+                    borderColor: '#FF9800',
+                    backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }
+            ]
+        };
+        
+        activityChart = new Chart(ctx, {
+            type: 'line',
+            data: fallbackData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0,0,0,0.05)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                elements: {
+                    point: {
+                        radius: 4,
+                        hoverRadius: 6
+                    }
                 }
             }
-        }
-    });
+        });
+        
+        // Restaurar opacidad
+        ctx.style.opacity = '1';
+        
+        showNotification('Error cargando datos reales. Mostrando datos demo.', 'warning');
+    }
     
     // Controles del gráfico
     const chartControls = document.querySelectorAll('.chart-controls .btn-small');
@@ -442,7 +509,7 @@ function initializeChart() {
             chartControls.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             
-            // Aquí se actualizarían los datos del gráfico según el período seleccionado
+            // Actualizar datos del gráfico según el período seleccionado
             updateChartData(this.textContent);
         });
     });
@@ -451,29 +518,67 @@ function initializeChart() {
 /**
  * Actualizar datos del gráfico
  */
-function updateChartData(period) {
+async function updateChartData(period) {
     if (!activityChart) return;
     
-    // Datos simulados según el período
-    let newData;
-    
-    switch (period) {
-        case '7 días':
-            newData = [340, 290, 420, 380, 510, 280, 190];
-            break;
-        case '30 días':
-            newData = [1200, 980, 1450, 1340, 1680, 920, 750];
-            break;
-        case '3 meses':
-            newData = [3400, 2900, 4200, 3800, 5100, 2800, 1900];
-            break;
-        default:
-            return;
+    try {
+        // Mostrar loading
+        const ctx = activityChart.canvas;
+        ctx.style.opacity = '0.5';
+        
+        // Obtener datos reales del servidor
+        const response = await fetch(`/api/dashboard/chart-data?period=${encodeURIComponent(period)}`);
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+        
+        const result = await response.json();
+        if (!result.success) {
+            throw new Error(result.error || 'Error obteniendo datos del gráfico');
+        }
+        
+        const chartData = result.data;
+        
+        // Actualizar datos del gráfico
+        activityChart.data.labels = chartData.labels;
+        activityChart.data.datasets[0].data = chartData.datasets[0].data;
+        activityChart.data.datasets[1].data = chartData.datasets[1].data;
+        
+        activityChart.update('active');
+        
+        // Restaurar opacidad
+        ctx.style.opacity = '1';
+        
+    } catch (error) {
+        console.error('Error actualizando datos del gráfico:', error);
+        
+        // Fallback a datos demo
+        let newData;
+        
+        switch (period) {
+            case '7 días':
+                newData = [340, 290, 420, 380, 510, 280, 190];
+                break;
+            case '30 días':
+                newData = [1200, 980, 1450, 1340, 1680, 920, 750];
+                break;
+            case '3 meses':
+                newData = [3400, 2900, 4200, 3800, 5100, 2800, 1900];
+                break;
+            default:
+                return;
+        }
+        
+        activityChart.data.datasets[0].data = newData;
+        activityChart.data.datasets[1].data = newData.map(val => Math.floor(val * 0.15));
+        activityChart.update('active');
+        
+        // Restaurar opacidad
+        const ctx = activityChart.canvas;
+        ctx.style.opacity = '1';
+        
+        showNotification('Error cargando datos reales. Mostrando datos demo.', 'warning');
     }
-    
-    activityChart.data.datasets[0].data = newData;
-    activityChart.data.datasets[1].data = newData.map(val => Math.floor(val * 0.15));
-    activityChart.update('active');
 }
 
 /**
