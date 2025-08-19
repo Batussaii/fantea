@@ -24,7 +24,15 @@ const CMS_CONFIG = {
             load: `${base}/api/cms/load`,
             save: `${base}/api/cms/save`,
             upload: `${base}/api/upload/image`,
-            loadSection: (section) => `${base}/api/cms/load/${section}`
+            loadSection: (section) => `${base}/api/cms/load/${section}`,
+            // URLs para gestión de archivos
+            files: {
+                info: `${base}/api/files/info`,
+                uploadStatutes: `${base}/api/files/upload/statutes`,
+                uploadDocuments: `${base}/api/files/upload/documents`,
+                download: (type, filename) => `${base}/api/files/download/${type}/${filename}`,
+                delete: (type, filename) => `${base}/api/files/delete/${type}/${filename}`
+            }
         };
     },
     

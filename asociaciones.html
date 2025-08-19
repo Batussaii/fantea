@@ -77,7 +77,7 @@
                         <div class="hero-actions">
                             <a href="#associations" class="btn btn-primary btn-large">Ver Asociaciones</a>
                             <a href="#join" class="btn btn-outline btn-large">Unirse a FANTEA</a>
-                            <a href="#download-statutes" class="btn btn-secondary btn-large">
+                            <a href="#download-statutes" class="btn btn-secondary btn-large" id="hero-download-statutes-btn">
                                 <i class="fas fa-download" style="margin-right: 8px;"></i>
                                 Descarga Nuestros Estatutos
                             </a>
@@ -439,19 +439,35 @@
                 }, 200 + (index * 100));
             });
             
-            // Manejo de descarga de estatutos
-            const downloadStatutesBtn = document.getElementById('download-statutes-btn');
-            if (downloadStatutesBtn) {
-                downloadStatutesBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
+            // Función para descargar estatutos
+            async function downloadStatutes(button) {
+                try {
+                    // Mostrar indicador de carga
+                    const originalText = button.innerHTML;
+                    button.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 8px;"></i>Descargando...';
+                    button.style.pointerEvents = 'none';
                     
-                    // Aquí puedes cambiar la URL del PDF de los estatutos
-                    const statutesUrl = '/data/uploads/estatutos/estatutos-fantea.pdf';
+                    // Obtener información del archivo actual desde la API
+                    const response = await fetch('/api/files/info');
+                    if (!response.ok) {
+                        throw new Error('Error obteniendo información del archivo');
+                    }
+
+                    const result = await response.json();
+                    const statutes = result.data.statutes;
+
+                    if (!statutes) {
+                        alert('No hay estatutos disponibles para descargar en este momento. Por favor, contacta con la administración.');
+                        return;
+                    }
+
+                    // Crear URL de descarga usando la API
+                    const downloadUrl = `/api/files/download/statutes/${statutes.filename}`;
                     
                     // Crear un enlace temporal para la descarga
                     const link = document.createElement('a');
-                    link.href = statutesUrl;
-                    link.download = 'Estatutos-FANTEA-2024.pdf';
+                    link.href = downloadUrl;
+                    link.download = statutes.originalName;
                     link.target = '_blank';
                     
                     // Simular clic en el enlace
@@ -460,7 +476,33 @@
                     document.body.removeChild(link);
                     
                     // Mostrar mensaje de confirmación
-                    alert('Descarga iniciada. Si no se descarga automáticamente, revisa tu carpeta de descargas.');
+                    console.log('Descarga iniciada:', statutes.originalName);
+                    
+                } catch (error) {
+                    console.error('Error descargando estatutos:', error);
+                    alert('Error al descargar los estatutos. Por favor, intenta de nuevo o contacta con la administración.');
+                } finally {
+                    // Restaurar el botón
+                    button.innerHTML = originalText;
+                    button.style.pointerEvents = 'auto';
+                }
+            }
+
+            // Manejo de descarga de estatutos - Botón principal
+            const downloadStatutesBtn = document.getElementById('download-statutes-btn');
+            if (downloadStatutesBtn) {
+                downloadStatutesBtn.addEventListener('click', async function(e) {
+                    e.preventDefault();
+                    await downloadStatutes(this);
+                });
+            }
+
+            // Manejo de descarga de estatutos - Botón del hero
+            const heroDownloadStatutesBtn = document.getElementById('hero-download-statutes-btn');
+            if (heroDownloadStatutesBtn) {
+                heroDownloadStatutesBtn.addEventListener('click', async function(e) {
+                    e.preventDefault();
+                    await downloadStatutes(this);
                 });
             }
         });

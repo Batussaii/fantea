@@ -4927,6 +4927,51 @@
             alert(`${type.toUpperCase()}: ${message}`);
         }
 
+        // Función para obtener el usuario actual
+        function getCurrentUser() {
+            const session = localStorage.getItem('fantea_admin_session') || 
+                           sessionStorage.getItem('fantea_admin_session');
+            if (session) {
+                const sessionData = JSON.parse(session);
+                return sessionData.username || 'admin';
+            }
+            return 'admin';
+        }
+
+        // Función para cargar información de archivos
+        async function loadFileInfo() {
+            try {
+                const response = await fetch(CMS_CONFIG.apiUrls.files.info);
+                if (!response.ok) {
+                    throw new Error('Error obteniendo información de archivos');
+                }
+
+                const result = await response.json();
+                const fileInfo = result.data;
+
+                // Actualizar información de estatutos
+                if (fileInfo.statutes) {
+                    document.getElementById('currentStatutesName').textContent = fileInfo.statutes.originalName;
+                    document.getElementById('currentStatutesDate').textContent = new Date(fileInfo.statutes.uploadedAt).toLocaleDateString('es-ES', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    document.getElementById('currentStatutesSize').textContent = (fileInfo.statutes.size / 1024 / 1024).toFixed(2) + ' MB';
+                } else {
+                    document.getElementById('currentStatutesName').textContent = 'No hay archivo subido';
+                    document.getElementById('currentStatutesDate').textContent = 'N/A';
+                    document.getElementById('currentStatutesSize').textContent = 'N/A';
+                }
+
+                console.log('Información de archivos cargada:', fileInfo);
+
+            } catch (error) {
+                console.error('Error cargando información de archivos:', error);
+                // No mostrar error al usuario ya que puede ser normal si no hay archivos
+            }
+        }
+
         // ==========================================================================
         // GESTIÓN DE ARCHIVOS - FUNCIONALIDAD
         // ==========================================================================
@@ -4938,6 +4983,7 @@
         // Inicialización de la gestión de archivos
         document.addEventListener('DOMContentLoaded', function() {
             initializeFileManagement();
+            loadFileInfo();
         });
 
         function initializeFileManagement() {
@@ -5067,7 +5113,7 @@
         }
 
         // Subir estatutos
-        function uploadStatutes() {
+        async function uploadStatutes() {
             if (!selectedStatutesFile) {
                 showNotification('No hay archivo seleccionado', 'error');
                 return;
@@ -5082,58 +5128,102 @@
             progressContainer.style.display = 'block';
             uploadBtn.disabled = true;
 
-            // Simular progreso de subida
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += Math.random() * 20;
-                if (progress > 100) progress = 100;
-                
-                progressBar.style.width = progress + '%';
-                progressText.textContent = `Subiendo... ${Math.round(progress)}%`;
+            try {
+                // Crear FormData para enviar el archivo
+                const formData = new FormData();
+                formData.append('statutes', selectedStatutesFile);
+                formData.append('user', getCurrentUser());
 
-                if (progress === 100) {
-                    clearInterval(interval);
-                    
-                    setTimeout(() => {
-                        // Simular éxito
-                        showNotification('Estatutos subidos correctamente', 'success');
-                        
-                        // Actualizar información del archivo actual
-                        document.getElementById('currentStatutesName').textContent = selectedStatutesFile.name;
-                        document.getElementById('currentStatutesDate').textContent = new Date().toLocaleDateString('es-ES', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                        });
-                        document.getElementById('currentStatutesSize').textContent = (selectedStatutesFile.size / 1024 / 1024).toFixed(2) + ' MB';
-                        
-                        // Ocultar progreso y limpiar
-                        progressContainer.style.display = 'none';
-                        uploadBtn.disabled = false;
-                        clearStatutesUpload();
-                        
-                        // Aquí guardarías el archivo en el servidor
-                        console.log('Archivo de estatutos subido:', selectedStatutesFile);
-                    }, 500);
+                // Configurar progreso inicial
+                progressBar.style.width = '0%';
+                progressText.textContent = 'Preparando subida...';
+
+                // Realizar la subida al servidor
+                const response = await fetch(CMS_CONFIG.apiUrls.files.uploadStatutes, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Error en la subida');
                 }
-            }, 200);
+
+                const result = await response.json();
+
+                // Actualizar progreso a 100%
+                progressBar.style.width = '100%';
+                progressText.textContent = 'Subida completada';
+
+                setTimeout(() => {
+                    // Mostrar éxito
+                    showNotification(result.message, 'success');
+                    
+                    // Actualizar información del archivo actual
+                    document.getElementById('currentStatutesName').textContent = result.file.originalName;
+                    document.getElementById('currentStatutesDate').textContent = new Date(result.file.uploadedAt).toLocaleDateString('es-ES', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    document.getElementById('currentStatutesSize').textContent = (result.file.size / 1024 / 1024).toFixed(2) + ' MB';
+                    
+                    // Ocultar progreso y limpiar
+                    progressContainer.style.display = 'none';
+                    uploadBtn.disabled = false;
+                    clearStatutesUpload();
+                    
+                    console.log('Archivo de estatutos subido:', result.file);
+                }, 500);
+
+            } catch (error) {
+                console.error('Error subiendo estatutos:', error);
+                showNotification(`Error subiendo archivo: ${error.message}`, 'error');
+                
+                // Ocultar progreso y habilitar botón
+                progressContainer.style.display = 'none';
+                uploadBtn.disabled = false;
+            }
         }
 
         // Subir archivos generales
-        function uploadGeneralFiles() {
+        async function uploadGeneralFiles() {
             if (selectedGeneralFiles.length === 0) {
                 showNotification('No hay archivos seleccionados', 'error');
                 return;
             }
 
-            showNotification(`${selectedGeneralFiles.length} archivo(s) subido(s) correctamente`, 'success');
-            
-            // Aquí procesarías los archivos en el servidor
-            selectedGeneralFiles.forEach(file => {
-                console.log('Archivo subido:', file);
-            });
-            
-            clearGeneralUpload();
+            try {
+                // Crear FormData para enviar los archivos
+                const formData = new FormData();
+                selectedGeneralFiles.forEach(file => {
+                    formData.append('documents', file);
+                });
+                formData.append('user', getCurrentUser());
+
+                // Realizar la subida al servidor
+                const response = await fetch(CMS_CONFIG.apiUrls.files.uploadDocuments, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Error en la subida');
+                }
+
+                const result = await response.json();
+                showNotification(result.message, 'success');
+                
+                // Recargar información de archivos
+                await loadFileInfo();
+                
+                clearGeneralUpload();
+
+            } catch (error) {
+                console.error('Error subiendo archivos:', error);
+                showNotification(`Error subiendo archivos: ${error.message}`, 'error');
+            }
         }
 
         // Limpiar selección de estatutos
@@ -5159,22 +5249,84 @@
         }
 
         // Descargar estatutos actuales
-        function downloadCurrentStatutes() {
-            // Aquí implementarías la descarga del archivo actual
-            showNotification('Descarga iniciada', 'info');
-            console.log('Descargando estatutos actuales...');
+        async function downloadCurrentStatutes() {
+            try {
+                // Obtener información del archivo actual
+                const response = await fetch(CMS_CONFIG.apiUrls.files.info);
+                if (!response.ok) {
+                    throw new Error('Error obteniendo información del archivo');
+                }
+
+                const result = await response.json();
+                const statutes = result.data.statutes;
+
+                if (!statutes) {
+                    showNotification('No hay estatutos disponibles para descargar', 'warning');
+                    return;
+                }
+
+                // Iniciar descarga
+                const downloadUrl = CMS_CONFIG.apiUrls.files.download('statutes', statutes.filename);
+                const link = document.createElement('a');
+                link.href = downloadUrl;
+                link.download = statutes.originalName;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                showNotification('Descarga iniciada', 'success');
+                console.log('Descargando estatutos:', statutes.originalName);
+
+            } catch (error) {
+                console.error('Error descargando estatutos:', error);
+                showNotification(`Error descargando archivo: ${error.message}`, 'error');
+            }
         }
 
         // Eliminar estatutos actuales
-        function deleteCurrentStatutes() {
-            if (confirm('¿Estás seguro de que quieres eliminar los estatutos actuales?')) {
-                showNotification('Estatutos eliminados correctamente', 'success');
-                console.log('Estatutos eliminados...');
+        async function deleteCurrentStatutes() {
+            if (!confirm('¿Estás seguro de que quieres eliminar los estatutos actuales?')) {
+                return;
+            }
+
+            try {
+                // Obtener información del archivo actual
+                const response = await fetch(CMS_CONFIG.apiUrls.files.info);
+                if (!response.ok) {
+                    throw new Error('Error obteniendo información del archivo');
+                }
+
+                const result = await response.json();
+                const statutes = result.data.statutes;
+
+                if (!statutes) {
+                    showNotification('No hay estatutos para eliminar', 'warning');
+                    return;
+                }
+
+                // Eliminar archivo
+                const deleteResponse = await fetch(CMS_CONFIG.apiUrls.files.delete('statutes', statutes.filename), {
+                    method: 'DELETE'
+                });
+
+                if (!deleteResponse.ok) {
+                    const errorData = await deleteResponse.json();
+                    throw new Error(errorData.error || 'Error eliminando archivo');
+                }
+
+                const deleteResult = await deleteResponse.json();
+                showNotification(deleteResult.message, 'success');
                 
                 // Limpiar información del archivo
                 document.getElementById('currentStatutesName').textContent = 'No hay archivo subido';
                 document.getElementById('currentStatutesDate').textContent = 'N/A';
                 document.getElementById('currentStatutesSize').textContent = 'N/A';
+
+                console.log('Estatutos eliminados:', statutes.originalName);
+
+            } catch (error) {
+                console.error('Error eliminando estatutos:', error);
+                showNotification(`Error eliminando archivo: ${error.message}`, 'error');
             }
         }
     </script>

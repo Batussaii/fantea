@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Subida de Archivos FANTEA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1565C0;
+            text-align: center;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .test-section h3 {
+            color: #333;
+            margin-top: 0;
+        }
+        .file-input {
+            margin: 10px 0;
+        }
+        .btn {
+            background: #1565C0;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #0D47A1;
+        }
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test - Subida de Archivos FANTEA</h1>
+        
+        <div class="test-section">
+            <h3>1. Test de Configuración</h3>
+            <button class="btn" onclick="testConfig()">Probar Configuración</button>
+            <div id="configResult" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>2. Test de Información de Archivos</h3>
+            <button class="btn" onclick="testFileInfo()">Obtener Info de Archivos</button>
+            <div id="fileInfoResult" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>3. Test de Subida de Estatutos PDF</h3>
+            <input type="file" id="statutesFile" accept=".pdf" class="file-input">
+            <button class="btn" onclick="testUploadStatutes()" id="uploadStatutesBtn" disabled>Subir Estatutos</button>
+            <div id="uploadStatutesResult" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>4. Test de Subida de Documentos</h3>
+            <input type="file" id="documentsFiles" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" multiple class="file-input">
+            <button class="btn" onclick="testUploadDocuments()" id="uploadDocumentsBtn" disabled>Subir Documentos</button>
+            <div id="uploadDocumentsResult" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>5. Test de Descarga</h3>
+            <button class="btn" onclick="testDownload()">Descargar Estatutos</button>
+            <div id="downloadResult" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>6. Test de Eliminación</h3>
+            <button class="btn" onclick="testDelete()">Eliminar Estatutos</button>
+            <div id="deleteResult" class="result"></div>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script>
+        // Configuración de prueba
+        const API_BASE = 'http://localhost:3001';
+
+        // Función para mostrar resultados
+        function showResult(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.className = `result ${type}`;
+        }
+
+        // Test de configuración
+        async function testConfig() {
+            try {
+                showResult('configResult', 'Probando configuración...', 'info');
+                
+                const response = await fetch(`${API_BASE}/api/cms/load`);
+                if (response.ok) {
+                    showResult('configResult', '✅ Configuración correcta\nServidor respondiendo correctamente', 'success');
+                } else {
+                    showResult('configResult', '❌ Error en configuración\nServidor no responde correctamente', 'error');
+                }
+            } catch (error) {
+                showResult('configResult', `❌ Error de conexión: ${error.message}`, 'error');
+            }
+        }
+
+        // Test de información de archivos
+        async function testFileInfo() {
+            try {
+                showResult('fileInfoResult', 'Obteniendo información de archivos...', 'info');
+                
+                const response = await fetch(`${API_BASE}/api/files/info`);
+                if (response.ok) {
+                    const data = await response.json();
+                    showResult('fileInfoResult', `✅ Información obtenida:\n${JSON.stringify(data, null, 2)}`, 'success');
+                } else {
+                    showResult('fileInfoResult', '❌ Error obteniendo información de archivos', 'error');
+                }
+            } catch (error) {
+                showResult('fileInfoResult', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Test de subida de estatutos
+        async function testUploadStatutes() {
+            const fileInput = document.getElementById('statutesFile');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                showResult('uploadStatutesResult', '❌ No se seleccionó ningún archivo', 'error');
+                return;
+            }
+
+            try {
+                showResult('uploadStatutesResult', 'Subiendo estatutos...', 'info');
+                
+                const formData = new FormData();
+                formData.append('statutes', file);
+                formData.append('user', 'test-user');
+
+                const response = await fetch(`${API_BASE}/api/files/upload/statutes`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    showResult('uploadStatutesResult', `✅ Estatutos subidos correctamente:\n${JSON.stringify(result, null, 2)}`, 'success');
+                } else {
+                    const error = await response.json();
+                    showResult('uploadStatutesResult', `❌ Error subiendo estatutos: ${error.error}`, 'error');
+                }
+            } catch (error) {
+                showResult('uploadStatutesResult', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Test de subida de documentos
+        async function testUploadDocuments() {
+            const fileInput = document.getElementById('documentsFiles');
+            const files = Array.from(fileInput.files);
+            
+            if (files.length === 0) {
+                showResult('uploadDocumentsResult', '❌ No se seleccionaron archivos', 'error');
+                return;
+            }
+
+            try {
+                showResult('uploadDocumentsResult', `Subiendo ${files.length} documento(s)...`, 'info');
+                
+                const formData = new FormData();
+                files.forEach(file => {
+                    formData.append('documents', file);
+                });
+                formData.append('user', 'test-user');
+
+                const response = await fetch(`${API_BASE}/api/files/upload/documents`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    showResult('uploadDocumentsResult', `✅ Documentos subidos correctamente:\n${JSON.stringify(result, null, 2)}`, 'success');
+                } else {
+                    const error = await response.json();
+                    showResult('uploadDocumentsResult', `❌ Error subiendo documentos: ${error.error}`, 'error');
+                }
+            } catch (error) {
+                showResult('uploadDocumentsResult', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Test de descarga
+        async function testDownload() {
+            try {
+                showResult('downloadResult', 'Obteniendo información para descarga...', 'info');
+                
+                // Primero obtener información del archivo
+                const infoResponse = await fetch(`${API_BASE}/api/files/info`);
+                if (!infoResponse.ok) {
+                    showResult('downloadResult', '❌ Error obteniendo información de archivos', 'error');
+                    return;
+                }
+
+                const infoData = await infoResponse.json();
+                const statutes = infoData.data.statutes;
+
+                if (!statutes) {
+                    showResult('downloadResult', '❌ No hay estatutos disponibles para descargar', 'error');
+                    return;
+                }
+
+                // Intentar descarga
+                const downloadUrl = `${API_BASE}/api/files/download/statutes/${statutes.filename}`;
+                const link = document.createElement('a');
+                link.href = downloadUrl;
+                link.download = statutes.originalName;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                showResult('downloadResult', `✅ Descarga iniciada para: ${statutes.originalName}`, 'success');
+            } catch (error) {
+                showResult('downloadResult', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Test de eliminación
+        async function testDelete() {
+            try {
+                showResult('deleteResult', 'Obteniendo información para eliminación...', 'info');
+                
+                // Primero obtener información del archivo
+                const infoResponse = await fetch(`${API_BASE}/api/files/info`);
+                if (!infoResponse.ok) {
+                    showResult('deleteResult', '❌ Error obteniendo información de archivos', 'error');
+                    return;
+                }
+
+                const infoData = await infoResponse.json();
+                const statutes = infoData.data.statutes;
+
+                if (!statutes) {
+                    showResult('deleteResult', '❌ No hay estatutos para eliminar', 'error');
+                    return;
+                }
+
+                if (!confirm(`¿Estás seguro de que quieres eliminar "${statutes.originalName}"?`)) {
+                    showResult('deleteResult', '❌ Eliminación cancelada por el usuario', 'error');
+                    return;
+                }
+
+                // Eliminar archivo
+                const deleteResponse = await fetch(`${API_BASE}/api/files/delete/statutes/${statutes.filename}`, {
+                    method: 'DELETE'
+                });
+
+                if (deleteResponse.ok) {
+                    const result = await deleteResponse.json();
+                    showResult('deleteResult', `✅ ${result.message}`, 'success');
+                } else {
+                    const error = await deleteResponse.json();
+                    showResult('deleteResult', `❌ Error eliminando archivo: ${error.error}`, 'error');
+                }
+            } catch (error) {
+                showResult('deleteResult', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Event listeners para habilitar botones cuando se seleccionan archivos
+        document.getElementById('statutesFile').addEventListener('change', function() {
+            document.getElementById('uploadStatutesBtn').disabled = !this.files[0];
+        });
+
+        document.getElementById('documentsFiles').addEventListener('change', function() {
+            document.getElementById('uploadDocumentsBtn').disabled = this.files.length === 0;
+        });
+
+        // Auto-test al cargar la página
+        window.addEventListener('load', function() {
+            console.log('🧪 Test de archivos FANTEA cargado');
+            console.log('API Base:', API_BASE);
+        });
+    </script>
+</body>
+</html>
