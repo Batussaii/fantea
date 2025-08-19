@@ -169,7 +169,7 @@
     "modifiedBy": "admin"
   },
   "areas-header": {
-    "title": "Áreas de Trabajoo",
+    "title": "Áreas de Trabajo",
     "description": "Trabajamos en distintos ámbitos para mejorar la calidad de vida de las personas autistas y sus familias. Descubre cómo abordamos cada área con enfoques especializados y compromisoo.",
     "image": "http://localhost:3001/uploads/images/areas-header-image_1755517584816_Logo.png",
     "buttons": [
@@ -182,7 +182,7 @@
         "url": "/manifiesto.html"
       }
     ],
-    "lastModified": "2025-08-18T11:46:36.794Z",
+    "lastModified": "2025-08-19T09:26:14.252Z",
     "modifiedBy": "admin"
   },
   "areas-stats": {
@@ -622,6 +622,46 @@
     "title": "Donaciones y Patrociniosasfsdf",
     "description": "Tu aportación económica nos ayuda a mantener y ampliar nuestros programas en Andalucíaafsafas",
     "lastModified": "2025-08-19T01:23:49.089Z",
+    "modifiedBy": "admin"
+  },
+  "contacto-header": {
+    "title": "holaaaaaaa",
+    "description": "Estamos aquí para ayudarte. Contacta con nodfgdgfdgsotros paraasdasasd cualquier consulta, información o apoyo que necesites",
+    "lastModified": "2025-08-19T09:49:55.806Z",
+    "modifiedBy": "admin"
+  },
+  "contacto-info": {
+    "formTitle": "sfasda",
+    "formSubtitle": "Completa el formulario y nos sadasdadaspondremos en contacto contigo lo antes podfgdfgdfible",
+    "contactInfo": {
+      "dirección": "Calle Principal 123, 41001 Sevilla, España",
+      "teléfonoprincipal": "+34 954 123 456dgdfg",
+      "teléfonosecundario": "+34 600 123 456",
+      "emailprincipal": "info@fantea.org",
+      "emaildeprensa": "prensa@fantea.org",
+      "horariodeatención": "Lunes a Viernes: 9:00 - 17:00"
+    },
+    "socialLinks": {
+      "facebook": "https://facebook.com/fantea",
+      "twitter/x": "https://twitter.com/fantea",
+      "instagram": "https://instagram.com/fantea",
+      "linkedin": "https://linkedin.com/company/fantea",
+      "youtube": "https://youtube.com/fantea"
+    },
+    "lastModified": "2025-08-19T09:26:47.511Z",
+    "modifiedBy": "admin"
+  },
+  "contacto-apoyo": {
+    "title": "Línea de Apoyo 24/7dgdfgfvfg",
+    "number": "900 800 700dfgdg",
+    "description": "Apoyo emocional y orientación para familias en situaciones de crisisdfgdf",
+    "lastModified": "2025-08-19T01:58:08.067Z",
+    "modifiedBy": "admin"
+  },
+  "contacto-banner": {
+    "title": "Contacto - TEST NUEVO",
+    "description": "Descripción de prueba del nuevo CMS - 11:32:37",
+    "lastModified": "2025-08-19T09:32:37.714Z",
     "modifiedBy": "admin"
   }
 }

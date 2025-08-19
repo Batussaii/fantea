@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS - Contacto - FANTEA</title>
+    <link rel="stylesheet" href="admin/css/admin-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1><i class="fas fa-edit"></i> CMS - Página de Contacto</h1>
+            <p>Gestiona todo el contenido de la página de contacto</p>
+        </header>
+
+        <div class="admin-content">
+            <div class="cms-actions">
+                <button class="btn btn-primary" onclick="saveAllData()">
+                    <i class="fas fa-save"></i> Guardar Todos los Cambios
+                </button>
+                <button class="btn btn-secondary" onclick="loadAllData()">
+                    <i class="fas fa-sync"></i> Recargar Datos
+                </button>
+                <a href="contacto.html" class="btn btn-outline" target="_blank">
+                    <i class="fas fa-eye"></i> Ver Página
+                </a>
+            </div>
+
+            <div class="cms-sections">
+                <!-- Banner Section -->
+                <div class="cms-section">
+                    <div class="section-header">
+                        <h3>Banner de Página</h3>
+                        <button class="btn-toggle" onclick="toggleSection('banner')">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="section-content" id="banner">
+                        <div class="form-group">
+                            <label for="contacto-banner-title">Título Principal</label>
+                            <input type="text" id="contacto-banner-title" placeholder="Título del banner">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto-banner-description">Descripción</label>
+                            <textarea id="contacto-banner-description" rows="3" placeholder="Descripción del banner"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario Section -->
+                <div class="cms-section">
+                    <div class="section-header">
+                        <h3>Formulario de Contacto</h3>
+                        <button class="btn-toggle" onclick="toggleSection('formulario')">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="section-content" id="formulario">
+                        <div class="form-group">
+                            <label for="contacto-formulario-title">Título del Formulario</label>
+                            <input type="text" id="contacto-formulario-title" placeholder="Título del formulario">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto-formulario-description">Descripción</label>
+                            <textarea id="contacto-formulario-description" rows="3" placeholder="Descripción del formulario"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto-formulario-button">Texto del Botón</label>
+                            <input type="text" id="contacto-formulario-button" placeholder="Texto del botón de envío">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información de Contacto Section -->
+                <div class="cms-section">
+                    <div class="section-header">
+                        <h3>Información de Contacto</h3>
+                        <button class="btn-toggle" onclick="toggleSection('info')">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="section-content" id="info">
+                        <div class="form-group">
+                            <label for="contacto-info-title">Título de la Sección</label>
+                            <input type="text" id="contacto-info-title" placeholder="Título de información de contacto">
+                        </div>
+                        
+                        <h4>Dirección</h4>
+                        <div class="form-group">
+                            <label for="contacto-info-address-title">Título Dirección</label>
+                            <input type="text" id="contacto-info-address-title" placeholder="Título de dirección">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto-info-address-text">Texto de Dirección</label>
+                            <textarea id="contacto-info-address-text" rows="2" placeholder="Dirección completa"></textarea>
+                        </div>
+
+                        <h4>Teléfono</h4>
+                        <div class="form-group">
+                            <label for="contacto-info-phone-title">Título Teléfono</label>
+                            <input type="text" id="contacto-info-phone-title" placeholder="Título de teléfono">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto-info-phone-number">Número de Teléfono</label>
+                            <input type="text" id="contacto-info-phone-number" placeholder="Número de teléfono">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto-info-phone-schedule">Horario</label>
+                            <input type="text" id="contacto-info-phone-schedule" placeholder="Horario de atención">
+                        </div>
+
+                        <h4>Email</h4>
+                        <div class="form-group">
+                            <label for="contacto-info-email-title">Título Email</label>
+                            <input type="text" id="contacto-info-email-title" placeholder="Título de email">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto-info-email-address">Dirección de Email</label>
+                            <input type="email" id="contacto-info-email-address" placeholder="Dirección de email">
+                        </div>
+
+                        <h4>Atención Especializada</h4>
+                        <div class="form-group">
+                            <label for="contacto-info-specialized-title">Título Atención Especializada</label>
+                            <input type="text" id="contacto-info-specialized-title" placeholder="Título de atención especializada">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto-info-specialized-email">Email Especializado</label>
+                            <input type="email" id="contacto-info-specialized-email" placeholder="Email de atención especializada">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto-info-specialized-description">Descripción</label>
+                            <input type="text" id="contacto-info-specialized-description" placeholder="Descripción de atención especializada">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Línea de Apoyo Section -->
+                <div class="cms-section">
+                    <div class="section-header">
+                        <h3>Línea de Apoyo 24/7</h3>
+                        <button class="btn-toggle" onclick="toggleSection('apoyo')">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="section-content" id="apoyo">
+                        <div class="form-group">
+                            <label for="contacto-apoyo-title">Título</label>
+                            <input type="text" id="contacto-apoyo-title" placeholder="Título de línea de apoyo">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto-apoyo-number">Número de Teléfono</label>
+                            <input type="text" id="contacto-apoyo-number" placeholder="Número de línea de apoyo">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto-apoyo-description">Descripción</label>
+                            <textarea id="contacto-apoyo-description" rows="3" placeholder="Descripción del servicio de apoyo"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Horarios Section -->
+                <div class="cms-section">
+                    <div class="section-header">
+                        <h3>Horarios de Atención</h3>
+                        <button class="btn-toggle" onclick="toggleSection('horarios')">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="section-content" id="horarios">
+                        <div class="form-group">
+                            <label for="contacto-horarios-title">Título</label>
+                            <input type="text" id="contacto-horarios-title" placeholder="Título de horarios">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto-horarios-note">Nota Informativa</label>
+                            <textarea id="contacto-horarios-note" rows="3" placeholder="Nota sobre horarios de urgencias"></textarea>
+                        </div>
+                        
+                        <h4>Horarios</h4>
+                        <div id="horarios-list">
+                            <!-- Los horarios se cargarán dinámicamente -->
+                        </div>
+                        <button type="button" class="btn btn-secondary" onclick="addHorario()">
+                            <i class="fas fa-plus"></i> Agregar Horario
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Ubicación Section -->
+                <div class="cms-section">
+                    <div class="section-header">
+                        <h3>Ubicación</h3>
+                        <button class="btn-toggle" onclick="toggleSection('ubicacion')">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="section-content" id="ubicacion">
+                        <div class="form-group">
+                            <label for="contacto-ubicacion-title">Título</label>
+                            <input type="text" id="contacto-ubicacion-title" placeholder="Título de ubicación">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto-ubicacion-description">Descripción</label>
+                            <textarea id="contacto-ubicacion-description" rows="3" placeholder="Descripción de la ubicación"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transporte Section -->
+                <div class="cms-section">
+                    <div class="section-header">
+                        <h3>Cómo Llegar</h3>
+                        <button class="btn-toggle" onclick="toggleSection('transporte')">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="section-content" id="transporte">
+                        <div class="form-group">
+                            <label for="contacto-transporte-title">Título</label>
+                            <input type="text" id="contacto-transporte-title" placeholder="Título de cómo llegar">
+                        </div>
+                        
+                        <h4>Metro</h4>
+                        <div class="form-group">
+                            <label for="contacto-transporte-metro-title">Título Metro</label>
+                            <input type="text" id="contacto-transporte-metro-title" placeholder="Título de metro">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto-transporte-metro-description">Descripción Metro</label>
+                            <input type="text" id="contacto-transporte-metro-description" placeholder="Descripción de metro">
+                        </div>
+
+                        <h4>Autobús</h4>
+                        <div class="form-group">
+                            <label for="contacto-transporte-bus-title">Título Autobús</label>
+                            <input type="text" id="contacto-transporte-bus-title" placeholder="Título de autobús">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto-transporte-bus-description">Descripción Autobús</label>
+                            <input type="text" id="contacto-transporte-bus-description" placeholder="Descripción de autobús">
+                        </div>
+
+                        <h4>Parking</h4>
+                        <div class="form-group">
+                            <label for="contacto-transporte-parking-title">Título Parking</label>
+                            <input type="text" id="contacto-transporte-parking-title" placeholder="Título de parking">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto-transporte-parking-description">Descripción Parking</label>
+                            <input type="text" id="contacto-transporte-parking-description" placeholder="Descripción de parking">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesibilidad Section -->
+                <div class="cms-section">
+                    <div class="section-header">
+                        <h3>Accesibilidad</h3>
+                        <button class="btn-toggle" onclick="toggleSection('accesibilidad')">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="section-content" id="accesibilidad">
+                        <div class="form-group">
+                            <label for="contacto-accesibilidad-title">Título</label>
+                            <input type="text" id="contacto-accesibilidad-title" placeholder="Título de accesibilidad">
+                        </div>
+                        
+                        <h4>Características de Accesibilidad</h4>
+                        <div id="accesibilidad-list">
+                            <!-- Las características se cargarán dinámicamente -->
+                        </div>
+                        <button type="button" class="btn btn-secondary" onclick="addAccesibilidad()">
+                            <i class="fas fa-plus"></i> Agregar Característica
+                        </button>
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="cms-section">
+                    <div class="section-header">
+                        <h3>Preguntas Frecuentes</h3>
+                        <button class="btn-toggle" onclick="toggleSection('faq')">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="section-content" id="faq">
+                        <div class="form-group">
+                            <label for="contacto-faq-title">Título</label>
+                            <input type="text" id="contacto-faq-title" placeholder="Título de preguntas frecuentes">
+                        </div>
+                        <div class="form-group">
+                            <label for="contacto-faq-description">Descripción</label>
+                            <textarea id="contacto-faq-description" rows="3" placeholder="Descripción de preguntas frecuentes"></textarea>
+                        </div>
+                        
+                        <h4>Preguntas y Respuestas</h4>
+                        <div id="faq-list">
+                            <!-- Las preguntas se cargarán dinámicamente -->
+                        </div>
+                        <button type="button" class="btn btn-secondary" onclick="addFAQ()">
+                            <i class="fas fa-plus"></i> Agregar Pregunta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/cms-contacto-config.js"></script>
+    <script>
+        // Funciones del CMS
+        function toggleSection(sectionId) {
+            const content = document.getElementById(sectionId);
+            const button = content.previousElementSibling.querySelector('.btn-toggle i');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                button.className = 'fas fa-chevron-up';
+            } else {
+                content.style.display = 'none';
+                button.className = 'fas fa-chevron-down';
+            }
+        }
+
+        function addHorario() {
+            const container = document.getElementById('horarios-list');
+            const index = container.children.length;
+            
+            const horarioDiv = document.createElement('div');
+            horarioDiv.className = 'horario-item';
+            horarioDiv.innerHTML = `
+                <div class="form-group">
+                    <label>Día ${index + 1}</label>
+                    <input type="text" class="horario-day" placeholder="Día de la semana">
+                </div>
+                <div class="form-group">
+                    <label>Horario ${index + 1}</label>
+                    <input type="text" class="horario-time" placeholder="Horario">
+                </div>
+                <button type="button" class="btn-remove" onclick="removeHorario(this)">×</button>
+            `;
+            
+            container.appendChild(horarioDiv);
+        }
+
+        function removeHorario(button) {
+            button.parentElement.remove();
+        }
+
+        function addAccesibilidad() {
+            const container = document.getElementById('accesibilidad-list');
+            const index = container.children.length;
+            
+            const accesibilidadDiv = document.createElement('div');
+            accesibilidadDiv.className = 'accesibilidad-item';
+            accesibilidadDiv.innerHTML = `
+                <input type="text" class="accesibilidad-feature" placeholder="Característica de accesibilidad">
+                <button type="button" class="btn-remove" onclick="removeAccesibilidad(this)">×</button>
+            `;
+            
+            container.appendChild(accesibilidadDiv);
+        }
+
+        function removeAccesibilidad(button) {
+            button.parentElement.remove();
+        }
+
+        function addFAQ() {
+            const container = document.getElementById('faq-list');
+            const index = container.children.length;
+            
+            const faqDiv = document.createElement('div');
+            faqDiv.className = 'faq-item-cms';
+            faqDiv.innerHTML = `
+                <div class="form-group">
+                    <label>Pregunta ${index + 1}</label>
+                    <input type="text" class="faq-question" placeholder="Pregunta frecuente">
+                </div>
+                <div class="form-group">
+                    <label>Respuesta ${index + 1}</label>
+                    <textarea class="faq-answer" rows="3" placeholder="Respuesta a la pregunta"></textarea>
+                </div>
+                <button type="button" class="btn-remove" onclick="removeFAQ(this)">×</button>
+            `;
+            
+            container.appendChild(faqDiv);
+        }
+
+        function removeFAQ(button) {
+            button.parentElement.remove();
+        }
+
+        function populateForm() {
+            // Cargar datos de cada sección
+            loadSectionData('contacto-banner');
+            loadSectionData('contacto-formulario');
+            loadSectionData('contacto-info');
+            loadSectionData('contacto-apoyo');
+            loadSectionData('contacto-horarios');
+            loadSectionData('contacto-ubicacion');
+            loadSectionData('contacto-transporte');
+            loadSectionData('contacto-accesibilidad');
+            loadSectionData('contacto-faq');
+        }
+
+        async function loadSectionData(section) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/cms/load/${section}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    populateSectionFields(section, data);
+                }
+            } catch (error) {
+                console.error(`Error al cargar sección ${section}:`, error);
+            }
+        }
+
+        function populateSectionFields(section, data) {
+            switch (section) {
+                case 'contacto-banner':
+                    document.getElementById('contacto-banner-title').value = data.title || '';
+                    document.getElementById('contacto-banner-description').value = data.description || '';
+                    break;
+                    
+                case 'contacto-formulario':
+                    document.getElementById('contacto-formulario-title').value = data.title || '';
+                    document.getElementById('contacto-formulario-description').value = data.description || '';
+                    document.getElementById('contacto-formulario-button').value = data.buttonText || '';
+                    break;
+                    
+                case 'contacto-info':
+                    document.getElementById('contacto-info-title').value = data.title || '';
+                    if (data.address) {
+                        document.getElementById('contacto-info-address-title').value = data.address.title || '';
+                        document.getElementById('contacto-info-address-text').value = data.address.text || '';
+                    }
+                    if (data.phone) {
+                        document.getElementById('contacto-info-phone-title').value = data.phone.title || '';
+                        document.getElementById('contacto-info-phone-number').value = data.phone.number || '';
+                        document.getElementById('contacto-info-phone-schedule').value = data.phone.schedule || '';
+                    }
+                    if (data.email) {
+                        document.getElementById('contacto-info-email-title').value = data.email.title || '';
+                        document.getElementById('contacto-info-email-address').value = data.email.address || '';
+                    }
+                    if (data.specialized) {
+                        document.getElementById('contacto-info-specialized-title').value = data.specialized.title || '';
+                        document.getElementById('contacto-info-specialized-email').value = data.specialized.email || '';
+                        document.getElementById('contacto-info-specialized-description').value = data.specialized.description || '';
+                    }
+                    break;
+                    
+                case 'contacto-apoyo':
+                    document.getElementById('contacto-apoyo-title').value = data.title || '';
+                    document.getElementById('contacto-apoyo-number').value = data.number || '';
+                    document.getElementById('contacto-apoyo-description').value = data.description || '';
+                    break;
+                    
+                case 'contacto-horarios':
+                    document.getElementById('contacto-horarios-title').value = data.title || '';
+                    document.getElementById('contacto-horarios-note').value = data.note || '';
+                    populateHorarios(data.schedules || []);
+                    break;
+                    
+                case 'contacto-ubicacion':
+                    document.getElementById('contacto-ubicacion-title').value = data.title || '';
+                    document.getElementById('contacto-ubicacion-description').value = data.description || '';
+                    break;
+                    
+                case 'contacto-transporte':
+                    document.getElementById('contacto-transporte-title').value = data.title || '';
+                    if (data.metro) {
+                        document.getElementById('contacto-transporte-metro-title').value = data.metro.title || '';
+                        document.getElementById('contacto-transporte-metro-description').value = data.metro.description || '';
+                    }
+                    if (data.bus) {
+                        document.getElementById('contacto-transporte-bus-title').value = data.bus.title || '';
+                        document.getElementById('contacto-transporte-bus-description').value = data.bus.description || '';
+                    }
+                    if (data.parking) {
+                        document.getElementById('contacto-transporte-parking-title').value = data.parking.title || '';
+                        document.getElementById('contacto-transporte-parking-description').value = data.parking.description || '';
+                    }
+                    break;
+                    
+                case 'contacto-accesibilidad':
+                    document.getElementById('contacto-accesibilidad-title').value = data.title || '';
+                    populateAccesibilidad(data.features || []);
+                    break;
+                    
+                case 'contacto-faq':
+                    document.getElementById('contacto-faq-title').value = data.title || '';
+                    document.getElementById('contacto-faq-description').value = data.description || '';
+                    populateFAQ(data.questions || []);
+                    break;
+            }
+        }
+
+        function populateHorarios(schedules) {
+            const container = document.getElementById('horarios-list');
+            container.innerHTML = '';
+            
+            schedules.forEach((schedule, index) => {
+                const horarioDiv = document.createElement('div');
+                horarioDiv.className = 'horario-item';
+                horarioDiv.innerHTML = `
+                    <div class="form-group">
+                        <label>Día ${index + 1}</label>
+                        <input type="text" class="horario-day" value="${schedule.day || ''}" placeholder="Día de la semana">
+                    </div>
+                    <div class="form-group">
+                        <label>Horario ${index + 1}</label>
+                        <input type="text" class="horario-time" value="${schedule.time || ''}" placeholder="Horario">
+                    </div>
+                    <button type="button" class="btn-remove" onclick="removeHorario(this)">×</button>
+                `;
+                container.appendChild(horarioDiv);
+            });
+        }
+
+        function populateAccesibilidad(features) {
+            const container = document.getElementById('accesibilidad-list');
+            container.innerHTML = '';
+            
+            features.forEach(feature => {
+                const accesibilidadDiv = document.createElement('div');
+                accesibilidadDiv.className = 'accesibilidad-item';
+                accesibilidadDiv.innerHTML = `
+                    <input type="text" class="accesibilidad-feature" value="${feature}" placeholder="Característica de accesibilidad">
+                    <button type="button" class="btn-remove" onclick="removeAccesibilidad(this)">×</button>
+                `;
+                container.appendChild(accesibilidadDiv);
+            });
+        }
+
+        function populateFAQ(questions) {
+            const container = document.getElementById('faq-list');
+            container.innerHTML = '';
+            
+            questions.forEach((faq, index) => {
+                const faqDiv = document.createElement('div');
+                faqDiv.className = 'faq-item-cms';
+                faqDiv.innerHTML = `
+                    <div class="form-group">
+                        <label>Pregunta ${index + 1}</label>
+                        <input type="text" class="faq-question" value="${faq.question || ''}" placeholder="Pregunta frecuente">
+                    </div>
+                    <div class="form-group">
+                        <label>Respuesta ${index + 1}</label>
+                        <textarea class="faq-answer" rows="3" placeholder="Respuesta a la pregunta">${faq.answer || ''}</textarea>
+                    </div>
+                    <button type="button" class="btn-remove" onclick="removeFAQ(this)">×</button>
+                `;
+                container.appendChild(faqDiv);
+            });
+        }
+
+        async function saveAllData() {
+            const sections = [
+                'contacto-banner',
+                'contacto-formulario', 
+                'contacto-info',
+                'contacto-apoyo',
+                'contacto-horarios',
+                'contacto-ubicacion',
+                'contacto-transporte',
+                'contacto-accesibilidad',
+                'contacto-faq'
+            ];
+
+            for (const section of sections) {
+                await saveSectionData(section);
+            }
+
+            alert('Todos los datos han sido guardados correctamente');
+        }
+
+        async function saveSectionData(section) {
+            const data = collectSectionData(section);
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/cms/save`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        section: section,
+                        data: data
+                    })
+                });
+                
+                if (response.ok) {
+                    console.log(`Sección ${section} guardada correctamente`);
+                } else {
+                    throw new Error(`Error al guardar sección ${section}`);
+                }
+            } catch (error) {
+                console.error(`Error al guardar sección ${section}:`, error);
+                alert(`Error al guardar sección ${section}: ${error.message}`);
+            }
+        }
+
+        function collectSectionData(section) {
+            switch (section) {
+                case 'contacto-banner':
+                    return {
+                        title: document.getElementById('contacto-banner-title').value,
+                        description: document.getElementById('contacto-banner-description').value
+                    };
+                    
+                case 'contacto-formulario':
+                    return {
+                        title: document.getElementById('contacto-formulario-title').value,
+                        description: document.getElementById('contacto-formulario-description').value,
+                        buttonText: document.getElementById('contacto-formulario-button').value
+                    };
+                    
+                case 'contacto-info':
+                    return {
+                        title: document.getElementById('contacto-info-title').value,
+                        address: {
+                            title: document.getElementById('contacto-info-address-title').value,
+                            text: document.getElementById('contacto-info-address-text').value
+                        },
+                        phone: {
+                            title: document.getElementById('contacto-info-phone-title').value,
+                            number: document.getElementById('contacto-info-phone-number').value,
+                            schedule: document.getElementById('contacto-info-phone-schedule').value
+                        },
+                        email: {
+                            title: document.getElementById('contacto-info-email-title').value,
+                            address: document.getElementById('contacto-info-email-address').value
+                        },
+                        specialized: {
+                            title: document.getElementById('contacto-info-specialized-title').value,
+                            email: document.getElementById('contacto-info-specialized-email').value,
+                            description: document.getElementById('contacto-info-specialized-description').value
+                        }
+                    };
+                    
+                case 'contacto-apoyo':
+                    return {
+                        title: document.getElementById('contacto-apoyo-title').value,
+                        number: document.getElementById('contacto-apoyo-number').value,
+                        description: document.getElementById('contacto-apoyo-description').value
+                    };
+                    
+                case 'contacto-horarios':
+                    const schedules = [];
+                    document.querySelectorAll('.horario-item').forEach(item => {
+                        const day = item.querySelector('.horario-day').value;
+                        const time = item.querySelector('.horario-time').value;
+                        if (day && time) {
+                            schedules.push({ day, time });
+                        }
+                    });
+                    
+                    return {
+                        title: document.getElementById('contacto-horarios-title').value,
+                        schedules: schedules,
+                        note: document.getElementById('contacto-horarios-note').value
+                    };
+                    
+                case 'contacto-ubicacion':
+                    return {
+                        title: document.getElementById('contacto-ubicacion-title').value,
+                        description: document.getElementById('contacto-ubicacion-description').value
+                    };
+                    
+                case 'contacto-transporte':
+                    return {
+                        title: document.getElementById('contacto-transporte-title').value,
+                        metro: {
+                            title: document.getElementById('contacto-transporte-metro-title').value,
+                            description: document.getElementById('contacto-transporte-metro-description').value
+                        },
+                        bus: {
+                            title: document.getElementById('contacto-transporte-bus-title').value,
+                            description: document.getElementById('contacto-transporte-bus-description').value
+                        },
+                        parking: {
+                            title: document.getElementById('contacto-transporte-parking-title').value,
+                            description: document.getElementById('contacto-transporte-parking-description').value
+                        }
+                    };
+                    
+                case 'contacto-accesibilidad':
+                    const features = [];
+                    document.querySelectorAll('.accesibilidad-feature').forEach(input => {
+                        if (input.value.trim()) {
+                            features.push(input.value.trim());
+                        }
+                    });
+                    
+                    return {
+                        title: document.getElementById('contacto-accesibilidad-title').value,
+                        features: features
+                    };
+                    
+                case 'contacto-faq':
+                    const questions = [];
+                    document.querySelectorAll('.faq-item-cms').forEach(item => {
+                        const question = item.querySelector('.faq-question').value;
+                        const answer = item.querySelector('.faq-answer').value;
+                        if (question && answer) {
+                            questions.push({ question, answer });
+                        }
+                    });
+                    
+                    return {
+                        title: document.getElementById('contacto-faq-title').value,
+                        description: document.getElementById('contacto-faq-description').value,
+                        questions: questions
+                    };
+                    
+                default:
+                    return {};
+            }
+        }
+
+        async function loadAllData() {
+            await populateForm();
+            alert('Datos recargados correctamente');
+        }
+
+        // Inicializar al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            populateForm();
+        });
+    </script>
+</body>
+</html>

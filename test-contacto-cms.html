@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CMS Contacto</title>
+</head>
+<body>
+    <h1>Test CMS Contacto</h1>
+    
+    <div id="test-results">
+        <h2>Resultados del Test</h2>
+        <div id="results"></div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/cms-sync.js"></script>
+    <script>
+        async function testContactoCMS() {
+            const results = document.getElementById('results');
+            
+            try {
+                // Test 1: Check if CMSSync is available
+                results.innerHTML += '<p><strong>Test 1:</strong> Verificando CMSSync...</p>';
+                if (typeof CMSSync !== 'undefined') {
+                    results.innerHTML += '<p style="color: green;">✓ CMSSync está disponible</p>';
+                } else {
+                    results.innerHTML += '<p style="color: red;">✗ CMSSync no está disponible</p>';
+                    return;
+                }
+
+                // Test 2: Create CMSSync instance
+                results.innerHTML += '<p><strong>Test 2:</strong> Creando instancia de CMSSync...</p>';
+                const cmsSync = new CMSSync('contacto');
+                results.innerHTML += '<p style="color: green;">✓ Instancia creada correctamente</p>';
+
+                // Test 3: Load CMS data
+                results.innerHTML += '<p><strong>Test 3:</strong> Cargando datos del CMS...</p>';
+                await cmsSync.loadAndApplyChanges();
+                results.innerHTML += '<p style="color: green;">✓ Datos cargados correctamente</p>';
+
+                // Test 4: Check if data was loaded
+                results.innerHTML += '<p><strong>Test 4:</strong> Verificando datos cargados...</p>';
+                if (cmsSync.cmsData && Object.keys(cmsSync.cmsData).length > 0) {
+                    results.innerHTML += '<p style="color: green;">✓ Datos encontrados en CMS</p>';
+                    results.innerHTML += '<pre>' + JSON.stringify(cmsSync.cmsData, null, 2) + '</pre>';
+                } else {
+                    results.innerHTML += '<p style="color: red;">✗ No se encontraron datos en CMS</p>';
+                }
+
+            } catch (error) {
+                results.innerHTML += '<p style="color: red;">✗ Error: ' + error.message + '</p>';
+                console.error('Error en test:', error);
+            }
+        }
+
+        // Run test when page loads
+        document.addEventListener('DOMContentLoaded', testContactoCMS);
+    </script>
+</body>
+</html>

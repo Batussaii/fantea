@@ -43,12 +43,12 @@ class CMSSync {
 
     // Fallback a localStorage
     loadFromLocalStorage() {
-        try {
-            const data = localStorage.getItem('fantea_cms_data');
-            return data ? JSON.parse(data) : {};
-        } catch (localError) {
-            console.warn('Error cargando datos CMS desde localStorage:', localError);
-            return {};
+            try {
+                const data = localStorage.getItem('fantea_cms_data');
+                return data ? JSON.parse(data) : {};
+            } catch (localError) {
+                console.warn('Error cargando datos CMS desde localStorage:', localError);
+                return {};
         }
     }
 
@@ -1283,56 +1283,118 @@ class CMSSync {
     applyContactoChanges() {
         console.log('Aplicando cambios CMS a página de Contacto...');
 
-        // Header Section
+        // Banner Section
         if (this.cmsData['contacto-header']) {
             this.updateTextContent('.page-header h1', this.cmsData['contacto-header'].title);
             this.updateTextContent('.page-header p', this.cmsData['contacto-header'].description);
         }
 
-        // Contact Info Section
+        // Formulario Section
         if (this.cmsData['contacto-info']) {
-            // Título del formulario
-            if (this.cmsData['contacto-info'].formTitle) {
-                this.updateTextContent('.contact-form h2', this.cmsData['contacto-info'].formTitle);
-            }
-            if (this.cmsData['contacto-info'].formSubtitle) {
-                this.updateTextContent('.contact-form .form-subtitle', this.cmsData['contacto-info'].formSubtitle);
+            this.updateTextContent('.form-header h2', this.cmsData['contacto-info'].formTitle);
+            this.updateTextContent('.form-header p', this.cmsData['contacto-info'].formSubtitle);
+        }
+
+        // Información de Contacto Section
+        if (this.cmsData['contacto-info'] && this.cmsData['contacto-info'].contactInfo) {
+            this.updateTextContent('.contact-info-card h3', 'Información de Contacto');
+            
+            // Dirección
+            if (this.cmsData['contacto-info'].contactInfo.dirección) {
+                this.updateTextContent('.contact-details .contact-item:nth-child(1) .contact-text h4', 'Dirección');
+                this.updateTextContent('.contact-details .contact-item:nth-child(1) .contact-text p', this.cmsData['contacto-info'].contactInfo.dirección);
             }
             
-            // Información de contacto
-            if (this.cmsData['contacto-info'].contactInfo) {
-                const contactInfo = this.cmsData['contacto-info'].contactInfo;
-                
-                if (contactInfo.teléfono) {
-                    this.updateTextContent('.contact-item.phone .contact-text', contactInfo.teléfono);
-                }
-                if (contactInfo.email) {
-                    this.updateTextContent('.contact-item.email .contact-text', contactInfo.email);
-                }
-                if (contactInfo.dirección) {
-                    this.updateTextContent('.contact-item.address .contact-text', contactInfo.dirección);
-                }
-                if (contactInfo.horario) {
-                    this.updateTextContent('.contact-item.hours .contact-text', contactInfo.horario);
+            // Teléfono
+            if (this.cmsData['contacto-info'].contactInfo.teléfonoprincipal) {
+                this.updateTextContent('.contact-details .contact-item:nth-child(2) .contact-text h4', 'Teléfono');
+                this.updateTextContent('.contact-details .contact-item:nth-child(2) .contact-text p', this.cmsData['contacto-info'].contactInfo.teléfonoprincipal);
+                if (this.cmsData['contacto-info'].contactInfo.horariodeatención) {
+                    this.updateTextContent('.contact-details .contact-item:nth-child(2) .contact-text small', this.cmsData['contacto-info'].contactInfo.horariodeatención);
                 }
             }
             
-            // Redes sociales
-            if (this.cmsData['contacto-info'].socialLinks) {
-                const socialLinks = this.cmsData['contacto-info'].socialLinks;
-                
-                if (socialLinks.facebook) {
-                    this.updateAttribute('.social-links a[data-social="facebook"]', 'href', socialLinks.facebook);
-                }
-                if (socialLinks.twitter) {
-                    this.updateAttribute('.social-links a[data-social="twitter"]', 'href', socialLinks.twitter);
-                }
-                if (socialLinks.instagram) {
-                    this.updateAttribute('.social-links a[data-social="instagram"]', 'href', socialLinks.instagram);
-                }
-                if (socialLinks.linkedin) {
-                    this.updateAttribute('.social-links a[data-social="linkedin"]', 'href', socialLinks.linkedin);
-                }
+            // Email
+            if (this.cmsData['contacto-info'].contactInfo.emailprincipal) {
+                this.updateTextContent('.contact-details .contact-item:nth-child(3) .contact-text h4', 'Email');
+                this.updateTextContent('.contact-details .contact-item:nth-child(3) .contact-text p', this.cmsData['contacto-info'].contactInfo.emailprincipal);
+            }
+            
+            // Atención Especializada
+            if (this.cmsData['contacto-info'].contactInfo.emaildeprensa) {
+                this.updateTextContent('.contact-details .contact-item:nth-child(4) .contact-text h4', 'Atención Especializada');
+                this.updateTextContent('.contact-details .contact-item:nth-child(4) .contact-text p', this.cmsData['contacto-info'].contactInfo.emaildeprensa);
+                this.updateTextContent('.contact-details .contact-item:nth-child(4) .contact-text small', 'Para consultas específicas sobre TEA');
+            }
+        }
+
+        // Línea de Apoyo Section
+        if (this.cmsData['contacto-apoyo']) {
+            this.updateTextContent('.emergency-header h4', this.cmsData['contacto-apoyo'].title);
+            this.updateTextContent('.emergency-number', this.cmsData['contacto-apoyo'].number);
+            this.updateTextContent('.emergency-description', this.cmsData['contacto-apoyo'].description);
+        }
+
+        // Horarios Section
+        if (this.cmsData['contacto-horarios']) {
+            this.updateTextContent('.schedule-card h3', this.cmsData['contacto-horarios'].title);
+            this.updateTextContent('.schedule-note p', this.cmsData['contacto-horarios'].note);
+            
+            if (this.cmsData['contacto-horarios'].schedules) {
+                this.cmsData['contacto-horarios'].schedules.forEach((schedule, index) => {
+                    this.updateTextContent(`.schedule-list .schedule-item:nth-child(${index + 1}) .day`, schedule.day);
+                    this.updateTextContent(`.schedule-list .schedule-item:nth-child(${index + 1}) .time`, schedule.time);
+                });
+            }
+        }
+
+        // Ubicación Section
+        if (this.cmsData['contacto-ubicacion']) {
+            this.updateTextContent('.map-header h2', this.cmsData['contacto-ubicacion'].title);
+            this.updateTextContent('.map-header p', this.cmsData['contacto-ubicacion'].description);
+        }
+
+        // Transporte Section
+        if (this.cmsData['contacto-transporte']) {
+            this.updateTextContent('.location-info h3', this.cmsData['contacto-transporte'].title);
+            
+            if (this.cmsData['contacto-transporte'].metro) {
+                this.updateTextContent('.transport-options .transport-item:nth-child(1) h4', this.cmsData['contacto-transporte'].metro.title);
+                this.updateTextContent('.transport-options .transport-item:nth-child(1) p', this.cmsData['contacto-transporte'].metro.description);
+            }
+            
+            if (this.cmsData['contacto-transporte'].bus) {
+                this.updateTextContent('.transport-options .transport-item:nth-child(2) h4', this.cmsData['contacto-transporte'].bus.title);
+                this.updateTextContent('.transport-options .transport-item:nth-child(2) p', this.cmsData['contacto-transporte'].bus.description);
+            }
+            
+            if (this.cmsData['contacto-transporte'].parking) {
+                this.updateTextContent('.transport-options .transport-item:nth-child(3) h4', this.cmsData['contacto-transporte'].parking.title);
+                this.updateTextContent('.transport-options .transport-item:nth-child(3) p', this.cmsData['contacto-transporte'].parking.description);
+            }
+        }
+
+        // Accesibilidad Section
+        if (this.cmsData['contacto-accesibilidad']) {
+            this.updateTextContent('.accessibility-info h3', this.cmsData['contacto-accesibilidad'].title);
+            
+            if (this.cmsData['contacto-accesibilidad'].features) {
+                this.cmsData['contacto-accesibilidad'].features.forEach((feature, index) => {
+                    this.updateTextContent(`.accessibility-features li:nth-child(${index + 1})`, feature);
+                });
+            }
+        }
+
+        // FAQ Section
+        if (this.cmsData['contacto-faq']) {
+            this.updateTextContent('.faq-section .section-header h2', this.cmsData['contacto-faq'].title);
+            this.updateTextContent('.faq-section .section-header p', this.cmsData['contacto-faq'].description);
+            
+            if (this.cmsData['contacto-faq'].questions) {
+                this.cmsData['contacto-faq'].questions.forEach((faq, index) => {
+                    this.updateTextContent(`.faq-grid .faq-item:nth-child(${index + 1}) .faq-question h3`, faq.question);
+                    this.updateTextContent(`.faq-grid .faq-item:nth-child(${index + 1}) .faq-answer p`, faq.answer);
+                });
             }
         }
 

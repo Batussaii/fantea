@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CMS Contacto - FANTEA</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .test-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .test-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0.25rem;
+        }
+        .test-button:hover {
+            background: #0056b3;
+        }
+        .test-button.success {
+            background: #28a745;
+        }
+        .test-button.error {
+            background: #dc3545;
+        }
+        .test-result {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 4px;
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+        }
+        .test-result.success {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+        .test-result.error {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Test CMS - Página de Contacto</h1>
+        <p>Prueba todas las funcionalidades del CMS para la página de contacto</p>
+
+        <div class="test-section">
+            <h3>1. Configuración del CMS</h3>
+            <button class="test-button" onclick="testConfig()">Probar Configuración</button>
+            <div id="config-result" class="test-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>2. Conexión con el Servidor</h3>
+            <button class="test-button" onclick="testServerConnection()">Probar Conexión</button>
+            <div id="server-result" class="test-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>3. Carga de Datos CMS</h3>
+            <button class="test-button" onclick="testLoadCMSData()">Cargar Datos CMS</button>
+            <div id="load-result" class="test-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>4. Inicialización del CMS</h3>
+            <button class="test-button" onclick="testCMSInit()">Inicializar CMS</button>
+            <div id="init-result" class="test-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>5. Limpiar Datos CMS</h3>
+            <button class="test-button error" onclick="testClearCMSData()">Limpiar Datos</button>
+            <div id="clear-result" class="test-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>6. Guardar Datos de Prueba</h3>
+            <button class="test-button" onclick="testSaveCMSData()">Guardar Datos</button>
+            <div id="save-result" class="test-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>7. Sincronización</h3>
+            <button class="test-button" onclick="testSync()">Probar Sincronización</button>
+            <div id="sync-result" class="test-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>8. Enlaces Útiles</h3>
+            <a href="cms-contacto.html" class="test-button" target="_blank">Dashboard CMS</a>
+            <a href="contacto.html" class="test-button" target="_blank">Página de Contacto</a>
+            <a href="admin/dashboard.html" class="test-button" target="_blank">Dashboard Principal</a>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/cms-contacto-config.js"></script>
+    <script>
+        function showResult(elementId, message, isSuccess = true) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = message;
+            element.className = `test-result ${isSuccess ? 'success' : 'error'}`;
+        }
+
+        function testConfig() {
+            try {
+                if (typeof CMS_CONFIG !== 'undefined') {
+                    const sections = Object.keys(CMS_CONFIG);
+                    showResult('config-result', 
+                        `✅ Configuración cargada correctamente<br>
+                         Secciones disponibles: ${sections.join(', ')}<br>
+                         Total de secciones: ${sections.length}`);
+                } else {
+                    showResult('config-result', '❌ Error: CMS_CONFIG no está definido', false);
+                }
+            } catch (error) {
+                showResult('config-result', `❌ Error en configuración: ${error.message}`, false);
+            }
+        }
+
+        async function testServerConnection() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/cms/load/contacto-banner`);
+                if (response.ok) {
+                    showResult('server-result', '✅ Conexión con el servidor exitosa');
+                } else {
+                    showResult('server-result', `⚠️ Servidor responde pero con estado: ${response.status}`, false);
+                }
+            } catch (error) {
+                showResult('server-result', `❌ Error de conexión: ${error.message}`, false);
+            }
+        }
+
+        async function testLoadCMSData() {
+            try {
+                const sections = ['contacto-banner', 'contacto-formulario', 'contacto-info'];
+                let loadedCount = 0;
+                
+                for (const section of sections) {
+                    try {
+                        const response = await fetch(`${API_BASE_URL}/cms/load/${section}`);
+                        if (response.ok) {
+                            loadedCount++;
+                        }
+                    } catch (error) {
+                        console.error(`Error cargando ${section}:`, error);
+                    }
+                }
+                
+                showResult('load-result', 
+                    `✅ Datos CMS cargados<br>
+                     Secciones cargadas: ${loadedCount}/${sections.length}`);
+            } catch (error) {
+                showResult('load-result', `❌ Error cargando datos: ${error.message}`, false);
+            }
+        }
+
+        async function testCMSInit() {
+            try {
+                // Simular inicialización
+                const sections = Object.keys(defaultData);
+                let initCount = 0;
+                
+                for (const section of sections) {
+                    try {
+                        const response = await fetch(`${API_BASE_URL}/cms/load/${section}`);
+                        if (!response.ok) {
+                            // Sección no existe, inicializar
+                            await fetch(`${API_BASE_URL}/cms/save`, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    section: section,
+                                    data: defaultData[section]
+                                })
+                            });
+                            initCount++;
+                        }
+                    } catch (error) {
+                        console.error(`Error inicializando ${section}:`, error);
+                    }
+                }
+                
+                showResult('init-result', 
+                    `✅ Inicialización completada<br>
+                     Secciones inicializadas: ${initCount}<br>
+                     Total de secciones: ${sections.length}`);
+            } catch (error) {
+                showResult('init-result', `❌ Error en inicialización: ${error.message}`, false);
+            }
+        }
+
+        async function testClearCMSData() {
+            try {
+                const sections = Object.keys(defaultData);
+                let clearedCount = 0;
+                
+                for (const section of sections) {
+                    try {
+                        // Intentar eliminar datos (esto dependerá de la implementación del servidor)
+                        const response = await fetch(`${API_BASE_URL}/cms/clear/${section}`, {
+                            method: 'DELETE'
+                        });
+                        if (response.ok) {
+                            clearedCount++;
+                        }
+                    } catch (error) {
+                        console.error(`Error limpiando ${section}:`, error);
+                    }
+                }
+                
+                showResult('clear-result', 
+                    `✅ Datos limpiados<br>
+                     Secciones limpiadas: ${clearedCount}<br>
+                     Nota: Algunos servidores no soportan eliminación`);
+            } catch (error) {
+                showResult('clear-result', `❌ Error limpiando datos: ${error.message}`, false);
+            }
+        }
+
+        async function testSaveCMSData() {
+            try {
+                const testData = {
+                    title: 'Test Contacto',
+                    description: 'Datos de prueba para el CMS de contacto'
+                };
+                
+                const response = await fetch(`${API_BASE_URL}/cms/save`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        section: 'contacto-banner',
+                        data: testData
+                    })
+                });
+                
+                if (response.ok) {
+                    showResult('save-result', 
+                        `✅ Datos guardados correctamente<br>
+                         Sección: contacto-banner<br>
+                         Datos: ${JSON.stringify(testData)}`);
+                } else {
+                    showResult('save-result', `❌ Error guardando datos: ${response.status}`, false);
+                }
+            } catch (error) {
+                showResult('save-result', `❌ Error guardando datos: ${error.message}`, false);
+            }
+        }
+
+        function testSync() {
+            try {
+                if (typeof window.CMSSync !== 'undefined') {
+                    const cmsSync = window.CMSSync;
+                    cmsSync.init();
+                    showResult('sync-result', 
+                        `✅ Sincronización inicializada<br>
+                         Página actual: ${cmsSync.currentPage}<br>
+                         Datos CMS cargados: ${Object.keys(cmsSync.cmsData || {}).length} secciones`);
+                } else {
+                    showResult('sync-result', '❌ CMSSync no está disponible', false);
+                }
+            } catch (error) {
+                showResult('sync-result', `❌ Error en sincronización: ${error.message}`, false);
+            }
+        }
+
+        // Auto-ejecutar algunas pruebas al cargar
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                testConfig();
+                testServerConnection();
+            }, 500);
+        });
+    </script>
+</body>
+</html>

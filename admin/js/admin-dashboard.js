@@ -768,12 +768,12 @@ function handleImageUpload(event, previewId) {
     const file = event.target.files && event.target.files[0];
     if (!file) return;
 
-    const reader = new FileReader();
+        const reader = new FileReader();
     reader.onload = async function(e) {
-        const preview = document.getElementById(previewId);
-        if (preview) {
+            const preview = document.getElementById(previewId);
+            if (preview) {
             // Set immediate preview using base64 while uploading
-            preview.src = e.target.result;
+                preview.src = e.target.result;
             showCMSNotification('Imagen cargada, subiendo...', 'info');
 
             try {
@@ -786,8 +786,8 @@ function handleImageUpload(event, previewId) {
                 const uploadedUrl = await uploadImageData(e.target.result, filename);
                 if (uploadedUrl) {
                     preview.src = uploadedUrl; // ensure persisted URL is saved
-                    // Mark as changed for saving
-                    markContentChanged();
+                // Mark as changed for saving
+                markContentChanged();
                     showCMSNotification('Imagen subida correctamente', 'success');
                 } else {
                     showCMSNotification('No se pudo subir la imagen. Se usará vista previa local.', 'warning');
@@ -796,9 +796,9 @@ function handleImageUpload(event, previewId) {
                 console.warn('Error uploading image:', err);
                 showCMSNotification('Error subiendo imagen. Se usará vista previa local.', 'error');
             }
-        }
-    };
-    reader.readAsDataURL(file);
+            }
+        };
+        reader.readAsDataURL(file);
 }
 
 // Upload base64 image data to server and return the URL
@@ -1108,7 +1108,7 @@ function collectSectionData(sectionName) {
                 }
             });
             break;
-
+            
         case 'asociaciones-stats':
             data.stats = [];
             const asociacionesStatsItems = document.querySelectorAll('.stats-grid-cms .stat-item-cms');
@@ -1122,7 +1122,7 @@ function collectSectionData(sectionName) {
                 }
             });
             break;
-
+            
         case 'asociaciones-join':
             data.title = document.getElementById('asociaciones-join-title')?.value || '';
             data.description = document.getElementById('asociaciones-join-text')?.value || '';
@@ -1603,6 +1603,72 @@ function collectSectionData(sectionName) {
                 const input = item.querySelector('.cms-input');
                 if (input && input.value.trim()) {
                     data.socialLinks[label] = input.value.trim();
+                }
+            });
+            break;
+            
+        case 'contacto-apoyo':
+            data.title = document.getElementById('contacto-apoyo-title')?.value || '';
+            data.number = document.getElementById('contacto-apoyo-number')?.value || '';
+            data.description = document.getElementById('contacto-apoyo-description')?.value || '';
+            break;
+            
+        case 'contacto-horarios':
+            data.title = document.getElementById('contacto-horarios-title')?.value || '';
+            data.note = document.getElementById('contacto-horarios-note')?.value || '';
+            data.schedules = [];
+            const horarioItems = document.querySelectorAll('#horarios-list-cms .horario-item-cms');
+            horarioItems.forEach(item => {
+                const day = item.querySelector('.horario-day-cms')?.value || '';
+                const time = item.querySelector('.horario-time-cms')?.value || '';
+                if (day.trim() && time.trim()) {
+                    data.schedules.push({ day: day.trim(), time: time.trim() });
+                }
+            });
+            break;
+            
+        case 'contacto-ubicacion':
+            data.title = document.getElementById('contacto-ubicacion-title')?.value || '';
+            data.description = document.getElementById('contacto-ubicacion-description')?.value || '';
+            break;
+            
+        case 'contacto-transporte':
+            data.title = document.getElementById('contacto-transporte-title')?.value || '';
+            data.metro = {
+                title: document.getElementById('contacto-transporte-metro-title')?.value || '',
+                description: document.getElementById('contacto-transporte-metro-description')?.value || ''
+            };
+            data.bus = {
+                title: document.getElementById('contacto-transporte-bus-title')?.value || '',
+                description: document.getElementById('contacto-transporte-bus-description')?.value || ''
+            };
+            data.parking = {
+                title: document.getElementById('contacto-transporte-parking-title')?.value || '',
+                description: document.getElementById('contacto-transporte-parking-description')?.value || ''
+            };
+            break;
+            
+        case 'contacto-accesibilidad':
+            data.title = document.getElementById('contacto-accesibilidad-title')?.value || '';
+            data.features = [];
+            const accesibilidadItems = document.querySelectorAll('#accesibilidad-list-cms .accesibilidad-feature-cms');
+            accesibilidadItems.forEach(item => {
+                if (item.value.trim()) {
+                    data.features.push(item.value.trim());
+                }
+            });
+            break;
+            
+        case 'contacto-faq':
+            data.title = document.getElementById('contacto-faq-title')?.value || '';
+            data.description = document.getElementById('contacto-faq-description')?.value || '';
+            data.questions = [];
+            const faqItems = document.querySelectorAll('#faq-list-cms .faq-item-cms');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question-cms')?.value || '';
+                const answer = item.querySelector('.faq-answer-cms')?.value || '';
+                if (question.trim() && answer.trim()) {
+                    data.questions.push({ question: question.trim(), answer: answer.trim() });
                 }
             });
             break;
@@ -2356,6 +2422,56 @@ function loadSectionData(sectionName, data) {
                 });
             }
             break;
+            
+        case 'contacto-apoyo':
+            if (data.title) document.getElementById('contacto-apoyo-title').value = data.title;
+            if (data.number) document.getElementById('contacto-apoyo-number').value = data.number;
+            if (data.description) document.getElementById('contacto-apoyo-description').value = data.description;
+            break;
+            
+        case 'contacto-horarios':
+            if (data.title) document.getElementById('contacto-horarios-title').value = data.title;
+            if (data.note) document.getElementById('contacto-horarios-note').value = data.note;
+            if (data.schedules && Array.isArray(data.schedules)) {
+                populateHorarios(data.schedules);
+            }
+            break;
+            
+        case 'contacto-ubicacion':
+            if (data.title) document.getElementById('contacto-ubicacion-title').value = data.title;
+            if (data.description) document.getElementById('contacto-ubicacion-description').value = data.description;
+            break;
+            
+        case 'contacto-transporte':
+            if (data.title) document.getElementById('contacto-transporte-title').value = data.title;
+            if (data.metro) {
+                if (data.metro.title) document.getElementById('contacto-transporte-metro-title').value = data.metro.title;
+                if (data.metro.description) document.getElementById('contacto-transporte-metro-description').value = data.metro.description;
+            }
+            if (data.bus) {
+                if (data.bus.title) document.getElementById('contacto-transporte-bus-title').value = data.bus.title;
+                if (data.bus.description) document.getElementById('contacto-transporte-bus-description').value = data.bus.description;
+            }
+            if (data.parking) {
+                if (data.parking.title) document.getElementById('contacto-transporte-parking-title').value = data.parking.title;
+                if (data.parking.description) document.getElementById('contacto-transporte-parking-description').value = data.parking.description;
+            }
+            break;
+            
+        case 'contacto-accesibilidad':
+            if (data.title) document.getElementById('contacto-accesibilidad-title').value = data.title;
+            if (data.features && Array.isArray(data.features)) {
+                populateAccesibilidad(data.features);
+            }
+            break;
+            
+        case 'contacto-faq':
+            if (data.title) document.getElementById('contacto-faq-title').value = data.title;
+            if (data.description) document.getElementById('contacto-faq-description').value = data.description;
+            if (data.questions && Array.isArray(data.questions)) {
+                populateFAQ(data.questions);
+            }
+            break;
     }
 }
 
@@ -2433,7 +2549,13 @@ function saveAllChanges(buttonElement = null) {
         
         // Contacto page
         'contacto-header': collectSectionData('contacto-header'),
-        'contacto-info': collectSectionData('contacto-info')
+        'contacto-info': collectSectionData('contacto-info'),
+        'contacto-apoyo': collectSectionData('contacto-apoyo'),
+        'contacto-horarios': collectSectionData('contacto-horarios'),
+        'contacto-ubicacion': collectSectionData('contacto-ubicacion'),
+        'contacto-transporte': collectSectionData('contacto-transporte'),
+        'contacto-accesibilidad': collectSectionData('contacto-accesibilidad'),
+        'contacto-faq': collectSectionData('contacto-faq')
     };
     
     // Simulate save operation
@@ -2916,7 +3038,7 @@ window.removePrinciple = removePrinciple;
 window.addPressRelease = addPressRelease;
 window.removePressRelease = removePressRelease;
 window.addCategory = addCategory;
-window.removeCategory = removeCategory;
+window.removeCategory = removeCategory; 
 
 // Afiliate CMS Functions
 window.addBeneficioCMS = addBeneficioCMS;
@@ -3011,4 +3133,199 @@ function removeTestimonioCMS(button) {
             testimonio.querySelector('h4').textContent = `Testimonio ${index + 1}`;
         });
     }
+}
+
+// Contacto CMS Functions
+window.addHorarioCMS = addHorarioCMS;
+window.removeHorarioCMS = removeHorarioCMS;
+window.addAccesibilidadCMS = addAccesibilidadCMS;
+window.removeAccesibilidadCMS = removeAccesibilidadCMS;
+window.addFAQCMS = addFAQCMS;
+window.removeFAQCMS = removeFAQCMS;
+
+/**
+ * Add horario to CMS list
+ */
+function addHorarioCMS() {
+    const container = document.getElementById('horarios-list-cms');
+    if (!container) return;
+    
+    const index = container.children.length + 1;
+    const horarioItem = document.createElement('div');
+    horarioItem.className = 'horario-item-cms';
+    horarioItem.innerHTML = `
+        <div class="form-group">
+            <label>Día ${index}</label>
+            <input type="text" class="horario-day-cms" value="">
+        </div>
+        <div class="form-group">
+            <label>Horario ${index}</label>
+            <input type="text" class="horario-time-cms" value="">
+        </div>
+        <button type="button" class="btn-remove-cms" onclick="removeHorarioCMS(this)">×</button>
+    `;
+    container.appendChild(horarioItem);
+}
+
+/**
+ * Remove horario from CMS
+ */
+function removeHorarioCMS(button) {
+    if (confirm('¿Estás seguro de que quieres eliminar este horario?')) {
+        button.parentElement.remove();
+        // Renumber horarios
+        const horarios = document.querySelectorAll('#horarios-list-cms .horario-item-cms');
+        horarios.forEach((horario, index) => {
+            const dayLabel = horario.querySelector('label');
+            const timeLabel = horario.querySelectorAll('label')[1];
+            dayLabel.textContent = `Día ${index + 1}`;
+            timeLabel.textContent = `Horario ${index + 1}`;
+        });
+    }
+}
+
+/**
+ * Add accesibilidad feature to CMS list
+ */
+function addAccesibilidadCMS() {
+    const container = document.getElementById('accesibilidad-list-cms');
+    if (!container) return;
+    
+    const accesibilidadItem = document.createElement('div');
+    accesibilidadItem.className = 'accesibilidad-item-cms';
+    accesibilidadItem.innerHTML = `
+        <input type="text" class="accesibilidad-feature-cms" value="">
+        <button type="button" class="btn-remove-cms" onclick="removeAccesibilidadCMS(this)">×</button>
+    `;
+    container.appendChild(accesibilidadItem);
+}
+
+/**
+ * Remove accesibilidad feature from CMS
+ */
+function removeAccesibilidadCMS(button) {
+    if (confirm('¿Estás seguro de que quieres eliminar esta característica?')) {
+        button.parentElement.remove();
+    }
+}
+
+/**
+ * Add FAQ to CMS list
+ */
+function addFAQCMS() {
+    const container = document.getElementById('faq-list-cms');
+    if (!container) return;
+    
+    const index = container.children.length + 1;
+    const faqItem = document.createElement('div');
+    faqItem.className = 'faq-item-cms';
+    faqItem.innerHTML = `
+        <div class="form-group">
+            <label>Pregunta ${index}</label>
+            <input type="text" class="faq-question-cms" value="">
+        </div>
+        <div class="form-group">
+            <label>Respuesta ${index}</label>
+            <textarea class="faq-answer-cms" rows="3"></textarea>
+        </div>
+        <button type="button" class="btn-remove-cms" onclick="removeFAQCMS(this)">×</button>
+    `;
+    container.appendChild(faqItem);
+}
+
+/**
+ * Remove FAQ from CMS
+ */
+function removeFAQCMS(button) {
+    if (confirm('¿Estás seguro de que quieres eliminar esta pregunta?')) {
+        button.parentElement.remove();
+        // Renumber FAQs
+        const faqs = document.querySelectorAll('#faq-list-cms .faq-item-cms');
+        faqs.forEach((faq, index) => {
+            const questionLabel = faq.querySelector('label');
+            const answerLabel = faq.querySelectorAll('label')[1];
+            questionLabel.textContent = `Pregunta ${index + 1}`;
+            answerLabel.textContent = `Respuesta ${index + 1}`;
+        });
+    }
 } 
+
+/**
+ * Populate horarios list
+ */
+function populateHorarios(schedules) {
+    const container = document.getElementById('horarios-list-cms');
+    if (!container) return;
+    
+    // Clear existing items
+    container.innerHTML = '';
+    
+    // Add each schedule
+    schedules.forEach((schedule, index) => {
+        const horarioItem = document.createElement('div');
+        horarioItem.className = 'horario-item-cms';
+        horarioItem.innerHTML = `
+            <div class="form-group">
+                <label>Día ${index + 1}</label>
+                <input type="text" class="horario-day-cms" value="${schedule.day || ''}">
+            </div>
+            <div class="form-group">
+                <label>Horario ${index + 1}</label>
+                <input type="text" class="horario-time-cms" value="${schedule.time || ''}">
+            </div>
+            <button type="button" class="btn-remove-cms" onclick="removeHorarioCMS(this)">×</button>
+        `;
+        container.appendChild(horarioItem);
+    });
+}
+
+/**
+ * Populate accesibilidad features list
+ */
+function populateAccesibilidad(features) {
+    const container = document.getElementById('accesibilidad-list-cms');
+    if (!container) return;
+    
+    // Clear existing items
+    container.innerHTML = '';
+    
+    // Add each feature
+    features.forEach(feature => {
+        const accesibilidadItem = document.createElement('div');
+        accesibilidadItem.className = 'accesibilidad-item-cms';
+        accesibilidadItem.innerHTML = `
+            <input type="text" class="accesibilidad-feature-cms" value="${feature || ''}">
+            <button type="button" class="btn-remove-cms" onclick="removeAccesibilidadCMS(this)">×</button>
+        `;
+        container.appendChild(accesibilidadItem);
+    });
+}
+
+/**
+ * Populate FAQ list
+ */
+function populateFAQ(questions) {
+    const container = document.getElementById('faq-list-cms');
+    if (!container) return;
+    
+    // Clear existing items
+    container.innerHTML = '';
+    
+    // Add each question
+    questions.forEach((faq, index) => {
+        const faqItem = document.createElement('div');
+        faqItem.className = 'faq-item-cms';
+        faqItem.innerHTML = `
+            <div class="form-group">
+                <label>Pregunta ${index + 1}</label>
+                <input type="text" class="faq-question-cms" value="${faq.question || ''}">
+            </div>
+            <div class="form-group">
+                <label>Respuesta ${index + 1}</label>
+                <textarea class="faq-answer-cms" rows="3">${faq.answer || ''}</textarea>
+            </div>
+            <button type="button" class="btn-remove-cms" onclick="removeFAQCMS(this)">×</button>
+        `;
+        container.appendChild(faqItem);
+    });
+}
