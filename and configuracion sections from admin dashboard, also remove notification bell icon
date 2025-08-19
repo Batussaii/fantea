@@ -1,0 +1,77 @@
+[1mdiff --git a/admin/dashboard.html b/admin/dashboard.html[m
+[1mindex 987c75d..8387975 100644[m
+[1m--- a/admin/dashboard.html[m
+[1m+++ b/admin/dashboard.html[m
+[36m@@ -29,10 +29,6 @@[m
+                 <span class="user-role" id="userRole">admin</span>[m
+             </div>[m
+             <div class="user-actions">[m
+[31m-                <button class="btn-icon" title="Notificaciones">[m
+[31m-                    <i class="fas fa-bell"></i>[m
+[31m-                    <span class="notification-badge">3</span>[m
+[31m-                </button>[m
+                 <button class="btn-icon" onclick="logout()" title="Cerrar sesión">[m
+                     <i class="fas fa-sign-out-alt"></i>[m
+                 </button>[m
+[36m@@ -79,20 +75,6 @@[m
+                             <i class="fas fa-folder-open"></i>[m
+                             <span>Archivos</span>[m
+                         </a></li>[m
+[31m-                        <li><a href="#afiliaciones" class="menu-item" data-section="afiliaciones">[m
+[31m-                            <i class="fas fa-users"></i>[m
+[31m-                            <span>Afiliaciones</span>[m
+[31m-                        </a></li>[m
+[31m-                    </ul>[m
+[31m-                </div>[m
+[31m-[m
+[31m-                <div class="menu-section">[m
+[31m-                    <h4>Configuración</h4>[m
+[31m-                    <ul class="menu-list">[m
+[31m-                        <li><a href="#configuracion" class="menu-item" data-section="configuracion">[m
+[31m-                            <i class="fas fa-cog"></i>[m
+[31m-                            <span>Configuración</span>[m
+[31m-                        </a></li>[m
+                     </ul>[m
+                 </div>[m
+             </div>[m
+[36m@@ -246,10 +228,6 @@[m
+                                 <i class="fas fa-cloud-upload-alt"></i>[m
+                                 <span>Subir Archivo</span>[m
+                             </button>[m
+[31m-                            <button class="action-card" onclick="switchSection('afiliaciones')">[m
+[31m-                                <i class="fas fa-user-check"></i>[m
+[31m-                                <span>Revisar Afiliaciones</span>[m
+[31m-                            </button>[m
+                         </div>[m
+                     </div>[m
+                 </div>[m
+[36m@@ -5136,29 +5114,7 @@[m
+                 </div>[m
+             </section>[m
+ [m
+[31m-            <section id="afiliaciones-content" class="content-section">[m
+[31m-                <div class="section-header">[m
+[31m-                    <h1>Gestión de Afiliaciones</h1>[m
+[31m-                    <p>Revisa y gestiona solicitudes de afiliación</p>[m
+[31m-                </div>[m
+[31m-                <div class="coming-soon">[m
+[31m-                    <i class="fas fa-tools"></i>[m
+[31m-                    <h3>Sección en desarrollo</h3>[m
+[31m-                    <p>Esta funcionalidad estará disponible próximamente</p>[m
+[31m-                </div>[m
+[31m-            </section>[m
+ [m
+[31m-            <section id="configuracion-content" class="content-section">[m
+[31m-                <div class="section-header">[m
+[31m-                    <h1>Configuración</h1>[m
+[31m-                    <p>Ajustes generales del panel y del sitio web</p>[m
+[31m-                </div>[m
+[31m-                <div class="coming-soon">[m
+[31m-                    <i class="fas fa-tools"></i>[m
+[31m-                    <h3>Sección en desarrollo</h3>[m
+[31m-                    <p>Esta funcionalidad estará disponible próximamente</p>[m
+[31m-                </div>[m
+[31m-            </section>[m
+         </main>[m
+     </div>[m
+ [m

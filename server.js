@@ -310,6 +310,14 @@ app.get('/api/files/info', async (req, res) => {
             return res.status(404).json({ success: false, error: 'Archivo no encontrado' });
         }
 
+        // Registrar la descarga
+        try {
+            await recordDownload(filename, type);
+        } catch (error) {
+            console.error('Error registrando descarga:', error);
+            // No fallar la descarga si hay error en el registro
+        }
+
         // Obtener información del archivo
         const stats = await fs.stat(filePath);
         const ext = path.extname(filename).toLowerCase();
@@ -379,6 +387,141 @@ app.get('/api/files/info', async (req, res) => {
         res.json({ success: true, message: 'Archivo eliminado correctamente' });
     } catch (error) {
         console.error('Error eliminando archivo:', error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// Archivo para almacenar estadísticas
+const STATS_FILE = path.join(__dirname, 'data', 'stats.json');
+
+// Función para cargar estadísticas
+async function loadStats() {
+    try {
+        const statsData = await fs.readFile(STATS_FILE, 'utf8');
+        return JSON.parse(statsData);
+    } catch (error) {
+        // Si el archivo no existe, crear estadísticas iniciales
+        const initialStats = {
+            downloads: {
+                total: 0,
+                thisMonth: 0,
+                lastMonth: 0,
+                history: []
+            },
+            news: {
+                total: 0,
+                thisMonth: 0,
+                lastMonth: 0
+            },
+            events: {
+                total: 0,
+                thisMonth: 0,
+                lastMonth: 0
+            },
+            associations: {
+                total: 0,
+                thisMonth: 0,
+                lastMonth: 0
+            },
+            lastUpdated: new Date().toISOString()
+        };
+        
+        await fs.writeFile(STATS_FILE, JSON.stringify(initialStats, null, 2));
+        return initialStats;
+    }
+}
+
+// Función para guardar estadísticas
+async function saveStats(stats) {
+    stats.lastUpdated = new Date().toISOString();
+    await fs.writeFile(STATS_FILE, JSON.stringify(stats, null, 2));
+}
+
+// Función para registrar una descarga
+async function recordDownload(filename, type = 'statutes') {
+    const stats = await loadStats();
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    const currentYear = now.getFullYear();
+    
+    // Incrementar contadores
+    stats.downloads.total++;
+    stats.downloads.thisMonth++;
+    
+    // Agregar a historial
+    stats.downloads.history.push({
+        filename,
+        type,
+        timestamp: now.toISOString(),
+        month: currentMonth,
+        year: currentYear
+    });
+    
+    // Mantener solo los últimos 100 registros
+    if (stats.downloads.history.length > 100) {
+        stats.downloads.history = stats.downloads.history.slice(-100);
+    }
+    
+    await saveStats(stats);
+    return stats.downloads;
+}
+
+// Función para obtener estadísticas del dashboard
+async function getDashboardStats() {
+    const stats = await loadStats();
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    const currentYear = now.getFullYear();
+    
+    // Calcular descargas del mes anterior
+    const lastMonthDownloads = stats.downloads.history.filter(record => {
+        const recordDate = new Date(record.timestamp);
+        return recordDate.getMonth() === (currentMonth - 1 + 12) % 12 && 
+               recordDate.getFullYear() === (currentMonth === 0 ? currentYear - 1 : currentYear);
+    }).length;
+    
+    // Calcular cambio respecto al mes anterior
+    const downloadChange = stats.downloads.thisMonth - lastMonthDownloads;
+    
+    return {
+        downloads: {
+            current: stats.downloads.total,
+            change: downloadChange
+        },
+        news: {
+            current: stats.news.total,
+            change: stats.news.thisMonth
+        },
+        events: {
+            current: stats.events.total,
+            change: stats.events.thisMonth
+        },
+        associations: {
+            current: stats.associations.total,
+            change: stats.associations.thisMonth
+        }
+    };
+}
+
+// API para estadísticas del dashboard
+app.get('/api/dashboard/stats', async (req, res) => {
+    try {
+        const stats = await getDashboardStats();
+        res.json({ success: true, data: stats });
+    } catch (error) {
+        console.error('Error obteniendo estadísticas del dashboard:', error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// API para obtener historial de descargas
+app.get('/api/dashboard/downloads/history', async (req, res) => {
+    try {
+        const stats = await loadStats();
+        const history = stats.downloads.history.slice(-20); // Últimas 20 descargas
+        res.json({ success: true, data: history });
+    } catch (error) {
+        console.error('Error obteniendo historial de descargas:', error);
         res.status(500).json({ success: false, error: error.message });
     }
 });

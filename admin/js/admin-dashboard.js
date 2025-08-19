@@ -164,20 +164,49 @@ function loadSectionSpecificData(section) {
 /**
  * Cargar datos del dashboard
  */
-function loadDashboardData() {
-    // Simular carga de datos
-    const stats = {
-        news: { current: 24, change: 3 },
-        events: { current: 8, change: 2 },
-        associations: { current: 35, change: 1 },
-        downloads: { current: 156, change: 23 }
-    };
-    
-    // Actualizar estadísticas con animación
-    animateStats(stats);
-    
-    // Cargar actividad reciente
-    loadRecentActivity();
+async function loadDashboardData() {
+    try {
+        // Mostrar loading
+        const statCards = document.querySelectorAll('.stat-card h3');
+        statCards.forEach(card => {
+            card.textContent = '...';
+        });
+        
+        // Obtener datos reales de la API
+        const response = await fetch('/api/dashboard/stats');
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+        
+        const result = await response.json();
+        if (!result.success) {
+            throw new Error(result.error || 'Error obteniendo estadísticas');
+        }
+        
+        const stats = result.data;
+        
+        // Actualizar estadísticas con animación
+        animateStats(stats);
+        
+        // Cargar actividad reciente
+        loadRecentActivity();
+        
+    } catch (error) {
+        console.error('Error cargando datos del dashboard:', error);
+        
+        // Fallback a datos demo si hay error
+        const fallbackStats = {
+            news: { current: 0, change: 0 },
+            events: { current: 0, change: 0 },
+            associations: { current: 0, change: 0 },
+            downloads: { current: 0, change: 0 }
+        };
+        
+        animateStats(fallbackStats);
+        
+        // Mostrar notificación de error
+        showNotification('Error cargando estadísticas. Mostrando datos demo.', 'warning');
+    }
 }
 
 /**
@@ -232,47 +261,109 @@ function animateNumber(element, start, end, duration) {
 /**
  * Cargar actividad reciente
  */
-function loadRecentActivity() {
-    const activities = [
-        {
-            type: 'news',
-            icon: 'fas fa-plus',
-            title: 'Nueva noticia publicada: "Jornada de Inclusión Educativa"',
-            time: 'Hace 2 horas'
-        },
-        {
-            type: 'event',
-            icon: 'fas fa-calendar-plus',
-            title: 'Evento creado: "Taller para Familias - Sevilla"',
-            time: 'Hace 5 horas'
-        },
-        {
-            type: 'affiliation',
-            icon: 'fas fa-user-plus',
-            title: 'Nueva afiliación: Asociación ASPANPAL Huelva',
-            time: 'Hace 1 día'
-        },
-        {
-            type: 'document',
-            icon: 'fas fa-file-upload',
-            title: 'Documento actualizado: Guía de Buenas Prácticas',
-            time: 'Hace 2 días'
+async function loadRecentActivity() {
+    try {
+        // Obtener historial de descargas real
+        const response = await fetch('/api/dashboard/downloads/history');
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
         }
-    ];
+        
+        const result = await response.json();
+        if (!result.success) {
+            throw new Error(result.error || 'Error obteniendo historial');
+        }
+        
+        const downloadHistory = result.data;
+        
+        // Crear actividades basadas en descargas reales
+        const activities = downloadHistory.slice(0, 4).map(download => {
+            const downloadDate = new Date(download.timestamp);
+            const timeAgo = getTimeAgo(downloadDate);
+            
+            return {
+                type: 'document',
+                icon: 'fas fa-download',
+                title: `Descarga de Estatutos: ${download.filename}`,
+                time: timeAgo
+            };
+        });
+        
+        // Si no hay descargas recientes, mostrar actividades demo
+        if (activities.length === 0) {
+            activities.push(
+                {
+                    type: 'info',
+                    icon: 'fas fa-info-circle',
+                    title: 'Sistema de estadísticas activado',
+                    time: 'Recién'
+                }
+            );
+        }
+        
+        const activityList = document.querySelector('.activity-list');
+        if (activityList) {
+            activityList.innerHTML = activities.map(activity => `
+                <div class="activity-item">
+                    <div class="activity-icon ${activity.type}">
+                        <i class="${activity.icon}"></i>
+                    </div>
+                    <div class="activity-content">
+                        <p><strong>${activity.title.split(':')[0]}:</strong> ${activity.title.split(':')[1] || ''}</p>
+                        <small>${activity.time}</small>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+    } catch (error) {
+        console.error('Error cargando actividad reciente:', error);
+        
+        // Fallback a actividades demo
+        const activities = [
+            {
+                type: 'info',
+                icon: 'fas fa-info-circle',
+                title: 'Sistema de estadísticas en desarrollo',
+                time: 'Recién'
+            }
+        ];
+        
+        const activityList = document.querySelector('.activity-list');
+        if (activityList) {
+            activityList.innerHTML = activities.map(activity => `
+                <div class="activity-item">
+                    <div class="activity-icon ${activity.type}">
+                        <i class="${activity.icon}"></i>
+                    </div>
+                    <div class="activity-content">
+                        <p><strong>${activity.title.split(':')[0]}:</strong> ${activity.title.split(':')[1] || ''}</p>
+                        <small>${activity.time}</small>
+                    </div>
+                </div>
+            `).join('');
+        }
+    }
+}
+
+/**
+ * Función auxiliar para calcular tiempo transcurrido
+ */
+function getTimeAgo(date) {
+    const now = new Date();
+    const diffInSeconds = Math.floor((now - date) / 1000);
     
-    const activityList = document.querySelector('.activity-list');
-    if (activityList) {
-        activityList.innerHTML = activities.map(activity => `
-            <div class="activity-item">
-                <div class="activity-icon ${activity.type}">
-                    <i class="${activity.icon}"></i>
-                </div>
-                <div class="activity-content">
-                    <p><strong>${activity.title.split(':')[0]}:</strong> ${activity.title.split(':')[1] || ''}</p>
-                    <small>${activity.time}</small>
-                </div>
-            </div>
-        `).join('');
+    if (diffInSeconds < 60) {
+        return 'Hace un momento';
+    } else if (diffInSeconds < 3600) {
+        const minutes = Math.floor(diffInSeconds / 60);
+        return `Hace ${minutes} ${minutes === 1 ? 'minuto' : 'minutos'}`;
+    } else if (diffInSeconds < 86400) {
+        const hours = Math.floor(diffInSeconds / 3600);
+        return `Hace ${hours} ${hours === 1 ? 'hora' : 'horas'}`;
+    } else {
+        const days = Math.floor(diffInSeconds / 86400);
+        return `Hace ${days} ${days === 1 ? 'día' : 'días'}`;
     }
 }
 
