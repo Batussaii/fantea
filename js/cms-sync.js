@@ -1422,18 +1422,28 @@ class CMSSync {
             if (socialLinks.length >= 5) {
                 if (this.cmsData['footer-social'].facebook) {
                     socialLinks[0].href = this.cmsData['footer-social'].facebook;
+                    socialLinks[0].target = '_blank';
+                    socialLinks[0].rel = 'noopener noreferrer';
                 }
                 if (this.cmsData['footer-social'].twitter) {
                     socialLinks[1].href = this.cmsData['footer-social'].twitter;
+                    socialLinks[1].target = '_blank';
+                    socialLinks[1].rel = 'noopener noreferrer';
                 }
                 if (this.cmsData['footer-social'].instagram) {
                     socialLinks[2].href = this.cmsData['footer-social'].instagram;
+                    socialLinks[2].target = '_blank';
+                    socialLinks[2].rel = 'noopener noreferrer';
                 }
                 if (this.cmsData['footer-social'].linkedin) {
                     socialLinks[3].href = this.cmsData['footer-social'].linkedin;
+                    socialLinks[3].target = '_blank';
+                    socialLinks[3].rel = 'noopener noreferrer';
                 }
                 if (this.cmsData['footer-social'].youtube) {
                     socialLinks[4].href = this.cmsData['footer-social'].youtube;
+                    socialLinks[4].target = '_blank';
+                    socialLinks[4].rel = 'noopener noreferrer';
                 }
             }
         }

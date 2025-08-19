@@ -1,0 +1,126 @@
+/* ==========================================================================
+   SOCIAL MEDIA BUTTONS STYLES
+   ========================================================================== */
+
+.social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.social-links a:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.social-links a i {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.social-links a:hover i {
+    transform: scale(1.1);
+}
+
+/* Specific social media colors on hover */
+.social-links a[aria-label="Facebook"]:hover {
+    background: #1877f2;
+    border-color: #1877f2;
+}
+
+.social-links a[aria-label="Twitter"]:hover {
+    background: #1da1f2;
+    border-color: #1da1f2;
+}
+
+.social-links a[aria-label="Instagram"]:hover {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    border-color: #dc2743;
+}
+
+.social-links a[aria-label="LinkedIn"]:hover {
+    background: #0077b5;
+    border-color: #0077b5;
+}
+
+.social-links a[aria-label="YouTube"]:hover {
+    background: #ff0000;
+    border-color: #ff0000;
+}
+
+/* Focus styles for accessibility */
+.social-links a:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+/* Loading state */
+.social-links a.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.social-links a.loading i {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .social-links {
+        gap: 8px;
+        margin-top: 15px;
+    }
+    
+    .social-links a {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .social-links a i {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-links {
+        gap: 6px;
+        margin-top: 12px;
+    }
+    
+    .social-links a {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .social-links a i {
+        font-size: 14px;
+    }
+}
