@@ -400,27 +400,27 @@ async function loadStats() {
         const statsData = await fs.readFile(STATS_FILE, 'utf8');
         return JSON.parse(statsData);
     } catch (error) {
-        // Si el archivo no existe, crear estadísticas iniciales con valores realistas
+        // Si el archivo no existe, crear estadísticas iniciales
         const initialStats = {
             downloads: {
-                total: 156,
-                thisMonth: 23,
-                lastMonth: 18,
+                total: 0,
+                thisMonth: 0,
+                lastMonth: 0,
                 history: []
             },
             news: {
-                total: 24,
-                thisMonth: 3,
-                lastMonth: 2
+                total: 0,
+                thisMonth: 0,
+                lastMonth: 0
             },
             events: {
-                total: 8,
-                thisMonth: 2,
-                lastMonth: 1
+                total: 0,
+                thisMonth: 0,
+                lastMonth: 0
             },
             associations: {
-                total: 35,
-                thisMonth: 1,
+                total: 0,
+                thisMonth: 0,
                 lastMonth: 0
             },
             lastUpdated: new Date().toISOString()
@@ -464,6 +464,58 @@ async function recordDownload(filename, type = 'statutes') {
     
     await saveStats(stats);
     return stats.downloads;
+}
+
+// Función para registrar una nueva noticia
+async function recordNewsCreated() {
+    const stats = await loadStats();
+    stats.news.total++;
+    stats.news.thisMonth++;
+    await saveStats(stats);
+    return stats.news;
+}
+
+// Función para registrar un nuevo evento
+async function recordEventCreated() {
+    const stats = await loadStats();
+    stats.events.total++;
+    stats.events.thisMonth++;
+    await saveStats(stats);
+    return stats.events;
+}
+
+// Función para registrar una nueva asociación
+async function recordAssociationCreated() {
+    const stats = await loadStats();
+    stats.associations.total++;
+    stats.associations.thisMonth++;
+    await saveStats(stats);
+    return stats.associations;
+}
+
+// Función para actualizar contadores mensuales (ejecutar al inicio de cada mes)
+async function updateMonthlyCounters() {
+    const stats = await loadStats();
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    
+    // Si es un nuevo mes, mover contadores
+    if (stats.lastMonth !== currentMonth) {
+        stats.downloads.lastMonth = stats.downloads.thisMonth;
+        stats.downloads.thisMonth = 0;
+        
+        stats.news.lastMonth = stats.news.thisMonth;
+        stats.news.thisMonth = 0;
+        
+        stats.events.lastMonth = stats.events.thisMonth;
+        stats.events.thisMonth = 0;
+        
+        stats.associations.lastMonth = stats.associations.thisMonth;
+        stats.associations.thisMonth = 0;
+        
+        stats.lastMonth = currentMonth;
+        await saveStats(stats);
+    }
 }
 
 // Función para obtener estadísticas del dashboard
@@ -522,6 +574,51 @@ app.get('/api/dashboard/downloads/history', async (req, res) => {
         res.json({ success: true, data: history });
     } catch (error) {
         console.error('Error obteniendo historial de descargas:', error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// API para registrar nueva noticia
+app.post('/api/dashboard/record/news', async (req, res) => {
+    try {
+        const newsStats = await recordNewsCreated();
+        res.json({ success: true, data: newsStats });
+    } catch (error) {
+        console.error('Error registrando noticia:', error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// API para registrar nuevo evento
+app.post('/api/dashboard/record/event', async (req, res) => {
+    try {
+        const eventStats = await recordEventCreated();
+        res.json({ success: true, data: eventStats });
+    } catch (error) {
+        console.error('Error registrando evento:', error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// API para registrar nueva asociación
+app.post('/api/dashboard/record/association', async (req, res) => {
+    try {
+        const associationStats = await recordAssociationCreated();
+        res.json({ success: true, data: associationStats });
+    } catch (error) {
+        console.error('Error registrando asociación:', error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// API para actualizar contadores mensuales
+app.post('/api/dashboard/update-monthly', async (req, res) => {
+    try {
+        await updateMonthlyCounters();
+        const stats = await getDashboardStats();
+        res.json({ success: true, data: stats });
+    } catch (error) {
+        console.error('Error actualizando contadores mensuales:', error);
         res.status(500).json({ success: false, error: error.message });
     }
 });

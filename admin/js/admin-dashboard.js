@@ -17,13 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Inicializar componentes
     initializeNavigation();
+    initializeChart();
     loadUserInfo();
     startRealTimeUpdates();
     
-    // Cargar datos iniciales (async)
-    initializeChart().then(() => {
-        loadDashboardData();
-    });
+    // Cargar datos iniciales
+    loadDashboardData();
 });
 
 /**
@@ -371,12 +370,12 @@ function getTimeAgo(date) {
 /**
  * Inicializar gráfico de actividad
  */
-async function initializeChart() {
+function initializeChart() {
     const ctx = document.getElementById('activityChart');
     if (!ctx) return;
     
-    // Datos iniciales con valores por defecto
-    let chartData = {
+    // Datos de ejemplo para el gráfico
+    const chartData = {
         labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
         datasets: [
             {
@@ -397,23 +396,6 @@ async function initializeChart() {
             }
         ]
     };
-    
-    // Intentar cargar datos reales del servidor
-    try {
-        const response = await fetch('/api/dashboard/stats');
-        const stats = await response.json();
-        
-        // Generar datos lógicos basados en estadísticas reales
-        const visitsData = generateWeeklyVisitsData(stats);
-        const downloadsData = generateWeeklyDownloadsData(stats);
-        
-        chartData.datasets[0].data = visitsData;
-        chartData.datasets[1].data = downloadsData;
-        
-    } catch (error) {
-        console.error('Error loading initial chart data:', error);
-        // Mantener datos por defecto si hay error
-    }
     
     activityChart = new Chart(ctx, {
         type: 'line',
@@ -469,209 +451,10 @@ async function initializeChart() {
 /**
  * Actualizar datos del gráfico
  */
-async function updateChartData(period) {
+function updateChartData(period) {
     if (!activityChart) return;
     
-    try {
-        // Obtener estadísticas reales del servidor
-        const response = await fetch('/api/dashboard/stats');
-        const stats = await response.json();
-        
-        // Generar datos lógicos basados en estadísticas reales
-        let visitsData, downloadsData;
-        
-        switch (period) {
-            case '7 días':
-                // Generar datos de la última semana con patrones lógicos
-                visitsData = generateWeeklyVisitsData(stats);
-                downloadsData = generateWeeklyDownloadsData(stats);
-                break;
-            case '30 días':
-                // Generar datos del último mes con patrones lógicos
-                visitsData = generateMonthlyVisitsData(stats);
-                downloadsData = generateMonthlyDownloadsData(stats);
-                break;
-            case '3 meses':
-                // Generar datos de los últimos 3 meses con patrones lógicos
-                visitsData = generateQuarterlyVisitsData(stats);
-                downloadsData = generateQuarterlyDownloadsData(stats);
-                break;
-            default:
-                return;
-        }
-        
-        // Actualizar etiquetas según el período
-        const labels = generateChartLabels(period);
-        
-        activityChart.data.labels = labels;
-        activityChart.data.datasets[0].data = visitsData;
-        activityChart.data.datasets[1].data = downloadsData;
-        activityChart.update('active');
-        
-    } catch (error) {
-        console.error('Error updating chart data:', error);
-        // Fallback a datos demo mejorados
-        updateChartDataWithFallback(period);
-    }
-}
-
-/**
- * Generar datos de visitas semanales con patrones lógicos
- */
-function generateWeeklyVisitsData(stats) {
-    const baseVisits = Math.max(stats.downloads.total * 50, 200); // Relación lógica con descargas
-    const days = 7;
-    const data = [];
-    
-    for (let i = 0; i < days; i++) {
-        // Patrón: más visitas en días laborables, menos en fin de semana
-        const dayOfWeek = (new Date().getDay() - days + i + 7) % 7;
-        const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-        
-        let multiplier = isWeekend ? 0.4 : 1.0;
-        
-        // Añadir variabilidad natural (±20%)
-        const variation = 0.8 + Math.random() * 0.4;
-        
-        const dailyVisits = Math.round(baseVisits * multiplier * variation);
-        data.push(dailyVisits);
-    }
-    
-    return data;
-}
-
-/**
- * Generar datos de descargas semanales con patrones lógicos
- */
-function generateWeeklyDownloadsData(stats) {
-    const totalDownloads = stats.downloads.total;
-    const days = 7;
-    const data = [];
-    
-    for (let i = 0; i < days; i++) {
-        // Patrón: más descargas en días laborables, menos en fin de semana
-        const dayOfWeek = (new Date().getDay() - days + i + 7) % 7;
-        const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-        
-        let multiplier = isWeekend ? 0.3 : 1.0;
-        
-        // Añadir variabilidad natural (±30%)
-        const variation = 0.7 + Math.random() * 0.6;
-        
-        // Calcular descargas diarias basadas en el total real
-        const avgDailyDownloads = Math.max(totalDownloads / 30, 1); // Promedio mensual
-        const dailyDownloads = Math.round(avgDailyDownloads * multiplier * variation);
-        
-        data.push(dailyDownloads);
-    }
-    
-    return data;
-}
-
-/**
- * Generar datos de visitas mensuales
- */
-function generateMonthlyVisitsData(stats) {
-    const baseVisits = Math.max(stats.downloads.total * 50, 200);
-    const weeks = 4;
-    const data = [];
-    
-    for (let i = 0; i < weeks; i++) {
-        // Patrón: crecimiento gradual durante el mes
-        const weekMultiplier = 0.8 + (i * 0.2);
-        const variation = 0.9 + Math.random() * 0.2;
-        
-        const weeklyVisits = Math.round(baseVisits * weekMultiplier * variation);
-        data.push(weeklyVisits);
-    }
-    
-    return data;
-}
-
-/**
- * Generar datos de descargas mensuales
- */
-function generateMonthlyDownloadsData(stats) {
-    const totalDownloads = stats.downloads.total;
-    const weeks = 4;
-    const data = [];
-    
-    for (let i = 0; i < weeks; i++) {
-        // Patrón: crecimiento gradual durante el mes
-        const weekMultiplier = 0.8 + (i * 0.2);
-        const variation = 0.9 + Math.random() * 0.2;
-        
-        const avgWeeklyDownloads = Math.max(totalDownloads / 4, 1);
-        const weeklyDownloads = Math.round(avgWeeklyDownloads * weekMultiplier * variation);
-        
-        data.push(weeklyDownloads);
-    }
-    
-    return data;
-}
-
-/**
- * Generar datos de visitas trimestrales
- */
-function generateQuarterlyVisitsData(stats) {
-    const baseVisits = Math.max(stats.downloads.total * 50, 200);
-    const months = 3;
-    const data = [];
-    
-    for (let i = 0; i < months; i++) {
-        // Patrón: crecimiento mensual con variaciones
-        const monthMultiplier = 0.9 + (i * 0.3);
-        const variation = 0.85 + Math.random() * 0.3;
-        
-        const monthlyVisits = Math.round(baseVisits * monthMultiplier * variation);
-        data.push(monthlyVisits);
-    }
-    
-    return data;
-}
-
-/**
- * Generar datos de descargas trimestrales
- */
-function generateQuarterlyDownloadsData(stats) {
-    const totalDownloads = stats.downloads.total;
-    const months = 3;
-    const data = [];
-    
-    for (let i = 0; i < months; i++) {
-        // Patrón: crecimiento mensual con variaciones
-        const monthMultiplier = 0.9 + (i * 0.3);
-        const variation = 0.85 + Math.random() * 0.3;
-        
-        const avgMonthlyDownloads = Math.max(totalDownloads / 3, 1);
-        const monthlyDownloads = Math.round(avgMonthlyDownloads * monthMultiplier * variation);
-        
-        data.push(monthlyDownloads);
-    }
-    
-    return data;
-}
-
-/**
- * Generar etiquetas del gráfico según el período
- */
-function generateChartLabels(period) {
-    switch (period) {
-        case '7 días':
-            return ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
-        case '30 días':
-            return ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4'];
-        case '3 meses':
-            return ['Mes 1', 'Mes 2', 'Mes 3'];
-        default:
-            return ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
-    }
-}
-
-/**
- * Fallback con datos demo mejorados
- */
-function updateChartDataWithFallback(period) {
+    // Datos simulados según el período
     let newData;
     
     switch (period) {
@@ -712,7 +495,25 @@ function loadEventsData() {
 /**
  * Abrir editor de noticias
  */
-function openNewsEditor() {
+async function openNewsEditor() {
+    try {
+        // Registrar la creación de noticia
+        const response = await fetch('/api/dashboard/record/news', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (response.ok) {
+            // Actualizar dashboard con nuevos datos
+            loadDashboardData();
+            showNotification('Noticia registrada en estadísticas', 'success');
+        }
+    } catch (error) {
+        console.error('Error registrando noticia:', error);
+    }
+    
     alert('Editor de noticias - Funcionalidad en desarrollo');
     // Implementar modal del editor de noticias
 }
@@ -720,7 +521,25 @@ function openNewsEditor() {
 /**
  * Abrir editor de eventos
  */
-function openEventEditor() {
+async function openEventEditor() {
+    try {
+        // Registrar la creación de evento
+        const response = await fetch('/api/dashboard/record/event', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (response.ok) {
+            // Actualizar dashboard con nuevos datos
+            loadDashboardData();
+            showNotification('Evento registrado en estadísticas', 'success');
+        }
+    } catch (error) {
+        console.error('Error registrando evento:', error);
+    }
+    
     alert('Editor de eventos - Funcionalidad en desarrollo');
     // Implementar modal del editor de eventos
 }
@@ -750,6 +569,32 @@ function startRealTimeUpdates() {
             loadDashboardData();
         }
     }, 300000);
+    
+    // Verificar y actualizar contadores mensuales al cargar la página
+    updateMonthlyCounters();
+}
+
+/**
+ * Actualizar contadores mensuales
+ */
+async function updateMonthlyCounters() {
+    try {
+        const response = await fetch('/api/dashboard/update-monthly', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (response.ok) {
+            const result = await response.json();
+            if (result.success) {
+                console.log('Contadores mensuales actualizados');
+            }
+        }
+    } catch (error) {
+        console.error('Error actualizando contadores mensuales:', error);
+    }
 }
 
 /**
