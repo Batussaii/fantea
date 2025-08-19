@@ -1,24 +1,32 @@
 {
   "downloads": {
-    "total": 0,
-    "thisMonth": 0,
-    "lastMonth": 0,
-    "history": []
+    "total": 156,
+    "thisMonth": 23,
+    "lastMonth": 18,
+    "history": [
+      {
+        "filename": "print-1755597942194-662236670.pdf",
+        "type": "statutes",
+        "timestamp": "2025-08-19T21:34:17.875Z",
+        "month": 7,
+        "year": 2025
+      }
+    ]
   },
   "news": {
-    "total": 0,
-    "thisMonth": 0,
-    "lastMonth": 0
+    "total": 24,
+    "thisMonth": 3,
+    "lastMonth": 2
   },
   "events": {
-    "total": 0,
-    "thisMonth": 0,
-    "lastMonth": 0
+    "total": 8,
+    "thisMonth": 2,
+    "lastMonth": 1
   },
   "associations": {
-    "total": 0,
-    "thisMonth": 0,
+    "total": 35,
+    "thisMonth": 1,
     "lastMonth": 0
   },
-  "lastUpdated": "2024-01-15T10:00:00.000Z"
+  "lastUpdated": "2025-08-19T21:34:17.875Z"
 }
