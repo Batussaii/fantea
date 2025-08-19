@@ -2318,3 +2318,139 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* ==========================================================================
+   AFILIATE CMS SPECIFIC STYLES
+   ========================================================================== */
+
+/* List items for CMS */
+.list-item-cms {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: var(--admin-white);
+    border-radius: 8px;
+    border: 1px solid var(--admin-gray-300);
+}
+
+.list-item-cms input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid var(--admin-gray-300);
+    border-radius: 6px;
+    font-size: var(--admin-font-size-base);
+    font-family: inherit;
+}
+
+.list-item-cms input:focus {
+    outline: none;
+    border-color: var(--admin-primary);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.btn-remove-cms {
+    background: var(--admin-danger);
+    color: var(--admin-white);
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--admin-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+}
+
+.btn-remove-cms:hover {
+    background: #c82333;
+    transform: scale(1.05);
+}
+
+/* Testimonio items for CMS */
+.testimonio-item-cms {
+    background: var(--admin-white);
+    border: 1px solid var(--admin-gray-300);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.testimonio-item-cms h4 {
+    margin: 0 0 1rem 0;
+    color: var(--admin-primary);
+    font-size: var(--admin-font-size-lg);
+    font-weight: 600;
+}
+
+.testimonio-item-cms .form-group {
+    margin-bottom: 1rem;
+}
+
+.testimonio-item-cms .form-group:last-child {
+    margin-bottom: 0;
+}
+
+.testimonio-item-cms .btn-danger {
+    margin-top: 1rem;
+}
+
+/* Stats grid for CMS */
+.stats-grid-cms {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.stat-item-cms {
+    background: var(--admin-gray-100);
+    border: 1px solid var(--admin-gray-300);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.stat-item-cms label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--admin-gray-700);
+    font-size: var(--admin-font-size-sm);
+}
+
+.stat-item-cms .cms-input {
+    width: 100%;
+    margin-bottom: 0.75rem;
+}
+
+/* Responsive adjustments for Afiliate CMS */
+@media (max-width: 768px) {
+    .list-item-cms {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+    
+    .list-item-cms input {
+        width: 100%;
+    }
+    
+    .btn-remove-cms {
+        align-self: flex-end;
+        width: auto;
+    }
+    
+    .stats-grid-cms {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .testimonio-item-cms {
+        padding: 1rem;
+    }
+}

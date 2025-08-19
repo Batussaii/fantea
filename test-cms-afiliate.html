@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CMS Afiliate - FANTEA</title>
+    <link rel="stylesheet" href="css/main-colors.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #fff;
+            min-height: 100vh;
+        }
+        
+        .test-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0 0 12px 12px;
+        }
+        
+        .test-header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        
+        .test-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e9ecef;
+        }
+        
+        .test-section h3 {
+            color: var(--primary-color);
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .test-status {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .status-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .links {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #e9ecef;
+            border-radius: 8px;
+        }
+        
+        .links h4 {
+            margin: 0 0 1rem 0;
+            color: var(--primary-color);
+        }
+        
+        .links a {
+            display: block;
+            margin: 0.5rem 0;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <h1>🧪 Test CMS Afiliate - FANTEA</h1>
+            <p>Página de pruebas para verificar el funcionamiento del CMS de Afiliate</p>
+        </div>
+        
+        <!-- Config Test -->
+        <div class="test-section">
+            <h3><i class="fas fa-cog"></i> Test de Configuración</h3>
+            <div id="config-status" class="test-status status-info">
+                Verificando configuración...
+            </div>
+            <button class="btn btn-primary" onclick="testConfig()">
+                <i class="fas fa-cog"></i> Probar Configuración
+            </button>
+        </div>
+
+        <!-- Server Connection Test -->
+        <div class="test-section">
+            <h3><i class="fas fa-server"></i> Test de Conexión al Servidor</h3>
+            <div id="server-status" class="test-status status-info">
+                Verificando conexión al servidor...
+            </div>
+            <button class="btn btn-primary" onclick="testServerConnection()">
+                <i class="fas fa-server"></i> Probar Conexión
+            </button>
+        </div>
+
+        <!-- CMS Data Test -->
+        <div class="test-section">
+            <h3><i class="fas fa-database"></i> Test de Datos CMS</h3>
+            <div id="cms-data-status" class="test-status status-info">
+                Verificando datos CMS...
+            </div>
+            <button class="btn btn-primary" onclick="testCMSData()">
+                <i class="fas fa-database"></i> Cargar Datos CMS
+            </button>
+            <button class="btn btn-secondary" onclick="testCMSInit()">
+                <i class="fas fa-play"></i> Probar Inicialización
+            </button>
+        </div>
+
+        <!-- Save Test -->
+        <div class="test-section">
+            <h3><i class="fas fa-save"></i> Test de Guardado</h3>
+            <div id="save-status" class="test-status status-info">
+                Listo para probar guardado...
+            </div>
+            <button class="btn btn-primary" onclick="testSave()">
+                <i class="fas fa-save"></i> Probar Guardado
+            </button>
+            <button class="btn btn-danger" onclick="testClearData()">
+                <i class="fas fa-trash"></i> Limpiar Datos
+            </button>
+        </div>
+
+        <!-- Sync Test -->
+        <div class="test-section">
+            <h3><i class="fas fa-sync"></i> Test de Sincronización</h3>
+            <div id="sync-status" class="test-status status-info">
+                Listo para probar sincronización...
+            </div>
+            <button class="btn btn-primary" onclick="testSync()">
+                <i class="fas fa-sync"></i> Probar Sincronización
+            </button>
+        </div>
+
+        <!-- Links -->
+        <div class="links">
+            <h4><i class="fas fa-link"></i> Enlaces Útiles</h4>
+            <a href="afiliate.html" target="_blank">
+                <i class="fas fa-external-link-alt"></i> Página de Afiliate
+            </a>
+            <a href="cms-afiliate.html" target="_blank">
+                <i class="fas fa-external-link-alt"></i> Dashboard CMS
+            </a>
+            <a href="/api/cms/load" target="_blank">
+                <i class="fas fa-external-link-alt"></i> API - Cargar Datos
+            </a>
+            <a href="http://localhost:3001" target="_blank">
+                <i class="fas fa-external-link-alt"></i> Servidor Local
+            </a>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/cms-afiliate-config.js"></script>
+    <script>
+        // Test de configuración
+        async function testConfig() {
+            const statusDiv = document.getElementById('config-status');
+            
+            try {
+                if (window.AFILIATE_CMS_CONFIG) {
+                    const sections = Object.keys(window.AFILIATE_CMS_CONFIG.sections);
+                    const defaultData = Object.keys(window.AFILIATE_CMS_CONFIG.defaultData);
+                    
+                    statusDiv.className = 'test-status status-success';
+                    statusDiv.innerHTML = `
+                        ✅ Configuración cargada correctamente<br>
+                        📊 Secciones configuradas: ${sections.length}<br>
+                        📝 Datos por defecto: ${defaultData.length} secciones
+                    `;
+                } else {
+                    throw new Error('Configuración no encontrada');
+                }
+            } catch (error) {
+                statusDiv.className = 'test-status status-error';
+                statusDiv.innerHTML = `❌ Error: ${error.message}`;
+            }
+        }
+
+        // Test de conexión al servidor
+        async function testServerConnection() {
+            const statusDiv = document.getElementById('server-status');
+            
+            try {
+                const response = await fetch('/api/cms/load');
+                
+                if (response.ok) {
+                    statusDiv.className = 'test-status status-success';
+                    statusDiv.innerHTML = '✅ Conexión al servidor exitosa';
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                statusDiv.className = 'test-status status-error';
+                statusDiv.innerHTML = `❌ Error de conexión: ${error.message}`;
+            }
+        }
+
+        // Test de datos CMS
+        async function testCMSData() {
+            const statusDiv = document.getElementById('cms-data-status');
+            
+            try {
+                const response = await fetch('/api/cms/load');
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    const sections = Object.keys(data);
+                    
+                    statusDiv.className = 'test-status status-success';
+                    statusDiv.innerHTML = `
+                        ✅ Datos CMS cargados correctamente<br>
+                        📊 Secciones encontradas: ${sections.length}<br>
+                        📝 Secciones: ${sections.join(', ')}
+                    `;
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                statusDiv.className = 'test-status status-error';
+                statusDiv.innerHTML = `❌ Error al cargar datos: ${error.message}`;
+            }
+        }
+
+        // Test de inicialización
+        async function testCMSInit() {
+            const statusDiv = document.getElementById('cms-data-status');
+            
+            try {
+                // Simular inicialización
+                const config = window.AFILIATE_CMS_CONFIG;
+                const testData = config.defaultData['afiliate-header'];
+                
+                const response = await fetch('/api/cms/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'afiliate-header': testData
+                    })
+                });
+                
+                if (response.ok) {
+                    statusDiv.className = 'test-status status-success';
+                    statusDiv.innerHTML = '✅ Inicialización de prueba exitosa';
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                statusDiv.className = 'test-status status-error';
+                statusDiv.innerHTML = `❌ Error en inicialización: ${error.message}`;
+            }
+        }
+
+        // Test de guardado
+        async function testSave() {
+            const statusDiv = document.getElementById('save-status');
+            
+            try {
+                const testData = {
+                    'afiliate-header': {
+                        title: 'Test - Únete a Nosotros',
+                        description: 'Test - Forma parte de la mayor red nacional'
+                    }
+                };
+                
+                const response = await fetch('/api/cms/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                if (response.ok) {
+                    statusDiv.className = 'test-status status-success';
+                    statusDiv.innerHTML = '✅ Guardado de prueba exitoso';
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                statusDiv.className = 'test-status status-error';
+                statusDiv.innerHTML = `❌ Error al guardar: ${error.message}`;
+            }
+        }
+
+        // Test de limpieza de datos
+        async function testClearData() {
+            const statusDiv = document.getElementById('save-status');
+            
+            if (confirm('¿Estás seguro de que quieres limpiar todos los datos CMS? Esta acción no se puede deshacer.')) {
+                try {
+                    const response = await fetch('/api/cms/save', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({})
+                    });
+                    
+                    if (response.ok) {
+                        statusDiv.className = 'test-status status-success';
+                        statusDiv.innerHTML = '✅ Datos limpiados correctamente';
+                    } else {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                } catch (error) {
+                    statusDiv.className = 'test-status status-error';
+                    statusDiv.innerHTML = `❌ Error al limpiar datos: ${error.message}`;
+                }
+            }
+        }
+
+        // Test de sincronización
+        async function testSync() {
+            const statusDiv = document.getElementById('sync-status');
+            
+            try {
+                // Simular sincronización
+                const response = await fetch('/api/cms/load');
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    if (Object.keys(data).length > 0) {
+                        statusDiv.className = 'test-status status-success';
+                        statusDiv.innerHTML = `
+                            ✅ Sincronización exitosa<br>
+                            📊 Datos disponibles para sincronizar: ${Object.keys(data).length} secciones
+                        `;
+                    } else {
+                        statusDiv.className = 'test-status status-info';
+                        statusDiv.innerHTML = 'ℹ️ No hay datos para sincronizar';
+                    }
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                statusDiv.className = 'test-status status-error';
+                statusDiv.innerHTML = `❌ Error en sincronización: ${error.message}`;
+            }
+        }
+
+        // Ejecutar tests automáticamente al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                testConfig();
+                testServerConnection();
+                testCMSData();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

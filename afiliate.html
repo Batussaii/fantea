@@ -80,484 +80,59 @@
         </div>
     </section>
 
-    <!-- Opciones de Afiliación -->
+    <!-- Formulario de Afiliación de Asociaciones -->
     <section class="membership-options">
         <div class="container">
             <div class="section-header text-center">
-                <h2>Formas de Participar</h2>
-                <p>Elige la modalidad que mejor se adapte a tu situación y únete a nuestra causa</p>
+                <h2>Solicitud de Afiliación de Asociaciones</h2>
+                <p>Si tu asociación comparte nuestros valores y objetivos, FANTEA es tu casa. Unirte a la federación significa sumar fuerzas para defender de forma coordinada los derechos del colectivo TEA en Andalucía.</p>
             </div>
 
-            <div class="membership-tabs">
-                <div class="tab-buttons">
-                    <button class="tab-btn active" data-target="asociaciones">Asociaciones</button>
-                    <button class="tab-btn" data-target="familias">Familias</button>
-                    <button class="tab-btn" data-target="voluntarios">Voluntarios</button>
-                    <button class="tab-btn" data-target="colaboradores">Colaboradores</button>
-                </div>
+            <div class="membership-content">
+                <div class="membership-info">
+                    <div class="benefits-list">
+                        <h4>Beneficios para Asociaciones Afiliadas:</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Representación a nivel nacional</li>
+                            <li><i class="fas fa-check"></i> Acceso a formación especializada</li>
+                            <li><i class="fas fa-check"></i> Materiales educativos y recursos</li>
+                            <li><i class="fas fa-check"></i> Apoyo técnico y asesoramiento</li>
+                            <li><i class="fas fa-check"></i> Participación en proyectos nacionales</li>
+                            <li><i class="fas fa-check"></i> Red de contactos y colaboración</li>
+                            <li><i class="fas fa-check"></i> Certificación de calidad</li>
+                        </ul>
+                    </div>
 
-                <!-- Tab: Asociaciones -->
-                <div class="tab-content active" id="asociaciones">
-                    <div class="membership-content">
-                        <div class="membership-info">
-                            <h3>Afiliación de Asociaciones</h3>
-                            <p>Si tu asociación comparte nuestros valores y objetivos, FANTEA es tu casa. Unirte a la federación significa sumar fuerzas para defender de forma coordinada los derechos del colectivo TEA en Andalucía.</p>
-                            
-                            <div class="benefits-list">
-                                <h4>Beneficios para Asociaciones Afiliadas:</h4>
-                                <ul>
-                                    <li><i class="fas fa-check"></i> Representación a nivel nacional</li>
-                                    <li><i class="fas fa-check"></i> Acceso a formación especializada</li>
-                                    <li><i class="fas fa-check"></i> Materiales educativos y recursos</li>
-                                    <li><i class="fas fa-check"></i> Apoyo técnico y asesoramiento</li>
-                                    <li><i class="fas fa-check"></i> Participación en proyectos nacionales</li>
-                                    <li><i class="fas fa-check"></i> Red de contactos y colaboración</li>
-                                    <li><i class="fas fa-check"></i> Certificación de calidad</li>
-                                </ul>
-                            </div>
-
-                            <div class="requirements">
-                                <h4>Requisitos:</h4>
-                                <ul>
-                                    <li>Ser una organización sin ánimo de lucro</li>
-                                    <li>Tener objetivos alineados con nuestra misión</li>
-                                    <li>Contar con al menos 2 años de actividad</li>
-                                    <li>Presentar documentación legal actualizada</li>
-                                    <li>Compromiso con los valores de la federación</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="membership-form">
-                            <form class="affiliation-form" id="associationForm">
-                                <h4>Formulario de Solicitud - Asociaciones</h4>
-                                
-                                <div class="form-group">
-                                    <label for="orgName">Nombre de la Organización *</label>
-                                    <input type="text" id="orgName" name="orgName" required>
-                                </div>
-
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label for="legalRep">Representante Legal *</label>
-                                        <input type="text" id="legalRep" name="legalRep" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="position">Cargo *</label>
-                                        <input type="text" id="position" name="position" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label for="orgEmail">Email de la Organización *</label>
-                                        <input type="email" id="orgEmail" name="orgEmail" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="orgPhone">Teléfono *</label>
-                                        <input type="tel" id="orgPhone" name="orgPhone" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="address">Dirección Completa *</label>
-                                    <textarea id="address" name="address" rows="2" required></textarea>
-                                </div>
-
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label for="foundingYear">Año de Fundación *</label>
-                                        <input type="number" id="foundingYear" name="foundingYear" min="1900" max="2024" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="memberCount">Número de Socios *</label>
-                                        <input type="number" id="memberCount" name="memberCount" min="1" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="activities">Principales Actividades *</label>
-                                    <textarea id="activities" name="activities" rows="4" required placeholder="Describe las principales actividades y servicios que ofrece tu asociación..."></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="website">Sitio Web</label>
-                                    <input type="url" id="website" name="website">
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="checkbox-group">
-                                        <input type="checkbox" id="orgPrivacy" name="orgPrivacy" required>
-                                        <label for="orgPrivacy">Acepto la <a href="#">Política de Privacidad</a> y los <a href="#">Términos de Afiliación</a> *</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-actions">
-                                    <button type="submit" class="btn btn-primary btn-large">
-                                        <i class="fas fa-handshake"></i>
-                                        Solicitar Afiliación
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                    <div class="requirements">
+                        <h4>Requisitos:</h4>
+                        <ul>
+                            <li>Ser una organización sin ánimo de lucro</li>
+                            <li>Tener objetivos alineados con nuestra misión</li>
+                            <li>Contar con al menos 2 años de actividad</li>
+                            <li>Presentar documentación legal actualizada</li>
+                            <li>Compromiso con los valores de la federación</li>
+                        </ul>
                     </div>
                 </div>
 
-                <!-- Tab: Familias -->
-                <div class="tab-content" id="familias">
-                    <div class="membership-content">
-                        <div class="membership-info">
-                            <h3>Membresía para Familias</h3>
-                            <p>Como familia afiliada tendrás acceso directo a nuestros servicios, recursos especializados y una comunidad de apoyo mutuo.</p>
-                            
-                            <div class="benefits-list">
-                                <h4>Beneficios para Familias:</h4>
-                                <ul>
-                                    <li><i class="fas fa-check"></i> Orientación personalizada</li>
-                                    <li><i class="fas fa-check"></i> Acceso a recursos educativos</li>
-                                    <li><i class="fas fa-check"></i> Grupos de apoyo</li>
-                                    <li><i class="fas fa-check"></i> Formación gratuita para padres</li>
-                                    <li><i class="fas fa-check"></i> Descuentos en eventos y cursos</li>
-                                    <li><i class="fas fa-check"></i> Newsletter especializado</li>
-                                    <li><i class="fas fa-check"></i> Red de contacto con otras familias</li>
-                                </ul>
-                            </div>
+                <div class="membership-form">
+                    <div class="zoho-form-container">
+                        <h4>Formulario de Solicitud de Afiliación</h4>
+                        <p>Utiliza el formulario oficial de FANTEA para solicitar la afiliación de tu asociación:</p>
+                        
+                        <div class="zoho-form-embed">
+                            <iframe 
+                                src="https://forms.zohopublic.eu/fantea1/form/SolicituddeinformacinsobreadhesincomoasociacinalaF/formperma/A46FEjceBjyh3GMyL8PXAsUshynqFOFP6ac5SOgJJts" 
+                                width="100%" 
+                                height="800px" 
+                                frameborder="0" 
+                                scrolling="yes"
+                                title="Formulario de Solicitud de Afiliación de Asociaciones - FANTEA">
+                            </iframe>
                         </div>
-
-                        <div class="membership-form">
-                            <form class="affiliation-form" id="familyForm">
-                                <h4>Formulario de Registro - Familias</h4>
-                                
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label for="parentName">Nombre del Responsable *</label>
-                                        <input type="text" id="parentName" name="parentName" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="parentLastName">Apellidos *</label>
-                                        <input type="text" id="parentLastName" name="parentLastName" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label for="familyEmail">Email *</label>
-                                        <input type="email" id="familyEmail" name="familyEmail" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="familyPhone">Teléfono *</label>
-                                        <input type="tel" id="familyPhone" name="familyPhone" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="familyAddress">Dirección</label>
-                                    <input type="text" id="familyAddress" name="familyAddress">
-                                </div>
-
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label for="province">Provincia *</label>
-                                        <select id="province" name="province" required>
-                                            <option value="">Selecciona una provincia</option>
-                                            <option value="madrid">Madrid</option>
-                                            <option value="barcelona">Barcelona</option>
-                                            <option value="valencia">Valencia</option>
-                                            <option value="sevilla">Sevilla</option>
-                                            <option value="otras">Otras</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="relationship">Relación con la persona autista *</label>
-                                        <select id="relationship" name="relationship" required>
-                                            <option value="">Selecciona una opción</option>
-                                            <option value="padre">Padre</option>
-                                            <option value="madre">Madre</option>
-                                            <option value="tutor">Tutor/a Legal</option>
-                                            <option value="familiar">Familiar</option>
-                                            <option value="cuidador">Cuidador/a</option>
-                                            <option value="otro">Otro</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="interests">Áreas de Interés</label>
-                                    <div class="checkbox-grid">
-                                        <div class="checkbox-item">
-                                            <input type="checkbox" id="education" name="interests[]" value="education">
-                                            <label for="education">Educación Inclusiva</label>
-                                        </div>
-                                        <div class="checkbox-item">
-                                            <input type="checkbox" id="therapy" name="interests[]" value="therapy">
-                                            <label for="therapy">Terapias y Tratamientos</label>
-                                        </div>
-                                        <div class="checkbox-item">
-                                            <input type="checkbox" id="employment" name="interests[]" value="employment">
-                                            <label for="employment">Empleo y Vida Independiente</label>
-                                        </div>
-                                        <div class="checkbox-item">
-                                            <input type="checkbox" id="rights" name="interests[]" value="rights">
-                                            <label for="rights">Derechos y Legislación</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="checkbox-group">
-                                        <input type="checkbox" id="familyPrivacy" name="familyPrivacy" required>
-                                        <label for="familyPrivacy">Acepto la <a href="#">Política de Privacidad</a> *</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="checkbox-group">
-                                        <input type="checkbox" id="familyNewsletter" name="familyNewsletter">
-                                        <label for="familyNewsletter">Deseo recibir información y recursos especializados</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-actions">
-                                    <button type="submit" class="btn btn-primary btn-large">
-                                        <i class="fas fa-users"></i>
-                                        Registrar Familia
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab: Voluntarios -->
-                <div class="tab-content" id="voluntarios">
-                    <div class="membership-content">
-                        <div class="membership-info">
-                            <h3>Voluntariado</h3>
-                            <p>Tu tiempo y habilidades pueden marcar la diferencia. Únete como voluntario y contribuye directamente a mejorar la vida de las personas autistas.</p>
-                            
-                            <div class="volunteer-areas">
-                                <h4>Áreas de Voluntariado:</h4>
-                                <div class="volunteer-grid">
-                                    <div class="volunteer-card">
-                                        <i class="fas fa-chalkboard-teacher"></i>
-                                        <h5>Formación y Talleres</h5>
-                                        <p>Apoya en la organización y desarrollo de actividades educativas</p>
-                                    </div>
-                                    <div class="volunteer-card">
-                                        <i class="fas fa-calendar-alt"></i>
-                                        <h5>Eventos y Campañas</h5>
-                                        <p>Colabora en la organización de eventos de sensibilización</p>
-                                    </div>
-                                    <div class="volunteer-card">
-                                        <i class="fas fa-hands-helping"></i>
-                                        <h5>Apoyo Familiar</h5>
-                                        <p>Acompaña a familias en actividades y programas</p>
-                                    </div>
-                                    <div class="volunteer-card">
-                                        <i class="fas fa-laptop"></i>
-                                        <h5>Comunicación Digital</h5>
-                                        <p>Ayuda con redes sociales, web y contenido digital</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="membership-form">
-                            <form class="affiliation-form" id="volunteerForm">
-                                <h4>Formulario de Voluntariado</h4>
-                                
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label for="volName">Nombre Completo *</label>
-                                        <input type="text" id="volName" name="volName" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="volAge">Edad *</label>
-                                        <input type="number" id="volAge" name="volAge" min="16" max="100" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label for="volEmail">Email *</label>
-                                        <input type="email" id="volEmail" name="volEmail" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="volPhone">Teléfono *</label>
-                                        <input type="tel" id="volPhone" name="volPhone" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="availability">Disponibilidad</label>
-                                    <div class="checkbox-grid">
-                                        <div class="checkbox-item">
-                                            <input type="checkbox" id="weekdays" name="availability[]" value="weekdays">
-                                            <label for="weekdays">Entre Semana</label>
-                                        </div>
-                                        <div class="checkbox-item">
-                                            <input type="checkbox" id="weekends" name="availability[]" value="weekends">
-                                            <label for="weekends">Fines de Semana</label>
-                                        </div>
-                                        <div class="checkbox-item">
-                                            <input type="checkbox" id="evenings" name="availability[]" value="evenings">
-                                            <label for="evenings">Tardes/Noches</label>
-                                        </div>
-                                        <div class="checkbox-item">
-                                            <input type="checkbox" id="flexible" name="availability[]" value="flexible">
-                                            <label for="flexible">Horario Flexible</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="experience">Experiencia Previa</label>
-                                    <textarea id="experience" name="experience" rows="3" placeholder="Describe cualquier experiencia previa relacionada con voluntariado, autismo o trabajo con personas con discapacidad..."></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="skills">Habilidades y Competencias</label>
-                                    <textarea id="skills" name="skills" rows="3" placeholder="Menciona tus habilidades, profesión, idiomas, o cualquier competencia que pueda ser útil..."></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="checkbox-group">
-                                        <input type="checkbox" id="volPrivacy" name="volPrivacy" required>
-                                        <label for="volPrivacy">Acepto la <a href="#">Política de Privacidad</a> y el <a href="#">Compromiso de Voluntariado</a> *</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-actions">
-                                    <button type="submit" class="btn btn-primary btn-large">
-                                        <i class="fas fa-heart"></i>
-                                        Inscribirse como Voluntario
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab: Colaboradores -->
-                <div class="tab-content" id="colaboradores">
-                    <div class="membership-content">
-                        <div class="membership-info">
-                            <h3>Colaboración y Donaciones</h3>
-                            <p>Tu apoyo económico nos permite seguir creciendo y ampliando nuestros servicios. Cada contribución cuenta para construir un mundo más inclusivo.</p>
-                            
-                            <div class="donation-options">
-                                <div class="donation-card">
-                                    <h4>Donación Puntual</h4>
-                                    <p>Realiza una contribución única del importe que desees</p>
-                                    <div class="suggested-amounts">
-                                        <button class="amount-btn" data-amount="25">25€</button>
-                                        <button class="amount-btn" data-amount="50">50€</button>
-                                        <button class="amount-btn" data-amount="100">100€</button>
-                                        <button class="amount-btn" data-amount="other">Otro</button>
-                                    </div>
-                                </div>
-
-                                <div class="donation-card">
-                                    <h4>Donación Mensual</h4>
-                                    <p>Conviértete en colaborador regular con una aportación mensual</p>
-                                    <div class="monthly-options">
-                                        <div class="monthly-option">
-                                            <span class="amount">10€/mes</span>
-                                            <span class="impact">Materiales educativos para 2 familias</span>
-                                        </div>
-                                        <div class="monthly-option">
-                                            <span class="amount">25€/mes</span>
-                                            <span class="impact">Una sesión de apoyo psicológico</span>
-                                        </div>
-                                        <div class="monthly-option">
-                                            <span class="amount">50€/mes</span>
-                                            <span class="impact">Formación para un profesional</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="membership-form">
-                            <form class="affiliation-form" id="donationForm">
-                                <h4>Formulario de Colaboración</h4>
-                                
-                                <div class="form-group">
-                                    <label for="donationType">Tipo de Colaboración *</label>
-                                    <select id="donationType" name="donationType" required>
-                                        <option value="">Selecciona una opción</option>
-                                        <option value="monthly">Colaboración Mensual</option>
-                                        <option value="one-time">Donación Puntual</option>
-                                        <option value="sponsor">Patrocinio Empresarial</option>
-                                        <option value="legacy">Legado/Herencia</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="amount">Importe *</label>
-                                    <input type="number" id="amount" name="amount" min="1" step="0.01" required>
-                                </div>
-
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label for="donorName">Nombre Completo *</label>
-                                        <input type="text" id="donorName" name="donorName" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="donorEmail">Email *</label>
-                                        <input type="email" id="donorEmail" name="donorEmail" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="purpose">Destino de la Donación</label>
-                                    <select id="purpose" name="purpose">
-                                        <option value="general">Fondo General</option>
-                                        <option value="research">Investigación</option>
-                                        <option value="education">Programas Educativos</option>
-                                        <option value="families">Apoyo a Familias</option>
-                                        <option value="training">Formación Profesional</option>
-                                        <option value="awareness">Sensibilización</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="checkbox-group">
-                                        <input type="checkbox" id="taxReceipt" name="taxReceipt">
-                                        <label for="taxReceipt">Deseo recibir certificado para desgravación fiscal</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="checkbox-group">
-                                        <input type="checkbox" id="anonymous" name="anonymous">
-                                        <label for="anonymous">Prefiero que mi donación sea anónima</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="checkbox-group">
-                                        <input type="checkbox" id="donorPrivacy" name="donorPrivacy" required>
-                                        <label for="donorPrivacy">Acepto la <a href="#">Política de Privacidad</a> *</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-actions">
-                                    <button type="submit" class="btn btn-primary btn-large">
-                                        <i class="fas fa-donate"></i>
-                                        Realizar Colaboración
-                                    </button>
-                                </div>
-                            </form>
+                        
+                        <div class="form-info">
+                            <p><strong>Nota:</strong> Este formulario es el canal oficial para solicitar la afiliación de asociaciones a FANTEA. Una vez enviado, nuestro equipo se pondrá en contacto contigo para continuar con el proceso.</p>
                         </div>
                     </div>
                 </div>
@@ -566,6 +141,7 @@
     </section>
 
     <!-- Impacto y Testimonios -->
+
     <section class="impact-section">
         <div class="container">
             <div class="section-header text-center">
@@ -1121,6 +697,8 @@
 
     <script src="js/translations.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/cms-afiliate-config.js"></script>
+    <script src="js/cms-afiliate-init.js"></script>
     <script src="js/cms-sync.js"></script>
     <script>
         // Tab functionality

@@ -1051,23 +1051,227 @@ class CMSSync {
             this.updateTextContent('.page-header p', this.cmsData['afiliate-header'].description);
         }
 
-        // Membership Section
-        if (this.cmsData['afiliate-membership']) {
-            if (this.cmsData['afiliate-membership'].title) {
-                this.updateTextContent('.ways-to-participate .section-header h2', this.cmsData['afiliate-membership'].title);
+        // Solicitud de Afiliación Section
+        if (this.cmsData['afiliate-solicitud']) {
+            this.updateTextContent('.membership-options .section-header h2', this.cmsData['afiliate-solicitud'].title);
+            this.updateTextContent('.membership-options .section-header p', this.cmsData['afiliate-solicitud'].description);
+        }
+
+        // Beneficios Section
+        if (this.cmsData['afiliate-beneficios']) {
+            this.updateTextContent('.benefits-list h4', this.cmsData['afiliate-beneficios'].title);
+            if (this.cmsData['afiliate-beneficios'].items) {
+                this.cmsData['afiliate-beneficios'].items.forEach((item, index) => {
+                    this.updateTextContent(`.benefits-list ul li:nth-child(${index + 1})`, item);
+                });
             }
-            if (this.cmsData['afiliate-membership'].subtitle) {
-                this.updateTextContent('.ways-to-participate .section-header p', this.cmsData['afiliate-membership'].subtitle);
+        }
+
+        // Requisitos Section
+        if (this.cmsData['afiliate-requisitos']) {
+            this.updateTextContent('.requirements h4', this.cmsData['afiliate-requisitos'].title);
+            if (this.cmsData['afiliate-requisitos'].items) {
+                this.cmsData['afiliate-requisitos'].items.forEach((item, index) => {
+                    this.updateTextContent(`.requirements ul li:nth-child(${index + 1})`, item);
+                });
+            }
+        }
+
+        // Formulario Section
+        if (this.cmsData['afiliate-formulario']) {
+            this.updateTextContent('.zoho-form-container h4', this.cmsData['afiliate-formulario'].title);
+            this.updateTextContent('.zoho-form-container p', this.cmsData['afiliate-formulario'].description);
+            this.updateTextContent('.form-info p', this.cmsData['afiliate-formulario'].note);
+        }
+
+        // Impacto Section
+        if (this.cmsData['afiliate-impacto']) {
+            this.updateTextContent('.impact-section .section-header h2', this.cmsData['afiliate-impacto'].title);
+            this.updateTextContent('.impact-section .section-header p', this.cmsData['afiliate-impacto'].description);
+            
+            if (this.cmsData['afiliate-impacto'].stats) {
+                const stats = this.cmsData['afiliate-impacto'].stats;
+                this.updateTextContent('.impact-item:nth-child(1) .impact-number', stats.personasBeneficiadas);
+                this.updateTextContent('.impact-item:nth-child(1) .impact-text', stats.personasBeneficiadasText);
+                this.updateTextContent('.impact-item:nth-child(2) .impact-number', stats.asociacionesAfiliadas);
+                this.updateTextContent('.impact-item:nth-child(2) .impact-text', stats.asociacionesAfiliadasText);
+                this.updateTextContent('.impact-item:nth-child(3) .impact-number', stats.voluntariosActivos);
+                this.updateTextContent('.impact-item:nth-child(3) .impact-text', stats.voluntariosActivosText);
+                this.updateTextContent('.impact-item:nth-child(4) .impact-number', stats.familiasColaboradoras);
+                this.updateTextContent('.impact-item:nth-child(4) .impact-text', stats.familiasColaboradorasText);
+            }
+        }
+
+        // Testimonios Section
+        if (this.cmsData['afiliate-testimonios']) {
+            if (this.cmsData['afiliate-testimonios'].testimonios) {
+                this.cmsData['afiliate-testimonios'].testimonios.forEach((testimonio, index) => {
+                    this.updateTextContent(`.testimonial-card:nth-child(${index + 1}) .testimonial-content p`, testimonio.texto);
+                    this.updateTextContent(`.testimonial-card:nth-child(${index + 1}) .testimonial-author h4`, testimonio.nombre);
+                    this.updateTextContent(`.testimonial-card:nth-child(${index + 1}) .testimonial-author span`, testimonio.cargo);
+                    if (testimonio.imagen) {
+                        this.updateAttribute(`.testimonial-card:nth-child(${index + 1}) .testimonial-author img`, 'src', testimonio.imagen);
+                    }
+                });
+            }
+        }
+
+        // Donaciones Section
+        if (this.cmsData['afiliate-donaciones']) {
+            this.updateTextContent('.donations-section .section-header h2', this.cmsData['afiliate-donaciones'].title);
+            this.updateTextContent('.donations-section .section-header p', this.cmsData['afiliate-donaciones'].description);
+        }
+
+        // Donación Puntual Section
+        if (this.cmsData['afiliate-donacion-puntual']) {
+            const data = this.cmsData['afiliate-donacion-puntual'];
+            this.updateTextContent('.donation-card:first-child .donation-header h3', data.title);
+            this.updateTextContent('.donation-card:first-child p', data.description);
+            this.updateTextContent('.donation-card:first-child .donation-impact h4', data.impactTitle);
+            this.updateTextContent('.donation-card:first-child .payment-methods h5', data.paymentMethodsTitle);
+            this.updateTextContent('.donation-card:first-child .btn-primary', data.buttonText);
+            
+            if (data.impactItems) {
+                data.impactItems.forEach((item, index) => {
+                    this.updateTextContent(`.donation-card:first-child .impact-list li:nth-child(${index + 1})`, item);
+                });
+            }
+        }
+
+        // Donación Mensual Section
+        if (this.cmsData['afiliate-donacion-mensual']) {
+            const data = this.cmsData['afiliate-donacion-mensual'];
+            this.updateTextContent('.donation-card.featured .donation-header h3', data.title);
+            this.updateTextContent('.donation-card.featured p', data.description);
+            this.updateTextContent('.donation-card.featured .popular-badge', data.popularBadge);
+            this.updateTextContent('.donation-card.featured .partner-benefits h5', data.benefitsTitle);
+            this.updateTextContent('.donation-card.featured .btn-secondary', data.buttonText);
+            
+            if (data.monthlyOptions) {
+                data.monthlyOptions.forEach((option, index) => {
+                    this.updateTextContent(`.donation-card.featured .monthly-option:nth-child(${index + 1}) .amount`, option.amount);
+                    this.updateTextContent(`.donation-card.featured .monthly-option:nth-child(${index + 1}) .impact`, option.impact);
+                });
             }
             
-            if (this.cmsData['afiliate-membership'].membershipTypes) {
-                this.cmsData['afiliate-membership'].membershipTypes.forEach((type, index) => {
-                    // Actualizar pestañas
-                    this.updateTextContent(`.tab-nav .tab-btn:nth-child(${index + 1})`, type.tabName);
-                    
-                    // Actualizar contenido de pestañas
-                    this.updateTextContent(`.tab-content:nth-child(${index + 1}) h3`, type.title);
-                    this.updateTextContent(`.tab-content:nth-child(${index + 1}) p`, type.description);
+            if (data.benefitsItems) {
+                data.benefitsItems.forEach((item, index) => {
+                    this.updateTextContent(`.donation-card.featured .benefits-list li:nth-child(${index + 1})`, item);
+                });
+            }
+        }
+
+        // Patrocinio Section
+        if (this.cmsData['afiliate-patrocinio']) {
+            const data = this.cmsData['afiliate-patrocinio'];
+            this.updateTextContent('.donation-card:last-child .donation-header h3', data.title);
+            this.updateTextContent('.donation-card:last-child p', data.description);
+            this.updateTextContent('.donation-card:last-child .csr-benefits h5', data.benefitsTitle);
+            this.updateTextContent('.donation-card:last-child .btn-outline', data.buttonText);
+            
+            if (data.tiers) {
+                data.tiers.forEach((tier, index) => {
+                    this.updateTextContent(`.donation-card:last-child .tier-item:nth-child(${index + 1}) h5`, tier.name);
+                    this.updateTextContent(`.donation-card:last-child .tier-item:nth-child(${index + 1}) .tier-amount`, tier.amount);
+                    this.updateTextContent(`.donation-card:last-child .tier-item:nth-child(${index + 1}) p`, tier.description);
+                });
+            }
+            
+            if (data.benefitsItems) {
+                data.benefitsItems.forEach((item, index) => {
+                    this.updateTextContent(`.donation-card:last-child .benefits-list li:nth-child(${index + 1})`, item);
+                });
+            }
+        }
+
+        // Transparencia Section
+        if (this.cmsData['afiliate-transparencia']) {
+            const data = this.cmsData['afiliate-transparencia'];
+            this.updateTextContent('.transparency-card h3', data.title);
+            this.updateTextContent('.transparency-note', data.note);
+            
+            if (data.fundDistribution) {
+                data.fundDistribution.forEach((fund, index) => {
+                    this.updateTextContent(`.fund-item:nth-child(${index + 1}) .fund-label`, fund.label);
+                    this.updateTextContent(`.fund-item:nth-child(${index + 1}) .fund-percentage`, fund.percentage);
+                });
+            }
+        }
+
+        // Documentos Section
+        if (this.cmsData['afiliate-documentos']) {
+            this.updateTextContent('.legal-documents .section-header h2', this.cmsData['afiliate-documentos'].title);
+            this.updateTextContent('.legal-documents .section-header p', this.cmsData['afiliate-documentos'].description);
+        }
+
+        // Documentos Corporativos Section
+        if (this.cmsData['afiliate-documentos-corporativos']) {
+            const data = this.cmsData['afiliate-documentos-corporativos'];
+            this.updateTextContent('.document-category:first-child .category-header h3', data.title);
+            
+            if (data.documents) {
+                data.documents.forEach((doc, index) => {
+                    this.updateTextContent(`.document-category:first-child .document-item:nth-child(${index + 1}) h4`, doc.name);
+                    this.updateTextContent(`.document-category:first-child .document-item:nth-child(${index + 1}) p`, doc.description);
+                    this.updateTextContent(`.document-category:first-child .document-item:nth-child(${index + 1}) .document-meta`, doc.meta);
+                });
+            }
+        }
+
+        // Formularios de Afiliación Section
+        if (this.cmsData['afiliate-formularios-afiliacion']) {
+            const data = this.cmsData['afiliate-formularios-afiliacion'];
+            this.updateTextContent('.document-category:nth-child(2) .category-header h3', data.title);
+            
+            if (data.documents) {
+                data.documents.forEach((doc, index) => {
+                    this.updateTextContent(`.document-category:nth-child(2) .document-item:nth-child(${index + 1}) h4`, doc.name);
+                    this.updateTextContent(`.document-category:nth-child(2) .document-item:nth-child(${index + 1}) p`, doc.description);
+                    this.updateTextContent(`.document-category:nth-child(2) .document-item:nth-child(${index + 1}) .document-meta`, doc.meta);
+                });
+            }
+        }
+
+        // Documentos Legales Section
+        if (this.cmsData['afiliate-documentos-legales']) {
+            const data = this.cmsData['afiliate-documentos-legales'];
+            this.updateTextContent('.document-category:nth-child(3) .category-header h3', data.title);
+            
+            if (data.documents) {
+                data.documents.forEach((doc, index) => {
+                    this.updateTextContent(`.document-category:nth-child(3) .document-item:nth-child(${index + 1}) h4`, doc.name);
+                    this.updateTextContent(`.document-category:nth-child(3) .document-item:nth-child(${index + 1}) p`, doc.description);
+                    this.updateTextContent(`.document-category:nth-child(3) .document-item:nth-child(${index + 1}) .document-meta`, doc.meta);
+                });
+            }
+        }
+
+        // Recursos y Guías Section
+        if (this.cmsData['afiliate-recursos-guias']) {
+            const data = this.cmsData['afiliate-recursos-guias'];
+            this.updateTextContent('.document-category:last-child .category-header h3', data.title);
+            
+            if (data.documents) {
+                data.documents.forEach((doc, index) => {
+                    this.updateTextContent(`.document-category:last-child .document-item:nth-child(${index + 1}) h4`, doc.name);
+                    this.updateTextContent(`.document-category:last-child .document-item:nth-child(${index + 1}) p`, doc.description);
+                    this.updateTextContent(`.document-category:last-child .document-item:nth-child(${index + 1}) .document-meta`, doc.meta);
+                });
+            }
+        }
+
+        // Ayuda Section
+        if (this.cmsData['afiliate-ayuda']) {
+            const data = this.cmsData['afiliate-ayuda'];
+            this.updateTextContent('.help-card .help-header h3', data.title);
+            this.updateTextContent('.help-card p', data.description);
+            this.updateTextContent('.help-actions .btn-primary', data.buttonText);
+            this.updateTextContent('.help-actions .btn-outline', data.faqButtonText);
+            
+            if (data.contactOptions) {
+                data.contactOptions.forEach((option, index) => {
+                    this.updateTextContent(`.help-option:nth-child(${index + 1}) h4`, option.title);
+                    this.updateTextContent(`.help-option:nth-child(${index + 1}) p`, option.value);
                 });
             }
         }

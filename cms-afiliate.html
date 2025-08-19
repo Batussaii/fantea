@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS - Afiliate - FANTEA</title>
+    <link rel="stylesheet" href="css/main-colors.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        .cms-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #fff;
+            min-height: 100vh;
+        }
+        
+        .cms-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            margin: -2rem -2rem 2rem -2rem;
+            border-radius: 0 0 12px 12px;
+        }
+        
+        .cms-header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        
+        .cms-sections {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .cms-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid #e9ecef;
+        }
+        
+        .cms-section h3 {
+            color: var(--primary-color);
+            margin: 0 0 1.5rem 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .list-item {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .list-item input {
+            flex: 1;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .btn-remove {
+            background: #dc3545;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .save-btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            width: 100%;
+        }
+        
+        #status-message {
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .array-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .array-item h4 {
+            margin: 0 0 1rem 0;
+            color: var(--primary-color);
+        }
+        
+        .array-item .btn-remove {
+            float: right;
+            margin-top: -0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="cms-container">
+        <div class="cms-header">
+            <h1>CMS - Página de Afiliate</h1>
+            <p>Gestiona todo el contenido de la página de afiliación</p>
+        </div>
+        
+        <div id="status-message"></div>
+        
+        <div class="cms-sections">
+            <!-- Header Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-header"></i> Encabezado de la Página</h3>
+                <div class="form-group">
+                    <label for="afiliate-header-title">Título Principal</label>
+                    <input type="text" id="afiliate-header-title" class="cms-input" value="Únete a Nosotros">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-header-description">Descripción</label>
+                    <textarea id="afiliate-header-description" class="cms-textarea" rows="3">Forma parte de la mayor red nacional de apoyo a las personas autistas y sus familias</textarea>
+                </div>
+            </div>
+
+            <!-- Solicitud Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-handshake"></i> Solicitud de Afiliación</h3>
+                <div class="form-group">
+                    <label for="afiliate-solicitud-title">Título de la Sección</label>
+                    <input type="text" id="afiliate-solicitud-title" class="cms-input" value="Solicitud de Afiliación de Asociaciones">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-solicitud-description">Descripción</label>
+                    <textarea id="afiliate-solicitud-description" class="cms-textarea" rows="4">Si tu asociación comparte nuestros valores y objetivos, FANTEA es tu casa. Unirte a la federación significa sumar fuerzas para defender de forma coordinada los derechos del colectivo TEA en Andalucía.</textarea>
+                </div>
+            </div>
+
+            <!-- Beneficios Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-star"></i> Beneficios para Asociaciones</h3>
+                <div class="form-group">
+                    <label for="afiliate-beneficios-title">Título de Beneficios</label>
+                    <input type="text" id="afiliate-beneficios-title" class="cms-input" value="Beneficios para Asociaciones Afiliadas:">
+                </div>
+                <div class="form-group">
+                    <label>Lista de Beneficios</label>
+                    <div id="beneficios-list">
+                        <div class="list-item">
+                            <input type="text" class="beneficio-item" value="Representación a nivel nacional">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="beneficio-item" value="Acceso a formación especializada">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="beneficio-item" value="Materiales educativos y recursos">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="beneficio-item" value="Apoyo técnico y asesoramiento">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="beneficio-item" value="Participación en proyectos nacionales">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="beneficio-item" value="Red de contactos y colaboración">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="beneficio-item" value="Certificación de calidad">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-small" onclick="addBeneficio()">
+                        <i class="fas fa-plus"></i> Agregar Beneficio
+                    </button>
+                </div>
+            </div>
+
+            <!-- Requisitos Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-clipboard-check"></i> Requisitos para Afiliación</h3>
+                <div class="form-group">
+                    <label for="afiliate-requisitos-title">Título de Requisitos</label>
+                    <input type="text" id="afiliate-requisitos-title" class="cms-input" value="Requisitos:">
+                </div>
+                <div class="form-group">
+                    <label>Lista de Requisitos</label>
+                    <div id="requisitos-list">
+                        <div class="list-item">
+                            <input type="text" class="requisito-item" value="Ser una organización sin ánimo de lucro">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="requisito-item" value="Tener objetivos alineados con nuestra misión">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="requisito-item" value="Contar con al menos 2 años de actividad">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="requisito-item" value="Presentar documentación legal actualizada">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="requisito-item" value="Compromiso con los valores de la federación">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-small" onclick="addRequisito()">
+                        <i class="fas fa-plus"></i> Agregar Requisito
+                    </button>
+                </div>
+            </div>
+
+            <!-- Formulario Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-file-alt"></i> Formulario de Solicitud</h3>
+                <div class="form-group">
+                    <label for="afiliate-formulario-title">Título del Formulario</label>
+                    <input type="text" id="afiliate-formulario-title" class="cms-input" value="Formulario de Solicitud de Afiliación">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-formulario-description">Descripción del Formulario</label>
+                    <textarea id="afiliate-formulario-description" class="cms-textarea" rows="3">Utiliza el formulario oficial de FANTEA para solicitar la afiliación de tu asociación:</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-formulario-note">Nota Informativa</label>
+                    <textarea id="afiliate-formulario-note" class="cms-textarea" rows="3">Nota: Este formulario es el canal oficial para solicitar la afiliación de asociaciones a FANTEA. Una vez enviado, nuestro equipo se pondrá en contacto contigo para continuar con el proceso.</textarea>
+                </div>
+            </div>
+
+            <!-- Impacto Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-chart-line"></i> Sección de Impacto</h3>
+                <div class="form-group">
+                    <label for="afiliate-impacto-title">Título de Impacto</label>
+                    <input type="text" id="afiliate-impacto-title" class="cms-input" value="Tu Participación Marca la Diferencia">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-impacto-description">Descripción de Impacto</label>
+                    <textarea id="afiliate-impacto-description" class="cms-textarea" rows="3">Conoce el impacto real de formar parte de nuestra comunidad</textarea>
+                </div>
+                
+                <h4>Estadísticas</h4>
+                <div class="form-group">
+                    <label for="afiliate-impacto-personas-numero">Número de Personas Beneficiadas</label>
+                    <input type="text" id="afiliate-impacto-personas-numero" class="cms-input" value="15,000+">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-impacto-personas-texto">Texto Personas Beneficiadas</label>
+                    <input type="text" id="afiliate-impacto-personas-texto" class="cms-input" value="Personas beneficiadas">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-impacto-asociaciones-numero">Número de Asociaciones Afiliadas</label>
+                    <input type="text" id="afiliate-impacto-asociaciones-numero" class="cms-input" value="52">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-impacto-asociaciones-texto">Texto Asociaciones Afiliadas</label>
+                    <input type="text" id="afiliate-impacto-asociaciones-texto" class="cms-input" value="Asociaciones afiliadas">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-impacto-voluntarios-numero">Número de Voluntarios Activos</label>
+                    <input type="text" id="afiliate-impacto-voluntarios-numero" class="cms-input" value="300+">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-impacto-voluntarios-texto">Texto Voluntarios Activos</label>
+                    <input type="text" id="afiliate-impacto-voluntarios-texto" class="cms-input" value="Voluntarios activos">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-impacto-familias-numero">Número de Familias Colaboradoras</label>
+                    <input type="text" id="afiliate-impacto-familias-numero" class="cms-input" value="1,200+">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-impacto-familias-texto">Texto Familias Colaboradoras</label>
+                    <input type="text" id="afiliate-impacto-familias-texto" class="cms-input" value="Familias colaboradoras">
+                </div>
+            </div>
+
+            <!-- Testimonios Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-quote-left"></i> Testimonios</h3>
+                <div id="testimonios-list">
+                    <div class="array-item">
+                        <button type="button" class="btn-remove" onclick="removeTestimonio(this)">×</button>
+                        <h4>Testimonio 1</h4>
+                        <div class="form-group">
+                            <label>Texto del Testimonio</label>
+                            <textarea class="testimonio-texto" rows="3">Formar parte de esta federación ha sido fundamental para el desarrollo de nuestra asociación local. El apoyo y los recursos compartidos nos han permitido ayudar a muchas más familias.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre del Autor</label>
+                            <input type="text" class="testimonio-nombre" value="Ana García">
+                        </div>
+                        <div class="form-group">
+                            <label>Cargo o Descripción</label>
+                            <input type="text" class="testimonio-cargo" value="Presidenta, Asociación Autismo Sevilla">
+                        </div>
+                        <div class="form-group">
+                            <label>Imagen del Autor</label>
+                            <input type="text" class="testimonio-imagen" value="images/testimonial-1.jpg">
+                        </div>
+                    </div>
+                    <div class="array-item">
+                        <button type="button" class="btn-remove" onclick="removeTestimonio(this)">×</button>
+                        <h4>Testimonio 2</h4>
+                        <div class="form-group">
+                            <label>Texto del Testimonio</label>
+                            <textarea class="testimonio-texto" rows="3">Como familia afiliada, hemos encontrado el apoyo y la orientación que necesitábamos. La red de contactos y los recursos disponibles han sido invaluables para el desarrollo de nuestro hijo.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre del Autor</label>
+                            <input type="text" class="testimonio-nombre" value="Carlos y María Mendoza">
+                        </div>
+                        <div class="form-group">
+                            <label>Cargo o Descripción</label>
+                            <input type="text" class="testimonio-cargo" value="Familia Afiliada, Madrid">
+                        </div>
+                        <div class="form-group">
+                            <label>Imagen del Autor</label>
+                            <input type="text" class="testimonio-imagen" value="images/testimonial-2.jpg">
+                        </div>
+                    </div>
+                    <div class="array-item">
+                        <button type="button" class="btn-remove" onclick="removeTestimonio(this)">×</button>
+                        <h4>Testimonio 3</h4>
+                        <div class="form-group">
+                            <label>Texto del Testimonio</label>
+                            <textarea class="testimonio-texto" rows="3">Ser voluntario aquí me ha dado la oportunidad de contribuir de manera significativa a una causa que considero fundamental. Cada evento y cada familia a la que ayudo me llena de satisfacción.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre del Autor</label>
+                            <input type="text" class="testimonio-nombre" value="Luis Rodríguez">
+                        </div>
+                        <div class="form-group">
+                            <label>Cargo o Descripción</label>
+                            <input type="text" class="testimonio-cargo" value="Voluntario desde 2019">
+                        </div>
+                        <div class="form-group">
+                            <label>Imagen del Autor</label>
+                            <input type="text" class="testimonio-imagen" value="images/testimonial-3.jpg">
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary btn-small" onclick="addTestimonio()">
+                    <i class="fas fa-plus"></i> Agregar Testimonio
+                </button>
+            </div>
+
+            <!-- Donaciones Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-heart"></i> Sección de Donaciones</h3>
+                <div class="form-group">
+                    <label for="afiliate-donaciones-title">Título de Donaciones</label>
+                    <input type="text" id="afiliate-donaciones-title" class="cms-input" value="Donaciones y Patrocinios">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-donaciones-description">Descripción de Donaciones</label>
+                    <textarea id="afiliate-donaciones-description" class="cms-textarea" rows="3">Tu aportación económica nos ayuda a mantener y ampliar nuestros programas en Andalucía</textarea>
+                </div>
+            </div>
+
+            <!-- Donación Puntual Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-gift"></i> Donación Puntual</h3>
+                <div class="form-group">
+                    <label for="afiliate-donacion-puntual-title">Título de Donación Puntual</label>
+                    <input type="text" id="afiliate-donacion-puntual-title" class="cms-input" value="Donación Puntual">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-donacion-puntual-description">Descripción de Donación Puntual</label>
+                    <textarea id="afiliate-donacion-puntual-description" class="cms-textarea" rows="3">Realiza una donación única para apoyar nuestros proyectos actuales</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Opciones de Donación</label>
+                    <div id="donacion-puntual-opciones">
+                        <div class="list-item">
+                            <input type="text" class="donacion-opcion" value="25€">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="donacion-opcion" value="50€">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="donacion-opcion" value="100€">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="donacion-opcion" value="Otra cantidad">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-small" onclick="addDonacionOpcion()">
+                        <i class="fas fa-plus"></i> Agregar Opción
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-donacion-puntual-impact-title">Título de Impacto</label>
+                    <input type="text" id="afiliate-donacion-puntual-impact-title" class="cms-input" value="¿Qué consigues con tu donación?">
+                </div>
+                <div class="form-group">
+                    <label>Elementos de Impacto</label>
+                    <div id="donacion-puntual-impact">
+                        <div class="list-item">
+                            <input type="text" class="impact-item" value="25€ - Material educativo para 5 familias">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="impact-item" value="50€ - Una sesión de apoyo psicológico">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="impact-item" value="100€ - Formación para 10 profesionales">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="impact-item" value="250€ - Un taller de sensibilización escolar">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-small" onclick="addImpactItem()">
+                        <i class="fas fa-plus"></i> Agregar Elemento de Impacto
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-donacion-puntual-payment-title">Título de Métodos de Pago</label>
+                    <input type="text" id="afiliate-donacion-puntual-payment-title" class="cms-input" value="Métodos de pago seguros:">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-donacion-puntual-button">Texto del Botón</label>
+                    <input type="text" id="afiliate-donacion-puntual-button" class="cms-input" value="Donar Ahora">
+                </div>
+            </div>
+
+            <!-- Donación Mensual Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-calendar-alt"></i> Donación Mensual</h3>
+                <div class="form-group">
+                    <label for="afiliate-donacion-mensual-title">Título de Donación Mensual</label>
+                    <input type="text" id="afiliate-donacion-mensual-title" class="cms-input" value="Donación Mensual">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-donacion-mensual-description">Descripción de Donación Mensual</label>
+                    <textarea id="afiliate-donacion-mensual-description" class="cms-textarea" rows="3">Más Popular Conviértete en socio colaborador con una aportación mensual recurrente</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-donacion-mensual-popular-badge">Badge de Popular</label>
+                    <input type="text" id="afiliate-donacion-mensual-popular-badge" class="cms-input" value="Más Popular">
+                </div>
+                <div class="form-group">
+                    <label>Opciones Mensuales</label>
+                    <div id="donacion-mensual-opciones">
+                        <div class="list-item">
+                            <input type="text" class="mensual-opcion" value="10€/mes Apoyas a 2 familias mensualmente">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="mensual-opcion" value="25€/mes Financias programas de inclusión educativa">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="mensual-opcion" value="50€/mes Contribuyes a campañas de sensibilización">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-small" onclick="addMensualOpcion()">
+                        <i class="fas fa-plus"></i> Agregar Opción Mensual
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-donacion-mensual-benefits-title">Título de Beneficios</label>
+                    <input type="text" id="afiliate-donacion-mensual-benefits-title" class="cms-input" value="Beneficios como socio colaborador:">
+                </div>
+                <div class="form-group">
+                    <label>Beneficios del Socio</label>
+                    <div id="donacion-mensual-benefits">
+                        <div class="list-item">
+                            <input type="text" class="benefit-item" value="Memoria anual de actividades">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="benefit-item" value="Newsletter mensual exclusivo">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="benefit-item" value="Invitaciones a eventos especiales">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="benefit-item" value="Certificado de donación anual">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="benefit-item" value="Desgravación fiscal hasta 80%">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-small" onclick="addBenefitItem()">
+                        <i class="fas fa-plus"></i> Agregar Beneficio
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-donacion-mensual-button">Texto del Botón</label>
+                    <input type="text" id="afiliate-donacion-mensual-button" class="cms-input" value="Hacerse Socio Colaborador">
+                </div>
+            </div>
+
+            <!-- Patrocinio Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-building"></i> Patrocinio Empresarial</h3>
+                <div class="form-group">
+                    <label for="afiliate-patrocinio-title">Título de Patrocinio</label>
+                    <input type="text" id="afiliate-patrocinio-title" class="cms-input" value="Patrocinio Empresarial">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-patrocinio-description">Descripción de Patrocinio</label>
+                    <textarea id="afiliate-patrocinio-description" class="cms-textarea" rows="3">Tu empresa puede colaborar con FANTEA y obtener visibilidad en nuestras actividades</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Niveles de Patrocinio</label>
+                    <div id="patrocinio-tiers">
+                        <div class="array-item">
+                            <button type="button" class="btn-remove" onclick="removePatrocinioTier(this)">×</button>
+                            <h4>Colaborador Bronce</h4>
+                            <div class="form-group">
+                                <label>Rango</label>
+                                <input type="text" class="tier-range" value="500€ - 1.999€">
+                            </div>
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <input type="text" class="tier-description" value="Logo en web y publicaciones">
+                            </div>
+                        </div>
+                        <div class="array-item">
+                            <button type="button" class="btn-remove" onclick="removePatrocinioTier(this)">×</button>
+                            <h4>Colaborador Plata</h4>
+                            <div class="form-group">
+                                <label>Rango</label>
+                                <input type="text" class="tier-range" value="2.000€ - 4.999€">
+                            </div>
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <input type="text" class="tier-description" value="Logo destacado + menciones en eventos">
+                            </div>
+                        </div>
+                        <div class="array-item">
+                            <button type="button" class="btn-remove" onclick="removePatrocinioTier(this)">×</button>
+                            <h4>Colaborador Oro</h4>
+                            <div class="form-group">
+                                <label>Rango</label>
+                                <input type="text" class="tier-range" value="5.000€+">
+                            </div>
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <input type="text" class="tier-description" value="Patrocinio completo de programa específico">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-small" onclick="addPatrocinioTier()">
+                        <i class="fas fa-plus"></i> Agregar Nivel de Patrocinio
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-patrocinio-benefits-title">Título de Beneficios</label>
+                    <input type="text" id="afiliate-patrocinio-benefits-title" class="cms-input" value="Beneficios para tu empresa:">
+                </div>
+                <div class="form-group">
+                    <label>Beneficios Empresariales</label>
+                    <div id="patrocinio-benefits">
+                        <div class="list-item">
+                            <input type="text" class="patrocinio-benefit" value="Mejora de imagen corporativa">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="patrocinio-benefit" value="Responsabilidad Social Empresarial">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="patrocinio-benefit" value="Desgravaciones fiscales">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="patrocinio-benefit" value="Networking con otras empresas">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="patrocinio-benefit" value="Certificado de colaboración">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-small" onclick="addPatrocinioBenefit()">
+                        <i class="fas fa-plus"></i> Agregar Beneficio
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-patrocinio-button">Texto del Botón</label>
+                    <input type="text" id="afiliate-patrocinio-button" class="cms-input" value="Contactar para Patrocinio">
+                </div>
+            </div>
+
+            <!-- Transparencia Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-chart-pie"></i> Transparencia en el Uso de Fondos</h3>
+                <div class="form-group">
+                    <label for="afiliate-transparencia-title">Título de Transparencia</label>
+                    <input type="text" id="afiliate-transparencia-title" class="cms-input" value="Transparencia en el Uso de Fondos">
+                </div>
+                <div class="form-group">
+                    <label>Distribución de Fondos</label>
+                    <div id="transparencia-funds">
+                        <div class="list-item">
+                            <input type="text" class="fund-item" value="Programas y Servicios 65%">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="fund-item" value="Formación y Sensibilización 20%">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="fund-item" value="Gastos Administrativos 10%">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="fund-item" value="Comunicación y Eventos 5%">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-small" onclick="addFundItem()">
+                        <i class="fas fa-plus"></i> Agregar Elemento de Distribución
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-transparencia-note">Nota de Transparencia</label>
+                    <textarea id="afiliate-transparencia-note" class="cms-textarea" rows="3">Consulta nuestra memoria económica anual para información detallada sobre el uso de los fondos.</textarea>
+                </div>
+            </div>
+
+            <!-- Documentos Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-file-alt"></i> Sección de Documentos</h3>
+                <div class="form-group">
+                    <label for="afiliate-documentos-title">Título de Documentos</label>
+                    <input type="text" id="afiliate-documentos-title" class="cms-input" value="Documentos y Estatutos">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-documentos-description">Descripción de Documentos</label>
+                    <textarea id="afiliate-documentos-description" class="cms-textarea" rows="3">Descarga la documentación oficial y requisitos legales para la afiliación a FANTEA</textarea>
+                </div>
+            </div>
+
+            <!-- Documentos Corporativos Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-building"></i> Documentos Corporativos</h3>
+                <div class="form-group">
+                    <label for="afiliate-documentos-corporativos-title">Título de Documentos Corporativos</label>
+                    <input type="text" id="afiliate-documentos-corporativos-title" class="cms-input" value="Documentos Corporativos">
+                </div>
+                <div id="documentos-corporativos-list">
+                    <div class="array-item">
+                        <button type="button" class="btn-remove" onclick="removeDocumento(this)">×</button>
+                        <h4>Documento 1</h4>
+                        <div class="form-group">
+                            <label>Nombre del Documento</label>
+                            <input type="text" class="documento-nombre" value="Estatutos de FANTEA">
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea class="documento-descripcion" rows="2">Documento fundacional con la estructura organizativa y objetivos de la federación.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Meta (PDF • 2.3 MB • Actualizado: Marzo 2024)</label>
+                            <input type="text" class="documento-meta" value="PDF • 2.3 MB • Actualizado: Marzo 2024">
+                        </div>
+                    </div>
+                    <div class="array-item">
+                        <button type="button" class="btn-remove" onclick="removeDocumento(this)">×</button>
+                        <h4>Documento 2</h4>
+                        <div class="form-group">
+                            <label>Nombre del Documento</label>
+                            <input type="text" class="documento-nombre" value="Reglamento de Régimen Interno">
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea class="documento-descripcion" rows="2">Normas internas de funcionamiento y procedimientos organizativos.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Meta (PDF • 1.8 MB • Actualizado: Enero 2024)</label>
+                            <input type="text" class="documento-meta" value="PDF • 1.8 MB • Actualizado: Enero 2024">
+                        </div>
+                    </div>
+                    <div class="array-item">
+                        <button type="button" class="btn-remove" onclick="removeDocumento(this)">×</button>
+                        <h4>Documento 3</h4>
+                        <div class="form-group">
+                            <label>Nombre del Documento</label>
+                            <input type="text" class="documento-nombre" value="Código Ético">
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea class="documento-descripcion" rows="2">Principios éticos y valores que rigen la actuación de FANTEA y sus miembros.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Meta (PDF • 0.9 MB • Actualizado: Febrero 2024)</label>
+                            <input type="text" class="documento-meta" value="PDF • 0.9 MB • Actualizado: Febrero 2024">
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary btn-small" onclick="addDocumentoCorporativo()">
+                    <i class="fas fa-plus"></i> Agregar Documento Corporativo
+                </button>
+            </div>
+
+            <!-- Formularios de Afiliación Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-clipboard-list"></i> Formularios de Afiliación</h3>
+                <div class="form-group">
+                    <label for="afiliate-formularios-afiliacion-title">Título de Formularios de Afiliación</label>
+                    <input type="text" id="afiliate-formularios-afiliacion-title" class="cms-input" value="Formularios de Afiliación">
+                </div>
+                <div id="formularios-afiliacion-list">
+                    <div class="array-item">
+                        <button type="button" class="btn-remove" onclick="removeFormulario(this)">×</button>
+                        <h4>Formulario 1</h4>
+                        <div class="form-group">
+                            <label>Nombre del Formulario</label>
+                            <input type="text" class="formulario-nombre" value="Solicitud de Afiliación - Asociaciones">
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea class="formulario-descripcion" rows="2">Formulario oficial para que las asociaciones se afilien a FANTEA.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Meta (PDF • 0.5 MB • Formulario rellenable)</label>
+                            <input type="text" class="formulario-meta" value="PDF • 0.5 MB • Formulario rellenable">
+                        </div>
+                    </div>
+                    <div class="array-item">
+                        <button type="button" class="btn-remove" onclick="removeFormulario(this)">×</button>
+                        <h4>Formulario 2</h4>
+                        <div class="form-group">
+                            <label>Nombre del Formulario</label>
+                            <input type="text" class="formulario-nombre" value="Solicitud de Membresía - Familias">
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea class="formulario-descripcion" rows="2">Formulario para que las familias se registren como miembros individuales.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Meta (PDF • 0.3 MB • Formulario rellenable)</label>
+                            <input type="text" class="formulario-meta" value="PDF • 0.3 MB • Formulario rellenable">
+                        </div>
+                    </div>
+                    <div class="array-item">
+                        <button type="button" class="btn-remove" onclick="removeFormulario(this)">×</button>
+                        <h4>Formulario 3</h4>
+                        <div class="form-group">
+                            <label>Nombre del Formulario</label>
+                            <input type="text" class="formulario-nombre" value="Formulario de Voluntariado">
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea class="formulario-descripcion" rows="2">Documento para registrarse como voluntario y declarar disponibilidad e intereses.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Meta (PDF • 0.4 MB • Formulario rellenable)</label>
+                            <input type="text" class="formulario-meta" value="PDF • 0.4 MB • Formulario rellenable">
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary btn-small" onclick="addFormularioAfiliacion()">
+                    <i class="fas fa-plus"></i> Agregar Formulario de Afiliación
+                </button>
+            </div>
+
+            <!-- Documentos Legales Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-gavel"></i> Documentos Legales</h3>
+                <div class="form-group">
+                    <label for="afiliate-documentos-legales-title">Título de Documentos Legales</label>
+                    <input type="text" id="afiliate-documentos-legales-title" class="cms-input" value="Documentos Legales">
+                </div>
+                <div id="documentos-legales-list">
+                    <div class="array-item">
+                        <button type="button" class="btn-remove" onclick="removeDocumentoLegal(this)">×</button>
+                        <h4>Documento Legal 1</h4>
+                        <div class="form-group">
+                            <label>Nombre del Documento</label>
+                            <input type="text" class="documento-legal-nombre" value="Política de Privacidad y Protección de Datos">
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea class="documento-legal-descripcion" rows="2">Información sobre el tratamiento de datos personales conforme al RGPD.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Meta (PDF • 1.1 MB • Actualizado: Diciembre 2023)</label>
+                            <input type="text" class="documento-legal-meta" value="PDF • 1.1 MB • Actualizado: Diciembre 2023">
+                        </div>
+                    </div>
+                    <div class="array-item">
+                        <button type="button" class="btn-remove" onclick="removeDocumentoLegal(this)">×</button>
+                        <h4>Documento Legal 2</h4>
+                        <div class="form-group">
+                            <label>Nombre del Documento</label>
+                            <input type="text" class="documento-legal-nombre" value="Términos y Condiciones de Uso">
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea class="documento-legal-descripcion" rows="2">Condiciones generales de uso de los servicios y recursos de FANTEA.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Meta (PDF • 0.7 MB • Actualizado: Noviembre 2023)</label>
+                            <input type="text" class="documento-legal-meta" value="PDF • 0.7 MB • Actualizado: Noviembre 2023">
+                        </div>
+                    </div>
+                    <div class="array-item">
+                        <button type="button" class="btn-remove" onclick="removeDocumentoLegal(this)">×</button>
+                        <h4>Documento Legal 3</h4>
+                        <div class="form-group">
+                            <label>Nombre del Documento</label>
+                            <input type="text" class="documento-legal-nombre" value="Certificado de Utilidad Pública">
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea class="documento-legal-descripcion" rows="2">Documento oficial que acredita la declaración de utilidad pública de FANTEA.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Meta (PDF • 1.5 MB • Validez permanente)</label>
+                            <input type="text" class="documento-legal-meta" value="PDF • 1.5 MB • Validez permanente">
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary btn-small" onclick="addDocumentoLegal()">
+                    <i class="fas fa-plus"></i> Agregar Documento Legal
+                </button>
+            </div>
+
+            <!-- Recursos y Guías Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-book"></i> Recursos y Guías</h3>
+                <div class="form-group">
+                    <label for="afiliate-recursos-guias-title">Título de Recursos y Guías</label>
+                    <input type="text" id="afiliate-recursos-guias-title" class="cms-input" value="Recursos y Guías">
+                </div>
+                <div id="recursos-guias-list">
+                    <div class="array-item">
+                        <button type="button" class="btn-remove" onclick="removeRecurso(this)">×</button>
+                        <h4>Recurso 1</h4>
+                        <div class="form-group">
+                            <label>Nombre del Recurso</label>
+                            <input type="text" class="recurso-nombre" value="Guía para Nuevas Asociaciones Afiliadas">
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea class="recurso-descripcion" rows="2">Manual completo con todos los pasos para completar el proceso de afiliación.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Meta (PDF • 3.2 MB • Guía ilustrada)</label>
+                            <input type="text" class="recurso-meta" value="PDF • 3.2 MB • Guía ilustrada">
+                        </div>
+                    </div>
+                    <div class="array-item">
+                        <button type="button" class="btn-remove" onclick="removeRecurso(this)">×</button>
+                        <h4>Recurso 2</h4>
+                        <div class="form-group">
+                            <label>Nombre del Recurso</label>
+                            <input type="text" class="recurso-nombre" value="Manual de Buenas Prácticas">
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea class="recurso-descripcion" rows="2">Recomendaciones y mejores prácticas para el trabajo con personas autistas.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Meta (PDF • 4.1 MB • Manual técnico)</label>
+                            <input type="text" class="recurso-meta" value="PDF • 4.1 MB • Manual técnico">
+                        </div>
+                    </div>
+                    <div class="array-item">
+                        <button type="button" class="btn-remove" onclick="removeRecurso(this)">×</button>
+                        <h4>Recurso 3</h4>
+                        <div class="form-group">
+                            <label>Nombre del Recurso</label>
+                            <input type="text" class="recurso-nombre" value="Memoria de Actividades 2023">
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea class="recurso-descripcion" rows="2">Informe completo de las actividades, programas y logros conseguidos durante 2023.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Meta (PDF • 5.7 MB • Informe anual)</label>
+                            <input type="text" class="recurso-meta" value="PDF • 5.7 MB • Informe anual">
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary btn-small" onclick="addRecurso()">
+                    <i class="fas fa-plus"></i> Agregar Recurso o Guía
+                </button>
+            </div>
+
+            <!-- Ayuda Section -->
+            <div class="cms-section">
+                <h3><i class="fas fa-question-circle"></i> Sección de Ayuda</h3>
+                <div class="form-group">
+                    <label for="afiliate-ayuda-title">Título de Ayuda</label>
+                    <input type="text" id="afiliate-ayuda-title" class="cms-input" value="¿Necesitas Ayuda?">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-ayuda-description">Descripción de Ayuda</label>
+                    <textarea id="afiliate-ayuda-description" class="cms-textarea" rows="3">Si tienes dudas sobre el proceso de afiliación o necesitas ayuda con algún documento, nuestro equipo está aquí para asistirte.</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Opciones de Contacto</label>
+                    <div id="ayuda-contact-options">
+                        <div class="list-item">
+                            <input type="text" class="contact-option" value="Teléfono de Consultas +34 954 123 456 (L-V: 9:00-17:00)">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="contact-option" value="Email de Afiliaciones afiliaciones@fantea.org">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                        <div class="list-item">
+                            <input type="text" class="contact-option" value="Cita Personalizada Solicita una reunión individual">
+                            <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-small" onclick="addContactOption()">
+                        <i class="fas fa-plus"></i> Agregar Opción de Contacto
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-ayuda-button">Texto del Botón de Contacto</label>
+                    <input type="text" id="afiliate-ayuda-button" class="cms-input" value="Contactar">
+                </div>
+                <div class="form-group">
+                    <label for="afiliate-ayuda-faq-button">Texto del Botón de FAQ</label>
+                    <input type="text" id="afiliate-ayuda-faq-button" class="cms-input" value="Preguntas Frecuentes">
+                </div>
+            </div>
+        </div>
+
+        <button class="save-btn" onclick="saveAllData()">
+            <i class="fas fa-save"></i> Guardar Todos los Cambios
+        </button>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/cms-afiliate-config.js"></script>
+    <script>
+        let cmsData = {};
+
+        // Cargar datos existentes al cargar la página
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadCMSData();
+            populateForm();
+        });
+
+        // Cargar datos del CMS
+        async function loadCMSData() {
+            try {
+                const response = await fetch('/api/cms/load');
+                if (response.ok) {
+                    cmsData = await response.json();
+                    console.log('Datos CMS cargados:', cmsData);
+                } else {
+                    console.error('Error al cargar datos CMS');
+                }
+            } catch (error) {
+                console.error('Error al cargar datos CMS:', error);
+            }
+        }
+
+        // Poblar formulario con datos existentes
+        function populateForm() {
+            // Header
+            if (cmsData['afiliate-header']) {
+                document.getElementById('afiliate-header-title').value = cmsData['afiliate-header'].title || '';
+                document.getElementById('afiliate-header-description').value = cmsData['afiliate-header'].description || '';
+            }
+
+            // Solicitud
+            if (cmsData['afiliate-solicitud']) {
+                document.getElementById('afiliate-solicitud-title').value = cmsData['afiliate-solicitud'].title || '';
+                document.getElementById('afiliate-solicitud-description').value = cmsData['afiliate-solicitud'].description || '';
+            }
+
+            // Beneficios
+            if (cmsData['afiliate-beneficios']) {
+                document.getElementById('afiliate-beneficios-title').value = cmsData['afiliate-beneficios'].title || '';
+                populateList('beneficios-list', cmsData['afiliate-beneficios'].items || [], 'beneficio-item');
+            }
+
+            // Requisitos
+            if (cmsData['afiliate-requisitos']) {
+                document.getElementById('afiliate-requisitos-title').value = cmsData['afiliate-requisitos'].title || '';
+                populateList('requisitos-list', cmsData['afiliate-requisitos'].items || [], 'requisito-item');
+            }
+
+            // Formulario
+            if (cmsData['afiliate-formulario']) {
+                document.getElementById('afiliate-formulario-title').value = cmsData['afiliate-formulario'].title || '';
+                document.getElementById('afiliate-formulario-description').value = cmsData['afiliate-formulario'].description || '';
+                document.getElementById('afiliate-formulario-note').value = cmsData['afiliate-formulario'].note || '';
+            }
+
+            // Impacto
+            if (cmsData['afiliate-impacto']) {
+                document.getElementById('afiliate-impacto-title').value = cmsData['afiliate-impacto'].title || '';
+                document.getElementById('afiliate-impacto-description').value = cmsData['afiliate-impacto'].description || '';
+                
+                if (cmsData['afiliate-impacto'].stats) {
+                    const stats = cmsData['afiliate-impacto'].stats;
+                    document.getElementById('afiliate-impacto-personas-numero').value = stats.personasBeneficiadas || '';
+                    document.getElementById('afiliate-impacto-personas-texto').value = stats.personasBeneficiadasText || '';
+                    document.getElementById('afiliate-impacto-asociaciones-numero').value = stats.asociacionesAfiliadas || '';
+                    document.getElementById('afiliate-impacto-asociaciones-texto').value = stats.asociacionesAfiliadasText || '';
+                    document.getElementById('afiliate-impacto-voluntarios-numero').value = stats.voluntariosActivos || '';
+                    document.getElementById('afiliate-impacto-voluntarios-texto').value = stats.voluntariosActivosText || '';
+                    document.getElementById('afiliate-impacto-familias-numero').value = stats.familiasColaboradoras || '';
+                    document.getElementById('afiliate-impacto-familias-texto').value = stats.familiasColaboradorasText || '';
+                }
+            }
+
+            // Testimonios
+            if (cmsData['afiliate-testimonios'] && cmsData['afiliate-testimonios'].testimonios) {
+                populateTestimonios(cmsData['afiliate-testimonios'].testimonios);
+            }
+
+            // Donaciones
+            if (cmsData['afiliate-donaciones']) {
+                document.getElementById('afiliate-donaciones-title').value = cmsData['afiliate-donaciones'].title || '';
+                document.getElementById('afiliate-donaciones-description').value = cmsData['afiliate-donaciones'].description || '';
+            }
+
+            // Documentos
+            if (cmsData['afiliate-documentos']) {
+                document.getElementById('afiliate-documentos-title').value = cmsData['afiliate-documentos'].title || '';
+                document.getElementById('afiliate-documentos-description').value = cmsData['afiliate-documentos'].description || '';
+            }
+
+            // Ayuda
+            if (cmsData['afiliate-ayuda']) {
+                document.getElementById('afiliate-ayuda-title').value = cmsData['afiliate-ayuda'].title || '';
+                document.getElementById('afiliate-ayuda-description').value = cmsData['afiliate-ayuda'].description || '';
+                document.getElementById('afiliate-ayuda-button').value = cmsData['afiliate-ayuda'].buttonText || '';
+                document.getElementById('afiliate-ayuda-faq-button').value = cmsData['afiliate-ayuda'].faqButtonText || '';
+                
+                if (cmsData['afiliate-ayuda'].contactOptions) {
+                    populateList('ayuda-contact-options', cmsData['afiliate-ayuda'].contactOptions, 'contact-option');
+                }
+            }
+
+            // Donación Puntual
+            if (cmsData['afiliate-donacion-puntual']) {
+                document.getElementById('afiliate-donacion-puntual-title').value = cmsData['afiliate-donacion-puntual'].title || '';
+                document.getElementById('afiliate-donacion-puntual-description').value = cmsData['afiliate-donacion-puntual'].description || '';
+                document.getElementById('afiliate-donacion-puntual-impact-title').value = cmsData['afiliate-donacion-puntual'].impactTitle || '';
+                document.getElementById('afiliate-donacion-puntual-payment-title').value = cmsData['afiliate-donacion-puntual'].paymentMethodsTitle || '';
+                document.getElementById('afiliate-donacion-puntual-button').value = cmsData['afiliate-donacion-puntual'].buttonText || '';
+                
+                if (cmsData['afiliate-donacion-puntual'].options) {
+                    populateList('donacion-puntual-opciones', cmsData['afiliate-donacion-puntual'].options, 'donacion-opcion');
+                }
+                if (cmsData['afiliate-donacion-puntual'].impactItems) {
+                    populateList('donacion-puntual-impact', cmsData['afiliate-donacion-puntual'].impactItems, 'impact-item');
+                }
+            }
+
+            // Donación Mensual
+            if (cmsData['afiliate-donacion-mensual']) {
+                document.getElementById('afiliate-donacion-mensual-title').value = cmsData['afiliate-donacion-mensual'].title || '';
+                document.getElementById('afiliate-donacion-mensual-description').value = cmsData['afiliate-donacion-mensual'].description || '';
+                document.getElementById('afiliate-donacion-mensual-popular-badge').value = cmsData['afiliate-donacion-mensual'].popularBadge || '';
+                document.getElementById('afiliate-donacion-mensual-benefits-title').value = cmsData['afiliate-donacion-mensual'].benefitsTitle || '';
+                document.getElementById('afiliate-donacion-mensual-button').value = cmsData['afiliate-donacion-mensual'].buttonText || '';
+                
+                if (cmsData['afiliate-donacion-mensual'].monthlyOptions) {
+                    populateList('donacion-mensual-opciones', cmsData['afiliate-donacion-mensual'].monthlyOptions, 'mensual-opcion');
+                }
+                if (cmsData['afiliate-donacion-mensual'].benefits) {
+                    populateList('donacion-mensual-benefits', cmsData['afiliate-donacion-mensual'].benefits, 'benefit-item');
+                }
+            }
+
+            // Patrocinio
+            if (cmsData['afiliate-patrocinio']) {
+                document.getElementById('afiliate-patrocinio-title').value = cmsData['afiliate-patrocinio'].title || '';
+                document.getElementById('afiliate-patrocinio-description').value = cmsData['afiliate-patrocinio'].description || '';
+                document.getElementById('afiliate-patrocinio-benefits-title').value = cmsData['afiliate-patrocinio'].benefitsTitle || '';
+                document.getElementById('afiliate-patrocinio-button').value = cmsData['afiliate-patrocinio'].buttonText || '';
+                
+                if (cmsData['afiliate-patrocinio'].tiers) {
+                    populatePatrocinioTiers(cmsData['afiliate-patrocinio'].tiers);
+                }
+                if (cmsData['afiliate-patrocinio'].benefits) {
+                    populateList('patrocinio-benefits', cmsData['afiliate-patrocinio'].benefits, 'patrocinio-benefit');
+                }
+            }
+
+            // Transparencia
+            if (cmsData['afiliate-transparencia']) {
+                document.getElementById('afiliate-transparencia-title').value = cmsData['afiliate-transparencia'].title || '';
+                document.getElementById('afiliate-transparencia-note').value = cmsData['afiliate-transparencia'].note || '';
+                
+                if (cmsData['afiliate-transparencia'].fundDistribution) {
+                    populateList('transparencia-funds', cmsData['afiliate-transparencia'].fundDistribution, 'fund-item');
+                }
+            }
+
+            // Documentos Corporativos
+            if (cmsData['afiliate-documentos-corporativos']) {
+                document.getElementById('afiliate-documentos-corporativos-title').value = cmsData['afiliate-documentos-corporativos'].title || '';
+                
+                if (cmsData['afiliate-documentos-corporativos'].documents) {
+                    populateDocumentos(cmsData['afiliate-documentos-corporativos'].documents, 'documentos-corporativos-list', 'documento');
+                }
+            }
+
+            // Formularios de Afiliación
+            if (cmsData['afiliate-formularios-afiliacion']) {
+                document.getElementById('afiliate-formularios-afiliacion-title').value = cmsData['afiliate-formularios-afiliacion'].title || '';
+                
+                if (cmsData['afiliate-formularios-afiliacion'].documents) {
+                    populateDocumentos(cmsData['afiliate-formularios-afiliacion'].documents, 'formularios-afiliacion-list', 'formulario');
+                }
+            }
+
+            // Documentos Legales
+            if (cmsData['afiliate-documentos-legales']) {
+                document.getElementById('afiliate-documentos-legales-title').value = cmsData['afiliate-documentos-legales'].title || '';
+                
+                if (cmsData['afiliate-documentos-legales'].documents) {
+                    populateDocumentos(cmsData['afiliate-documentos-legales'].documents, 'documentos-legales-list', 'documento-legal');
+                }
+            }
+
+            // Recursos y Guías
+            if (cmsData['afiliate-recursos-guias']) {
+                document.getElementById('afiliate-recursos-guias-title').value = cmsData['afiliate-recursos-guias'].title || '';
+                
+                if (cmsData['afiliate-recursos-guias'].documents) {
+                    populateDocumentos(cmsData['afiliate-recursos-guias'].documents, 'recursos-guias-list', 'recurso');
+                }
+            }
+        }
+
+        // Poblar lista
+        function populateList(containerId, items, className) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            items.forEach(item => {
+                const listItem = document.createElement('div');
+                listItem.className = 'list-item';
+                listItem.innerHTML = `
+                    <input type="text" class="${className}" value="${item}">
+                    <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+                `;
+                container.appendChild(listItem);
+            });
+        }
+
+        // Poblar testimonios
+        function populateTestimonios(testimonios) {
+            const container = document.getElementById('testimonios-list');
+            container.innerHTML = '';
+            
+            testimonios.forEach((testimonio, index) => {
+                const testimonioItem = document.createElement('div');
+                testimonioItem.className = 'array-item';
+                testimonioItem.innerHTML = `
+                    <button type="button" class="btn-remove" onclick="removeTestimonio(this)">×</button>
+                    <h4>Testimonio ${index + 1}</h4>
+                    <div class="form-group">
+                        <label>Texto del Testimonio</label>
+                        <textarea class="testimonio-texto" rows="3">${testimonio.texto || ''}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre del Autor</label>
+                        <input type="text" class="testimonio-nombre" value="${testimonio.nombre || ''}">
+                    </div>
+                    <div class="form-group">
+                        <label>Cargo o Descripción</label>
+                        <input type="text" class="testimonio-cargo" value="${testimonio.cargo || ''}">
+                    </div>
+                    <div class="form-group">
+                        <label>Imagen del Autor</label>
+                        <input type="text" class="testimonio-imagen" value="${testimonio.imagen || ''}">
+                    </div>
+                `;
+                container.appendChild(testimonioItem);
+            });
+        }
+
+        // Poblar niveles de patrocinio
+        function populatePatrocinioTiers(tiers) {
+            const container = document.getElementById('patrocinio-tiers');
+            container.innerHTML = '';
+            
+            tiers.forEach((tier, index) => {
+                const tierItem = document.createElement('div');
+                tierItem.className = 'array-item';
+                tierItem.innerHTML = `
+                    <button type="button" class="btn-remove" onclick="removePatrocinioTier(this)">×</button>
+                    <h4>Nivel ${index + 1}</h4>
+                    <div class="form-group">
+                        <label>Rango</label>
+                        <input type="text" class="tier-range" value="${tier.range || ''}">
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <input type="text" class="tier-description" value="${tier.description || ''}">
+                    </div>
+                `;
+                container.appendChild(tierItem);
+            });
+        }
+
+        // Poblar documentos
+        function populateDocumentos(documents, containerId, type) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            documents.forEach((doc, index) => {
+                const docItem = document.createElement('div');
+                docItem.className = 'array-item';
+                const title = type === 'documento' ? 'Documento' : 
+                             type === 'formulario' ? 'Formulario' : 
+                             type === 'documento-legal' ? 'Documento Legal' : 'Recurso';
+                
+                docItem.innerHTML = `
+                    <button type="button" class="btn-remove" onclick="remove${title.charAt(0).toUpperCase() + title.slice(1)}(${type === 'documento-legal' ? 'Legal' : ''})(this)">×</button>
+                    <h4>${title} ${index + 1}</h4>
+                    <div class="form-group">
+                        <label>Nombre del ${title}</label>
+                        <input type="text" class="${type}-nombre" value="${doc.name || ''}">
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <textarea class="${type}-descripcion" rows="2">${doc.description || ''}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Meta</label>
+                        <input type="text" class="${type}-meta" value="${doc.meta || ''}">
+                    </div>
+                `;
+                container.appendChild(docItem);
+            });
+        }
+
+        // Funciones para agregar elementos
+        function addBeneficio() {
+            const container = document.getElementById('beneficios-list');
+            const listItem = document.createElement('div');
+            listItem.className = 'list-item';
+            listItem.innerHTML = `
+                <input type="text" class="beneficio-item" value="">
+                <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+            `;
+            container.appendChild(listItem);
+        }
+
+        function addRequisito() {
+            const container = document.getElementById('requisitos-list');
+            const listItem = document.createElement('div');
+            listItem.className = 'list-item';
+            listItem.innerHTML = `
+                <input type="text" class="requisito-item" value="">
+                <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+            `;
+            container.appendChild(listItem);
+        }
+
+        function addTestimonio() {
+            const container = document.getElementById('testimonios-list');
+            const testimonioItem = document.createElement('div');
+            testimonioItem.className = 'array-item';
+            const index = container.children.length + 1;
+            testimonioItem.innerHTML = `
+                <button type="button" class="btn-remove" onclick="removeTestimonio(this)">×</button>
+                <h4>Testimonio ${index}</h4>
+                <div class="form-group">
+                    <label>Texto del Testimonio</label>
+                    <textarea class="testimonio-texto" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Nombre del Autor</label>
+                    <input type="text" class="testimonio-nombre" value="">
+                </div>
+                <div class="form-group">
+                    <label>Cargo o Descripción</label>
+                    <input type="text" class="testimonio-cargo" value="">
+                </div>
+                <div class="form-group">
+                    <label>Imagen del Autor</label>
+                    <input type="text" class="testimonio-imagen" value="">
+                </div>
+            `;
+            container.appendChild(testimonioItem);
+        }
+
+        // Funciones para donación puntual
+        function addDonacionOpcion() {
+            const container = document.getElementById('donacion-puntual-opciones');
+            const listItem = document.createElement('div');
+            listItem.className = 'list-item';
+            listItem.innerHTML = `
+                <input type="text" class="donacion-opcion" value="">
+                <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+            `;
+            container.appendChild(listItem);
+        }
+
+        function addImpactItem() {
+            const container = document.getElementById('donacion-puntual-impact');
+            const listItem = document.createElement('div');
+            listItem.className = 'list-item';
+            listItem.innerHTML = `
+                <input type="text" class="impact-item" value="">
+                <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+            `;
+            container.appendChild(listItem);
+        }
+
+        // Funciones para donación mensual
+        function addMensualOpcion() {
+            const container = document.getElementById('donacion-mensual-opciones');
+            const listItem = document.createElement('div');
+            listItem.className = 'list-item';
+            listItem.innerHTML = `
+                <input type="text" class="mensual-opcion" value="">
+                <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+            `;
+            container.appendChild(listItem);
+        }
+
+        function addBenefitItem() {
+            const container = document.getElementById('donacion-mensual-benefits');
+            const listItem = document.createElement('div');
+            listItem.className = 'list-item';
+            listItem.innerHTML = `
+                <input type="text" class="benefit-item" value="">
+                <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+            `;
+            container.appendChild(listItem);
+        }
+
+        // Funciones para patrocinio
+        function addPatrocinioTier() {
+            const container = document.getElementById('patrocinio-tiers');
+            const tierItem = document.createElement('div');
+            tierItem.className = 'array-item';
+            const index = container.children.length + 1;
+            tierItem.innerHTML = `
+                <button type="button" class="btn-remove" onclick="removePatrocinioTier(this)">×</button>
+                <h4>Nivel ${index}</h4>
+                <div class="form-group">
+                    <label>Rango</label>
+                    <input type="text" class="tier-range" value="">
+                </div>
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <input type="text" class="tier-description" value="">
+                </div>
+            `;
+            container.appendChild(tierItem);
+        }
+
+        function addPatrocinioBenefit() {
+            const container = document.getElementById('patrocinio-benefits');
+            const listItem = document.createElement('div');
+            listItem.className = 'list-item';
+            listItem.innerHTML = `
+                <input type="text" class="patrocinio-benefit" value="">
+                <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+            `;
+            container.appendChild(listItem);
+        }
+
+        // Funciones para transparencia
+        function addFundItem() {
+            const container = document.getElementById('transparencia-funds');
+            const listItem = document.createElement('div');
+            listItem.className = 'list-item';
+            listItem.innerHTML = `
+                <input type="text" class="fund-item" value="">
+                <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+            `;
+            container.appendChild(listItem);
+        }
+
+        // Funciones para documentos
+        function addDocumentoCorporativo() {
+            const container = document.getElementById('documentos-corporativos-list');
+            const documentoItem = document.createElement('div');
+            documentoItem.className = 'array-item';
+            const index = container.children.length + 1;
+            documentoItem.innerHTML = `
+                <button type="button" class="btn-remove" onclick="removeDocumento(this)">×</button>
+                <h4>Documento ${index}</h4>
+                <div class="form-group">
+                    <label>Nombre del Documento</label>
+                    <input type="text" class="documento-nombre" value="">
+                </div>
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <textarea class="documento-descripcion" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Meta</label>
+                    <input type="text" class="documento-meta" value="">
+                </div>
+            `;
+            container.appendChild(documentoItem);
+        }
+
+        function addFormularioAfiliacion() {
+            const container = document.getElementById('formularios-afiliacion-list');
+            const formularioItem = document.createElement('div');
+            formularioItem.className = 'array-item';
+            const index = container.children.length + 1;
+            formularioItem.innerHTML = `
+                <button type="button" class="btn-remove" onclick="removeFormulario(this)">×</button>
+                <h4>Formulario ${index}</h4>
+                <div class="form-group">
+                    <label>Nombre del Formulario</label>
+                    <input type="text" class="formulario-nombre" value="">
+                </div>
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <textarea class="formulario-descripcion" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Meta</label>
+                    <input type="text" class="formulario-meta" value="">
+                </div>
+            `;
+            container.appendChild(formularioItem);
+        }
+
+        function addDocumentoLegal() {
+            const container = document.getElementById('documentos-legales-list');
+            const documentoItem = document.createElement('div');
+            documentoItem.className = 'array-item';
+            const index = container.children.length + 1;
+            documentoItem.innerHTML = `
+                <button type="button" class="btn-remove" onclick="removeDocumentoLegal(this)">×</button>
+                <h4>Documento Legal ${index}</h4>
+                <div class="form-group">
+                    <label>Nombre del Documento</label>
+                    <input type="text" class="documento-legal-nombre" value="">
+                </div>
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <textarea class="documento-legal-descripcion" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Meta</label>
+                    <input type="text" class="documento-legal-meta" value="">
+                </div>
+            `;
+            container.appendChild(documentoItem);
+        }
+
+        function addRecurso() {
+            const container = document.getElementById('recursos-guias-list');
+            const recursoItem = document.createElement('div');
+            recursoItem.className = 'array-item';
+            const index = container.children.length + 1;
+            recursoItem.innerHTML = `
+                <button type="button" class="btn-remove" onclick="removeRecurso(this)">×</button>
+                <h4>Recurso ${index}</h4>
+                <div class="form-group">
+                    <label>Nombre del Recurso</label>
+                    <input type="text" class="recurso-nombre" value="">
+                </div>
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <textarea class="recurso-descripcion" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Meta</label>
+                    <input type="text" class="recurso-meta" value="">
+                </div>
+            `;
+            container.appendChild(recursoItem);
+        }
+
+        // Funciones para ayuda
+        function addContactOption() {
+            const container = document.getElementById('ayuda-contact-options');
+            const listItem = document.createElement('div');
+            listItem.className = 'list-item';
+            listItem.innerHTML = `
+                <input type="text" class="contact-option" value="">
+                <button type="button" class="btn-remove" onclick="removeListItem(this)">×</button>
+            `;
+            container.appendChild(listItem);
+        }
+
+        // Funciones para remover elementos
+        function removeListItem(button) {
+            button.parentElement.remove();
+        }
+
+        function removeTestimonio(button) {
+            button.parentElement.remove();
+            // Renumerar testimonios
+            const testimonios = document.querySelectorAll('#testimonios-list .array-item');
+            testimonios.forEach((testimonio, index) => {
+                testimonio.querySelector('h4').textContent = `Testimonio ${index + 1}`;
+            });
+        }
+
+        function removePatrocinioTier(button) {
+            button.parentElement.remove();
+            // Renumerar niveles de patrocinio
+            const tiers = document.querySelectorAll('#patrocinio-tiers .array-item');
+            tiers.forEach((tier, index) => {
+                tier.querySelector('h4').textContent = `Nivel ${index + 1}`;
+            });
+        }
+
+        function removeDocumento(button) {
+            button.parentElement.remove();
+            // Renumerar documentos corporativos
+            const documentos = document.querySelectorAll('#documentos-corporativos-list .array-item');
+            documentos.forEach((documento, index) => {
+                documento.querySelector('h4').textContent = `Documento ${index + 1}`;
+            });
+        }
+
+        function removeFormulario(button) {
+            button.parentElement.remove();
+            // Renumerar formularios
+            const formularios = document.querySelectorAll('#formularios-afiliacion-list .array-item');
+            formularios.forEach((formulario, index) => {
+                formulario.querySelector('h4').textContent = `Formulario ${index + 1}`;
+            });
+        }
+
+        function removeDocumentoLegal(button) {
+            button.parentElement.remove();
+            // Renumerar documentos legales
+            const documentos = document.querySelectorAll('#documentos-legales-list .array-item');
+            documentos.forEach((documento, index) => {
+                documento.querySelector('h4').textContent = `Documento Legal ${index + 1}`;
+            });
+        }
+
+        function removeRecurso(button) {
+            button.parentElement.remove();
+            // Renumerar recursos
+            const recursos = document.querySelectorAll('#recursos-guias-list .array-item');
+            recursos.forEach((recurso, index) => {
+                recurso.querySelector('h4').textContent = `Recurso ${index + 1}`;
+            });
+        }
+
+        // Guardar todos los datos
+        async function saveAllData() {
+            const data = {
+                'afiliate-header': {
+                    title: document.getElementById('afiliate-header-title').value,
+                    description: document.getElementById('afiliate-header-description').value
+                },
+                'afiliate-solicitud': {
+                    title: document.getElementById('afiliate-solicitud-title').value,
+                    description: document.getElementById('afiliate-solicitud-description').value
+                },
+                'afiliate-beneficios': {
+                    title: document.getElementById('afiliate-beneficios-title').value,
+                    items: Array.from(document.querySelectorAll('.beneficio-item')).map(input => input.value).filter(value => value.trim() !== '')
+                },
+                'afiliate-requisitos': {
+                    title: document.getElementById('afiliate-requisitos-title').value,
+                    items: Array.from(document.querySelectorAll('.requisito-item')).map(input => input.value).filter(value => value.trim() !== '')
+                },
+                'afiliate-formulario': {
+                    title: document.getElementById('afiliate-formulario-title').value,
+                    description: document.getElementById('afiliate-formulario-description').value,
+                    note: document.getElementById('afiliate-formulario-note').value
+                },
+                'afiliate-impacto': {
+                    title: document.getElementById('afiliate-impacto-title').value,
+                    description: document.getElementById('afiliate-impacto-description').value,
+                    stats: {
+                        personasBeneficiadas: document.getElementById('afiliate-impacto-personas-numero').value,
+                        personasBeneficiadasText: document.getElementById('afiliate-impacto-personas-texto').value,
+                        asociacionesAfiliadas: document.getElementById('afiliate-impacto-asociaciones-numero').value,
+                        asociacionesAfiliadasText: document.getElementById('afiliate-impacto-asociaciones-texto').value,
+                        voluntariosActivos: document.getElementById('afiliate-impacto-voluntarios-numero').value,
+                        voluntariosActivosText: document.getElementById('afiliate-impacto-voluntarios-texto').value,
+                        familiasColaboradoras: document.getElementById('afiliate-impacto-familias-numero').value,
+                        familiasColaboradorasText: document.getElementById('afiliate-impacto-familias-texto').value
+                    }
+                },
+                'afiliate-testimonios': {
+                    testimonios: Array.from(document.querySelectorAll('#testimonios-list .array-item')).map(item => ({
+                        texto: item.querySelector('.testimonio-texto').value,
+                        nombre: item.querySelector('.testimonio-nombre').value,
+                        cargo: item.querySelector('.testimonio-cargo').value,
+                        imagen: item.querySelector('.testimonio-imagen').value
+                    }))
+                },
+                'afiliate-donaciones': {
+                    title: document.getElementById('afiliate-donaciones-title').value,
+                    description: document.getElementById('afiliate-donaciones-description').value
+                },
+                'afiliate-documentos': {
+                    title: document.getElementById('afiliate-documentos-title').value,
+                    description: document.getElementById('afiliate-documentos-description').value
+                },
+                'afiliate-ayuda': {
+                    title: document.getElementById('afiliate-ayuda-title').value,
+                    description: document.getElementById('afiliate-ayuda-description').value,
+                    contactOptions: Array.from(document.querySelectorAll('.contact-option')).map(input => input.value).filter(value => value.trim() !== ''),
+                    buttonText: document.getElementById('afiliate-ayuda-button').value,
+                    faqButtonText: document.getElementById('afiliate-ayuda-faq-button').value
+                },
+                'afiliate-donacion-puntual': {
+                    title: document.getElementById('afiliate-donacion-puntual-title').value,
+                    description: document.getElementById('afiliate-donacion-puntual-description').value,
+                    options: Array.from(document.querySelectorAll('.donacion-opcion')).map(input => input.value).filter(value => value.trim() !== ''),
+                    impactTitle: document.getElementById('afiliate-donacion-puntual-impact-title').value,
+                    impactItems: Array.from(document.querySelectorAll('.impact-item')).map(input => input.value).filter(value => value.trim() !== ''),
+                    paymentMethodsTitle: document.getElementById('afiliate-donacion-puntual-payment-title').value,
+                    buttonText: document.getElementById('afiliate-donacion-puntual-button').value
+                },
+                'afiliate-donacion-mensual': {
+                    title: document.getElementById('afiliate-donacion-mensual-title').value,
+                    description: document.getElementById('afiliate-donacion-mensual-description').value,
+                    popularBadge: document.getElementById('afiliate-donacion-mensual-popular-badge').value,
+                    monthlyOptions: Array.from(document.querySelectorAll('.mensual-opcion')).map(input => input.value).filter(value => value.trim() !== ''),
+                    benefitsTitle: document.getElementById('afiliate-donacion-mensual-benefits-title').value,
+                    benefits: Array.from(document.querySelectorAll('.benefit-item')).map(input => input.value).filter(value => value.trim() !== ''),
+                    buttonText: document.getElementById('afiliate-donacion-mensual-button').value
+                },
+                'afiliate-patrocinio': {
+                    title: document.getElementById('afiliate-patrocinio-title').value,
+                    description: document.getElementById('afiliate-patrocinio-description').value,
+                    tiers: Array.from(document.querySelectorAll('#patrocinio-tiers .array-item')).map(item => ({
+                        range: item.querySelector('.tier-range').value,
+                        description: item.querySelector('.tier-description').value
+                    })),
+                    benefitsTitle: document.getElementById('afiliate-patrocinio-benefits-title').value,
+                    benefits: Array.from(document.querySelectorAll('.patrocinio-benefit')).map(input => input.value).filter(value => value.trim() !== ''),
+                    buttonText: document.getElementById('afiliate-patrocinio-button').value
+                },
+                'afiliate-transparencia': {
+                    title: document.getElementById('afiliate-transparencia-title').value,
+                    fundDistribution: Array.from(document.querySelectorAll('.fund-item')).map(input => input.value).filter(value => value.trim() !== ''),
+                    note: document.getElementById('afiliate-transparencia-note').value
+                },
+                'afiliate-documentos-corporativos': {
+                    title: document.getElementById('afiliate-documentos-corporativos-title').value,
+                    documents: Array.from(document.querySelectorAll('#documentos-corporativos-list .array-item')).map(item => ({
+                        name: item.querySelector('.documento-nombre').value,
+                        description: item.querySelector('.documento-descripcion').value,
+                        meta: item.querySelector('.documento-meta').value
+                    }))
+                },
+                'afiliate-formularios-afiliacion': {
+                    title: document.getElementById('afiliate-formularios-afiliacion-title').value,
+                    documents: Array.from(document.querySelectorAll('#formularios-afiliacion-list .array-item')).map(item => ({
+                        name: item.querySelector('.formulario-nombre').value,
+                        description: item.querySelector('.formulario-descripcion').value,
+                        meta: item.querySelector('.formulario-meta').value
+                    }))
+                },
+                'afiliate-documentos-legales': {
+                    title: document.getElementById('afiliate-documentos-legales-title').value,
+                    documents: Array.from(document.querySelectorAll('#documentos-legales-list .array-item')).map(item => ({
+                        name: item.querySelector('.documento-legal-nombre').value,
+                        description: item.querySelector('.documento-legal-descripcion').value,
+                        meta: item.querySelector('.documento-legal-meta').value
+                    }))
+                },
+                'afiliate-recursos-guias': {
+                    title: document.getElementById('afiliate-recursos-guias-title').value,
+                    documents: Array.from(document.querySelectorAll('#recursos-guias-list .array-item')).map(item => ({
+                        name: item.querySelector('.recurso-nombre').value,
+                        description: item.querySelector('.recurso-descripcion').value,
+                        meta: item.querySelector('.recurso-meta').value
+                    }))
+                }
+            };
+
+            try {
+                const response = await fetch('/api/cms/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    showStatus('Datos guardados correctamente', 'success');
+                } else {
+                    showStatus('Error al guardar los datos', 'error');
+                }
+            } catch (error) {
+                console.error('Error al guardar:', error);
+                showStatus('Error al guardar los datos', 'error');
+            }
+        }
+
+        // Mostrar mensaje de estado
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('status-message');
+            statusDiv.textContent = message;
+            statusDiv.className = `status-${type}`;
+            statusDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                statusDiv.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

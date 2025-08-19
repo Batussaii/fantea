@@ -524,5 +524,104 @@
     ],
     "lastModified": "2025-08-18T15:22:27.808Z",
     "modifiedBy": "admin"
+  },
+  "prensa-content": {
+    "lastModified": "2025-08-18T16:15:59.038Z",
+    "modifiedBy": "admin"
+  },
+  "undefined": {
+    "lastModified": "2025-08-19T01:22:21.667Z",
+    "modifiedBy": "admin"
+  },
+  "afiliate-header": {
+    "title": "Únete a Nosotrosddd",
+    "description": "Forma parte de la mayor red nacional de apoyo a las personas autistas y sus familiasddd",
+    "lastModified": "2025-08-19T01:12:08.415Z",
+    "modifiedBy": "admin"
+  },
+  "afiliate-solicitud": {
+    "title": "Solicitud de Afiliación de Asociacionessfas",
+    "description": "Si tu asociación comparte nuestros valores y objetivos, FANTEA es tu casa. Unirte a la federación significa sumar fuerzas para defender de forma coordinada los derechos del colectivo TEA en Andalucía.sfasfsafasf",
+    "lastModified": "2025-08-19T01:22:44.740Z",
+    "modifiedBy": "admin"
+  },
+  "afiliate-beneficios": {
+    "title": "Beneficios para Asociaciones Afiliadas:sfsdf",
+    "items": [
+      "Representación a nivel nacionalafsfdsaf",
+      "Acceso a formación especializada",
+      "Materiales educativos y recursos",
+      "Apoyo técnico y asesoramiento",
+      "Participación en proyectos nacionales",
+      "Red de contactos y colaboración",
+      "Certificación de calidad"
+    ],
+    "lastModified": "2025-08-19T01:23:01.665Z",
+    "modifiedBy": "admin"
+  },
+  "afiliate-requisitos": {
+    "title": "Requisitos:asfsaf",
+    "items": [
+      "Ser una organización sin ánimo de lucroasfsf",
+      "Tener objetivos alineados con nuestra misiónasfdsf",
+      "Contar con al menos 2 años de actividad",
+      "Presentar documentación legal actualizada",
+      "Compromiso con los valores de la federación"
+    ],
+    "lastModified": "2025-08-19T01:23:12.155Z",
+    "modifiedBy": "admin"
+  },
+  "afiliate-formulario": {
+    "title": "Formulario de Solicitud de Afiliaciónsafasfsaf",
+    "description": "Utiliza el formulario oficial de FANTEA para solicitar la afiliación de tu asociación:sfas",
+    "note": "Nota: Este formulario es el canal oficial para solicitar la afiliación de asociaciones a FANTEA. Una vez enviado, nuestro equipo se pondrá en contacto contigo para continuar con el proceso.",
+    "lastModified": "2025-08-19T01:23:20.026Z",
+    "modifiedBy": "admin"
+  },
+  "afiliate-impacto": {
+    "title": "Tu Participación Marca la Diferenciasfsaf",
+    "description": "Conoce el impacto real de formar parte de nuestra comunidadsfasf",
+    "stats": {
+      "personasBeneficiadas": "15,000sf",
+      "personasBeneficiadasText": "Personas beneficiadas",
+      "asociacionesAfiliadas": "52",
+      "asociacionesAfiliadasText": "Asociaciones afiliadas",
+      "voluntariosActivos": "300+",
+      "voluntariosActivosText": "Voluntarios activos",
+      "familiasColaboradoras": "1,200+",
+      "familiasColaboradorasText": "Familias colaboradoras"
+    },
+    "lastModified": "2025-08-19T01:23:29.058Z",
+    "modifiedBy": "admin"
+  },
+  "afiliate-testimonios": {
+    "testimonios": [
+      {
+        "texto": "Formar parte de esta federación ha sido fundamental para elsfasasfsafsf desarrollo de nuestra asociación local. El apoyo y los recursos compartidos nos han permitido ayudar a muchas más familias.",
+        "nombre": "Ana García",
+        "cargo": "Presidenta, Asociación Autismo Sevilla",
+        "imagen": "images/testimonial-1.jpg"
+      },
+      {
+        "texto": "Como familia afiliada, hemos encontrado el apoyo y la orientación que necesitábamos. La red de contactos y los recursos disponibles han sido invaluables para el desarrollo de nuestro hijo.",
+        "nombre": "Carlos y María Mendoza",
+        "cargo": "Familia Afiliada, Madrid",
+        "imagen": "images/testimonial-2.jpg"
+      },
+      {
+        "texto": "Ser voluntario aquí me ha dado la oportunidad de contribuir de manera significativa a una causa que considero fundamental. Cada evento y cada familia a la que ayudo me llena de satisfacción.",
+        "nombre": "Luis Rodríguez",
+        "cargo": "Voluntario desde 2019",
+        "imagen": "images/testimonial-3.jpg"
+      }
+    ],
+    "lastModified": "2025-08-19T01:23:36.618Z",
+    "modifiedBy": "admin"
+  },
+  "afiliate-donaciones": {
+    "title": "Donaciones y Patrociniosasfsdf",
+    "description": "Tu aportación económica nos ayuda a mantener y ampliar nuestros programas en Andalucíaafsafas",
+    "lastModified": "2025-08-19T01:23:49.089Z",
+    "modifiedBy": "admin"
   }
 }

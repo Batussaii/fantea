@@ -12536,3 +12536,90 @@ a:not([aria-label]):not([aria-labelledby]):empty::before {
         font-size: var(--font-size-xl);
     }
 }
+
+/* ==========================================================================
+   Estilos para formulario de Zoho embebido
+   ========================================================================== */
+
+/* Estilos para el formulario de Zoho embebido */
+.zoho-form-container {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+.zoho-form-container h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.zoho-form-container p {
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.zoho-form-embed {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    background: #fafafa;
+}
+
+.zoho-form-embed iframe {
+    display: block;
+    border: none;
+    width: 100%;
+    min-height: 800px;
+    background: #fff;
+}
+
+.form-info {
+    background: var(--light-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.form-info p {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.form-info strong {
+    color: var(--primary-color);
+}
+
+/* Responsive para el formulario de Zoho */
+@media (max-width: 768px) {
+    .zoho-form-container {
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    
+    .zoho-form-embed iframe {
+        min-height: 600px;
+    }
+    
+    .form-info {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .zoho-form-container {
+        padding: 1rem;
+    }
+    
+    .zoho-form-embed iframe {
+        min-height: 500px;
+    }
+}

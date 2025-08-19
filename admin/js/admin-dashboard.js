@@ -1606,6 +1606,86 @@ function collectSectionData(sectionName) {
                 }
             });
             break;
+            
+        // Nuevas secciones de Afiliate
+        case 'afiliate-solicitud':
+            data.title = document.getElementById('afiliate-solicitud-title')?.value || '';
+            data.description = document.getElementById('afiliate-solicitud-description')?.value || '';
+            break;
+            
+        case 'afiliate-beneficios':
+            data.title = document.getElementById('afiliate-beneficios-title')?.value || '';
+            data.items = [];
+            const beneficioItems = document.querySelectorAll('#beneficios-list-cms .beneficio-item-cms');
+            beneficioItems.forEach(item => {
+                if (item.value.trim()) {
+                    data.items.push(item.value.trim());
+                }
+            });
+            break;
+            
+        case 'afiliate-requisitos':
+            data.title = document.getElementById('afiliate-requisitos-title')?.value || '';
+            data.items = [];
+            const requisitoItems = document.querySelectorAll('#requisitos-list-cms .requisito-item-cms');
+            requisitoItems.forEach(item => {
+                if (item.value.trim()) {
+                    data.items.push(item.value.trim());
+                }
+            });
+            break;
+            
+        case 'afiliate-formulario':
+            data.title = document.getElementById('afiliate-formulario-title')?.value || '';
+            data.description = document.getElementById('afiliate-formulario-description')?.value || '';
+            data.note = document.getElementById('afiliate-formulario-note')?.value || '';
+            break;
+            
+        case 'afiliate-impacto':
+            data.title = document.getElementById('afiliate-impacto-title')?.value || '';
+            data.description = document.getElementById('afiliate-impacto-description')?.value || '';
+            data.stats = {
+                personasBeneficiadas: document.getElementById('afiliate-impacto-personas-numero')?.value || '',
+                personasBeneficiadasText: document.getElementById('afiliate-impacto-personas-texto')?.value || '',
+                asociacionesAfiliadas: document.getElementById('afiliate-impacto-asociaciones-numero')?.value || '',
+                asociacionesAfiliadasText: document.getElementById('afiliate-impacto-asociaciones-texto')?.value || '',
+                voluntariosActivos: document.getElementById('afiliate-impacto-voluntarios-numero')?.value || '',
+                voluntariosActivosText: document.getElementById('afiliate-impacto-voluntarios-texto')?.value || '',
+                familiasColaboradoras: document.getElementById('afiliate-impacto-familias-numero')?.value || '',
+                familiasColaboradorasText: document.getElementById('afiliate-impacto-familias-texto')?.value || ''
+            };
+            break;
+            
+        case 'afiliate-testimonios':
+            data.testimonios = [];
+            const testimonioItems = document.querySelectorAll('#testimonios-list-cms .testimonio-item-cms');
+            testimonioItems.forEach(item => {
+                const testimonio = {
+                    texto: item.querySelector('.testimonio-texto-cms')?.value || '',
+                    nombre: item.querySelector('.testimonio-nombre-cms')?.value || '',
+                    cargo: item.querySelector('.testimonio-cargo-cms')?.value || '',
+                    imagen: item.querySelector('.testimonio-imagen-cms')?.value || ''
+                };
+                if (testimonio.texto.trim() || testimonio.nombre.trim()) {
+                    data.testimonios.push(testimonio);
+                }
+            });
+            break;
+            
+        case 'afiliate-donaciones':
+            data.title = document.getElementById('afiliate-donaciones-title')?.value || '';
+            data.description = document.getElementById('afiliate-donaciones-description')?.value || '';
+            break;
+            
+        case 'afiliate-documentos':
+            data.title = document.getElementById('afiliate-documentos-title')?.value || '';
+            data.description = document.getElementById('afiliate-documentos-description')?.value || '';
+            break;
+            
+        case 'afiliate-ayuda':
+            data.title = document.getElementById('afiliate-ayuda-title')?.value || '';
+            data.description = document.getElementById('afiliate-ayuda-description')?.value || '';
+            break;
     }
     
     return data;
@@ -2836,4 +2916,99 @@ window.removePrinciple = removePrinciple;
 window.addPressRelease = addPressRelease;
 window.removePressRelease = removePressRelease;
 window.addCategory = addCategory;
-window.removeCategory = removeCategory; 
+window.removeCategory = removeCategory;
+
+// Afiliate CMS Functions
+window.addBeneficioCMS = addBeneficioCMS;
+window.addRequisitoCMS = addRequisitoCMS;
+window.addTestimonioCMS = addTestimonioCMS;
+window.removeListItemCMS = removeListItemCMS;
+window.removeTestimonioCMS = removeTestimonioCMS;
+
+/**
+ * Add beneficio to CMS list
+ */
+function addBeneficioCMS() {
+    const container = document.getElementById('beneficios-list-cms');
+    if (!container) return;
+    
+    const listItem = document.createElement('div');
+    listItem.className = 'list-item-cms';
+    listItem.innerHTML = `
+        <input type="text" class="beneficio-item-cms" value="">
+        <button type="button" class="btn-remove-cms" onclick="removeListItemCMS(this)">×</button>
+    `;
+    container.appendChild(listItem);
+}
+
+/**
+ * Add requisito to CMS list
+ */
+function addRequisitoCMS() {
+    const container = document.getElementById('requisitos-list-cms');
+    if (!container) return;
+    
+    const listItem = document.createElement('div');
+    listItem.className = 'list-item-cms';
+    listItem.innerHTML = `
+        <input type="text" class="requisito-item-cms" value="">
+        <button type="button" class="btn-remove-cms" onclick="removeListItemCMS(this)">×</button>
+    `;
+    container.appendChild(listItem);
+}
+
+/**
+ * Add testimonio to CMS list
+ */
+function addTestimonioCMS() {
+    const container = document.getElementById('testimonios-list-cms');
+    if (!container) return;
+    
+    const testimonioItem = document.createElement('div');
+    testimonioItem.className = 'testimonio-item-cms';
+    const index = container.children.length + 1;
+    testimonioItem.innerHTML = `
+        <h4>Testimonio ${index}</h4>
+        <div class="form-group">
+            <label>Texto del Testimonio</label>
+            <textarea class="testimonio-texto-cms" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Nombre del Autor</label>
+            <input type="text" class="testimonio-nombre-cms" value="">
+        </div>
+        <div class="form-group">
+            <label>Cargo o Descripción</label>
+            <input type="text" class="testimonio-cargo-cms" value="">
+        </div>
+        <div class="form-group">
+            <label>Imagen del Autor</label>
+            <input type="text" class="testimonio-imagen-cms" value="">
+        </div>
+        <button type="button" class="btn-small btn-danger" onclick="removeTestimonioCMS(this)">Eliminar Testimonio</button>
+    `;
+    container.appendChild(testimonioItem);
+}
+
+/**
+ * Remove list item from CMS
+ */
+function removeListItemCMS(button) {
+    if (confirm('¿Estás seguro de que quieres eliminar este elemento?')) {
+        button.parentElement.remove();
+    }
+}
+
+/**
+ * Remove testimonio from CMS
+ */
+function removeTestimonioCMS(button) {
+    if (confirm('¿Estás seguro de que quieres eliminar este testimonio?')) {
+        button.parentElement.remove();
+        // Renumber testimonios
+        const testimonios = document.querySelectorAll('#testimonios-list-cms .testimonio-item-cms');
+        testimonios.forEach((testimonio, index) => {
+            testimonio.querySelector('h4').textContent = `Testimonio ${index + 1}`;
+        });
+    }
+} 
