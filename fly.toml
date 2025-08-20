@@ -20,16 +20,16 @@ primary_region = "cdg"
   processes = ["app"]
 
 [[http_service.checks]]
-  grace_period = "10s"
-  interval = "30s"
+  grace_period = "30s"
+  interval = "60s"
   method = "GET"
-  timeout = "5s"
+  timeout = "10s"
   path = "/"
 
 [[vm]]
   cpu_kind = "shared"
   cpus = 1
-  memory_mb = 512
+  memory_mb = 1024
 
 # Volumen persistente para datos del CMS
 [[mounts]]

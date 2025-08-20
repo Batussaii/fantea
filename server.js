@@ -79,9 +79,22 @@ app.post('/api/cms/save', async (req, res) => {
         try {
             const dataFile = await fs.readFile(CMS_DATA_FILE, 'utf8');
             cmsData = JSON.parse(dataFile);
+            console.log(`Datos CMS cargados correctamente desde ${CMS_DATA_FILE}`);
         } catch (error) {
-            // Archivo no existe, empezar con objeto vacío
-            console.log('Creando nuevo archivo de datos CMS');
+            if (error.code === 'ENOENT') {
+                // Archivo no existe, empezar con objeto vacío
+                console.log(`Creando nuevo archivo de datos CMS en ${CMS_DATA_FILE}`);
+            } else {
+                console.error('Error leyendo archivo CMS:', error);
+                // Intentar crear un backup del archivo corrupto
+                try {
+                    const backupPath = `${CMS_DATA_FILE}.backup.${Date.now()}`;
+                    await fs.writeFile(backupPath, JSON.stringify({ error: 'Archivo corrupto', timestamp: new Date().toISOString() }));
+                    console.log(`Backup creado en ${backupPath}`);
+                } catch (backupError) {
+                    console.error('Error creando backup:', backupError);
+                }
+            }
         }
         
         // Actualizar sección
@@ -91,9 +104,18 @@ app.post('/api/cms/save', async (req, res) => {
             modifiedBy: req.body.user || 'admin'
         };
         
-        // Guardar en archivo
+        // Guardar en archivo con sincronización forzada
         await fs.writeFile(CMS_DATA_FILE, JSON.stringify(cmsData, null, 2));
         
+        // Forzar sincronización del sistema de archivos
+        try {
+            const { execSync } = require('child_process');
+            execSync('sync', { stdio: 'ignore' });
+        } catch (syncError) {
+            console.log('No se pudo forzar sincronización del sistema de archivos');
+        }
+        
+        console.log(`Datos guardados correctamente en ${CMS_DATA_FILE}`);
         res.json({ success: true, message: 'Datos guardados correctamente' });
     } catch (error) {
         console.error('Error guardando datos:', error);
@@ -106,10 +128,12 @@ app.get('/api/cms/load', async (req, res) => {
     try {
         const dataFile = await fs.readFile(CMS_DATA_FILE, 'utf8');
         const cmsData = JSON.parse(dataFile);
+        console.log(`Datos CMS cargados correctamente desde ${CMS_DATA_FILE}`);
         res.json({ success: true, data: cmsData });
     } catch (error) {
         if (error.code === 'ENOENT') {
             // Archivo no existe, devolver objeto vacío
+            console.log(`Archivo CMS no encontrado en ${CMS_DATA_FILE}, devolviendo datos vacíos`);
             res.json({ success: true, data: {} });
         } else {
             console.error('Error cargando datos:', error);
@@ -936,8 +960,155 @@ app.post('/api/dashboard/update-monthly', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
+// API para crear backup manual
+app.post('/api/cms/backup', async (req, res) => {
+    try {
+        await createBackup();
+        res.json({ success: true, message: 'Backup creado correctamente' });
+    } catch (error) {
+        console.error('Error creando backup:', error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// API para restaurar desde backup
+app.post('/api/cms/restore', async (req, res) => {
+    try {
+        await restoreFromBackup();
+        res.json({ success: true, message: 'Restauración completada correctamente' });
+    } catch (error) {
+        console.error('Error restaurando desde backup:', error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// Función para crear backup automático
+async function createBackup() {
+    try {
+        const backupDir = path.join(DATA_DIR, 'backups');
+        await fs.mkdir(backupDir, { recursive: true });
+        
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const backupPath = path.join(backupDir, `cms-data-${timestamp}.json`);
+        
+        // Crear backup del archivo CMS
+        try {
+            const dataFile = await fs.readFile(CMS_DATA_FILE, 'utf8');
+            await fs.writeFile(backupPath, dataFile);
+            console.log(`Backup creado: ${backupPath}`);
+            
+            // Mantener solo los últimos 10 backups
+            const files = await fs.readdir(backupDir);
+            const backupFiles = files.filter(f => f.startsWith('cms-data-') && f.endsWith('.json'));
+            
+            if (backupFiles.length > 10) {
+                backupFiles.sort();
+                const filesToDelete = backupFiles.slice(0, backupFiles.length - 10);
+                
+                for (const file of filesToDelete) {
+                    await fs.unlink(path.join(backupDir, file));
+                    console.log(`Backup eliminado: ${file}`);
+                }
+            }
+        } catch (error) {
+            console.error('Error creando backup:', error);
+        }
+    } catch (error) {
+        console.error('Error en función de backup:', error);
+    }
+}
+
+// Función para restaurar desde backup si es necesario
+async function restoreFromBackup() {
+    try {
+        const backupDir = path.join(DATA_DIR, 'backups');
+        
+        // Verificar si el archivo CMS principal existe y es válido
+        try {
+            await fs.access(CMS_DATA_FILE);
+            const dataFile = await fs.readFile(CMS_DATA_FILE, 'utf8');
+            JSON.parse(dataFile); // Verificar que es JSON válido
+            console.log('Archivo CMS principal válido, no se necesita restauración');
+            return;
+        } catch (error) {
+            console.log('Archivo CMS principal no válido, intentando restauración...');
+        }
+        
+        // Buscar el backup más reciente
+        const files = await fs.readdir(backupDir);
+        const backupFiles = files.filter(f => f.startsWith('cms-data-') && f.endsWith('.json'));
+        
+        if (backupFiles.length > 0) {
+            backupFiles.sort();
+            const latestBackup = backupFiles[backupFiles.length - 1];
+            const backupPath = path.join(backupDir, latestBackup);
+            
+            const backupData = await fs.readFile(backupPath, 'utf8');
+            await fs.writeFile(CMS_DATA_FILE, backupData);
+            console.log(`Restaurado desde backup: ${latestBackup}`);
+        } else {
+            console.log('No se encontraron backups para restaurar');
+        }
+    } catch (error) {
+        console.error('Error en restauración:', error);
+    }
+}
+
+// Función para inicializar y verificar el sistema de archivos
+async function initializeFileSystem() {
+    try {
+        console.log('Inicializando sistema de archivos...');
+        console.log(`Directorio de datos: ${DATA_DIR}`);
+        console.log(`Archivo CMS: ${CMS_DATA_FILE}`);
+        
+        // Verificar que el directorio existe
+        await fs.mkdir(DATA_DIR, { recursive: true });
+        console.log(`Directorio de datos creado/verificado: ${DATA_DIR}`);
+        
+        // Intentar restaurar desde backup si es necesario
+        await restoreFromBackup();
+        
+        // Verificar que el archivo CMS existe
+        try {
+            await fs.access(CMS_DATA_FILE);
+            const stats = await fs.stat(CMS_DATA_FILE);
+            console.log(`Archivo CMS existe, tamaño: ${stats.size} bytes`);
+            
+            // Intentar leer el archivo para verificar que es válido
+            const dataFile = await fs.readFile(CMS_DATA_FILE, 'utf8');
+            const cmsData = JSON.parse(dataFile);
+            console.log(`Archivo CMS válido, ${Object.keys(cmsData).length} secciones encontradas`);
+        } catch (error) {
+            if (error.code === 'ENOENT') {
+                console.log('Archivo CMS no existe, se creará cuando se guarden los primeros datos');
+            } else {
+                console.error('Error verificando archivo CMS:', error);
+            }
+        }
+        
+        // Verificar directorio de uploads
+        await fs.mkdir(UPLOADS_DIR, { recursive: true });
+        console.log(`Directorio de uploads verificado: ${UPLOADS_DIR}`);
+        
+        console.log('Sistema de archivos inicializado correctamente');
+    } catch (error) {
+        console.error('Error inicializando sistema de archivos:', error);
+    }
+}
+
+app.listen(PORT, async () => {
     console.log(`Servidor CMS corriendo en http://localhost:${PORT}`);
     console.log(`API disponible en http://localhost:${PORT}/api/cms/`);
     console.log(`API de archivos disponible en http://localhost:${PORT}/api/files/`);
+    
+    // Inicializar sistema de archivos
+    await initializeFileSystem();
+    
+    // Configurar backup automático cada hora
+    setInterval(async () => {
+        console.log('Ejecutando backup automático...');
+        await createBackup();
+    }, 60 * 60 * 1000); // Cada hora
+    
+    console.log('Backup automático configurado para ejecutarse cada hora');
 });
