@@ -767,23 +767,46 @@ window.addEventListener('error', function(event) {
  * Mostrar notificaciones
  */
 function showNotification(message, type = 'info') {
-    // Crear elemento de notificación
+    // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
-        <div class="notification-content">
-            <i class="fas fa-${type === 'error' ? 'exclamation-triangle' : 'info-circle'}"></i>
-            <span>${message}</span>
-        </div>
-        <button class="notification-close" onclick="this.parentElement.remove()">
-            <i class="fas fa-times"></i>
-        </button>
+        <span>${message}</span>
+        <button onclick="this.parentElement.remove()">×</button>
     `;
     
-    // Añadir al DOM
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'info' ? '#3498db' : type === 'success' ? '#27ae60' : '#e74c3c'};
+        color: white;
+        padding: 12px 20px;
+        border-radius: 4px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: 300px;
+        animation: slideIn 0.3s ease-out;
+    `;
+    
+    // Add animation styles
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Add to page
     document.body.appendChild(notification);
     
-    // Auto-remover después de 5 segundos
+    // Auto-remove after 5 seconds
     setTimeout(() => {
         if (notification.parentElement) {
             notification.remove();
@@ -800,7 +823,7 @@ function showNotification(message, type = 'info') {
 /**
  * Initialize CMS functionality
  */
-function initializeCMS() {
+async function initializeCMS() {
     console.log('Starting CMS initialization...');
     
     // Remove existing event listeners to prevent duplicates
@@ -845,8 +868,11 @@ function initializeCMS() {
     // Initialize action buttons
     initializeActionButtons();
     
-    // Load saved content
-    loadSavedContent();
+    // Load saved content from server
+    await loadSavedContent();
+    
+    // Start periodic refresh to sync with server
+    startPeriodicRefresh();
     
     console.log('CMS initialization completed');
 }
@@ -2164,7 +2190,30 @@ function notifyAllTabs(sectionName, data) {
 /**
  * Load saved content on page load
  */
-function loadSavedContent() {
+async function loadSavedContent() {
+    try {
+        // Intentar cargar datos desde el servidor primero
+        const response = await fetch(CMS_CONFIG.apiUrls.load);
+        if (response.ok) {
+            const result = await response.json();
+            if (result.success && result.data) {
+                console.log('Datos cargados desde servidor:', result.data);
+                
+                // Actualizar localStorage con los datos del servidor
+                localStorage.setItem('fantea_cms_data', JSON.stringify(result.data));
+                
+                // Cargar los datos en el dashboard
+                Object.keys(result.data).forEach(sectionName => {
+                    loadSectionData(sectionName, result.data[sectionName]);
+                });
+                return;
+            }
+        }
+    } catch (error) {
+        console.warn('Error cargando datos desde servidor, usando localStorage como fallback:', error);
+    }
+    
+    // Fallback a localStorage si el servidor no está disponible
     const savedData = JSON.parse(localStorage.getItem('fantea_cms_data') || '{}');
     
     Object.keys(savedData).forEach(sectionName => {
@@ -3368,10 +3417,10 @@ function getCurrentUser() {
  */
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize CMS after a short delay to ensure everything is loaded
-    setTimeout(() => {
+    setTimeout(async () => {
         if (document.querySelector('.cms-tabs')) {
             console.log('Initializing CMS...');
-            initializeCMS();
+            await initializeCMS();
         }
     }, 1000);
     
@@ -3379,10 +3428,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const contentMenuItem = document.querySelector('[data-section="contenido"]');
     if (contentMenuItem) {
         contentMenuItem.addEventListener('click', function() {
-            setTimeout(() => {
+            setTimeout(async () => {
                 if (document.querySelector('.cms-tabs')) {
                     console.log('Re-initializing CMS after section switch...');
-                    initializeCMS();
+                    await initializeCMS();
                 }
             }, 100);
         });
@@ -3405,6 +3454,7 @@ window.saveSection = saveSection;
 window.resetSection = resetSection;
 window.saveAllChanges = saveAllChanges;
 window.previewChanges = previewChanges;
+window.refreshData = refreshData;
 window.addTimelineItem = addTimelineItem;
 window.removeTimelineItem = removeTimelineItem;
 window.addAssociation = addAssociation;
@@ -3906,4 +3956,254 @@ function populateBottomLinks(links) {
         `;
         container.appendChild(linkItem);
     });
+}
+
+/**
+ * Manual refresh function to sync data with server
+ */
+async function refreshData() {
+    try {
+        console.log('Refrescando datos desde el servidor...');
+        
+        // Update sync status
+        const syncIcon = document.getElementById('sync-icon');
+        const syncText = document.getElementById('sync-text');
+        const syncStatus = document.querySelector('.sync-status');
+        
+        if (syncIcon && syncText && syncStatus) {
+            syncStatus.className = 'sync-status syncing';
+            syncIcon.className = 'fas fa-sync-alt fa-spin';
+            syncText.textContent = 'Refrescando datos...';
+        }
+        
+        const response = await fetch(CMS_CONFIG.apiUrls.load);
+        if (response.ok) {
+            const result = await response.json();
+            if (result.success && result.data) {
+                console.log('Datos actualizados desde servidor:', result.data);
+                
+                // Update localStorage
+                localStorage.setItem('fantea_cms_data', JSON.stringify(result.data));
+                
+                // Reload data in dashboard
+                Object.keys(result.data).forEach(sectionName => {
+                    loadSectionData(sectionName, result.data[sectionName]);
+                });
+                
+                // Show success notification
+                showNotification('Datos actualizados correctamente', 'success');
+                
+                // Update sync status
+                if (syncIcon && syncText && syncStatus) {
+                    syncStatus.className = 'sync-status synced';
+                    syncIcon.className = 'fas fa-check-circle';
+                    syncText.textContent = 'Actualizado manualmente';
+                    
+                    // Reset status after 5 seconds
+                    setTimeout(() => {
+                        syncText.textContent = 'Sincronizado automáticamente';
+                    }, 5000);
+                }
+            } else {
+                throw new Error(result.error || 'Error en la respuesta del servidor');
+            }
+        } else {
+            throw new Error(`Error HTTP: ${response.status}`);
+        }
+    } catch (error) {
+        console.error('Error refrescando datos:', error);
+        showNotification('Error al actualizar datos: ' + error.message, 'error');
+        
+        // Update sync status to error
+        const syncIcon = document.getElementById('sync-icon');
+        const syncText = document.getElementById('sync-text');
+        const syncStatus = document.querySelector('.sync-status');
+        
+        if (syncIcon && syncText && syncStatus) {
+            syncStatus.className = 'sync-status error';
+            syncIcon.className = 'fas fa-exclamation-triangle';
+            syncText.textContent = 'Error al actualizar';
+            
+            // Reset status after 5 seconds
+            setTimeout(() => {
+                syncText.textContent = 'Sincronizado automáticamente';
+                syncStatus.className = 'sync-status synced';
+                syncIcon.className = 'fas fa-check-circle';
+            }, 5000);
+        }
+    }
+}
+
+/**
+ * Start periodic refresh to sync with server
+ * This ensures the dashboard always shows the most recent data
+ */
+function startPeriodicRefresh() {
+    let lastServerData = null;
+    let refreshInterval = null;
+    
+    // Function to update sync status indicator
+    function updateSyncStatus(status, message) {
+        const syncIcon = document.getElementById('sync-icon');
+        const syncText = document.getElementById('sync-text');
+        const syncStatus = document.querySelector('.sync-status');
+        
+        if (syncIcon && syncText && syncStatus) {
+            syncStatus.className = `sync-status ${status}`;
+            
+            switch (status) {
+                case 'syncing':
+                    syncIcon.className = 'fas fa-sync-alt fa-spin';
+                    syncText.textContent = message || 'Sincronizando...';
+                    break;
+                case 'synced':
+                    syncIcon.className = 'fas fa-check-circle';
+                    syncText.textContent = message || 'Sincronizado';
+                    break;
+                case 'error':
+                    syncIcon.className = 'fas fa-exclamation-triangle';
+                    syncText.textContent = message || 'Error de sincronización';
+                    break;
+                case 'offline':
+                    syncIcon.className = 'fas fa-wifi-slash';
+                    syncText.textContent = message || 'Sin conexión';
+                    break;
+            }
+        }
+    }
+    
+    // Function to check for updates
+    async function checkForUpdates() {
+        try {
+            updateSyncStatus('syncing', 'Verificando actualizaciones...');
+            
+            const response = await fetch(CMS_CONFIG.apiUrls.load);
+            if (response.ok) {
+                const result = await response.json();
+                if (result.success && result.data) {
+                    const serverDataString = JSON.stringify(result.data);
+                    
+                    // Check if data has changed
+                    if (lastServerData !== serverDataString) {
+                        console.log('Datos del servidor actualizados, refrescando dashboard...');
+                        
+                        // Update localStorage
+                        localStorage.setItem('fantea_cms_data', serverDataString);
+                        lastServerData = serverDataString;
+                        
+                        // Reload data in dashboard
+                        Object.keys(result.data).forEach(sectionName => {
+                            loadSectionData(sectionName, result.data[sectionName]);
+                        });
+                        
+                        // Show notification
+                        showNotification('Datos actualizados desde el servidor', 'info');
+                        
+                        // Update sync status
+                        updateSyncStatus('synced', 'Actualizado hace un momento');
+                        
+                        // Reset status after 5 seconds
+                        setTimeout(() => {
+                            updateSyncStatus('synced', 'Sincronizado automáticamente');
+                        }, 5000);
+                    } else {
+                        updateSyncStatus('synced', 'Sincronizado automáticamente');
+                    }
+                } else {
+                    updateSyncStatus('error', 'Error en respuesta del servidor');
+                }
+            } else {
+                updateSyncStatus('error', 'Error de conexión');
+            }
+        } catch (error) {
+            console.warn('Error checking for updates:', error);
+            updateSyncStatus('offline', 'Sin conexión al servidor');
+        }
+    }
+    
+    // Initialize lastServerData
+    const currentData = localStorage.getItem('fantea_cms_data');
+    if (currentData) {
+        lastServerData = currentData;
+    }
+    
+    // Initial sync status
+    updateSyncStatus('syncing', 'Iniciando sincronización...');
+    
+    // Start periodic check every 30 seconds
+    refreshInterval = setInterval(checkForUpdates, 30000);
+    
+    // Also check when window becomes visible
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) {
+            checkForUpdates();
+        }
+    });
+    
+    // Check when user focuses the window
+    window.addEventListener('focus', checkForUpdates);
+    
+    // Initial check
+    checkForUpdates();
+    
+    console.log('Periodic refresh started - checking for updates every 30 seconds');
+    
+    // Return function to stop the refresh
+    return () => {
+        if (refreshInterval) {
+            clearInterval(refreshInterval);
+            console.log('Periodic refresh stopped');
+        }
+    };
+}
+
+/**
+ * Show notification to user
+ */
+function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <span>${message}</span>
+        <button onclick="this.parentElement.remove()">×</button>
+    `;
+    
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'info' ? '#3498db' : type === 'success' ? '#27ae60' : '#e74c3c'};
+        color: white;
+        padding: 12px 20px;
+        border-radius: 4px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: 300px;
+        animation: slideIn 0.3s ease-out;
+    `;
+    
+    // Add animation styles
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.remove();
+        }
+    }, 5000);
 }

@@ -88,6 +88,10 @@
                     <div class="header-info">
                         <h1>Dashboard</h1>
                         <p>Resumen de actividad y estadísticas de FANTEA</p>
+                        <div class="sync-status">
+                            <i class="fas fa-sync-alt fa-spin" id="sync-icon"></i>
+                            <span id="sync-text">Sincronizando automáticamente...</span>
+                        </div>
                     </div>
                     <div class="header-actions">
                         <button class="btn-secondary">
@@ -532,6 +536,10 @@
                         <p>Edita textos e imágenes de todas las páginas del sitio web</p>
                     </div>
                     <div class="header-actions">
+                        <button class="btn-secondary" id="refresh-data-btn" onclick="refreshData()">
+                            <i class="fas fa-sync-alt"></i>
+                            Refrescar Datos
+                        </button>
                         <button class="btn-secondary" id="preview-changes-btn">
                             <i class="fas fa-eye"></i>
                             Vista Previa

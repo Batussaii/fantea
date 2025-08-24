@@ -2454,3 +2454,87 @@ body {
         padding: 1rem;
     }
 }
+
+/* ==========================================================================
+   SYNC STATUS INDICATOR
+   ========================================================================== */
+
+.sync-status {
+    display: flex;
+    align-items: center;
+    gap: var(--admin-spacing-sm);
+    margin-top: var(--admin-spacing-sm);
+    font-size: var(--admin-font-size-sm);
+    color: var(--admin-gray-600);
+}
+
+.sync-status i {
+    font-size: var(--admin-font-size-xs);
+    color: var(--admin-primary);
+}
+
+.sync-status.synced i {
+    color: var(--admin-success);
+    animation: none;
+}
+
+.sync-status.error i {
+    color: var(--admin-danger);
+    animation: none;
+}
+
+.sync-status.offline i {
+    color: var(--admin-gray-500);
+    animation: none;
+}
+
+/* Notification styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--admin-primary);
+    color: white;
+    padding: 12px 20px;
+    border-radius: var(--admin-radius);
+    box-shadow: var(--admin-shadow-lg);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 300px;
+    animation: slideIn 0.3s ease-out;
+}
+
+.notification-success {
+    background: var(--admin-success);
+}
+
+.notification-error {
+    background: var(--admin-danger);
+}
+
+.notification button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0;
+    margin-left: auto;
+}
+
+.notification button:hover {
+    opacity: 0.8;
+}
+
+@keyframes slideIn {
+    from { 
+        transform: translateX(100%); 
+        opacity: 0; 
+    }
+    to { 
+        transform: translateX(0); 
+        opacity: 1; 
+    }
+}

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Dashboard Sync - FANTEA</title>
+    <link rel="stylesheet" href="admin/css/admin-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="admin/js/admin-dashboard.js"></script>
+    <style>
+        .test-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .test-button {
+            background: var(--admin-primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            opacity: 0.8;
+        }
+        .status-display {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Test Dashboard Sync - FANTEA</h1>
+        <p>Esta página prueba la sincronización del dashboard entre diferentes ordenadores.</p>
+        
+        <div class="test-section">
+            <h3>Estado de Sincronización</h3>
+            <div class="sync-status">
+                <i class="fas fa-sync-alt fa-spin" id="sync-icon"></i>
+                <span id="sync-text">Iniciando sincronización...</span>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Acciones de Prueba</h3>
+            <button class="test-button" onclick="refreshData()">
+                <i class="fas fa-sync-alt"></i> Refrescar Datos Manualmente
+            </button>
+            <button class="test-button" onclick="testSaveData()">
+                <i class="fas fa-save"></i> Simular Guardar Datos
+            </button>
+            <button class="test-button" onclick="showCurrentData()">
+                <i class="fas fa-eye"></i> Ver Datos Actuales
+            </button>
+            <button class="test-button" onclick="clearLocalData()">
+                <i class="fas fa-trash"></i> Limpiar Datos Locales
+            </button>
+        </div>
+        
+        <div class="test-section">
+            <h3>Datos Actuales</h3>
+            <div id="current-data" class="status-display">
+                Cargando datos...
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Log de Actividad</h3>
+            <div id="activity-log" class="status-display" style="max-height: 200px; overflow-y: auto;">
+                Iniciando test...
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Instrucciones de Prueba</h3>
+            <ol>
+                <li>Abre esta página en dos ordenadores diferentes</li>
+                <li>Haz clic en "Simular Guardar Datos" en uno de ellos</li>
+                <li>Verifica que los datos se actualizan automáticamente en el otro</li>
+                <li>Usa "Refrescar Datos Manualmente" para forzar una actualización</li>
+                <li>Observa el indicador de sincronización en tiempo real</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Override console.log to also show in the activity log
+        const originalLog = console.log;
+        const originalWarn = console.warn;
+        const originalError = console.error;
+        
+        function addToLog(message, type = 'info') {
+            const logElement = document.getElementById('activity-log');
+            if (logElement) {
+                const timestamp = new Date().toLocaleTimeString();
+                const logEntry = document.createElement('div');
+                logEntry.innerHTML = `<strong>[${timestamp}]</strong> ${message}`;
+                logEntry.style.color = type === 'error' ? 'red' : type === 'warn' ? 'orange' : 'black';
+                logElement.appendChild(logEntry);
+                logElement.scrollTop = logElement.scrollHeight;
+            }
+        }
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addToLog(args.join(' '), 'info');
+        };
+        
+        console.warn = function(...args) {
+            originalWarn.apply(console, args);
+            addToLog(args.join(' '), 'warn');
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addToLog(args.join(' '), 'error');
+        };
+        
+        // Test functions
+        function testSaveData() {
+            const testData = {
+                hero: {
+                    title: `Título de prueba - ${new Date().toLocaleTimeString()}`,
+                    description: `Descripción de prueba generada el ${new Date().toLocaleString()}`,
+                    buttons: {
+                        about: 'Conócenos',
+                        affiliate: 'Afíliate',
+                        donate: 'Haz una Donación'
+                    }
+                },
+                stats: {
+                    stats: [
+                        { number: Math.floor(Math.random() * 100), description: 'Asociaciones' },
+                        { number: Math.floor(Math.random() * 1000), description: 'Familias' },
+                        { number: Math.floor(Math.random() * 50), description: 'Años de experiencia' }
+                    ]
+                }
+            };
+            
+            // Save to server
+            fetch(CMS_CONFIG.apiUrls.save, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    section: 'hero',
+                    data: testData.hero,
+                    user: 'test-user'
+                })
+            }).then(response => response.json())
+            .then(result => {
+                console.log('Datos de prueba guardados:', result);
+                showNotification('Datos de prueba guardados correctamente', 'success');
+                showCurrentData();
+            })
+            .catch(error => {
+                console.error('Error guardando datos de prueba:', error);
+                showNotification('Error guardando datos de prueba', 'error');
+            });
+        }
+        
+        function showCurrentData() {
+            const dataElement = document.getElementById('current-data');
+            const currentData = localStorage.getItem('fantea_cms_data');
+            
+            if (currentData) {
+                try {
+                    const parsedData = JSON.parse(currentData);
+                    dataElement.innerHTML = `<pre>${JSON.stringify(parsedData, null, 2)}</pre>`;
+                } catch (error) {
+                    dataElement.innerHTML = `<span style="color: red;">Error parseando datos: ${error.message}</span>`;
+                }
+            } else {
+                dataElement.innerHTML = '<span style="color: orange;">No hay datos en localStorage</span>';
+            }
+        }
+        
+        function clearLocalData() {
+            localStorage.removeItem('fantea_cms_data');
+            console.log('Datos locales limpiados');
+            showCurrentData();
+            showNotification('Datos locales limpiados', 'info');
+        }
+        
+        // Initialize test page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Página de prueba iniciada');
+            showCurrentData();
+            
+            // Start periodic refresh
+            setTimeout(() => {
+                if (typeof startPeriodicRefresh === 'function') {
+                    startPeriodicRefresh();
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
