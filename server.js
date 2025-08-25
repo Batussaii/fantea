@@ -61,6 +61,21 @@ const upload = multer({
 app.use(cors(config.cors));
 app.use(express.json({ limit: '50mb' })); // Aumentar límite para imágenes
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
+// Headers anti-caché para APIs y datos dinámicos
+app.use((req, res, next) => {
+    // Para APIs y páginas HTML, prevenir caché
+    if (req.path.startsWith('/api/') || req.path.endsWith('.html') || req.path === '/') {
+        res.set({
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0',
+            'Last-Modified': new Date().toUTCString()
+        });
+    }
+    next();
+});
+
 app.use(express.static('.')); // Servir archivos estáticos desde la app
 // Servir archivos subidos desde el volumen persistente
 const UPLOADS_DIR = config.directories.uploads;

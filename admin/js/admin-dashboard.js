@@ -677,6 +677,20 @@ function startRealTimeUpdates() {
     
     // Verificar y actualizar contadores mensuales al cargar la página
     updateMonthlyCounters();
+    
+    // Escuchar eventos de sincronización en tiempo real
+    window.addEventListener('cms-data-updated', (event) => {
+        console.log('🔄 Dashboard: Datos CMS actualizados, recargando contenido...');
+        loadSavedContent();
+    });
+    
+    // Escuchar cambios en localStorage para sincronización entre pestañas
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'fantea_cms_data' && event.newValue !== event.oldValue) {
+            console.log('🔄 Dashboard: Cambio detectado en localStorage, recargando...');
+            loadSavedContent();
+        }
+    });
 }
 
 /**
@@ -2192,33 +2206,64 @@ function notifyAllTabs(sectionName, data) {
  */
 async function loadSavedContent() {
     try {
-        // Intentar cargar datos desde el servidor primero
-        const response = await fetch(CMS_CONFIG.apiUrls.load);
+        // Intentar cargar datos desde el servidor primero con headers anti-caché
+        const response = await fetch(CMS_CONFIG.apiUrls.load, {
+            method: 'GET',
+            headers: {
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache',
+                'Expires': '0'
+            }
+        });
+        
         if (response.ok) {
             const result = await response.json();
             if (result.success && result.data) {
-                console.log('Datos cargados desde servidor:', result.data);
+                console.log('🔄 Dashboard: Datos cargados desde servidor:', result.data);
                 
                 // Actualizar localStorage con los datos del servidor
                 localStorage.setItem('fantea_cms_data', JSON.stringify(result.data));
+                localStorage.setItem('fantea_cms_sync_time', Date.now().toString());
                 
                 // Cargar los datos en el dashboard
                 Object.keys(result.data).forEach(sectionName => {
                     loadSectionData(sectionName, result.data[sectionName]);
                 });
+                
+                // Verificación específica para areas-stats
+                if (result.data['areas-stats']) {
+                    console.log('🔍 Dashboard: Verificando carga de areas-stats después de loadSavedContent');
+                    setTimeout(() => {
+                        for (let i = 1; i <= 4; i++) {
+                            const numberField = document.getElementById(`areas-stats-number${i}`);
+                            const descField = document.getElementById(`areas-stats-description${i}`);
+                            if (numberField) {
+                                console.log(`📝 Post-load Campo ${i}: número="${numberField.value}", desc="${descField?.value}"`);
+                            }
+                        }
+                    }, 100);
+                }
+                
+                // Notificar que los datos se han actualizado
+                console.log('✅ Dashboard: Contenido estático actualizado correctamente');
                 return;
             }
         }
     } catch (error) {
-        console.warn('Error cargando datos desde servidor, usando localStorage como fallback:', error);
+        console.warn('⚠️ Dashboard: Error cargando datos desde servidor, usando localStorage como fallback:', error);
     }
     
     // Fallback a localStorage si el servidor no está disponible
     const savedData = JSON.parse(localStorage.getItem('fantea_cms_data') || '{}');
     
-    Object.keys(savedData).forEach(sectionName => {
-        loadSectionData(sectionName, savedData[sectionName]);
-    });
+    if (Object.keys(savedData).length > 0) {
+        console.log('📦 Dashboard: Usando datos de localStorage como fallback');
+        Object.keys(savedData).forEach(sectionName => {
+            loadSectionData(sectionName, savedData[sectionName]);
+        });
+    } else {
+        console.warn('⚠️ Dashboard: No hay datos disponibles en localStorage');
+    }
 }
 
 /**
@@ -2227,13 +2272,13 @@ async function loadSavedContent() {
 function loadSectionData(sectionName, data) {
     switch (sectionName) {
         case 'hero':
-            if (data.title) document.getElementById('hero-title').value = data.title;
-            if (data.description) document.getElementById('hero-description').value = data.description;
-            if (data.image) document.getElementById('hero-image-preview').src = data.image;
+            if (data.title && document.getElementById('hero-title')) document.getElementById('hero-title').value = data.title;
+            if (data.description && document.getElementById('hero-description')) document.getElementById('hero-description').value = data.description;
+            if (data.image && document.getElementById('hero-image-preview')) document.getElementById('hero-image-preview').src = data.image;
             if (data.buttons) {
-                if (data.buttons.about) document.getElementById('hero-button-about').value = data.buttons.about;
-                if (data.buttons.affiliate) document.getElementById('hero-button-affiliate').value = data.buttons.affiliate;
-                if (data.buttons.donate) document.getElementById('hero-button-donate').value = data.buttons.donate;
+                if (data.buttons.about && document.getElementById('hero-button-about')) document.getElementById('hero-button-about').value = data.buttons.about;
+                if (data.buttons.affiliate && document.getElementById('hero-button-affiliate')) document.getElementById('hero-button-affiliate').value = data.buttons.affiliate;
+                if (data.buttons.donate && document.getElementById('hero-button-donate')) document.getElementById('hero-button-donate').value = data.buttons.donate;
             }
             break;
             
@@ -2251,8 +2296,8 @@ function loadSectionData(sectionName, data) {
             break;
             
         case 'features':
-            if (data.title) document.getElementById('features-title').value = data.title;
-            if (data.subtitle) document.getElementById('features-subtitle').value = data.subtitle;
+            if (data.title && document.getElementById('features-title')) document.getElementById('features-title').value = data.title;
+            if (data.subtitle && document.getElementById('features-subtitle')) document.getElementById('features-subtitle').value = data.subtitle;
             
             if (data.features) {
                 const featureItems = document.querySelectorAll('.feature-item-cms');
@@ -2269,22 +2314,22 @@ function loadSectionData(sectionName, data) {
             break;
             
         case 'cta':
-            if (data.title) document.getElementById('cta-title').value = data.title;
-            if (data.description) document.getElementById('cta-description').value = data.description;
+            if (data.title && document.getElementById('cta-title')) document.getElementById('cta-title').value = data.title;
+            if (data.description && document.getElementById('cta-description')) document.getElementById('cta-description').value = data.description;
             if (data.buttons) {
-                if (data.buttons.primary) document.getElementById('cta-button-primary').value = data.buttons.primary;
-                if (data.buttons.secondary) document.getElementById('cta-button-secondary').value = data.buttons.secondary;
+                if (data.buttons.primary && document.getElementById('cta-button-primary')) document.getElementById('cta-button-primary').value = data.buttons.primary;
+                if (data.buttons.secondary && document.getElementById('cta-button-secondary')) document.getElementById('cta-button-secondary').value = data.buttons.secondary;
             }
             break;
             
         case 'nosotros-header':
-            if (data.title) document.getElementById('nosotros-title').value = data.title;
-            if (data.description) document.getElementById('nosotros-description').value = data.description;
+            if (data.title && document.getElementById('nosotros-title')) document.getElementById('nosotros-title').value = data.title;
+            if (data.description && document.getElementById('nosotros-description')) document.getElementById('nosotros-description').value = data.description;
             break;
             
         case 'history':
-            if (data.title) document.getElementById('history-title').value = data.title;
-            if (data.subtitle) document.getElementById('history-subtitle').value = data.subtitle;
+            if (data.title && document.getElementById('history-title')) document.getElementById('history-title').value = data.title;
+            if (data.subtitle && document.getElementById('history-subtitle')) document.getElementById('history-subtitle').value = data.subtitle;
             
             if (data.timeline) {
                 const timelineItems = document.querySelectorAll('.timeline-item-cms');
@@ -2301,12 +2346,12 @@ function loadSectionData(sectionName, data) {
             
         // New sections loading for updated pages
         case 'quienes-somos-header':
-            if (data.title) document.getElementById('quienes-somos-header-title').value = data.title;
-            if (data.subtitle) document.getElementById('quienes-somos-header-subtitle').value = data.subtitle;
-            if (data.image) document.getElementById('quienes-somos-header-image-preview').src = data.image;
+            if (data.title && document.getElementById('quienes-somos-header-title')) document.getElementById('quienes-somos-header-title').value = data.title;
+            if (data.subtitle && document.getElementById('quienes-somos-header-subtitle')) document.getElementById('quienes-somos-header-subtitle').value = data.subtitle;
+            if (data.image && document.getElementById('quienes-somos-header-image-preview')) document.getElementById('quienes-somos-header-image-preview').src = data.image;
             if (data.buttons) {
-                if (data.buttons.mision) document.getElementById('quienes-somos-button-mision').value = data.buttons.mision;
-                if (data.buttons.valores) document.getElementById('quienes-somos-button-valores').value = data.buttons.valores;
+                if (data.buttons.mision && document.getElementById('quienes-somos-button-mision')) document.getElementById('quienes-somos-button-mision').value = data.buttons.mision;
+                if (data.buttons.valores && document.getElementById('quienes-somos-button-valores')) document.getElementById('quienes-somos-button-valores').value = data.buttons.valores;
             }
             break;
             
@@ -2501,11 +2546,23 @@ function loadSectionData(sectionName, data) {
             break;
             
         case 'areas-stats':
+            console.log('🔄 Dashboard: Cargando areas-stats:', data);
             if (data.items) {
                 data.items.forEach((stat, index) => {
-                    if (stat.number) document.getElementById(`areas-stats-number${index + 1}`).value = stat.number;
-                    if (stat.description) document.getElementById(`areas-stats-description${index + 1}`).value = stat.description;
+                    const numberField = document.getElementById(`areas-stats-number${index + 1}`);
+                    const descField = document.getElementById(`areas-stats-description${index + 1}`);
+                    
+                    if (numberField && stat.number) {
+                        console.log(`📊 Actualizando stat ${index + 1} número: "${numberField.value}" -> "${stat.number}"`);
+                        numberField.value = stat.number;
+                    }
+                    if (descField && stat.description) {
+                        console.log(`📊 Actualizando stat ${index + 1} descripción: "${descField.value}" -> "${stat.description}"`);
+                        descField.value = stat.description;
+                    }
                 });
+            } else {
+                console.warn('⚠️ Dashboard: No hay items en areas-stats data');
             }
             break;
             
@@ -3984,11 +4041,22 @@ async function refreshData() {
                 
                 // Update localStorage
                 localStorage.setItem('fantea_cms_data', JSON.stringify(result.data));
+                localStorage.setItem('fantea_cms_sync_time', Date.now().toString());
                 
                 // Reload data in dashboard
                 Object.keys(result.data).forEach(sectionName => {
                     loadSectionData(sectionName, result.data[sectionName]);
                 });
+                
+                // Notificar a otras pestañas/ventanas sobre la actualización
+                if (window.realTimeSync) {
+                    window.realTimeSync.broadcastUpdate(result.data);
+                }
+                
+                // Disparar evento personalizado para sincronización
+                window.dispatchEvent(new CustomEvent('cms-data-updated', {
+                    detail: { data: result.data, source: 'dashboard-manual' }
+                }));
                 
                 // Show success notification
                 showNotification('Datos actualizados correctamente', 'success');
@@ -4037,6 +4105,7 @@ async function refreshData() {
 /**
  * Start periodic refresh to sync with server
  * This ensures the dashboard always shows the most recent data
+ * Integrado con el sistema de sincronización en tiempo real
  */
 function startPeriodicRefresh() {
     let lastServerData = null;
@@ -4089,12 +4158,23 @@ function startPeriodicRefresh() {
                         
                         // Update localStorage
                         localStorage.setItem('fantea_cms_data', serverDataString);
+                        localStorage.setItem('fantea_cms_sync_time', Date.now().toString());
                         lastServerData = serverDataString;
                         
                         // Reload data in dashboard
                         Object.keys(result.data).forEach(sectionName => {
                             loadSectionData(sectionName, result.data[sectionName]);
                         });
+                        
+                        // Notificar a otras pestañas/ventanas sobre la actualización
+                        if (window.realTimeSync) {
+                            window.realTimeSync.broadcastUpdate(result.data);
+                        }
+                        
+                        // Disparar evento personalizado para sincronización
+                        window.dispatchEvent(new CustomEvent('cms-data-updated', {
+                            detail: { data: result.data, source: 'dashboard-auto' }
+                        }));
                         
                         // Show notification
                         showNotification('Datos actualizados desde el servidor', 'info');
@@ -4130,8 +4210,8 @@ function startPeriodicRefresh() {
     // Initial sync status
     updateSyncStatus('syncing', 'Iniciando sincronización...');
     
-    // Start periodic check every 30 seconds
-    refreshInterval = setInterval(checkForUpdates, 30000);
+    // Start periodic check every 3 seconds (sincronizado con real-time-sync)
+    refreshInterval = setInterval(checkForUpdates, 3000);
     
     // Also check when window becomes visible
     document.addEventListener('visibilitychange', () => {
@@ -4146,7 +4226,50 @@ function startPeriodicRefresh() {
     // Initial check
     checkForUpdates();
     
-    console.log('Periodic refresh started - checking for updates every 30 seconds');
+    // Expose functions globally for debugging
+    window.forceRefreshDashboard = checkForUpdates;
+    window.forceDashboardSync = () => {
+        console.log('🚀 Dashboard: Sincronización forzada iniciada');
+        checkForUpdates();
+        if (window.realTimeSync) {
+            window.realTimeSync.forceSyncNow();
+        }
+    };
+    
+    // Función específica para verificar areas-stats
+    window.checkAreasStats = async () => {
+        console.log('🔍 Dashboard: Verificando areas-stats...');
+        try {
+            const response = await fetch(CMS_CONFIG.apiUrls.load, {
+                headers: {
+                    'Cache-Control': 'no-cache, no-store, must-revalidate',
+                    'Pragma': 'no-cache',
+                    'Expires': '0'
+                }
+            });
+            
+            if (response.ok) {
+                const result = await response.json();
+                if (result.success && result.data && result.data['areas-stats']) {
+                    console.log('📊 Areas-stats desde servidor:', result.data['areas-stats']);
+                    loadSectionData('areas-stats', result.data['areas-stats']);
+                    
+                    // Verificar valores actuales en los campos
+                    for (let i = 1; i <= 4; i++) {
+                        const numberField = document.getElementById(`areas-stats-number${i}`);
+                        const descField = document.getElementById(`areas-stats-description${i}`);
+                        console.log(`📝 Campo ${i}: número="${numberField?.value}", desc="${descField?.value}"`);
+                    }
+                } else {
+                    console.warn('⚠️ No hay datos de areas-stats en respuesta');
+                }
+            }
+        } catch (error) {
+            console.error('❌ Error verificando areas-stats:', error);
+        }
+    };
+    
+    console.log('🔄 Dashboard: Periodic refresh started - checking for updates every 3 seconds');
     
     // Return function to stop the refresh
     return () => {

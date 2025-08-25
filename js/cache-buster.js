@@ -66,14 +66,22 @@ class CacheBuster {
      * Configura la actualización automática cada cierto tiempo
      */
     setupAutoRefresh() {
-        // Verificar si hay una nueva versión cada 5 minutos
+        // Verificar si hay una nueva versión cada 30 segundos (más frecuente)
         setInterval(() => {
             this.checkForUpdates();
-        }, 5 * 60 * 1000);
+        }, 30 * 1000);
 
         // Forzar actualización al hacer focus en la ventana
         window.addEventListener('focus', () => {
             this.checkForUpdates();
+        });
+
+        // Escuchar eventos de sincronización del Real-Time Sync
+        window.addEventListener('cms-data-updated', () => {
+            console.log('🔄 Cache Buster: Datos CMS actualizados, regenerando versión...');
+            this.version = this.generateVersion();
+            this.addVersionToLocalStorage();
+            this.updateResourceVersions();
         });
     }
 
@@ -105,6 +113,15 @@ class CacheBuster {
 
         // Recargar la página
         window.location.reload(true);
+    }
+
+    /**
+     * Actualizar versiones de recursos sin recargar
+     */
+    updateResourceVersions() {
+        this.updateCSSLinks();
+        this.updateJSLinks();
+        console.log('🔄 Versiones de recursos actualizadas');
     }
 
     /**
